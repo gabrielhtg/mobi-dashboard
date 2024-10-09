@@ -1,0 +1,198 @@
+<div class="min-h-[calc(100vh-165px)]">
+  <h1 class="font-bold text-2xl mb-7">G-OCR KTP</h1>
+
+  <div class="flex gap-10 w-full flex-wrap">
+    <div class="xl:w-[50%]">
+      <div class="flex justify-center w-full mb-5 relative">
+        <div class="w-full">
+          <angular-cropper #angularCropper [cropperOptions]="cropperConfig" [imageUrl]="imageUrl"></angular-cropper>
+        </div>
+      </div>
+
+      <div class="w-full flex gap-3 mb-3">
+        <button (click)="rotateLeft()" class="py-3 flex-1 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
+            <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
+          </svg>
+          Rotate Left
+        </button>
+
+        <button (click)="rotateRight()" class="py-3 flex-1 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+          </svg>
+          Rotate Right
+        </button>
+      </div>
+
+      <form class="gap-3">
+        <label for="file-input" class="sr-only">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+            <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
+          </svg>
+          Choose file
+        </label>
+        <input type="file" (change)="onChange($event)" id="file-input" class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
+          dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400
+          file:bg-gray-50 file:border-0
+          file:me-4
+          file:py-3 file:px-4
+          dark:file:bg-neutral-700 dark:file:text-neutral-400">
+      </form>
+
+      <div class="flex gap-3 mt-3">
+        <button (click)="doOcr()" class="py-3 flex-1 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+          </svg>
+          Take Selected
+        </button>
+
+        <div [hidden]="hideTakeAll" class="flex-1">
+          <button (click)="doOcrAll()" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
+              <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5z"/>
+            </svg>
+            Take All
+          </button>
+        </div>
+
+        <div [hidden]="!hideTakeAll">
+          <button class="mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+            <div class="animate-spin inline-block size-6 border-[3px] border-current border-t-transparent text-white rounded-full" role="status" aria-label="loading">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <button (click)="exportPDF()" class="w-full mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:bg-red-700 disabled:opacity-50 disabled:pointer-events-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"/>
+        </svg>
+        Export PDF
+      </button>
+
+      <div class="bg-gray-800 font-mono mt-3 text-white p-3 rounded-lg border border-gray-300 dark:border-neutral-600 overflow-scroll
+        [&::-webkit-scrollbar]:w-2
+        [&::-webkit-scrollbar-track]:rounded-full
+        [&::-webkit-scrollbar-track]:bg-gray-100
+        [&::-webkit-scrollbar-thumb]:rounded-full
+        [&::-webkit-scrollbar-thumb]:bg-gray-300
+        dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+        dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500
+        ">
+        <span class="font-mono whitespace-pre-line">
+          {{rawData}}
+        </span>
+      </div>
+    </div>
+
+    <div id="tempat-tab-form" class="
+      w-full xl:w-[45%] lg:h-[500px] overflow-y-auto
+      [&::-webkit-scrollbar]:w-2
+      [&::-webkit-scrollbar-track]:rounded-full
+      [&::-webkit-scrollbar-track]:bg-gray-100
+      [&::-webkit-scrollbar-thumb]:rounded-full
+      [&::-webkit-scrollbar-thumb]:bg-gray-300
+      dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+      dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+      <form>
+        <div class="flex flex-wrap gap-5 px-2" id="tabs-with-icons-1" role="tabpanel" aria-labelledby="tabs-with-icons-item-1">
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Provinsi Pembuatan</label>
+            <input [value]="dataKTP[0]" (click)="setSelectedData(0)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Kota Pembuatan</label>
+            <input [value]="dataKTP[1]" (click)="setSelectedData(1)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">NIK</label>
+            <input [value]="dataKTP[2]" (click)="setSelectedData(2)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Nama</label>
+            <input [value]="dataKTP[3]" (click)="setSelectedData(3)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Tempat / Tanggal Lahir</label>
+            <input [value]="dataKTP[4]" (click)="setSelectedData(4)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Jenis Kelamin</label>
+            <input [value]="dataKTP[5]" (click)="setSelectedData(5)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Golongan Darah</label>
+            <input [value]="dataKTP[6]" (click)="setSelectedData(6)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Alamat</label>
+            <input [value]="dataKTP[7]" (click)="setSelectedData(7)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">RT/RW</label>
+            <input [value]="dataKTP[8]" (click)="setSelectedData(8)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Kel/Desa</label>
+            <input [value]="dataKTP[9]" (click)="setSelectedData(9)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Kecamatan</label>
+            <input [value]="dataKTP[10]" (click)="setSelectedData(10)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Agama</label>
+            <input [value]="dataKTP[11]" (click)="setSelectedData(11)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Status Perkawinan</label>
+            <input [value]="dataKTP[12]" (click)="setSelectedData(12)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Pekerjaan</label>
+            <input [value]="dataKTP[13]" (click)="setSelectedData(13)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Kewarganegaraan</label>
+            <input [value]="dataKTP[14]" (click)="setSelectedData(14)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Berlaku Hingga</label>
+            <input [value]="dataKTP[15]" (click)="setSelectedData(15)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <div class="min-w-80 w-full">
+            <label class="block text-sm font-medium mb-2 dark:text-white">Tanggal Dibuat</label>
+            <input [value]="dataKTP[16]" (click)="setSelectedData(16)" type="text" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500" placeholder="Type Here">
+          </div>
+
+          <button type="reset" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

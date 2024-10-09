@@ -1,0 +1,28 @@
+<!-- ========== NAVBAR ========== -->
+<app-navbar></app-navbar>
+<!-- ========== END NAVBAR ========== -->
+
+<!-- ========== MAIN CONTENT ========== -->
+
+<!-- Sidebar -->
+<app-sidebar></app-sidebar>
+<!-- End Sidebar -->
+
+<!-- Content -->
+<div class="w-full lg:ps-64 overflow-y-auto
+  [&::-webkit-scrollbar]:w-2
+  [&::-webkit-scrollbar-track]:rounded-full
+  [&::-webkit-scrollbar-track]:bg-gray-100
+  [&::-webkit-scrollbar-thumb]:rounded-full
+  [&::-webkit-scrollbar-thumb]:bg-gray-300
+  dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500
+">
+  <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
+    <div class="bg-white p-5 rounded-2xl border shadow-lg dark:bg-neutral-800 dark:border-neutral-200 dark:text-neutral-200">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<!-- End Content -->
+<!-- ========== END MAIN CONTENT ========== -->

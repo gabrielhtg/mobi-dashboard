@@ -1,0 +1,122 @@
+<div class="flex items-center justify-center h-screen p-5">
+
+  <div [hidden]="hideSuccessAlert" class="space-y-5 p-5 fixed top-0">
+    <div class="bg-teal-50 border-t-2 border-teal-500 rounded-lg p-4" role="alert">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <!-- Icon -->
+          <span class="inline-flex justify-center items-center size-8 rounded-full border-4 border-teal-100 bg-teal-200 text-teal-800">
+          <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+        </span>
+          <!-- End Icon -->
+        </div>
+        <div class="ms-3">
+          <h3 class="text-gray-800 font-semibold">
+            Successfully updated.
+          </h3>
+          <p class="text-sm text-gray-700">
+            {{ alertMessage }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm max-w-sm w-full">
+    <div class="p-4 sm:p-7">
+      <div class="text-center">
+        <h1 class="block text-2xl font-bold text-gray-800">Sign Up</h1>
+        <p class="mt-2 text-sm text-gray-600">
+          Silakan buat akun anda.
+        </p>
+      </div>
+
+      <div class="mt-5">
+
+        <!-- Form -->
+        <form #createAccountForm="ngForm" (ngSubmit)="submit(createAccountForm)">
+
+          <div class="mb-3">
+            <div class="relative">
+              <input ngModel type="text" id="nama" name="nama"
+                     class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                     required aria-describedby="email-error" placeholder="Nama">
+              <div class="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
+                <svg class="size-5 text-red-500" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
+                     aria-hidden="true">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid gap-y-4">
+            <div>
+              <div class="relative">
+                <input ngModel type="text" id="username" name="username"
+                       class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                       required aria-describedby="email-error" placeholder="Username">
+                <div class="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
+                  <svg class="size-5 text-red-500" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
+                       aria-hidden="true">
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="w-full">
+              <div class="relative">
+                <input ngModel id="hs-toggle-password" type="password"
+                       name="password"
+                       class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                       placeholder="Password">
+                <button type="button" data-hs-toggle-password='{
+        "target": "#hs-toggle-password"
+      }' class="absolute top-0 end-0 p-3.5 rounded-e-md">
+                  <svg class="flex-shrink-0 size-3.5 text-gray-400" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path class="hs-password-active:hidden" d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+                    <path class="hs-password-active:hidden" d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
+                    <path class="hs-password-active:hidden" d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+                    <line class="hs-password-active:hidden" x1="2" x2="22" y1="2" y2="22"></line>
+                    <path class="hidden hs-password-active:block" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                    <circle class="hidden hs-password-active:block" cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div class="relative">
+                <input ngModel type="email" id="email" name="email"
+                       class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                       required aria-describedby="email-error" placeholder="Email">
+                <div class="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
+                  <svg class="size-5 text-red-500" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
+                       aria-hidden="true">
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit"
+                    class="mt-2 w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+              Sign Up
+            </button>
+            <a routerLink="" class="border border-gray-200 w-full justify-center py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none">
+              Login
+            </a>
+          </div>
+        </form>
+        <!-- End Form -->
+      </div>
+    </div>
+  </div>
+
+</div>

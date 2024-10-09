@@ -1,0 +1,669 @@
+{
+  "transaction-data": [
+    [
+      "01/03",
+      "SALDO AWAL",
+      "",
+      "",
+      "14,674,055.04",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "01/03",
+      "TARIKAN ATM 01/03",
+      "",
+      "100,000.00 DB",
+      "14,574,055.04",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "01/03",
+      "TRSF E-BANKING CR 0103/FTSCY /WS95261 150000.00 prenatal class HANASYA RIZKIQA",
+      "",
+      "150,000.00",
+      "",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "01/03",
+      "TRSF E-BANKING DB 0103/FTFVA/WS95031 70001/G0-PAY CUSTO 082211753292",
+      "",
+      "31,000.00 DB",
+      "14,693,055.04",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "01/03",
+      "KR OTOMATIS MID 885000754301 TANGGAL :28/02 FRADELLA-HO TGH: 269500.00 DDR : 404 .25",
+      "0998",
+      "269,095.75",
+      "",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "01/03",
+      "SWITCHING CR TRANSFER DR 008 TANGGAL 28/02 IRISKA MINDIARNI [PLAZA MANDI",
+      "",
+      "650,000.00",
+      "",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "01/03",
+      "KR OTOMATIS MID 885000754301 FRADELLA-HO TGH: 302500.00 DDR : 453.75",
+      "0998",
+      "302,046.25",
+      "",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "01/03",
+      "TRSF E-BANKING DB 0103/FTFVA/WS95031 70001/G0-PAY CUSTO 082211753292",
+      "",
+      "101,000.00 DB",
+      "15,813,196.04",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "01/03",
+      "TARIKAN ATM 01/03",
+      "",
+      "100,000.00 DB",
+      "15,713,196.04",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "01/03",
+      "TRSF E-BANKING DB 0103/FTFVA/WS95031 70001/GO-PAY CUSTO 082211753292",
+      "",
+      "101,000.00 DB",
+      "15,612,196.04",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "01/03",
+      "KR OTOMATIS MID 885000754301 TANGGAL 28/02 FRADELLA-HO TGH : 500000.00 DDR: 750.00",
+      "0998",
+      "499,250.00",
+      "",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "01/03",
+      "TRSF E-BANKING CR 01/03 /95031/00000 SUPER   GRAHA PT",
+      "",
+      "15,000,000.00",
+      "",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "02/03",
+      "SWITCHING CR TRANSFER DR 200 TANGGAL :02/03 SIGIT WAHYU PURNOM /BTN SMS BAN",
+      "",
+      "165,000.00",
+      "",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "03/03",
+      "SWITCHING CR TRANSFER DR 008 TANGGAL :03/03 IRISKA MINDIARNI /PLAZA MANDI",
+      "",
+      "175,000.00",
+      "",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "08/03",
+      "KR OTOMATIS MID 885000754301 FRADELLA-HO TGH : 220000.00 DDR 2200 .00",
+      "0998",
+      "217,800.00",
+      "31,669,246.04",
+      "BCA_PERSONAL_NEW_1.jpg",
+      1
+    ],
+    [
+      "08/03",
+      "TARIKAN ATM 08/03",
+      "",
+      "100,000.00 DB",
+      "30,570,746.04",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "11/03",
+      "TRSF E-BANKING CR 0803 /FTSCY /WS95261 TANGGAL 08/03 48000 .00 pijat baby NINA MAULINA",
+      "",
+      "48,000.00",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "11/03",
+      "KARTU DEBIT INDOMARET , CIPAYUNG TANGGAL 09/03 5307952017534232",
+      "",
+      "99,700.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "11/03",
+      "KR OTOMATIS MID 885000754301 TANGGAL :10/03 FRADELLA-HO TGH: 170000.00 DDR: 1700.00",
+      "0998",
+      "168,300.00",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "11/03",
+      "TARIKAN ATM 10/03",
+      "",
+      "300,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "11/03",
+      "TARIKAN ATM 10/03",
+      "",
+      "300,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "11/03",
+      "TARIKAN ATM 10/03",
+      "",
+      "100,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "11/03",
+      "KR OTOMATIS MID 885000754301 FRADELLA-HO TGH: 1204500.00 DDR: 2741.75",
+      "0998",
+      "1,201,758.25",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "11/03",
+      "TARIKAN ATM 11/03",
+      "",
+      "100,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "11/03",
+      "TRSF E-BANKING DB 1103/FTFVA/WS95031 70001/GO-PAY CUSTO 082211753292",
+      "",
+      "91,000.00 DB",
+      "31,996,604.29",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "12/03",
+      "KR OTOMATIS MID 885000754301 FRADELLA-HO TGH: 352000.00 DDR: 2164 .25",
+      "0998",
+      "349,835.75",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "12/03",
+      "SWITCHING CR TRANSFER DR 147",
+      "",
+      "410,000.00",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "12/03",
+      "KARTU DEBIT MINISO MARGO CITY 5307952017534232",
+      "",
+      "280,200.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "12/03",
+      "KARTU DEBIT AYAM GORENG FATMAW 5307952017534232",
+      "",
+      "66,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "12/03",
+      "TRSF E-BANKING DB 1203/FTFVA/WS95031 70001/G0-PAY CUSTO 082211753292",
+      "",
+      "46,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "12/03",
+      "SWITCHING WITHDRAWAL DI 022 MARGO CITY JL.MARG",
+      "",
+      "50,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "12/03",
+      "SWITCHING BIAYA TXN DI 022 MARGO CITY JL.MARG",
+      "",
+      "7,500.00 DB",
+      "32,308,739.04",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "13/03",
+      "TRSF E-BANKING DB 1303/FTFVA/WS95031 70001/GO-PAY CUSTO 082211753292",
+      "",
+      "91,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "13/03",
+      "KARTU DEBIT INDOMARET , NIRWANA",
+      "",
+      "143,900.00 DB",
+      "32,073,839.04",
+      "BCA_PERSONAL_NEW_2.jpg",
+      2
+    ],
+    [
+      "",
+      "5307952017534232",
+      "",
+      "",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "13/03",
+      "BYR VIA E-BANKING 13/03 WSID9503100 0865 PLN PREPAID 538720217862 ALPIAN SANTOSA",
+      "",
+      "52,500.00 DB",
+      "31,020,839.04",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "14/03",
+      "SWITCHING CR TRANSFER DR 009 SDR DIDI AMRUHU PR /46.46.46.46",
+      "",
+      "135,000.00",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "14/03",
+      "SWITCHING WITHDRAWAL DI 008 CIBINONG341 UNIBGR",
+      "",
+      "100,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "14/03",
+      "SWITCHING BIAYA TXN DI 008 CIBINONG341 UNIBGR",
+      "",
+      "7,500.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "14/03",
+      "TRSF E-BANKING DB 14/03 /95031/00000 ALPIAN SANTOSA",
+      "",
+      "105,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "14/03",
+      "TRSF E-BANKING DB 1403/FTFVA/WS95031 70001/GO-PAY CUSTO 082211753292",
+      "",
+      "72,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "14/03",
+      "TRSF E-BANKING CR 14/03 WSID:058F1 ASWINDA",
+      "",
+      "230,000.00",
+      "32,101,839.04",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "15/03",
+      "KARTU DEBIT INDOMARET , CIPAYUNG 5307952017534232",
+      "",
+      "67,200.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "15/03",
+      "KARTU DEBIT INDOMARET_  CIPAYUNG 5307952017534232",
+      "",
+      "118,200.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "15/03",
+      "BIAYA ADM",
+      "",
+      "17,000.00 DB",
+      "31,899,439.04",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "18/03",
+      "KR OTOMATIS MID 885000754301 TANGGAL 16/03 FRADELLA-HO TGH: 330000.00 DDR: 2131.25",
+      "0998",
+      "327,868.75",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "18/03",
+      "SWITCHING WITHDRAWAL DI 022 TANGGAL 16/03 JL.RAYA BOGOR KM 4",
+      "",
+      "50,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "18/03",
+      "SWITCHING BIAYA TXN DI 022 TANGGAL 16/03 JL.RAYA BOGOR KM 4",
+      "",
+      "7,500.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "18/03",
+      "TRSF E-BANKING DB 1603/FTFVA/WS95031 TANGGAL 16/03 70001/GO-PAY CUSTO 082211753292",
+      "",
+      "126,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "18/03",
+      "TRSF E-BANKING CR 1603/FTSCY /WS95011 TANGGAL :16/03 2000000 .00 MIRAWATI",
+      "",
+      "2,000,000.00",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "18/03",
+      "TARIKAN ATM 16/03",
+      "",
+      "400,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "18/03",
+      "TARIKAN ATM 17/03",
+      "",
+      "100,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "18/03",
+      "KR OTOMATIS MID 885000754301 TANGGAL :17/03 FRADELLA-HO TGH: 220000 .00 DDR 330.00",
+      "0998",
+      "219,670.00",
+      "33,763,477.79",
+      "BCA_PERSONAL_NEW_3.jpg",
+      3
+    ],
+    [
+      "18/03",
+      "TRSF E-BANKING DB 1703/FTFVA/WS95031 TANGGAL :17/03 80008 /BUKALAPAK 081284944478",
+      "",
+      "722,500.00 DB",
+      "33,040,977.79",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "18/03",
+      "KARTU DEBIT K-24 CIKARET APOTE TANGGAL 17/03 5307952017534232",
+      "",
+      "97,700.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "18/03",
+      "KR OTOMATIS MID 885000754301 FRADELLA-HO TGH: 275000.00 DDR 412.50",
+      "0998",
+      "274,587.50",
+      "",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "18/03",
+      "TRSF E-BANKING DB 1803/FTFVA /WS95031 70001/G0-PAY CUSTO 082211753292",
+      "",
+      "29,000.00 DB",
+      "33,188,864.29",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "19/03",
+      "TRSF E-BANKING DB 1903/FTFVA/WS95031 70001/GO-PAY CUSTO 082211753292",
+      "",
+      "11,000.00 DB",
+      "33,177,864.29",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "21/03",
+      "BYR VIA E-BANKING 21/03 WSID9503102 1200 TELKOMSEL 082211753292 ALPIAN SANTOSA",
+      "",
+      "101,500.00 DB",
+      "33,076,364.29",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "22/03",
+      "TRSF E-BANKING DB 2203 /FTFVA/WS95031 70001/GO-PAY CUSTO 082211753292",
+      "",
+      "99,000.00 DB",
+      "32,977,364.29",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "25/03",
+      "SWITCHING WITHDRAWAL DI 008 TANGGAL  :23/03 BNAHUSADACB PTUGBG",
+      "",
+      "50,000.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "25/03",
+      "SWITCHING BIAYA TXN DI 008 TANGGAL 23/03 BNAHUSADACB PTUGBG",
+      "",
+      "7,500.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "25/03",
+      "KR OTOMATIS MID 885000754301 TANGGAL :24/03 FRADELLA-HO TGH: 732000.00 DDR: 3580.00",
+      "0998",
+      "728,420.00",
+      "33,648,284.29",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "26/03",
+      "SWITCHING CR TRANSFER DR 009 TANGGAL :25/03 SDRI WHELLI MURSA /62852140092",
+      "",
+      "30,000.00",
+      "",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "26/03",
+      "KR OTOMATIS MID 885000754301 FRADELLA-HO TGH: 110000.00 DDR: 165.00",
+      "0998",
+      "109,835.00",
+      "33,788,119.29",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "27/03",
+      "BYR VIA E-BANKING 27/03 WSID9503100 0865 PLN PREPAID 538720217862",
+      "",
+      "102,500.00 DB",
+      "33,685,619.29",
+      "BCA_PERSONAL_NEW_4.jpg",
+      4
+    ],
+    [
+      "",
+      "ALPIAN SANTOSA",
+      "",
+      "",
+      "",
+      "BCA_PERSONAL_NEW_5.jpg",
+      5
+    ],
+    [
+      "27/03",
+      "SWITCHING DB TRANSFER KE 008 SUWITO /M-BCA",
+      "",
+      "365,000.00 DB",
+      "33,320,619.29",
+      "BCA_PERSONAL_NEW_5.jpg",
+      5
+    ],
+    [
+      "27/03",
+      "SWITCHING DB TRANSFER KE 008 SUWITO /M-BCA",
+      "",
+      "6,500.00 DB",
+      "33,314,119.29",
+      "BCA_PERSONAL_NEW_5.jpg",
+      5
+    ],
+    [
+      "28/03",
+      "KARTU DEBIT KEDAI SOTo IBU RAH 5307952017534232",
+      "",
+      "164,450.00 DB",
+      "33,149,669.29",
+      "BCA_PERSONAL_NEW_5.jpg",
+      5
+    ],
+    [
+      "29/03",
+      "KARTU DEBIT INDOMARET NIRWANA 5307952017534232",
+      "",
+      "151,302.00 DB",
+      "",
+      "BCA_PERSONAL_NEW_5.jpg",
+      5
+    ],
+    [
+      "29/03",
+      "TRSF E-BANKING DB 2903 /FTFVA/WS95031 70001/GO-PAY CUSTO 082211753292",
+      "",
+      "36,000.00 DB",
+      "32,962,367.29",
+      "BCA_PERSONAL_NEW_5.jpg",
+      5
+    ],
+    [
+      "31/03",
+      "BUNGA",
+      "",
+      "576.15",
+      "32,962,943.44",
+      "BCA_PERSONAL_NEW_5.jpg",
+      5
+    ]
+  ],
+  "analitics-data": [
+    "14,674,055.04",
+    "23,662,040.40",
+    "23",
+    "5,373,152.00",
+    "46",
+    "32,962,943.44"
+  ]
+}
