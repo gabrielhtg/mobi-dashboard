@@ -3,7 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TableLogActivityComponent } from '../tables/table-log-activity/table-log-activity.component';
 import { NgForOf } from '@angular/common';
-import { apiUrl } from '../../assets/env';
+import { apiUrl } from '../env';
 import { HttpClient } from '@angular/common/http';
 import {
   ActivatedRoute,

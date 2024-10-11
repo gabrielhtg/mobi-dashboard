@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { NgxTiptapModule } from 'ngx-tiptap';
-import { apiUrl } from '../../assets/env';
+import { apiUrl } from '../env';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 

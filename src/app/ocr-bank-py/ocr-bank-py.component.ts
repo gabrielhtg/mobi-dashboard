@@ -7,7 +7,7 @@ import HSFileUpload from '@preline/file-upload';
 import { HSStaticMethods } from 'preline/preline';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { apiUrlPy } from '../../assets/env';
+import { apiUrlPy } from '../env';
 
 @Component({
   selector: 'app-ocr-bank-py',

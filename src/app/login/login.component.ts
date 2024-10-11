@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, NgForm } from '@angular/forms';
-import { apiUrl } from '../../assets/env';
+import { apiUrl } from '../env';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +14,6 @@ export class LoginComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(formLogin: NgForm) {
-    console.log(formLogin.value);
-
     this.http.post<any>(`${apiUrl}/auth/login`, formLogin.value).subscribe({
       next: (value) => {
         sessionStorage.setItem('name', value.data.nama);

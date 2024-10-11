@@ -5,7 +5,7 @@ import { TableLogActivityComponent } from '../tables/table-log-activity/table-lo
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NgForOf } from '@angular/common';
-import { apiUrl } from '../../assets/env';
+import { apiUrl } from '../env';
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
 import {
   refreshPage,

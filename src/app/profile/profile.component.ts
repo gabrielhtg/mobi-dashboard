@@ -8,7 +8,7 @@ import isProfilePictExist, {
 } from '../allservice';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { apiUrl } from '../../assets/env';
+import { apiUrl } from '../env';
 
 @Component({
   selector: 'app-profile',

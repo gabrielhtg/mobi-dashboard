@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { apiUrl } from '../assets/env';
+import { apiUrl } from './env';
 import { HttpClient } from '@angular/common/http';
 
 export function refreshPage(currentUrl: string, router: Router) {

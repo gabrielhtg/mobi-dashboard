@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableLogActivityComponent } from '../tables/table-log-activity/table-log-activity.component';
 import { HttpClient } from '@angular/common/http';
-import { apiUrl } from '../../assets/env';
+import { apiUrl } from '../env';
 import { data } from 'autoprefixer';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { apiUrl } from '../../assets/env';
+import { apiUrl } from '../env';
 import { NgOptimizedImage } from '@angular/common';
 import { AngularCropperjsModule, CropperComponent } from 'angular-cropperjs';
 import { TableLogActivityComponent } from '../tables/table-log-activity/table-log-activity.component';

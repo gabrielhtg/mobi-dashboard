@@ -2,7 +2,7 @@ import { Component, HostListener, ViewChild } from '@angular/core';
 import { AngularCropperjsModule, CropperComponent } from 'angular-cropperjs';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { apiUrl } from '../../assets/env';
+import { apiUrl } from '../env';
 import { NgForOf, NgIf } from '@angular/common';
 import FileSaver from 'file-saver';
 

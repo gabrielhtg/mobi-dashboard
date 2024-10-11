@@ -6,7 +6,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CodeBlock } from '@tiptap/extension-code-block';
 import { Image } from '@tiptap/extension-image';
 import { HttpClient } from '@angular/common/http';
-import { apiUrl } from '../../assets/env';
+import { apiUrl } from '../env';
 import { Router, RouterLink } from '@angular/router';
 import { showSuccessNotification } from '../allservice';
 
