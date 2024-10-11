@@ -8,7 +8,6 @@ import { HSStaticMethods } from 'preline/preline';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { apiUrlPy } from '../../assets/env';
-import { catchError, throwError, timeout } from 'rxjs';
 
 @Component({
   selector: 'app-ocr-bank-py',
@@ -94,6 +93,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           formData.append('zip-password', this.zipPassword!);
         }
 
+        formData.append('bank-statement-type', this.selectedBankStatement);
+
         this.http.post<any>(`${apiUrlPy}/proceed-bri`, formData).subscribe({
           next: (value) => {
             Swal.close();
@@ -114,37 +115,6 @@ export class OcrBankPyComponent implements AfterViewInit {
           },
         });
       }
-
-      // this.http.get('assets/response_bca_personal.json').subscribe({
-      //   next: value => {
-      //     Swal.close();
-      //
-      //     this.router
-      //       .navigate(['/dashboard/ocr-bank-py-processed'], {
-      //         state: value,
-      //       })
-      //     .then();
-      //   }
-      // })
-
-      // this.http.post<any>('http://localhost:5000/proceed', formData).subscribe({
-      //   next: value => {
-      //       Swal.close();
-      //
-      //       this.router
-      //         .navigate(['/dashboard/ocr-bank-py-processed'], {
-      //           state: value,
-      //         })
-      //       .then();
-      //   },
-      //   error: err => {
-      //     Swal.fire({
-      //           icon: 'error',
-      //           title: 'Upload Failed',
-      //           text: err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-      //         });
-      //   }
-      // })
     });
   }
 
