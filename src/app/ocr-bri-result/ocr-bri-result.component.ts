@@ -10,9 +10,11 @@ import { Router } from '@angular/router';
 })
 export class OcrBriResultComponent {
   transactionData: any;
+  summaryData: any;
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['data'];
+    this.summaryData = navigation?.extras.state?.['summary_data'];
   }
 }

@@ -95,6 +95,26 @@ export class OcrBankPyComponent implements AfterViewInit {
 
         formData.append('bank-statement-type', this.selectedBankStatement);
 
+        // this.http.get<any>('assets/response-bri.json').subscribe({
+        //   next: (value) => {
+        //     Swal.close();
+
+        //     this.router
+        //       .navigate(['/dashboard/ocr-bri-result'], {
+        //         state: value,
+        //       })
+        //       .then();
+        //   },
+        //   error: (err) => {
+        //     Swal.fire({
+        //       icon: 'error',
+        //       title: 'Upload Failed',
+        //       text:
+        //         err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+        //     });
+        //   },
+        // });
+
         this.http.post<any>(`${apiUrlPy}/proceed-bri`, formData).subscribe({
           next: (value) => {
             Swal.close();
@@ -141,15 +161,23 @@ export class OcrBankPyComponent implements AfterViewInit {
     });
   }
 
-  uploadFile() {
-    Swal.fire({
-      title: 'Processing',
-      text: 'Sedang melakukan processing. Mohon tunggu ...',
-      didOpen: () => {
-        Swal.showLoading();
-      },
-    });
+  uploadFile(selectedBankStatement: string) {
+    if (selectedBankStatement == '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: 'Tentukan jenis bank statement!',
+      });
+    } else {
+      Swal.fire({
+        title: 'Processing',
+        text: 'Sedang melakukan processing. Mohon tunggu ...',
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
 
-    this.element.dropzone.processQueue();
+      this.element.dropzone.processQueue();
+    }
   }
 }
