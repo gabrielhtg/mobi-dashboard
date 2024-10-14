@@ -1,0 +1,647 @@
+{
+  "analitics-data": {
+    "avg_cr": "224,711,391.07",
+    "avg_db": "156,332,308.75",
+    "count_cr_ocr": 28,
+    "count_db_ocr": 40,
+    "jumlah_mutasi_cr": "28",
+    "jumlah_mutasi_db": "40",
+    "max_cr": "387,342,200.00",
+    "max_db": "375,000,000.00",
+    "min_cr": "67,911,350.00",
+    "min_db": "0.00",
+    "mutasi_cr": "6,291,918,950.00",
+    "mutasi_db": "6,274,292,350.00",
+    "net_balance": "38,626,600.00",
+    "raw_sum_cr": 6291918950,
+    "raw_sum_db": 6253292350,
+    "saldo_akhir": "851,621,045.63",
+    "saldo_awal": "833,994 , 445.63",
+    "sum_cr": "6,291,918,950.00",
+    "sum_db": "6,253,292,350.00"
+  },
+  "transaction-data": [
+    ["01/07", "SALDO AWAL", "", "", "833,994,445.63", "BCA_CORP_1.jpg", 1],
+    [
+      "01/07",
+      "TRSF E-BANKING CR 01/07 /95031/00000 DADANG ISKANDAR",
+      "",
+      "171,544,350.00",
+      "1,005,538,795.63",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "01/07",
+      "TRSF E-BANKING CR 01/07 /95031/00000 BAJU TACTICAL COMB AT PEACEKEEPING FADLIL UMART BAHAD",
+      "",
+      "319,722,500.00",
+      "",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "01/07",
+      "TRSF E-BANKING CR 01/07 /95031/00000 189953300.00 NICO DARMAWAN CORN",
+      "",
+      "189,953,300.00",
+      "",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "01/07",
+      "BI-FAST DB BIF TRANSFER KE 002 MAXISTAR INTERMODA BRI JKT",
+      "",
+      "250,000,000.00 DB",
+      "",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "01/07",
+      "BI-FAST DB BIF BIAYA TXN KE 002 MAXISTAR INTERMODA BRI JKT",
+      "",
+      "2,500.00 DB",
+      "1,265,212,095.63",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "04/07",
+      "TRSF E-BANKING DB 0207 /FTSCY /WS95051 TANGGAL :02/07 215668350.00 RECON LONG SLEEVE OUTDOOR-BLUE-OLIVE AGUS ISMAIL",
+      "",
+      "215,668,350.00 DB",
+      "",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "04/07",
+      "TRSF E-BANKING CR 02/07 /95031/00000 TANGGAL :02/07 288376700.00 SEPATU PDL HONU TC ISWANTO",
+      "",
+      "288,376,700.00",
+      "",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "04/07",
+      "TRSF E-BANKING DB 0207 /FTSCY /WS95051 TANGGAL :02/07 25350000.00 DNSJOG JULI 22 TRIS SATRYA PRATAM",
+      "",
+      "25,350,000.00 DB",
+      "",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "04/07",
+      "TRSF E-BANKING DB 0407 /FTSCY /wS95051 119974800.00 B MATERIAL TACTICA ARIE SETYA  YUDHA",
+      "",
+      "119,974,800.00 DB",
+      "",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "04/07",
+      "TRSF E-BANKING DB 0407 /FTSCY /WS95051 9400000.00 JOGVIP/2022070352 PILAR PRIMA NUSANT",
+      "",
+      "9,400,000.00 DB",
+      "",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "04/07",
+      "TRSF E-BANKING CR 04/07 /95031/00000 189711900.00 DARWIN MICHAEL AGU",
+      "",
+      "189,711,900.00",
+      "",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "04/07",
+      "TRSF E-BANKING DB 0407 /FTFVA/WS95051 23789500.00",
+      "",
+      "23,789,500.00 DB",
+      "1,349,118,045.63",
+      "BCA_CORP_1.jpg",
+      1
+    ],
+    [
+      "",
+      "BELI MANAKIN KANT OR JKT KENDRI SETIAWAN",
+      "",
+      "",
+      "",
+      "BCA_CORP_2.jpg",
+      2
+    ],
+    [
+      "05/07",
+      "TRSF E-BANKING DB 0507/FTSCY /WS95051 319980500.00 INV 021/MSI/P0/07/ BULK HONU POLRI LAI HERMANTO",
+      "",
+      "319,980,500.00 DB",
+      "1,029,137,545.63",
+      "BCA_CORP_2.jpg",
+      2
+    ],
+    [
+      "05/07",
+      "TRSF E-BANKING DB 0507 /FTSCY /WS95051 224112350.00 PMBYRN   BAHAN MATER IAL MOLAY PEACEKEE FANY SANTOSO",
+      "",
+      "224,112,350.00 DB",
+      "805,025,195.63",
+      "BCA_CORP_2.jpg",
+      2
+    ],
+    [
+      "06/07",
+      "TRSF E-BANKING CR 06/07 /95031/00000 291136750.00 PEMBAYARAN PAMEN DAN PATCH SOGILI SONG RAHMAWATI",
+      "",
+      "291,136,750.00",
+      "",
+      "BCA_CORP_2.jpg",
+      2
+    ],
+    [
+      "06/07",
+      "TRSF E-BANKING CR 06/07 /95031/00000 NKS SERAGAM NIKITA AYU DINI MA",
+      "",
+      "132,000,000.00",
+      "",
+      "BCA_CORP_2.jpg",
+      2
+    ],
+    [
+      "06/07",
+      "TRSF E-BANKING CR 06/07 /95031/00000 KAOS THE INDONESIA N BADASS LILIK WIJANARKO",
+      "",
+      "67,911,350.00",
+      "",
+      "BCA_CORP_2.jpg",
+      2
+    ],
+    [
+      "06/07",
+      "TRSF E-BANKING DB 0607 /FTSCY /WS95051 236191500.00 TAG T.5-C VRENGKI JUN PARAMA",
+      "",
+      "236,191,500.00 DB",
+      "1,059,881,795.63",
+      "BCA_CORP_2.jpg",
+      2
+    ],
+    [
+      "07/07",
+      "BI-FAST DB BIF TRANSFER KE 097 IDA MURWANTI KBB",
+      "",
+      "197,884,300.00 DB",
+      "",
+      "BCA_CORP_2.jpg",
+      2
+    ],
+    [
+      "07/07",
+      "BI-FAST DB BIF BIAYA TXN KE 097 IDA MURWANTI KBB",
+      "",
+      "2,500.00 DB",
+      "",
+      "BCA_CORP_2.jpg",
+      2
+    ],
+    [
+      "07/07",
+      "TRSF €-BANKING DB 0707 /FTSCY/wS95051 2ooo00000.00 KORDINASI LAP JOGJ TRIS SATRYA PRATAM",
+      "",
+      "200,000,000.00 DB",
+      "",
+      "BCA_CORP_2.jpg",
+      2
+    ],
+    [
+      "07/07",
+      "TRSF E-BANKING CR 07/07 /95031/00000 HONU 42 BLACK PETER RIADI",
+      "",
+      "155,997,000.00",
+      "817,991,995.63",
+      "BCA_CORP_2.jpg",
+      2
+    ],
+    [
+      "08/07",
+      "TRSF E-BANKING CR 08/07 /95031/00000 ZULFIAN ANDREW PRA",
+      "",
+      "216,669,400.00",
+      "1,034,661,395.63",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "08/07",
+      "TRSF E-BANKING CR 08/07 /95031/00000 IMAM BAGUS WICAKSO",
+      "",
+      "174,312,500.00",
+      "",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "08/07",
+      "BI-FAST DB BIF TRANSFER KE 153 MITRA MULIA TEXIND KBB",
+      "",
+      "227,118,500.00 DB",
+      "",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "08/07",
+      "BI-FAST DB BIF BIAYA TXN KE 153 MITRA MULIA TEXIND KBB",
+      "",
+      "2,500.00 DB",
+      "981,852,895.63",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "11/07",
+      "BI-FAST DB BIF TRANSFER KE TANGGAL :09/07 451 MUKH  NURKHOLIS DAN BRI JKT",
+      "",
+      "125,000,000.00 DB",
+      "",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "11/07",
+      "BI-FAST DB BIF BIAYA TXN KE TANGGAL :09/07 451 MUKH NURKHOLIS DAN KBB",
+      "",
+      "2,500.00 DB",
+      "",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "11/07",
+      "BI-FAST CR BIF TRANSFER DR TANGGAL 2 09/07 009 HAPOSAN  SINAGA",
+      "",
+      "318,775,500.00",
+      "",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "11/07",
+      "TRSF E-BANKING CR 1107 /FTSCY /WS95051 231167750.00 INV 124 /MSI/IV/22 PT MOLAY SATRYA IN ZULFIAN ANDREW PRA",
+      "",
+      "231,167,750.00",
+      "",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "11/07",
+      "TRSF E-BANKING DB 1107 /FTSCY /WS95051 07969/PT JARINGAN INV CA2022051217 MEI 2022 JARINGAN SAMUDRA L",
+      "",
+      "211,345,500.00 DB",
+      "",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "11/07",
+      "TRSF E-BANKING DB 1107 /FTSCY /WS95051 322500000.00 MAT HONU TACTICAL TRIS SATRYA PRATAM",
+      "",
+      "322,500,000.00 DB",
+      "872,948,145.63",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "13/07",
+      "TRSF E-BANKING DB 1307 /FTSCY /wS95051 297115300.00 014 /MSI/PO/VI/22 EVERSHINE TEX TBK",
+      "",
+      "297,115,300.00 DB",
+      "",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "13/07",
+      "TRSF E-BANKING DB 1307 /FTSCY /WS95051 178554000.00 ABADI EXPRESS PT",
+      "",
+      "178,554,000.00 DB",
+      "397,278,845.63",
+      "BCA_CORP_3.jpg",
+      3
+    ],
+    [
+      "13/07",
+      "TRSF E-BANKING CR 13/07 /95031/00000 TAGIHAN BSO PETER RIADI",
+      "",
+      "331,654,400.00",
+      "728,933,245.63",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "13/07",
+      "TRSF E-BANKING DB 1307 /FTSCY /WS95051 199233300.00 PEMBELIAN MATERIAL KEMEJA TACTICAL PER JULI 2022 ARIE SETYA YUDHA",
+      "",
+      "199,233,300.00 DB",
+      "",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "13/07",
+      "TRSF E-BANKING CR 13/07 /95031/00000 IMAM BAGUS WICAKSO",
+      "",
+      "211,862,000.00",
+      "741,561,945.63",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "15/07",
+      "TRSF E-BANKING CR 15/07 /95031/00000 75000000.00 PETER RIADI",
+      "",
+      "75,000,000.00",
+      "",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "15/07",
+      "TRSF E-BANKING DB 1507 /FTFVA/WS95051 21000000.00 B CETAK KATALOG DIAH SUPROBOWATI",
+      "",
+      "0.00 DB",
+      "795,561,945.63",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "18/07",
+      "BI-FAST DB BIF TRANSFER KE TANGGAL 16/07 002 MAXISTAR INTERMODA KBB",
+      "",
+      "220,000,000.00 DB",
+      "",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "18/07",
+      "BI-FAST DB BIF BIAYA TXN KE TANGGAL 16/07 002 MAXISTAR INTERMODA KBB",
+      "",
+      "2,500.00 DB",
+      "",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "18/07",
+      "TRSF E-BANKING DB 1807 /FTSCY /WS95051 227293000.00 PEM JASA LOGISTIK JARINGAN SAMUDRA L",
+      "",
+      "227,293,000.00 DB",
+      "",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "18/07",
+      "TRSF E-BANKING DB 1807 /FTSCY /WS95051 188522000.00 JAEGER FULL LEATHE WANGTA AGUNG PT",
+      "",
+      "188,522,000.00 DB",
+      "159,744,445.63",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "20/07",
+      "TRSF E-BANKING CR 20/07 /95031/00000 RIZKY KARISMA MAHA",
+      "",
+      "387,342,200.00",
+      "",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "20/07",
+      "TRSF E-BANKING DB 2007 /FTSCT /WS95051 227845750.00 HERMANTO",
+      "",
+      "227,845,750.00 DB",
+      "",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "20/07",
+      "TRSF E-BANKING DB 2007 /FTSCY /WS95051 150o00000 . 00 KORDI DINAS JUNI ARIE SETYA YUDHA",
+      "",
+      "150,000,000.00 DB",
+      "169,240,895.63",
+      "BCA_CORP_4.jpg",
+      4
+    ],
+    [
+      "25/07",
+      "TRSF E-BANKING CR 23/07 /95031/00000 TANGGAL :23/07 ORDER AN DIAH AREN DRA MB DIAH MAHARANI W",
+      "",
+      "288,112,500.00",
+      "457,353,395.63",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "25/07",
+      "TRSF E-BANKING CR 2307 /FTSCY /WS95041 TANGGAL :23/07 267525750.00 DEDIK SETIAWAN",
+      "",
+      "267,525,750.00",
+      "",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "25/07",
+      "BI-FAST DB BIF TRANSFER KE 009 STEVANUS HENRI SET BRI JKT",
+      "",
+      "178,992,000.00 DB",
+      "",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "25/07",
+      "BI-FAST DB BIF BIAYA TXN KE 009 STEVANUS HENRI SET KBB",
+      "",
+      "2,500.00 DB",
+      "",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "25/07",
+      "TRSF E-BANKING CR 25/07 /95031/00000 TAGIHAN BSO PETER RIADI",
+      "",
+      "199,523,000.00",
+      "745,407,645.63",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "26/07",
+      "SWITCHING DB TRANSFER KE 023 LAKSMI LEELA GARME IKBB",
+      "",
+      "295,000,000.00 DB",
+      "",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "26/07",
+      "SWITCHING DB BIAYA TXN KE 023 LAKSMI LEELA GARME IKBB",
+      "",
+      "6,500.00 DB",
+      "",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "26/07",
+      "TRSF E-BANKING CR 26/07 /95031/00000 FADLIL UMART BAHAD",
+      "",
+      "270,000,000.00",
+      "",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "26/07",
+      "TRSF E-BANKING CR 26/07 /95031/00000 JOKO PRANOTO SISWA",
+      "",
+      "87,663,300.00",
+      "",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "26/07",
+      "TRSF E-BANKING DB 2607 /FTSCT /WS95051 258000000.00 PEMBAYARAN JASA EXPORT HONU TACTIC HERMANTO",
+      "",
+      "258,000,000.00 DB",
+      "550,064,445.63",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "27/07",
+      "TRSF E-BANKING CR 2707 /FTSCY /WS95041 124755000.00 WD202207178 PT Molay satrya I TOKOPEDIA PT",
+      "",
+      "124,755,000.00",
+      "",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "27/07",
+      "TRSF E-BANKING CR 27/07 /95031/00000 138113500.00 JOKO PRANOTO SISWA",
+      "",
+      "138,113,500.00",
+      "",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "27/07",
+      "SWITCHING DB TRANSFER KE 213 ARIE SETYA   YUDHA /KBB",
+      "",
+      "150,000,000.00 DB",
+      "662,932,945.63",
+      "BCA_CORP_5.jpg",
+      5
+    ],
+    [
+      "28/07",
+      "SWITCHING DB BIAYA TXN KE 213 ARIE SETYA YUDHA /KBB",
+      "",
+      "6,500.00 DB",
+      "662,926,445.63",
+      "BCA_CORP_6.jpg",
+      6
+    ],
+    [
+      "28/07",
+      "TRSF E-BANKING CR 28/07 /95031/00000 314986300.00 VELOX RICON LONG SLEEVE ELVIN DWI LARASWAT",
+      "",
+      "314,986,300.00",
+      "",
+      "BCA_CORP_6.jpg",
+      6
+    ],
+    [
+      "28/07",
+      "TRSF E-BANKING CR 2807 /FTSCY /WS95041 HONU SIZE 40,45,46 MUGIA YARRY JUNAND",
+      "",
+      "331,752,000.00",
+      "",
+      "BCA_CORP_6.jpg",
+      6
+    ],
+    [
+      "28/07",
+      "TRSF E-BANKING DB 2807 /FTSCY /WS95051 299467200.00 CNTN MOLAY APR 22 INV . 12042022P118 HAFIZH OKTANIA ZUK",
+      "",
+      "299,467,200.00 DB",
+      "1,010,197,545.63",
+      "BCA_CORP_6.jpg",
+      6
+    ],
+    [
+      "29/07",
+      "SWITCHING CR TRANSFER DR 049 IMAM DIPSA MAULANA /81228109345",
+      "",
+      "288,700,000.00",
+      "",
+      "BCA_CORP_6.jpg",
+      6
+    ],
+    [
+      "29/07",
+      "TRSF E-BANKING CR 29/07 /95031/00000 TAGIHAN BSO PETER RIADI",
+      "",
+      "227,650,000.00",
+      "",
+      "BCA_CORP_6.jpg",
+      6
+    ],
+    [
+      "29/07",
+      "TRSF E-BANKING DB 2907 /FTSCY /WS95051 375000000.00 DIAH SUPROBOWATI",
+      "",
+      "375,000,000.00 DB",
+      "",
+      "BCA_CORP_6.jpg",
+      6
+    ],
+    [
+      "29/07",
+      "TRSF E-BANKING DB 2907 /FTSCY /WS95051 299896500. 00 INV 014 /MSI/PO/IV/ ABADI EXPRESS PT",
+      "",
+      "299,896,500.00 DB",
+      "851,651,045.63",
+      "BCA_CORP_6.jpg",
+      6
+    ],
+    [
+      "31/07",
+      "BIAYA ADM",
+      "",
+      "30,000.00 DB",
+      "851,621,045.63",
+      "BCA_CORP_6.jpg",
+      6
+    ]
+  ]
+}

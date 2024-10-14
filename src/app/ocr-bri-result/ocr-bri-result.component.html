@@ -289,104 +289,15 @@
         </tbody>
       </table>
     </div>
-
-    <!-- <div class="mt-5">
-      <div class="max-w-sm">
-        <label
-          for="input-saldo-awal"
-          class="block text-sm font-medium mb-2 dark:text-white"
-          >Saldo Awal</label
-        >
-        <input
-          type="email"
-          id="input-saldo-awal"
-          [value]="analyticsData.saldo_awal"
-          [(ngModel)]="saldoAwal"
-          (change)="updateValue(analyticsData, 'saldo_awal', saldoAwal)"
-          class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-        />
-      </div>
-
-      <div class="mt-3">
-        <label
-          for="input-mutasi-cr"
-          class="block text-sm font-medium mb-2 dark:text-white"
-          >Mutasi CR</label
-        >
-        <div class="flex gap-5">
-          <input
-            type="email"
-            id="input-mutasi-cr"
-            [value]="analyticsData.mutasi_cr"
-            [(ngModel)]="mutasiKredit"
-            (change)="updateValue(analyticsData, 'mutasi_cr', mutasiKredit)"
-            class="border max-w-sm py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-          />
-          <input
-            type="email"
-            id="banyak-transaksi-cr"
-            [value]="analyticsData.jumlah_mutasi_cr"
-            [(ngModel)]="jumlahMutasiKredit"
-            (change)="
-              updateValue(analyticsData, 'jumlah_mutasi_cr', jumlahMutasiKredit)
-            "
-            class="border py-3 max-w-[50px] px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-          />
-        </div>
-      </div>
-
-      <div class="mt-3">
-        <label
-          for="input-mutasi-db"
-          class="block text-sm font-medium mb-2 dark:text-white"
-          >Mutasi DB</label
-        >
-        <div class="flex gap-5">
-          <input
-            type="email"
-            id="input-mutasi-db"
-            [value]="analyticsData.mutasi_db"
-            [(ngModel)]="mutasiDebit"
-            (change)="updateValue(analyticsData, 'mutasi_db', mutasiDebit)"
-            class="border max-w-sm py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-          />
-          <input
-            type="email"
-            id="banyak-transaksi-db"
-            [value]="analyticsData.jumlah_mutasi_db"
-            [(ngModel)]="jumlahMutasiDebit"
-            (change)="
-              updateValue(analyticsData, 'jumlah_mutasi_db', jumlahMutasiDebit)
-            "
-            class="border py-3 max-w-[50px] px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-          />
-        </div>
-      </div>
-
-      <div class="max-w-sm mt-3">
-        <label
-          for="input-saldo-akhir"
-          class="block text-sm font-medium mb-2 dark:text-white"
-          >Saldo Akhir</label
-        >
-        <input
-          type="email"
-          id="input-saldo-akhir"
-          [(ngModel)]="saldoAkhir"
-          (change)="updateValue(analyticsData, 'saldo_akhir', saldoAkhir)"
-          [value]="analyticsData.saldo_akhir"
-          class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-        />
-      </div>
-    </div> -->
   </div>
+
   <div
     id="tabs-with-icons-2"
     class="hidden"
     role="tabpanel"
     aria-labelledby="tabs-with-icons-item-2"
   >
-    <!-- <div class="border rounded-lg overflow-hidden dark:border-neutral-700">
+    <div class="border rounded-lg overflow-hidden dark:border-neutral-700">
       <table
         class="w-full max-w-full divide-y divide-gray-200 dark:divide-neutral-700"
       >
@@ -440,27 +351,27 @@
             <td
               class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
             >
-              {{ analyticsData.count_db_ocr }}
+              {{ analysisData.freq_debit }}
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              {{ analyticsData.sum_db }}
+              {{ analysisData.sum_debit }}
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              {{ analyticsData.avg_db }}
+              {{ analysisData.avg_debit }}
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              {{ analyticsData.min_db }}
+              {{ analysisData.min_debit }}
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              {{ analyticsData.max_db }}
+              {{ analysisData.max_debit }}
             </td>
           </tr>
           <tr class="divide-x">
@@ -472,27 +383,27 @@
             <td
               class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
             >
-              {{ analyticsData.count_cr_ocr }}
+              {{ analysisData.freq_kredit }}
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              {{ analyticsData.sum_cr }}
+              {{ analysisData.sum_kredit }}
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              {{ analyticsData.avg_cr }}
+              {{ analysisData.avg_kredit }}
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              {{ analyticsData.min_cr }}
+              {{ analysisData.min_kredit }}
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              {{ analyticsData.max_cr }}
+              {{ analysisData.max_kredit }}
             </td>
           </tr>
 
@@ -506,15 +417,15 @@
               colspan="5"
               class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
             >
-              {{ analyticsData.net_balance }}
+              {{ analysisData.net_balance }}
             </td>
           </tr>
         </tbody>
       </table>
-    </div> -->
+    </div>
 
     <!-- Tempat tabel Chart.js -->
-    <!-- <div id="tempat-chart" class="mt-5">
+    <div id="tempat-chart" class="mt-5">
       <div id="chart-kredit-debit">
         <h3 class="text-xl font-bold">Tabel Debit Kredit</h3>
         <canvas
@@ -562,7 +473,7 @@
         >
         </canvas>
       </div>
-    </div> -->
+    </div>
   </div>
   <div
     id="tabs-with-icons-3"

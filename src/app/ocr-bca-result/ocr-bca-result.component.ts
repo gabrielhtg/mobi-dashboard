@@ -126,9 +126,5 @@ export class OcrBcaResultComponent implements OnInit {
         },
       ],
     };
-
-    this.charts?.forEach((chart) => {
-      chart.update();
-    });
   }
 }

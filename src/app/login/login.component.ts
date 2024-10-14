@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, NgForm } from '@angular/forms';
 import { apiUrl } from '../env';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,11 @@ export class LoginComponent {
         this.router.navigate(['dashboard']);
       },
       error: (err) => {
-        console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Unauthorized',
+          text: err.error.msg == undefined ? 'Unknown Error!' : err.error.msg,
+        });
       },
     });
   }
