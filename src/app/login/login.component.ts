@@ -24,10 +24,12 @@ export class LoginComponent {
         this.router.navigate(['dashboard']);
       },
       error: (err) => {
+        console.log(err);
+
         Swal.fire({
           icon: 'error',
           title: 'Unauthorized',
-          text: err.error.msg == undefined ? 'Unknown Error!' : err.error.msg,
+          text: 'Pastikan username dan password kamu sudah tepat!',
         });
       },
     });
