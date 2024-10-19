@@ -37,6 +37,111 @@ export function getMonthlyChartDebitData(data: any) {
   return [creditData, debitData];
 }
 
+// export function getDateFrequency(data: any) {
+//   const labelArr = [];
+//   const freqTotalArr = [];
+//   const freqKreditArr = [];
+//   const freqDebitArr = [];
+//   let freqTotal = 0;
+//   let freqKredit = 0;
+//   let freqDebit = 0;
+//   let currentDebit = '';
+//   let currentKredit = '';
+//   let currentTanggal = null;
+//   let beforeTanggal = null;
+//   let currentMutasi = null;
+
+//   for (let i = 0; i < data.length; i++) {
+//     currentTanggal = data[i][0];
+//     currentMutasi = data[i][3];
+
+//     // kembalikan ke sebelumnya
+//     if (currentTanggal == '') {
+//       currentTanggal = beforeTanggal;
+//     }
+
+//     // set currentDebit
+//     if (data[i][3].includes('DB')) {
+//       currentDebit = data[i][3];
+//       freqDebit++;
+//     }
+
+//     // set currentKredit
+//     else if (!data[i][3].includes('DB') && data[i][3] !== '') {
+//       currentKredit = data[i][3];
+//       freqKredit++;
+//     }
+
+//     // ketika beforeTanggal masih belum ada
+//     if (beforeTanggal == null) {
+//       if (currentTanggal !== '') {
+//         freqTotal++;
+//       }
+//       beforeTanggal = currentTanggal;
+//       continue;
+//     }
+
+//     // ketika beforeTanggal sudah ada
+//     else {
+//       // jika tanggal sekarang sama dengan tanggal sebelumnya
+//       if (currentTanggal == beforeTanggal) {
+//         if (currentTanggal !== '') {
+//           freqTotal++;
+//         }
+//       }
+
+//       // jika tanggal sekarang berbeda dengan tanggal sebelumnya,
+//       // artinya kita sudah saatnya untuk reset frequensi
+//       else {
+//         // tambahkan label dengan tanggal sebelumnya
+//         labelArr.push(beforeTanggal);
+//         beforeTanggal = currentTanggal;
+
+//         freqTotalArr.push(freqTotal);
+//         freqTotal = 1;
+
+//         freqKreditArr.push(freqKredit);
+//         freqKredit = 0;
+//         freqDebitArr.push(freqDebit);
+//         freqDebit = 0;
+//       }
+//     }
+//   }
+
+//   // jika tanggal sekarang berbeda dengan tanggal sebelumnya,
+//   // artinya kita sudah saatnya untuk reset frequensi
+//   // tambahkan label dengan tanggal sebelumnya
+//   labelArr.push(beforeTanggal);
+//   beforeTanggal = currentTanggal;
+
+//   freqTotalArr.push(freqTotal);
+//   freqTotal = 1;
+
+//   // set currentDebit
+//   if (currentMutasi.includes('DB')) {
+//     currentDebit = currentMutasi;
+//     freqDebit++;
+//   }
+
+//   // set currentKredit
+//   else if (currentMutasi.includes('DB') && currentMutasi !== '') {
+//     currentKredit = currentMutasi;
+//     freqKredit++;
+//   }
+
+//   freqKreditArr.push(freqKredit);
+//   freqDebitArr.push(freqDebit);
+
+//   return {
+//     labels: labelArr,
+//     datasets: [
+//       { data: freqTotalArr, label: 'Frequency', borderColor: '#55aa00' },
+//       { data: freqKreditArr, label: 'Kredit', borderColor: '#98cdf2' },
+//       { data: freqDebitArr, label: 'Debit', borderColor: '#fbafbe' },
+//     ],
+//   };
+// }
+
 export function getDateFrequency(data: any) {
   const labelArr = [];
   const freqTotalArr = [];
@@ -48,89 +153,66 @@ export function getDateFrequency(data: any) {
   let currentDebit = '';
   let currentKredit = '';
   let currentTanggal = null;
-  let beforeTanggal = null;
+  let tanggalBefore = null;
   let currentMutasi = null;
 
   for (let i = 0; i < data.length; i++) {
     currentTanggal = data[i][0];
     currentMutasi = data[i][3];
 
-    // kembalikan ke sebelumnya
-    if (currentTanggal == '') {
-      currentTanggal = beforeTanggal;
-    }
-
-    // set currentDebit
-    if (data[i][3].includes('DB')) {
-      currentDebit = data[i][3];
-      freqDebit++;
-    }
-
-    // set currentKredit
-    else if (!data[i][3].includes('DB') && data[i][3] !== '') {
-      currentKredit = data[i][3];
-      freqKredit++;
-    }
-
-    // ketika beforeTanggal masih belum ada
-    if (beforeTanggal == null) {
-      if (currentTanggal !== '') {
-        freqTotal++;
-      }
-      beforeTanggal = currentTanggal;
+    // artinya ini adalah saldo awal
+    if (tanggalBefore == null) {
+      freqTotal++;
+      tanggalBefore = currentTanggal;
       continue;
     }
 
-    // ketika beforeTanggal sudah ada
+    if (currentTanggal == '') {
+      continue;
+    }
+
+    // jika masih tanggal yang sama
+    if (tanggalBefore == currentTanggal) {
+      freqTotal++;
+
+      if (currentMutasi.includes('DB')) {
+        freqDebit++;
+      }
+
+      if (!currentMutasi.includes('DB')) {
+        freqKredit++;
+      }
+    }
+
+    // artinya tanggal sudah berganti
     else {
-      // jika tanggal sekarang sama dengan tanggal sebelumnya
-      if (currentTanggal == beforeTanggal) {
-        if (currentTanggal !== '') {
-          freqTotal++;
-        }
+      labelArr.push(tanggalBefore);
+      freqTotalArr.push(freqTotal);
+      freqDebitArr.push(freqDebit);
+      freqKreditArr.push(freqKredit);
+
+      freqTotal = 0;
+      freqKredit = 0;
+      freqDebit = 0;
+
+      freqTotal++;
+
+      if (currentMutasi.includes('DB')) {
+        freqDebit++;
       }
 
-      // jika tanggal sekarang berbeda dengan tanggal sebelumnya,
-      // artinya kita sudah saatnya untuk reset frequensi
-      else {
-        // tambahkan label dengan tanggal sebelumnya
-        labelArr.push(beforeTanggal);
-        beforeTanggal = currentTanggal;
-
-        freqTotalArr.push(freqTotal);
-        freqTotal = 1;
-
-        freqKreditArr.push(freqKredit);
-        freqKredit = 0;
-        freqDebitArr.push(freqDebit);
-        freqDebit = 0;
+      if (!currentMutasi.includes('DB')) {
+        freqKredit++;
       }
+
+      tanggalBefore = currentTanggal;
     }
   }
 
-  // jika tanggal sekarang berbeda dengan tanggal sebelumnya,
-  // artinya kita sudah saatnya untuk reset frequensi
-  // tambahkan label dengan tanggal sebelumnya
-  labelArr.push(beforeTanggal);
-  beforeTanggal = currentTanggal;
-
+  labelArr.push(tanggalBefore);
   freqTotalArr.push(freqTotal);
-  freqTotal = 1;
-
-  // set currentDebit
-  if (currentMutasi.includes('DB')) {
-    currentDebit = currentMutasi;
-    freqDebit++;
-  }
-
-  // set currentKredit
-  else if (currentMutasi.includes('DB') && currentMutasi !== '') {
-    currentKredit = currentMutasi;
-    freqKredit++;
-  }
-
-  freqKreditArr.push(freqKredit);
   freqDebitArr.push(freqDebit);
+  freqKreditArr.push(freqKredit);
 
   return {
     labels: labelArr,
@@ -139,6 +221,12 @@ export function getDateFrequency(data: any) {
       { data: freqKreditArr, label: 'Kredit', borderColor: '#98cdf2' },
       { data: freqDebitArr, label: 'Debit', borderColor: '#fbafbe' },
     ],
+    // labels: null,
+    // datasets: [
+    //   { data: null, label: 'Frequency', borderColor: '#55aa00' },
+    //   { data: null, label: 'Kredit', borderColor: '#98cdf2' },
+    //   { data: null, label: 'Debit', borderColor: '#fbafbe' },
+    // ],
   };
 }
 
