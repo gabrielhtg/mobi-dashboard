@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { AngularCropperjsModule, CropperComponent } from 'angular-cropperjs';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -13,6 +13,15 @@ import FileSaver from 'file-saver';
   templateUrl: './g-ocr-bank.component.html',
 })
 export class GOcrBankComponent {
+  @ViewChild('pemilikRekening', { static: false })
+  pemilikRekeningElement!: any;
+  @ViewChild('nomorRekening', { static: false })
+  nomorRekeningElement!: any;
+
+  pemilikRekening = '';
+  nomorRekening = '';
+  isRekeningValid: any = null;
+
   file: any;
   hideTakeAll = false;
   dataTransaksi: any = [];
@@ -31,6 +40,8 @@ export class GOcrBankComponent {
     rotatable: true,
     autoCrop: false,
   };
+
+  validationRemark: any = '';
 
   @ViewChild('angularCropper') public angularCropper!: CropperComponent;
 
@@ -98,6 +109,15 @@ export class GOcrBankComponent {
                 canvasData: this.angularCropper.cropper.getCanvasData(),
                 cropData: this.angularCropper.cropper.getCropBoxData(),
               };
+
+              if (this.selectedData == 4) {
+                this.validateBankAccount(
+                  '014',
+                  this.dataBankStatement[4].value.trim(),
+                  this.dataBankStatement[2].value.trim()
+                );
+              }
+
               this.selectedData++;
 
               if (this.selectedData > 6) {
@@ -153,12 +173,16 @@ export class GOcrBankComponent {
 
   setSelectedData(index: number): void {
     this.selectedData = index;
-    this.angularCropper.cropper.setCropBoxData(
-      this.dataBankStatement[index].cropData
-    );
-    this.angularCropper.cropper.setCanvasData(
-      this.dataBankStatement[index].canvasData
-    );
+    try {
+      this.angularCropper.cropper.setCropBoxData(
+        this.dataBankStatement[index].cropData
+      );
+      this.angularCropper.cropper.setCanvasData(
+        this.dataBankStatement[index].canvasData
+      );
+    } catch (e) {
+      // do nothing
+    }
   }
 
   rotateLeft() {
@@ -208,5 +232,35 @@ export class GOcrBankComponent {
         },
       });
     });
+  }
+
+  validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {
+    const requestBody = [
+      {
+        p_bank_code: bankCode,
+        p_bank_account_no: bankAccountNo,
+        p_bank_account_name: bankAccountName,
+      },
+    ];
+
+    this.http
+      .post<any>(
+        'http://147.139.136.231/api/v5_ifinrmd_api/api/BankValidator/CheckBankAccountNo',
+        requestBody
+      )
+      .subscribe({
+        next: (value) => {
+          if (value.data.validation_status == 'VALID') {
+            this.validationRemark = value.data.validation_remark;
+            this.isRekeningValid = true;
+          } else {
+            this.validationRemark = value.data.validation_remark;
+            this.isRekeningValid = false;
+          }
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 }

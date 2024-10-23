@@ -1,25 +1,31 @@
 {
   "analitics-data": {
-    "avg_cr": "224,711,391.07",
-    "avg_db": "156,332,308.75",
+    "avg_cr": "222,032,819.64",
+    "avg_db": "156,857,308.75",
     "count_cr_ocr": 28,
     "count_db_ocr": 40,
     "jumlah_mutasi_cr": "28",
     "jumlah_mutasi_db": "40",
     "max_cr": "387,342,200.00",
     "max_db": "375,000,000.00",
-    "min_cr": "67,911,350.00",
-    "min_db": "0.00",
+    "min_cr": "0.00",
+    "min_db": "2,500.00",
     "mutasi_cr": "6,291,918,950.00",
     "mutasi_db": "6,274,292,350.00",
-    "net_balance": "38,626,600.00",
-    "raw_sum_cr": 6291918950,
-    "raw_sum_db": 6253292350,
+    "net_balance": "-57,373,400.00",
+    "raw_sum_cr": 6216918950,
+    "raw_sum_db": 6274292350,
     "saldo_akhir": "851,621,045.63",
     "saldo_awal": "833,994 , 445.63",
-    "sum_cr": "6,291,918,950.00",
-    "sum_db": "6,253,292,350.00"
+    "sum_cr": "6,216,918,950.00",
+    "sum_db": "6,274,292,350.00"
   },
+  "kcp": "KCP GEJAYAN",
+  "mata_uang": "IDR",
+  "nomor_rekening": "4569087888",
+  "pemilik_rekening": "MOLAY SATRYA INDONESIA PT",
+  "periode": "JULI 2022",
+  "tipe_rekening": "REKENING GIRO",
   "transaction-data": [
     ["01/07", "SALDO AWAL", "", "", "833,994,445.63", "BCA_CORP_1.jpg", 1],
     [
@@ -368,16 +374,16 @@
       "15/07",
       "TRSF E-BANKING CR 15/07 /95031/00000 75000000.00 PETER RIADI",
       "",
-      "75,000,000.00",
+      "0.00",
       "",
       "BCA_CORP_4.jpg",
       4
     ],
     [
       "15/07",
-      "TRSF E-BANKING DB 1507 /FTFVA/WS95051 21000000.00 B CETAK KATALOG DIAH SUPROBOWATI",
+      "TRSF E-BANKING DB 1507 /FTFVA/WS95051 210o0000.00 B CETAK KATALOG DIAH SUPROBOWATI",
       "",
-      "0.00 DB",
+      "21,000,000.00 DB",
       "795,561,945.63",
       "BCA_CORP_4.jpg",
       4
@@ -402,7 +408,7 @@
     ],
     [
       "18/07",
-      "TRSF E-BANKING DB 1807 /FTSCY /WS95051 227293000.00 PEM JASA LOGISTIK JARINGAN SAMUDRA L",
+      "TRSF E-BANKING DB 1807/FTSCY /WS95051 227293000.00 PEM JASA LOGISTIK JARINGAN SAMUDRA L",
       "",
       "227,293,000.00 DB",
       "",
@@ -438,7 +444,7 @@
     ],
     [
       "20/07",
-      "TRSF E-BANKING DB 2007 /FTSCY /WS95051 150o00000 . 00 KORDI DINAS JUNI ARIE SETYA YUDHA",
+      "TRSF E-BANKING DB 2007 /FTSCY /WS95051 150000000.00 KORDI DINAS JUNI ARIE SETYA YUDHA",
       "",
       "150,000,000.00 DB",
       "169,240,895.63",

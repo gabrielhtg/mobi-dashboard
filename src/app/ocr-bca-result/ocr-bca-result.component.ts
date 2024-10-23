@@ -1,4 +1,10 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForOf } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
@@ -10,6 +16,7 @@ import {
   getSaldoMovement,
 } from './ocr-bca-result.service';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-ocr-bca-result',
@@ -21,6 +28,13 @@ export class OcrBcaResultComponent implements OnInit {
   @ViewChildren(BaseChartDirective) charts:
     | QueryList<BaseChartDirective>
     | undefined;
+
+  @ViewChild('pemilikRekening', { static: false })
+  pemilikRekeningElement!: any;
+  @ViewChild('nomorRekening', { static: false })
+  nomorRekeningElement!: any;
+
+  isRekeningValid: any = null;
 
   // input form
   saldoAkhir: string = '';
@@ -35,6 +49,13 @@ export class OcrBcaResultComponent implements OnInit {
   // Data Chart.js
   transactionData: any;
   analyticsData: any;
+  tipeRekening: any;
+  kcp: any;
+  pemilikRekeningVal: any;
+  nomorRekeningVal: any;
+  periode: any;
+  mataUang: any;
+
   barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -64,12 +85,20 @@ export class OcrBcaResultComponent implements OnInit {
   // Data pergerakan saldo
   saldoMovementData: any;
 
+  validationRemark: any = null;
+
   // -------------
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction-data'];
     this.analyticsData = navigation?.extras.state?.['analitics-data'];
+    this.tipeRekening = navigation?.extras.state?.['tipe_rekening'];
+    this.kcp = navigation?.extras.state?.['kcp'];
+    this.pemilikRekeningVal = navigation?.extras.state?.['pemilik_rekening'];
+    this.nomorRekeningVal = navigation?.extras.state?.['nomor_rekening'];
+    this.periode = navigation?.extras.state?.['periode'];
+    this.mataUang = navigation?.extras.state?.['mata_uang'];
   }
 
   ngOnInit(): void {
@@ -107,6 +136,12 @@ export class OcrBcaResultComponent implements OnInit {
     this.dateTransactionData = getDateFrequency(this.transactionData);
 
     this.saldoMovementData = getSaldoMovement(this.transactionData);
+
+    this.validateBankAccount(
+      '014',
+      this.nomorRekeningVal,
+      this.pemilikRekeningVal
+    );
   }
 
   updateValue(data: any, key: any, newValue: any) {
@@ -126,5 +161,35 @@ export class OcrBcaResultComponent implements OnInit {
         },
       ],
     };
+  }
+
+  validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {
+    const requestBody = [
+      {
+        p_bank_code: bankCode,
+        p_bank_account_no: bankAccountNo,
+        p_bank_account_name: bankAccountName,
+      },
+    ];
+
+    this.http
+      .post<any>(
+        'http://147.139.136.231/api/v5_ifinrmd_api/api/BankValidator/CheckBankAccountNo',
+        requestBody
+      )
+      .subscribe({
+        next: (value) => {
+          if (value.data.validation_status == 'VALID') {
+            this.validationRemark = value.data.validation_remark;
+            this.isRekeningValid = true;
+          } else {
+            this.validationRemark = value.data.validation_remark;
+            this.isRekeningValid = false;
+          }
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 }

@@ -163,294 +163,488 @@
       </div>
     </div>
 
-    <div
-      id="tempat-tab-form"
-      class="w-full xl:max-w-[45%] xl:max-h-[500px] overflow-y-auto px-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
-    >
-      <form
-        class="flex flex-wrap gap-3"
-        id="tabs-with-icons-1"
-        aria-labelledby="tabs-with-icons-item-1"
+    <div class="xl:max-w-[45%] xl:max-h-[500px]">
+      <div
+        id="tempat-tab-form"
+        class="w-full overflow-y-auto px-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
       >
-        <div class="flex justify-evenly w-full gap-x-3">
-          <div class="w-full gap-3">
-            <div class="max-w-sm min-w-full mb-3">
-              <label class="block text-sm font-medium mb-2 dark:text-white"
-                >(1) Judul</label
-              >
-              <input
-                [value]="
-                  dataBankStatement[0] !== null
-                    ? dataBankStatement[0].value
-                    : ''
-                "
-                (click)="setSelectedData(0)"
-                type="text"
-                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                placeholder="Type Here"
-              />
-            </div>
-
-            <div class="max-w-sm min-w-full mb-3">
-              <label class="block text-sm font-medium mb-2 dark:text-white"
-                >(3) Pemilik Rekening</label
-              >
-              <input
-                [value]="
-                  dataBankStatement[2] !== null
-                    ? dataBankStatement[2].value
-                    : ''
-                "
-                (click)="setSelectedData(2)"
-                type="text"
-                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                placeholder="Type Here"
-              />
-            </div>
-
-            <div class="max-w-sm min-w-full mb-3">
-              <label class="block text-sm font-medium mb-2 dark:text-white"
-                >(5) Nomor Rekening</label
-              >
-              <input
-                [value]="
-                  dataBankStatement[4] !== null
-                    ? dataBankStatement[4].value
-                    : ''
-                "
-                (click)="setSelectedData(4)"
-                type="text"
-                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                placeholder="Type Here"
-              />
-            </div>
-            <div class="max-w-sm min-w-full mb-3">
-              <label class="block text-sm font-medium mb-2 dark:text-white"
-                >(6) Periode</label
-              >
-              <input
-                [value]="
-                  dataBankStatement[5] !== null
-                    ? dataBankStatement[5].value
-                    : ''
-                "
-                (click)="setSelectedData(5)"
-                type="text"
-                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                placeholder="Type Here"
-              />
-            </div>
-          </div>
-
-          <div class="w-full gap-3">
-            <div class="max-w-sm min-w-full mb-3">
-              <label class="block text-sm font-medium mb-2 dark:text-white"
-                >(2) KCP</label
-              >
-              <input
-                [value]="
-                  dataBankStatement[1] !== null
-                    ? dataBankStatement[1].value
-                    : ''
-                "
-                (click)="setSelectedData(1)"
-                type="text"
-                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                placeholder="Type Here"
-              />
-            </div>
-
-            <div class="max-w-sm min-w-full mb-3">
-              <label class="block text-sm font-medium mb-2 dark:text-white"
-                >(4) Alamat</label
-              >
-              <div class="w-full space-y-3">
-                <textarea
+        <form
+          class="flex flex-wrap gap-3"
+          id="tabs-with-icons-1"
+          aria-labelledby="tabs-with-icons-item-1"
+        >
+          <div class="flex justify-evenly w-full gap-x-3">
+            <div class="w-full gap-3">
+              <div class="max-w-sm min-w-full mb-3">
+                <label class="block text-sm font-medium mb-2 dark:text-white"
+                  >(1) Judul</label
+                >
+                <input
                   [value]="
-                    dataBankStatement[3] !== null
-                      ? dataBankStatement[3].value
+                    dataBankStatement[0] !== null
+                      ? dataBankStatement[0].value
                       : ''
                   "
-                  (click)="setSelectedData(3)"
-                  class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                  rows="5"
-                  placeholder="This is a textarea placeholder"
-                ></textarea>
+                  (click)="setSelectedData(0)"
+                  type="text"
+                  class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                  placeholder="Type Here"
+                />
+              </div>
+
+              <div class="max-w-sm min-w-full mb-3">
+                <label class="block text-sm font-medium mb-2 dark:text-white"
+                  >(3) Pemilik Rekening</label
+                >
+
+                <div class="relative">
+                  <input
+                    #pemilikRekening
+                    name="pemilikRekening"
+                    [value]="
+                      dataBankStatement[2] !== null
+                        ? dataBankStatement[2].value
+                        : ''
+                    "
+                    (click)="setSelectedData(2)"
+                    (change)="
+                      validateBankAccount(
+                        '014',
+                        nomorRekeningElement.nativeElement.value,
+                        pemilikRekeningElement.nativeElement.value
+                      )
+                    "
+                    type="text"
+                    class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                    placeholder="Type Here"
+                  />
+
+                  <div
+                    class="absolute inset-y-0 end-0 {{
+                      isRekeningValid ? 'flex' : 'hidden'
+                    }} items-center pe-3"
+                  >
+                    <div class="col-start-2 text-center">
+                      <div class="hs-tooltip inline-block">
+                        <button
+                          type="button"
+                          class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                        >
+                          <svg
+                            class="shrink-0 size-4 text-teal-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                          <span
+                            class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
+                            role="tooltip"
+                          >
+                            Bank Account Valid
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="absolute inset-y-0 end-0 {{
+                      isRekeningValid !== null && !isRekeningValid
+                        ? 'flex'
+                        : 'hidden'
+                    }} items-center pe-3"
+                  >
+                    <div class="col-start-2 text-center">
+                      <div class="hs-tooltip inline-block">
+                        <button
+                          type="button"
+                          class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                        >
+                          <svg
+                            class="shrink-0 size-4 text-red-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" x2="12" y1="8" y2="12"></line>
+                            <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                          </svg>
+                          <span
+                            class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
+                            role="tooltip"
+                          >
+                            {{ validationRemark }}
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="max-w-sm min-w-full mb-3">
+                <label class="block text-sm font-medium mb-2 dark:text-white"
+                  >(5) Nomor Rekening</label
+                >
+                <div class="relative">
+                  <input
+                    #nomorRekening
+                    name="nomorRekening"
+                    [value]="
+                      dataBankStatement[4] !== null
+                        ? dataBankStatement[4].value
+                        : ''
+                    "
+                    (click)="setSelectedData(4)"
+                    type="text"
+                    (change)="
+                      validateBankAccount(
+                        '014',
+                        nomorRekeningElement.nativeElement.value,
+                        pemilikRekeningElement.nativeElement.value
+                      )
+                    "
+                    class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                    placeholder="Type Here"
+                  />
+
+                  <div
+                    class="absolute inset-y-0 end-0 {{
+                      isRekeningValid ? 'flex' : 'hidden'
+                    }} items-center pe-3"
+                  >
+                    <div class="col-start-2 text-center">
+                      <div class="hs-tooltip inline-block">
+                        <button
+                          type="button"
+                          class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                        >
+                          <svg
+                            class="shrink-0 size-4 text-teal-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                          <span
+                            class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
+                            role="tooltip"
+                          >
+                            Bank Account Valid
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="absolute inset-y-0 end-0 {{
+                      isRekeningValid !== null && !isRekeningValid
+                        ? 'flex'
+                        : 'hidden'
+                    }} items-center pe-3"
+                  >
+                    <div class="col-start-2 text-center">
+                      <div class="hs-tooltip inline-block">
+                        <button
+                          type="button"
+                          class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                        >
+                          <svg
+                            class="shrink-0 size-4 text-red-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" x2="12" y1="8" y2="12"></line>
+                            <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                          </svg>
+                          <span
+                            class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
+                            role="tooltip"
+                          >
+                            {{ validationRemark }}
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="max-w-sm min-w-full mb-3">
+                <label class="block text-sm font-medium mb-2 dark:text-white"
+                  >(6) Periode</label
+                >
+                <input
+                  [value]="
+                    dataBankStatement[5] !== null
+                      ? dataBankStatement[5].value
+                      : ''
+                  "
+                  (click)="setSelectedData(5)"
+                  type="text"
+                  class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                  placeholder="Type Here"
+                />
               </div>
             </div>
 
-            <div class="max-w-sm min-w-full mb-3">
-              <label class="block text-sm font-medium mb-2 dark:text-white"
-                >(7) Mata Uang</label
-              >
-              <input
-                [value]="
-                  dataBankStatement[6] !== null
-                    ? dataBankStatement[6].value
-                    : ''
-                "
-                (click)="setSelectedData(6)"
-                type="text"
-                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                placeholder="Type Here"
-              />
+            <div class="w-full gap-3">
+              <div class="max-w-sm min-w-full mb-3">
+                <label class="block text-sm font-medium mb-2 dark:text-white"
+                  >(2) KCP</label
+                >
+                <input
+                  [value]="
+                    dataBankStatement[1] !== null
+                      ? dataBankStatement[1].value
+                      : ''
+                  "
+                  (click)="setSelectedData(1)"
+                  type="text"
+                  class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                  placeholder="Type Here"
+                />
+              </div>
+
+              <div class="max-w-sm min-w-full mb-3">
+                <label class="block text-sm font-medium mb-2 dark:text-white"
+                  >(4) Alamat</label
+                >
+                <div class="w-full space-y-3">
+                  <textarea
+                    [value]="
+                      dataBankStatement[3] !== null
+                        ? dataBankStatement[3].value
+                        : ''
+                    "
+                    (click)="setSelectedData(3)"
+                    class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    rows="5"
+                    placeholder="This is a textarea placeholder"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="max-w-sm min-w-full mb-3">
+                <label class="block text-sm font-medium mb-2 dark:text-white"
+                  >(7) Mata Uang</label
+                >
+                <input
+                  [value]="
+                    dataBankStatement[6] !== null
+                      ? dataBankStatement[6].value
+                      : ''
+                  "
+                  (click)="setSelectedData(6)"
+                  type="text"
+                  class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                  placeholder="Type Here"
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        <button
-          (click)="addRow()"
-          type="button"
-          class="py-3 mt-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-plus"
-            viewBox="0 0 16 16"
+          <button
+            (click)="addRow()"
+            type="button"
+            class="py-3 mt-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
           >
-            <path
-              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
-            />
-          </svg>
-          Add Row
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-plus"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+              />
+            </svg>
+            Add Row
+          </button>
+
+          <div class="border rounded-lg flex flex-col w-full">
+            <div class="overflow-x-auto">
+              <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class="overflow-hidden">
+                  <table
+                    class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700"
+                  >
+                    <thead>
+                      <tr>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
+                        >
+                          Tanggal
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
+                        >
+                          Keterangan
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
+                        >
+                          CBG
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
+                        >
+                          Mutasi
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
+                        >
+                          Saldo
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
+                        >
+                          Halaman
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      class="divide-y divide-gray-200 dark:divide-neutral-700"
+                    >
+                      <tr *ngIf="dataTransaksi.length == 0">
+                        <td
+                          colspan="5"
+                          class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800 dark:text-neutral-200"
+                        >
+                          Tambahkan row terlebih dahulu!
+                        </td>
+                      </tr>
+
+                      <tr *ngFor="let e of dataTransaksi; let i = index">
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+                        >
+                          <input
+                            type="text"
+                            [value]="e[0] == null ? '' : e[0].value"
+                            (click)="setSelectedDataTable(i, 0)"
+                            class="w-[100px] border py-3 px-4 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                            placeholder="Type Here"
+                          />
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+                        >
+                          <textarea
+                            [value]="e[1] == null ? '' : e[1].value"
+                            (click)="setSelectedDataTable(i, 1)"
+                            class="border w-[300px] py-3 px-4 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                            rows="1"
+                            placeholder="Type Here"
+                          ></textarea>
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+                        >
+                          <input
+                            type="text"
+                            [value]="e[2] == null ? '' : e[2].value"
+                            (click)="setSelectedDataTable(i, 2)"
+                            class="border py-3 px-4 block w-[150px] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                            placeholder="Type Here"
+                          />
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+                        >
+                          <input
+                            type="text"
+                            [value]="e[3] == null ? '' : e[3].value"
+                            (click)="setSelectedDataTable(i, 3)"
+                            class="border py-3 px-4 block w-[150px] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                            placeholder="Type Here"
+                          />
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+                        >
+                          <input
+                            type="text"
+                            [value]="e[4] == null ? '' : e[4].value"
+                            (click)="setSelectedDataTable(i, 4)"
+                            class="border py-3 px-4 block w-[150px] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                            placeholder="Type Here"
+                          />
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+                        >
+                          <input
+                            type="text"
+                            [value]="e[5]"
+                            class="border py-3 px-4 block w-[100px] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                            placeholder="Type Here"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- <div>
+        <button
+          (click)="
+            validateBankAccount(
+              dataBankStatement[2].value,
+              dataBankStatement[4].value,
+              '014'
+            )
+          "
+          class="py-3 mt-5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+        >
+          Validate Bank Account
         </button>
 
-        <div class="border rounded-lg flex flex-col w-full">
-          <div class="overflow-x-auto">
-            <div class="p-1.5 min-w-full inline-block align-middle">
-              <div class="overflow-hidden">
-                <table
-                  class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700"
-                >
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
-                      >
-                        Tanggal
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
-                      >
-                        Keterangan
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
-                      >
-                        CBG
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
-                      >
-                        Mutasi
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
-                      >
-                        Saldo
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-6 py-3 text-center text-xs font-medium uppercase dark:text-neutral-500"
-                      >
-                        Halaman
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    class="divide-y divide-gray-200 dark:divide-neutral-700"
-                  >
-                    <tr *ngIf="dataTransaksi.length == 0">
-                      <td
-                        colspan="5"
-                        class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800 dark:text-neutral-200"
-                      >
-                        Tambahkan row terlebih dahulu!
-                      </td>
-                    </tr>
-
-                    <tr *ngFor="let e of dataTransaksi; let i = index">
-                      <td
-                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-                      >
-                        <input
-                          type="text"
-                          [value]="e[0] == null ? '' : e[0].value"
-                          (click)="setSelectedDataTable(i, 0)"
-                          class="w-[100px] border py-3 px-4 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                          placeholder="Type Here"
-                        />
-                      </td>
-                      <td
-                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-                      >
-                        <textarea
-                          [value]="e[1] == null ? '' : e[1].value"
-                          (click)="setSelectedDataTable(i, 1)"
-                          class="border w-[300px] py-3 px-4 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                          rows="1"
-                          placeholder="Type Here"
-                        ></textarea>
-                      </td>
-                      <td
-                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-                      >
-                        <input
-                          type="text"
-                          [value]="e[2] == null ? '' : e[2].value"
-                          (click)="setSelectedDataTable(i, 2)"
-                          class="border py-3 px-4 block w-[150px] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                          placeholder="Type Here"
-                        />
-                      </td>
-                      <td
-                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-                      >
-                        <input
-                          type="text"
-                          [value]="e[3] == null ? '' : e[3].value"
-                          (click)="setSelectedDataTable(i, 3)"
-                          class="border py-3 px-4 block w-[150px] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                          placeholder="Type Here"
-                        />
-                      </td>
-                      <td
-                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-                      >
-                        <input
-                          type="text"
-                          [value]="e[4] == null ? '' : e[4].value"
-                          (click)="setSelectedDataTable(i, 4)"
-                          class="border py-3 px-4 block w-[150px] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                          placeholder="Type Here"
-                        />
-                      </td>
-                      <td
-                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-                      >
-                        <input
-                          type="text"
-                          [value]="e[5]"
-                          class="border py-3 px-4 block w-[100px] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                          placeholder="Type Here"
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
+        <div class="border-dashed border-green-500 p-5">VALID</div>
+      </div> -->
     </div>
   </div>
 </div>
