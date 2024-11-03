@@ -8,6 +8,7 @@ import {
   getDateFrequency,
   getMonthlyChartDebitData,
   getMonthlyChartLabels,
+  getSaldoMovement,
 } from './ocr-permata-result.service';
 
 @Component({
@@ -131,7 +132,14 @@ export class OcrPermataResultComponent {
 
     this.dateTransactionData = getDateFrequency(this.transactionData);
 
-    // this.saldoMovementData = getSaldoMovement(this.transactionData);
+    console.log(this.dateTransactionData);
+
+    this.saldoMovementData = getSaldoMovement(
+      this.transactionData,
+      this.dateTransactionData.labels
+    );
+
+    console.log(this.saldoMovementData);
 
     this.validateBankAccount('014', this.nomorRekening, this.pemilikRekening);
   }
