@@ -23,26 +23,7 @@ export default function proceedOcrPermata(
 
   formData.append('bank-statement-type', selectedBankStatement);
 
-  http.get<any>('assets/response-permata.json').subscribe({
-    next: (value) => {
-      Swal.close();
-
-      router
-        .navigate(['/dashboard/ocr-permata-result'], {
-          state: value.data,
-        })
-        .then();
-    },
-    error: (err) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Upload Failed',
-        text: err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-      });
-    },
-  });
-
-  // http.post<any>(`${apiUrlPy}/proceed-permata`, formData).subscribe({
+  // http.get<any>('assets/response-permata.json').subscribe({
   //   next: (value) => {
   //     Swal.close();
 
@@ -60,4 +41,23 @@ export default function proceedOcrPermata(
   //     });
   //   },
   // });
+
+  http.post<any>(`${apiUrlPy}/proceed-permata`, formData).subscribe({
+    next: (value) => {
+      Swal.close();
+
+      router
+        .navigate(['/dashboard/ocr-permata-result'], {
+          state: value.data,
+        })
+        .then();
+    },
+    error: (err) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+      });
+    },
+  });
 }
