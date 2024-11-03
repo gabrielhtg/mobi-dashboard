@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { AngularCropperjsModule, CropperComponent } from 'angular-cropperjs';
+import { AngularCropperjsModule } from 'angular-cropperjs';
 import { FormsModule } from '@angular/forms';
 import { NgForOf, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -7,7 +7,9 @@ import HSFileUpload from '@preline/file-upload';
 import { HSStaticMethods } from 'preline/preline';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { apiUrlPy } from '../env';
+import { proceedOcrBca } from './services/bca.services';
+import proceedOcrBri from './services/bri.services';
+import proceedOcrPermata from './services/permata.services';
 
 @Component({
   selector: 'app-ocr-bank-py',
@@ -42,18 +44,15 @@ export class OcrBankPyComponent implements AfterViewInit {
      */
 
     this.element.dropzone.on('sendingmultiple', (files: any) => {
-      const formData = new FormData();
-
-      files.forEach((file: any, index: number) => {
-        formData.append('files', file, file.name); // 'files' is the key for multiple files
-      });
-
       /*
         ! Jenis-jenis tipe bank statement
 
         1 = BCA Corporate
         2 = BCA Personal
         3 = BRI
+        4 = OCBC
+        5 = 
+        6 = Permata
        */
 
       // Untuk bank BCA CORP ataupun BCA PERSONAL
@@ -61,99 +60,36 @@ export class OcrBankPyComponent implements AfterViewInit {
         this.selectedBankStatement == '1' ||
         this.selectedBankStatement == '2'
       ) {
-        formData.append('bank-statement-type', this.selectedBankStatement);
-
-        if (this.isZipPasswordProtected) {
-          formData.append('zip-password', this.zipPassword!);
-        }
-
-        // this.http.get<any>('assets/response-bca-corp.json').subscribe({
-        //   next: (value) => {
-        //     Swal.close();
-
-        //     this.router
-        //       .navigate(['/dashboard/ocr-bca-result'], {
-        //         state: value,
-        //       })
-        //       .then();
-        //   },
-        //   error: (err) => {
-        //     Swal.fire({
-        //       icon: 'error',
-        //       title: 'Upload Failed',
-        //       text:
-        //         err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-        //     });
-        //   },
-        // });
-
-        this.http.post<any>(`${apiUrlPy}/proceed-bca`, formData).subscribe({
-          next: (value) => {
-            Swal.close();
-
-            this.router
-              .navigate(['/dashboard/ocr-bca-result'], {
-                state: value,
-              })
-              .then();
-          },
-          error: (err) => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Upload Failed',
-              text:
-                err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-            });
-          },
-        });
+        proceedOcrBca(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          files
+        );
       }
 
       if (this.selectedBankStatement == '3') {
-        if (this.isZipPasswordProtected) {
-          formData.append('zip-password', this.zipPassword!);
-        }
+        proceedOcrBri(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          files
+        );
+      }
 
-        formData.append('bank-statement-type', this.selectedBankStatement);
-
-        // this.http.get<any>('assets/response-bri.json').subscribe({
-        //   next: (value) => {
-        //     Swal.close();
-
-        //     this.router
-        //       .navigate(['/dashboard/ocr-bri-result'], {
-        //         state: value,
-        //       })
-        //       .then();
-        //   },
-        //   error: (err) => {
-        //     Swal.fire({
-        //       icon: 'error',
-        //       title: 'Upload Failed',
-        //       text:
-        //         err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-        //     });
-        //   },
-        // });
-
-        this.http.post<any>(`${apiUrlPy}/proceed-bri`, formData).subscribe({
-          next: (value) => {
-            Swal.close();
-
-            this.router
-              .navigate(['/dashboard/ocr-bri-result'], {
-                state: value,
-              })
-              .then();
-          },
-          error: (err) => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Upload Failed',
-              text:
-                err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-            });
-          },
-        });
+      if (this.selectedBankStatement == '6') {
+        proceedOcrPermata(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          files
+        );
       }
     });
   }

@@ -1,29 +1,22 @@
-import {
-  Component,
-  OnInit,
-  QueryList,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import { Router } from '@angular/router';
+import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { ChartOptions, ChartData, ChartConfiguration } from 'chart.js';
 import {
   getDateFrequency,
   getMonthlyChartDebitData,
   getMonthlyChartLabels,
-  getSaldoMovement,
-} from './ocr-bri-result.service';
-import { HttpClient } from '@angular/common/http';
+} from './ocr-permata-result.service';
 
 @Component({
-  selector: 'app-ocr-bri-result',
+  selector: 'app-ocr-permata-result',
   standalone: true,
   imports: [NgForOf, BaseChartDirective],
-  templateUrl: './ocr-bri-result.component.html',
+  templateUrl: './ocr-permata-result.component.html',
 })
-export class OcrBriResultComponent implements OnInit {
+export class OcrPermataResultComponent {
   @ViewChildren(BaseChartDirective) charts:
     | QueryList<BaseChartDirective>
     | undefined;
@@ -33,18 +26,23 @@ export class OcrBriResultComponent implements OnInit {
   @ViewChild('nomorRekening', { static: false })
   nomorRekeningElement!: any;
 
+  validationRemark: any = null;
+  isRekeningValid: any = null;
+
   transactionData: any;
   summaryData: any;
   analysisData: any;
   alamat: string = '';
-  alamatUnitKerja: string = '';
+  cabang: string = '';
+  mataUang: string = '';
   namaProduk: string = '';
+  nomorCif: string = '';
   nomorRekening: string = '';
   pemilikRekening: string = '';
-  periodeTransaksi: string = '';
+  periodeLaporan: string = '';
   tanggalLaporan: string = '';
-  valuta: string = '';
-  unitKerja: string = '';
+  totalDebet: string = '';
+  totalKredit: string = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -74,23 +72,22 @@ export class OcrBriResultComponent implements OnInit {
   // Data pergerakan saldo
   saldoMovementData: any;
 
-  validationRemark: any = null;
-  isRekeningValid: any = null;
-
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
     this.summaryData = navigation?.extras.state?.['summary_data'];
-    this.analysisData = navigation?.extras.state?.['analysis_data'];
+    this.analysisData = navigation?.extras.state?.['analytics_data'];
     this.alamat = navigation?.extras.state?.['alamat'];
-    this.alamatUnitKerja = navigation?.extras.state?.['alamat_unit_kerja'];
+    this.cabang = navigation?.extras.state?.['cabang'];
+    this.mataUang = navigation?.extras.state?.['mata_uang'];
     this.namaProduk = navigation?.extras.state?.['nama_produk'];
+    this.nomorCif = navigation?.extras.state?.['no_cif'];
     this.nomorRekening = navigation?.extras.state?.['nomor_rekening'];
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
-    this.periodeTransaksi = navigation?.extras.state?.['periode_transaksi'];
+    this.periodeLaporan = navigation?.extras.state?.['periode_laporan'];
     this.tanggalLaporan = navigation?.extras.state?.['tanggal_laporan'];
-    this.unitKerja = navigation?.extras.state?.['unit_kerja'];
-    this.valuta = navigation?.extras.state?.['valuta'];
+    this.totalDebet = String(navigation?.extras.state?.['total_debet']);
+    this.totalKredit = String(navigation?.extras.state?.['total_kredit']);
   }
 
   ngOnInit(): void {
@@ -108,11 +105,25 @@ export class OcrBriResultComponent implements OnInit {
       labels: this.barTotalDebitKreditLabels,
       datasets: [
         {
-          data: [parseFloat(this.analysisData.sum_kredit.replaceAll(',', ''))],
+          data: [
+            parseFloat(
+              this.analysisData.sum_kredit
+                .replaceAll(',', '')
+                .replaceAll('Rp ', '')
+                .replaceAll('.', '')
+            ) / 100,
+          ],
           label: 'Kredit',
         },
         {
-          data: [parseFloat(this.analysisData.sum_debit.replaceAll(',', ''))],
+          data: [
+            parseFloat(
+              this.analysisData.sum_debit
+                .replaceAll(',', '')
+                .replaceAll('Rp ', '')
+                .replaceAll('.', '')
+            ) / 100,
+          ],
           label: 'Debit',
         },
       ],
@@ -120,7 +131,7 @@ export class OcrBriResultComponent implements OnInit {
 
     this.dateTransactionData = getDateFrequency(this.transactionData);
 
-    this.saldoMovementData = getSaldoMovement(this.transactionData);
+    // this.saldoMovementData = getSaldoMovement(this.transactionData);
 
     this.validateBankAccount('014', this.nomorRekening, this.pemilikRekening);
   }

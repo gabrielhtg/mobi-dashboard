@@ -14,6 +14,7 @@ import { OcrBankPyComponent } from './ocr-bank-py/ocr-bank-py.component';
 import { authGuard } from './auth.guard';
 import { OcrBcaResultComponent } from './ocr-bca-result/ocr-bca-result.component';
 import { OcrBriResultComponent } from './ocr-bri-result/ocr-bri-result.component';
+import { OcrPermataResultComponent } from './ocr-permata-result/ocr-permata-result.component';
 
 export const routes: Routes = [
   {
@@ -94,6 +95,11 @@ export const routes: Routes = [
         path: 'ocr-bri-result',
         component: OcrBriResultComponent,
         title: 'OCR BRI Result',
+      },
+      {
+        path: 'ocr-permata-result',
+        component: OcrPermataResultComponent,
+        title: 'OCR Permata Result',
       },
     ],
   },

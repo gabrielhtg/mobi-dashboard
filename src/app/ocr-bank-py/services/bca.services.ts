@@ -1,0 +1,64 @@
+import { HttpClient } from '@angular/common/http';
+import { apiUrlPy } from '../../env';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
+export function proceedOcrBca(
+  isZipPasswordProtected: any,
+  zipPassword: any,
+  selectedBankStatement: any,
+  http: HttpClient,
+  router: Router,
+  files: any
+) {
+  const formData = new FormData();
+
+  files.forEach((file: any, index: number) => {
+    formData.append('files', file, file.name); // 'files' is the key for multiple files
+  });
+
+  formData.append('bank-statement-type', selectedBankStatement);
+
+  if (isZipPasswordProtected) {
+    formData.append('zip-password', zipPassword!);
+  }
+
+  // this.http.get<any>('assets/response-bca-corp.json').subscribe({
+  //   next: (value) => {
+  //     Swal.close();
+
+  //     this.router
+  //       .navigate(['/dashboard/ocr-bca-result'], {
+  //         state: value,
+  //       })
+  //       .then();
+  //   },
+  //   error: (err) => {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Upload Failed',
+  //       text:
+  //         err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+  //     });
+  //   },
+  // });
+
+  http.post<any>(`${apiUrlPy}/proceed-bca`, formData).subscribe({
+    next: (value) => {
+      Swal.close();
+
+      router
+        .navigate(['/dashboard/ocr-bca-result'], {
+          state: value,
+        })
+        .then();
+    },
+    error: (err) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+      });
+    },
+  });
+}

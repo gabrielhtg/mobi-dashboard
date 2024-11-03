@@ -29,9 +29,9 @@ export class OcrBcaResultComponent implements OnInit {
     | QueryList<BaseChartDirective>
     | undefined;
 
-  @ViewChild('pemilikRekening', { static: false })
+  @ViewChild('pemilikRekeningEl', { static: false })
   pemilikRekeningElement!: any;
-  @ViewChild('nomorRekening', { static: false })
+  @ViewChild('nomorRekeningEl', { static: false })
   nomorRekeningElement!: any;
 
   isRekeningValid: any = null;
@@ -87,6 +87,8 @@ export class OcrBcaResultComponent implements OnInit {
 
   validationRemark: any = null;
 
+  netBal: any;
+
   // -------------
 
   constructor(private router: Router, private http: HttpClient) {
@@ -136,6 +138,15 @@ export class OcrBcaResultComponent implements OnInit {
     this.dateTransactionData = getDateFrequency(this.transactionData);
 
     this.saldoMovementData = getSaldoMovement(this.transactionData);
+
+    this.netBal =
+      parseFloat(this.analyticsData.mutasi_cr.replaceAll(',', '')) -
+      parseFloat(this.analyticsData.mutasi_db.replaceAll(',', ''));
+
+    this.netBal = this.netBal.toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
 
     this.validateBankAccount(
       '014',

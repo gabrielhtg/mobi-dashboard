@@ -1,4 +1,4 @@
-<h1 class="font-bold text-2xl mb-7">OCR BRI Results</h1>
+<h1 class="font-bold text-2xl mb-7">OCR Permata Results</h1>
 
 <div class="border-b border-gray-200 dark:border-neutral-700">
   <nav
@@ -302,18 +302,6 @@
 
                 <div class="max-w-sm min-w-full mb-3">
                   <label class="block text-sm font-medium mb-2 dark:text-white"
-                    >Valuta</label
-                  >
-                  <input
-                    type="text"
-                    [value]="valuta"
-                    class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                    placeholder="Type Here"
-                  />
-                </div>
-
-                <div class="max-w-sm min-w-full mb-3">
-                  <label class="block text-sm font-medium mb-2 dark:text-white"
                     >Tanggal Laporan</label
                   >
                   <input
@@ -345,13 +333,13 @@
               scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 max-w-[45%] uppercase dark:text-neutral-400"
             >
-              Uraian Transaksi
+              Tanggal Valuta
             </th>
             <th
               scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
             >
-              Teller
+              Uraian Transaksi
             </th>
             <th
               scope="col"
@@ -371,12 +359,12 @@
             >
               Saldo
             </th>
-            <th
+            <!-- <th
               scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
             >
               File
-            </th>
+            </th> -->
             <!--            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400">Page</th>-->
           </tr>
         </thead>
@@ -386,7 +374,7 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
-                [value]="e[0]"
+                [value]="e.tanggal_transaksi"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
               />
@@ -394,8 +382,20 @@
             <td
               class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
             >
+              <input
+                [value]="e.tanggal_valuta == null ? '-' : e.tanggal_valuta"
+                type="text"
+                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                placeholder="Type Here"
+              />
+            </td>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+            >
               <textarea
-                [value]="e[1] !== null ? e[1] : ''"
+                [value]="
+                  e.uraian_transaksi !== null ? e.uraian_transaksi : null
+                "
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                 rows="4"
                 placeholder="This is a textarea placeholder"
@@ -405,7 +405,7 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
-                [value]="e[2] == '' ? '-' : e[2]"
+                [value]="e.debet == null ? '-' : e.debet"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
@@ -415,7 +415,7 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
-                [value]="e[3] == '' ? '-' : e[3]"
+                [value]="e.kredit == null ? '-' : e.kredit"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
@@ -424,24 +424,14 @@
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              <input
-                [value]="e[4] == '' ? '-' : e[4]"
-                type="text"
-                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                placeholder="Type Here"
-              />
-            </td>
-            <td
-              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-            >
-              {{ e[5] == "" ? "-" : e[5] }}
+              {{ e.saldo == "" ? "-" : e.saldo }}
             </td>
 
-            <td
+            <!-- <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               {{ e[6] == "" ? "-" : e[6] }}
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>
@@ -455,12 +445,6 @@
           <tr class="divide-x">
             <th
               scope="col"
-              class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
-            >
-              Saldo Awal
-            </th>
-            <th
-              scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 max-w-[45%] uppercase dark:text-neutral-400"
             >
               Total Transaksi Debet
@@ -471,13 +455,6 @@
             >
               Total Transaksi Kredit
             </th>
-            <th
-              scope="col"
-              class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
-            >
-              Saldo Akhir
-            </th>
-            <!--            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400">Page</th>-->
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
@@ -486,7 +463,7 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
-                [value]="summaryData[0]"
+                [value]="totalDebet"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
               />
@@ -495,29 +472,9 @@
               class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
             >
               <input
-                [value]="summaryData[1]"
+                [value]="totalKredit"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-              />
-            </td>
-            <td
-              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-            >
-              <input
-                [value]="summaryData[2] == '' ? '-' : summaryData[2]"
-                type="text"
-                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                placeholder="Type Here"
-              />
-            </td>
-            <td
-              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-            >
-              <input
-                [value]="summaryData[3] == '' ? '-' : summaryData[3]"
-                type="text"
-                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                placeholder="Type Here"
               />
             </td>
           </tr>
@@ -696,7 +653,7 @@
         </canvas>
       </div>
 
-      <div class="mt-5">
+      <!-- <div class="mt-5">
         <h3 class="text-xl font-bold">Tabel Saldo</h3>
         <canvas
           baseChart
@@ -706,7 +663,7 @@
           class="max-h-[300px]"
         >
         </canvas>
-      </div>
+      </div> -->
     </div>
   </div>
   <div

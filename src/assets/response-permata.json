@@ -1,0 +1,167 @@
+{
+  "data": {
+    "alamat": "JL.PASAR BARU UTARA NO.40 MAGETAN, JAWA TIMUR",
+    "analytics_data": {
+      "avg_debit": "Rp 178.400,00",
+      "avg_kredit": "Rp 924.246,88",
+      "freq_debit": 15,
+      "freq_kredit": 16,
+      "max_debit": "Rp 1.010.000,00",
+      "max_kredit": "Rp 1.413.975,00",
+      "min_debit": "Rp 1.000,00",
+      "min_kredit": "Rp 25.000,00",
+      "net_balance": "Rp 12.111.950,00",
+      "sum_debit": "Rp 2.676.000,00",
+      "sum_kredit": "Rp 14.787.950,00"
+    },
+    "cabang": "PermataBank Pasar Baru",
+    "mata_uang": "IDR",
+    "nama_produk": "PermataME KV",
+    "no_cif": "POOOWOZ",
+    "nomor_rekening": "9735496601",
+    "pemilik_rekening": "DIMAS IRJA NURFAJRI",
+    "periode_laporan": "01 MEI 2021 - 31 MEI 2021",
+    "tanggal_laporan": "JUNI 2021",
+    "total_debet": "Rp 2.676.000,00",
+    "total_kredit": "Rp 14.787.950,00",
+    "transaction_data": [
+      {
+        "debet": null,
+        "kredit": null,
+        "saldo": "Rp 58.485,00",
+        "tanggal_transaksi": null,
+        "tanggal_valuta": null,
+        "uraian_transaksi": "SALDO AWAL"
+      },
+      {
+        "debet": null,
+        "kredit": "Rp 994.500,00",
+        "saldo": "Rp 1.052.985,00",
+        "tanggal_transaksi": "01/05",
+        "tanggal_valuta": "01/05",
+        "uraian_transaksi": "PB Dari PT SINAR DIGITAL TER Ke DIMAS PERMATAGATEWAY 02.05.05 withdraw 994500 5qOIX 202105010205047CCY"
+      },
+      {
+        "debet": "Rp 1.000,00",
+        "kredit": "Rp 994.500,00",
+        "saldo": "Rp 1.051.985,00",
+        "tanggal_transaksi": "01/05",
+        "tanggal_valuta": "01/05",
+        "uraian_transaksi": "BIAYA ADM. PAY GO-PAY CUSTOMER 8980 XXXXXXX1288 PERMATAMOBILE 02.19.13"
+      },
+      {
+        "debet": "Rp 340.000,00",
+        "kredit": "Rp 994.500,00",
+        "saldo": "Rp 711.985,00",
+        "tanggal_transaksi": "01/05",
+        "tanggal_valuta": "01/05",
+        "uraian_transaksi": "PAY GO-PAY CUSTOMER 898OXXXXXXX1288 PERMATAMOBILE 02:19,13"
+      },
+      {
+        "debet": "Rp 25.000,00",
+        "kredit": "Rp 994.500,00",
+        "saldo": "Rp 686.985,00",
+        "tanggal_transaksi": "02/05",
+        "tanggal_valuta": "02/05",
+        "uraian_transaksi": "QR PAYMENT 19.20.46 SUAR COFFEE PEK ANBARU"
+      },
+      {
+        "debet": "Rp 1.000,00",
+        "kredit": "Rp 994.500,00",
+        "saldo": "Rp 685.985,00",
+        "tanggal_transaksi": "03/05",
+        "tanggal_valuta": "03/05",
+        "uraian_transaksi": "BIAYA ADM. PAY GO-PAY CUSTOMER 8980 XXXXXXX1288 PERMATAMOBILE 05.03,43"
+      },
+      {
+        "debet": "Rp 50.000,00",
+        "kredit": "Rp 994.500,00",
+        "saldo": "Rp 635.985,00",
+        "tanggal_transaksi": "03/05",
+        "tanggal_valuta": "03/05",
+        "uraian_transaksi": "PAY GO-PAY CUSTOMER 898OXXXXXXX1288 PERMATAMOBILE 05.03.43"
+      },
+      {
+        "debet": "Rp 1.000,00",
+        "kredit": "Rp 994.500,00",
+        "saldo": "Rp 634.985,00",
+        "tanggal_transaksi": "03/05",
+        "tanggal_valuta": "03/05",
+        "uraian_transaksi": "BIAYA ADM. PAY GO-PAY CUSTOMER 8980 XXXXXXX1288 PERMATAMOBILE 19.22.44"
+      },
+      {
+        "debet": "Rp 34.000,00",
+        "kredit": "Rp 994.500,00",
+        "saldo": "Rp 600.985,00",
+        "tanggal_transaksi": "03/05",
+        "tanggal_valuta": "03/05",
+        "uraian_transaksi": "PAY GO-PAY CUSTOMER 898OXXXXXXX1288 PERMATAMOBILE 19.22.44"
+      },
+      {
+        "debet": "Rp 34.000,00",
+        "kredit": "Rp 500.000,00",
+        "saldo": "Rp 1.100.985,00",
+        "tanggal_transaksi": "07/05",
+        "tanggal_valuta": "07/05",
+        "uraian_transaksi": "TRF DARI DIMAS ATMALTO (BANK PERMATA TBK) 14.58.58"
+      },
+      {
+        "debet": "Rp 1.010.000,00",
+        "kredit": "Rp 500.000,00",
+        "saldo": "Rp 90.985,00",
+        "tanggal_transaksi": "07/05",
+        "tanggal_valuta": "07/05",
+        "uraian_transaksi": "TRF KE DIMAS 83481682491 BANK NEGARA INDONESIPERMATAMOBILE 15.01.56"
+      },
+      {
+        "debet": "Rp 1.010.000,00",
+        "kredit": "Rp 1.413.975,00",
+        "saldo": "Rp 1.504.960,00",
+        "tanggal_transaksi": "10/05",
+        "tanggal_valuta": "10/05",
+        "uraian_transaksi": "PB Dari UPBITFINANCE18 Ke DIMAS PERMATA GATEWAY 15.10.28 0 OY 18886165910009682450"
+      },
+      {
+        "debet": "Rp 5.000,00",
+        "kredit": "Rp 1.413.975,00",
+        "saldo": "Rp 1.499.960,00",
+        "tanggal_transaksi": "10/05",
+        "tanggal_valuta": "10/05",
+        "uraian_transaksi": "Biaya Fall Below Fee MEI 2021"
+      },
+      {
+        "debet": "Rp 5.000,00",
+        "kredit": "Rp 25.000,00",
+        "saldo": "Rp 1.524.960,00",
+        "tanggal_transaksi": "11/05",
+        "tanggal_valuta": "11/05",
+        "uraian_transaksi": "PB cb PermataME 10% 20% Apr '21"
+      },
+      {
+        "debet": "Rp 5.000,00",
+        "kredit": "Rp 365.000,00",
+        "saldo": "Rp 1.889.960,00",
+        "tanggal_transaksi": "12/05",
+        "tanggal_valuta": "12/05",
+        "uraian_transaksi": "PB Dari PT SINAR DIGITAL TER Ke DIMAS PERMATAGATEWAY 13.08,49 payout 66JC8 20210512130847Cagc"
+      },
+      {
+        "debet": "Rp 5.000,00",
+        "kredit": "Rp 1.307.000,00",
+        "saldo": "Rp 3.196.960,00",
+        "tanggal_transaksi": "12/05",
+        "tanggal_valuta": "12/05",
+        "uraian_transaksi": "TRF DARI DIMAS ATMALTO (BANK PERMATA TBK) 20.22.13"
+      },
+      {
+        "debet": "Rp 150.000,00",
+        "kredit": "Rp 1.307.000,00",
+        "saldo": "Rp 3.046.960,00",
+        "tanggal_transaksi": "17/05",
+        "tanggal_valuta": "17/05",
+        "uraian_transaksi": "PAY DANA INDONESIA 8528082132701288 PERMATAMOBILE 10.25.30"
+      }
+    ]
+  },
+  "message": "ok"
+}
