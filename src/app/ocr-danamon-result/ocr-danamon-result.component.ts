@@ -1,23 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { NgForOf } from '@angular/common';
 import { Router } from '@angular/router';
+import { NgForOf } from '@angular/common';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import {
+  convertToFloat,
   getDateFrequency,
   getMonthlyChartDebitData,
   getMonthlyChartLabels,
   getSaldoMovement,
-} from './ocr-permata-result.service';
+} from './ocr-danamon-result.service';
 
 @Component({
-  selector: 'app-ocr-permata-result',
+  selector: 'app-ocr-danamon-result',
   standalone: true,
   imports: [NgForOf, BaseChartDirective],
-  templateUrl: './ocr-permata-result.component.html',
+  templateUrl: './ocr-danamon-result.component.html',
 })
-export class OcrPermataResultComponent {
+export class OcrDanamonResultComponent {
   @ViewChildren(BaseChartDirective) charts:
     | QueryList<BaseChartDirective>
     | undefined;
@@ -33,17 +34,13 @@ export class OcrPermataResultComponent {
   transactionData: any;
   summaryData: any;
   analysisData: any;
+  totalDebit: string = '';
+  totalKredit: string = '';
   alamat: string = '';
   cabang: string = '';
-  mataUang: string = '';
-  namaProduk: string = '';
-  nomorCif: string = '';
-  nomorRekening: string = '';
+  nomorNasabah: string = '';
   pemilikRekening: string = '';
   periodeLaporan: string = '';
-  tanggalLaporan: string = '';
-  totalDebet: string = '';
-  totalKredit: string = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -80,15 +77,11 @@ export class OcrPermataResultComponent {
     this.analysisData = navigation?.extras.state?.['analytics_data'];
     this.alamat = navigation?.extras.state?.['alamat'];
     this.cabang = navigation?.extras.state?.['cabang'];
-    this.mataUang = navigation?.extras.state?.['mata_uang'];
-    this.namaProduk = navigation?.extras.state?.['nama_produk'];
-    this.nomorCif = navigation?.extras.state?.['no_cif'];
-    this.nomorRekening = navigation?.extras.state?.['nomor_rekening'];
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
+    this.nomorNasabah = navigation?.extras.state?.['nomor_nasabah'];
+    this.totalDebit = navigation?.extras.state?.['total_debet'];
+    this.totalKredit = navigation?.extras.state?.['total_kredit'];
     this.periodeLaporan = navigation?.extras.state?.['periode_laporan'];
-    this.tanggalLaporan = navigation?.extras.state?.['tanggal_laporan'];
-    this.totalDebet = String(navigation?.extras.state?.['total_debet']);
-    this.totalKredit = String(navigation?.extras.state?.['total_kredit']);
   }
 
   ngOnInit(): void {
@@ -106,25 +99,11 @@ export class OcrPermataResultComponent {
       labels: this.barTotalDebitKreditLabels,
       datasets: [
         {
-          data: [
-            parseFloat(
-              this.analysisData.sum_kredit
-                .replaceAll(',', '')
-                .replaceAll('Rp ', '')
-                .replaceAll('.', '')
-            ) / 100,
-          ],
+          data: [convertToFloat(this.analysisData.sum_kredit)],
           label: 'Kredit',
         },
         {
-          data: [
-            parseFloat(
-              this.analysisData.sum_debit
-                .replaceAll(',', '')
-                .replaceAll('Rp ', '')
-                .replaceAll('.', '')
-            ) / 100,
-          ],
+          data: [convertToFloat(this.analysisData.sum_debit)],
           label: 'Debit',
         },
       ],
@@ -132,14 +111,12 @@ export class OcrPermataResultComponent {
 
     this.dateTransactionData = getDateFrequency(this.transactionData);
 
-    console.log(this.dateTransactionData);
-
     this.saldoMovementData = getSaldoMovement(
       this.transactionData,
       this.dateTransactionData.labels
     );
 
-    this.validateBankAccount('014', this.nomorRekening, this.pemilikRekening);
+    this.validateBankAccount('014', this.nomorNasabah, this.pemilikRekening);
   }
 
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {

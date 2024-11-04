@@ -1,0 +1,285 @@
+{
+  "data": {
+    "alamat": "JL. BENDA NO 02 RT 007 RW 002 LIMO,LIMO DEPOK KOTA 197 JAWA BARAT ID-INDONESIA 09002",
+    "analytics_data": {
+      "avg_debit": "Rp 273.525,20",
+      "avg_kredit": "Rp 1.781.824,09",
+      "freq_debit": 20,
+      "freq_kredit": 3,
+      "max_debit": "Rp 4.200.000,00",
+      "max_kredit": "Rp 4.395.452,00",
+      "min_debit": "Rp 4,05",
+      "min_kredit": "Rp 20,27",
+      "net_balance": "Rp -125.031,78",
+      "sum_debit": "Rp 5.470.504,05",
+      "sum_kredit": "Rp 5.345.472,27"
+    },
+    "cabang": "0108 BDI JAKARTA CITRA GARDEN II",
+    "nomor_nasabah": "0014446765",
+    "pemilik_rekening": "MOCHAMMAD ANDI MAHAT",
+    "periode_laporan": "MAR 01,2021 - MAR 31,2021",
+    "total_debet": "Rp 5.470.504,05",
+    "total_kredit": "Rp 5.345.472,27",
+    "transaction_data": [
+      {
+        "debit": null,
+        "keterangan": "SALDO BULAN LALU",
+        "kredit": null,
+        "reff": null,
+        "saldo": "Rp 301.358,49",
+        "tanggal_transaksi": null,
+        "tanggal_valuta": null
+      },
+      {
+        "debit": "Rp 130.000,00",
+        "keterangan": "PRIMA TRF 2050065416 CA 611970 60170100 BANK DANAMON INDONES IAII JKI",
+        "kredit": null,
+        "reff": "601701006119",
+        "saldo": "Rp 171.358,49",
+        "tanggal_transaksi": "01/03",
+        "tanggal_valuta": "01/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 20.000,00",
+        "keterangan": "BERS TRF 89308984815555 ANDIRI 879568 60170100 BANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": "601701008795",
+        "saldo": "Rp 151.358,49",
+        "tanggal_transaksi": "01/03",
+        "tanggal_valuta": "01/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 7.500,00",
+        "keterangan": "BERS TRF FEE 87956860170100 B ANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": null,
+        "saldo": "Rp 143.858,49",
+        "tanggal_transaksi": "01/03",
+        "tanggal_valuta": "01/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 10.000,00",
+        "keterangan": "BERS TRF 89308984815555 ANDIRI 303694 60170100 BANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": "601701003036",
+        "saldo": "Rp 133.858,49",
+        "tanggal_transaksi": "02/03",
+        "tanggal_valuta": "02/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 7.500,00",
+        "keterangan": "BERS TRF FEE 30369460170100 B ANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": null,
+        "saldo": "Rp 126.358,49",
+        "tanggal_transaksi": "02/03",
+        "tanggal_valuta": "02/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 20.000,00",
+        "keterangan": "BERS TRF 89308984815555 ANDIRI 536649 60170100 BANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": "601701005366",
+        "saldo": "Rp 106.358,49",
+        "tanggal_transaksi": "02/03",
+        "tanggal_valuta": "02/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 7.500,00",
+        "keterangan": "BERS TRF FEE 53664960170100 B ANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": null,
+        "saldo": "Rp 98.858,49",
+        "tanggal_transaksi": "02/03",
+        "tanggal_valuta": "02/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 20.000,00",
+        "keterangan": "BERS TRF 89308984815555 ANDIRI 710434 60170100 BANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": "601701007104",
+        "saldo": "Rp 78.858,49",
+        "tanggal_transaksi": "03/03",
+        "tanggal_valuta": "03/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 7.500,00",
+        "keterangan": "BERS TRF FEE 71043460170100 B ANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": null,
+        "saldo": "Rp 71.358,49",
+        "tanggal_transaksi": "03/03",
+        "tanggal_valuta": "03/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 38.000,00",
+        "keterangan": "BERS TRF 89308984815555 ANDIRI 156397 60170100 BANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": "601701001563",
+        "saldo": "Rp 33.358,49",
+        "tanggal_transaksi": "05/03",
+        "tanggal_valuta": "05/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 7.500,00",
+        "keterangan": "BERS TRF FEE 15639760170100 B ANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": null,
+        "saldo": "Rp 25.858,49",
+        "tanggal_transaksi": "05/03",
+        "tanggal_valuta": "05/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": null,
+        "keterangan": "THP",
+        "kredit": "Rp 4.395.452,00",
+        "reff": "3955",
+        "saldo": "Rp 4.421.310,49",
+        "tanggal_transaksi": "08/03",
+        "tanggal_valuta": "08/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 4.200.000,00",
+        "keterangan": "PRIMA TRF 0948525871 CA 165778 60170100 BANK DANAMON INDONES IAII JKI",
+        "kredit": null,
+        "reff": "601701001657",
+        "saldo": "Rp 221.310,49",
+        "tanggal_transaksi": "08/03",
+        "tanggal_valuta": "08/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 20.000,00",
+        "keterangan": "BERS TRF 89308984815555 ANDIRI 333023 60170100 BANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": "601701003330",
+        "saldo": "Rp 201.310,49",
+        "tanggal_transaksi": "09/03",
+        "tanggal_valuta": "09/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": null,
+        "keterangan": null,
+        "kredit": null,
+        "reff": null,
+        "saldo": null,
+        "tanggal_transaksi": null,
+        "tanggal_valuta": null
+      },
+      {
+        "debit": null,
+        "keterangan": "CENTRA L ASIAIIDEPOKI 051IDN",
+        "kredit": null,
+        "reff": null,
+        "saldo": null,
+        "tanggal_transaksi": null,
+        "tanggal_valuta": null,
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 7.500,00",
+        "keterangan": "PRIMA WID FEE 730516997ZX BAN K CENTRAL ASIAIIDEPOKI 051IDN",
+        "kredit": null,
+        "reff": null,
+        "saldo": "Rp 36.310,49",
+        "tanggal_transaksi": "09/03",
+        "tanggal_valuta": "09/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": null,
+        "keterangan": "GAJIANDULUAN.ID FLP55199 296",
+        "kredit": "Rp 950.000,00",
+        "reff": "0Z3633548809",
+        "saldo": "Rp 986.310,49",
+        "tanggal_transaksi": "10/03",
+        "tanggal_valuta": "10/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 900.000,00",
+        "keterangan": "PRIMA 2128 S1G99778 BANK CENTR AL ASIAIIDEPOKI 051ID N",
+        "kredit": null,
+        "reff": "516997782128",
+        "saldo": "Rp 86.310,49",
+        "tanggal_transaksi": "11/03",
+        "tanggal_valuta": "11/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 50.000,00",
+        "keterangan": "BERS TRF 89308984815555 ANDIRI 150874 60170100 BANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": "601701001508",
+        "saldo": "Rp 36.310,49",
+        "tanggal_transaksi": "11/03",
+        "tanggal_valuta": "11/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 7.500,00",
+        "keterangan": "BERS TRF FEE 15087460170100 B ANK DANAMON INDONESIAII JKI",
+        "kredit": null,
+        "reff": null,
+        "saldo": "Rp 28.810,49",
+        "tanggal_transaksi": "11/03",
+        "tanggal_valuta": "11/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 5.000,00",
+        "keterangan": "MONTHLY ADMINISTRATION FEE",
+        "kredit": null,
+        "reff": null,
+        "saldo": "Rp 23.810,49",
+        "tanggal_transaksi": "15/03",
+        "tanggal_valuta": "15/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 5.000,00",
+        "keterangan": "PENALTY BELOW MIN BAL",
+        "kredit": null,
+        "reff": null,
+        "saldo": "Rp 18.810,49",
+        "tanggal_transaksi": "15/03",
+        "tanggal_valuta": "15/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": null,
+        "keterangan": "CREDIT INTEREST CAPITALISED",
+        "kredit": "Rp 20,27",
+        "reff": null,
+        "saldo": "Rp 18.830,76",
+        "tanggal_transaksi": "31/03",
+        "tanggal_valuta": "31/03",
+        "uraian_transaksi": null
+      },
+      {
+        "debit": "Rp 4,05",
+        "keterangan": "TAX DEDUCTED",
+        "kredit": null,
+        "reff": null,
+        "saldo": "Rp 18.826,71",
+        "tanggal_transaksi": "31/03",
+        "tanggal_valuta": "31/03",
+        "uraian_transaksi": null
+      }
+    ]
+  },
+  "message": "ok"
+}

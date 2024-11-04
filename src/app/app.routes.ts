@@ -15,6 +15,7 @@ import { authGuard } from './auth.guard';
 import { OcrBcaResultComponent } from './ocr-bca-result/ocr-bca-result.component';
 import { OcrBriResultComponent } from './ocr-bri-result/ocr-bri-result.component';
 import { OcrPermataResultComponent } from './ocr-permata-result/ocr-permata-result.component';
+import { OcrDanamonResultComponent } from './ocr-danamon-result/ocr-danamon-result.component';
 
 export const routes: Routes = [
   {
@@ -100,6 +101,11 @@ export const routes: Routes = [
         path: 'ocr-permata-result',
         component: OcrPermataResultComponent,
         title: 'OCR Permata Result',
+      },
+      {
+        path: 'ocr-danamon-result',
+        component: OcrDanamonResultComponent,
+        title: 'OCR Danamon Result',
       },
     ],
   },

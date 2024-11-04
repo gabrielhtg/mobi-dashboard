@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { proceedOcrBca } from './services/bca.services';
 import proceedOcrBri from './services/bri.services';
 import proceedOcrPermata from './services/permata.services';
+import proceedOcrDanamon from './services/danamon.services';
 
 @Component({
   selector: 'app-ocr-bank-py',
@@ -51,8 +52,9 @@ export class OcrBankPyComponent implements AfterViewInit {
         2 = BCA Personal
         3 = BRI
         4 = OCBC
-        5 = 
+        5 = BNI
         6 = Permata
+        7 = Danamon
        */
 
       // Untuk bank BCA CORP ataupun BCA PERSONAL
@@ -83,6 +85,17 @@ export class OcrBankPyComponent implements AfterViewInit {
 
       if (this.selectedBankStatement == '6') {
         proceedOcrPermata(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          files
+        );
+      }
+
+      if (this.selectedBankStatement == '7') {
+        proceedOcrDanamon(
           this.isZipPasswordProtected,
           this.zipPassword,
           this.selectedBankStatement,
