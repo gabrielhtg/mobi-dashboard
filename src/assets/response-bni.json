@@ -1,0 +1,238 @@
+{
+  "data": {
+    "akun_rekening": "AL MAARIF",
+    "alamat": "JL VETERAN BLOK SOLO NO 03 BHAKTI NEGARA BARADATU INDONESIA",
+    "analytics_data": {
+      "avg_debit": "Rp 30.000.000,00",
+      "avg_kredit": "Rp 2.800.526,32",
+      "freq_debit": 1,
+      "freq_kredit": 19,
+      "max_debit": "Rp 30.000.000,00",
+      "max_kredit": "Rp 10.000.000,00",
+      "min_debit": "Rp 30.000.000,00",
+      "min_kredit": "Rp 150.000,00",
+      "net_balance": "Rp 23.210.000,00",
+      "sum_debit": "Rp 30.000.000,00",
+      "sum_kredit": "Rp 53.210.000,00"
+    },
+    "nomor_rekening": "480237533 ~",
+    "pemilik_rekening": "YAYASAN AL MAARIF",
+    "periode_rekening": "01-Jul-20 21-Jul-20",
+    "tipe_akun": "Current",
+    "total_debet": "Rp 30.000.000,00",
+    "total_kredit": "Rp 53.210.000,00",
+    "transaction_data": [
+      {
+        "amount": null,
+        "balance": "Rp 453.854.629,00",
+        "branch": null,
+        "debit_credit": null,
+        "effective_date": "Ledger Balance:",
+        "journal": null,
+        "posting_date": null,
+        "transaction_description": null
+      },
+      {
+        "amount": "Rp 150.000,00",
+        "balance": "Rp 454.004.629,00",
+        "branch": "INTERNAL",
+        "debit_credit": "K",
+        "effective_date": "01/07/2020 08.29.52",
+        "journal": "744467",
+        "posting_date": "01/07/2020 08.29.52",
+        "transaction_description": "TRFIPAYITOP-UP ECHANNEL PEMINDAHAN DARI 630256263 Bpk ASNAWI 1946341160002518 50373801 3"
+      },
+      {
+        "amount": "Rp 10.000.000,00",
+        "balance": "Rp 464.004.629,00",
+        "branch": "BRANCH",
+        "debit_credit": "K",
+        "effective_date": "04/07/2020 15.24.48",
+        "journal": "744467",
+        "posting_date": "04/07/2020 15.24.48",
+        "transaction_description": "962916  TRANSFER DARI PEMINDAHAN DARI 550200467 Bpk SAIPUDIN 114485-TRANSFER ANTAR BNI"
+      },
+      {
+        "amount": "Rp 4.000.000,00",
+        "balance": "Rp 468.004.629,00",
+        "branch": "BRANCH",
+        "debit_credit": "K",
+        "effective_date": "04/07/2020 15.25.53",
+        "journal": "744467",
+        "posting_date": "04/07/2020 15.25.53",
+        "transaction_description": "963780  TRANSFER DARI PEMINDAHAN DARI 550200467 Bpk SAIPUDIN 114485-TRANSFER ANTAR BNI"
+      },
+      {
+        "amount": "Rp 30.000.000,00",
+        "balance": "Rp 438.004.629,00",
+        "branch": "KOTABUMI",
+        "debit_credit": "D",
+        "effective_date": "06/07/2020 10.48.47",
+        "journal": "744467",
+        "posting_date": "06/07/2020 10.48.47",
+        "transaction_description": "220085  TARIK CHQ CZ713581 CZ713581 WAKIDI"
+      },
+      {
+        "amount": "Rp 460.000,00",
+        "balance": "Rp 438.464.629,00",
+        "branch": "KOTABUMI",
+        "debit_credit": "K",
+        "effective_date": "06/07/2020 13.19.49",
+        "journal": "744467",
+        "posting_date": "06/07/2020 13.19.49",
+        "transaction_description": "204810 SETOR TUNAI ANDRE KURNIAWAN JURUSAN TARBIYAH SMT 2"
+      },
+      {
+        "amount": "Rp 4.300.000,00",
+        "balance": "Rp 442.764.629,00",
+        "branch": "INTERNAL",
+        "debit_credit": "K",
+        "effective_date": "06/07/2020 13.39.16",
+        "journal": "744467",
+        "posting_date": "06/07/2020 13.39.16",
+        "transaction_description": "698066  TRFIPAYITOP-UP ECHANNEL 6277913987132856 12139822 0706"
+      },
+      {
+        "amount": "Rp 150.000,00",
+        "balance": "Rp 442.914.629,00",
+        "branch": "BRANCH",
+        "debit_credit": "K",
+        "effective_date": "06/07/2020 15.12.03",
+        "journal": "744467",
+        "posting_date": "06/07/2020 15.12.03",
+        "transaction_description": "961983 TRANSFER DARI PEMINDAHAN DARI 951595608 Bpk BUYUNG ASRUL"
+      },
+      {
+        "amount": "Rp 550.000,00",
+        "balance": "Rp 443.464.629,00",
+        "branch": "KOTABUMI",
+        "debit_credit": "K",
+        "effective_date": "08/07/2020 10.47.40",
+        "journal": "744467",
+        "posting_date": "08/07/2020 10.47.40",
+        "transaction_description": "646393 SETOR TUNAI EKA YUNITA SPF SMT 6"
+      },
+      {
+        "amount": "Rp 1.000.000,00",
+        "balance": "Rp 444.464.629,00",
+        "branch": "KOTABUMI",
+        "debit_credit": "K",
+        "effective_date": "13/07/2020 13.54.54",
+        "journal": "744467",
+        "posting_date": "13/07/2020 13.54.54",
+        "transaction_description": "496631 SETOR TUNAI zainul muttaqin jurusan MPIuang pendaftaran"
+      },
+      {
+        "amount": "Rp 7.000.000,00",
+        "balance": "Rp 451.464.629,00",
+        "branch": "INTERNAL",
+        "debit_credit": "K",
+        "effective_date": "13/07/2020 15.46.20",
+        "journal": "744467",
+        "posting_date": "13/07/2020 15.46.20",
+        "transaction_description": "563774  TRFIPAYITOP-UP ECHANNEL 5326595008351475 00540034 00oo"
+      },
+      {
+        "amount": "Rp 1.000.000,00",
+        "balance": "Rp 452.464.629,00",
+        "branch": "KOTABUMI",
+        "debit_credit": "K",
+        "effective_date": "15/07/2020 11.02.13",
+        "journal": "744467",
+        "posting_date": "15/07/2020 11.02.13",
+        "transaction_description": "772940 SETOR TUNAI HASAN SHIDDIQI UANG PENDAFTARAN"
+      },
+      {
+        "amount": "Rp 300.000,00",
+        "balance": "Rp 452.764.629,00",
+        "branch": "INTERNAL",
+        "debit_credit": "K",
+        "effective_date": "15/07/2020 11.09.24",
+        "journal": "744467",
+        "posting_date": "15/07/2020 11.09.24",
+        "transaction_description": "145769 TRFIPAYITOP-UP ECHANNEL PEMINDAHAN DARI 3980307031589 6277913987128037 26259568 8342"
+      },
+      {
+        "amount": "Rp 5.000.000,00",
+        "balance": "Rp 457.764.629,00",
+        "branch": "INTERNAL",
+        "debit_credit": "K",
+        "effective_date": "16/07/2020 08.53.47",
+        "journal": "744467",
+        "posting_date": "16/07/2020 08.53.47",
+        "transaction_description": "655175 TRFIPAYITOP-UP ECHANNEL | 6013013032171006 00000000260777364130"
+      },
+      {
+        "amount": "Rp 5.000.000,00",
+        "balance": "Rp 462.764.629,00",
+        "branch": "INTERNAL",
+        "debit_credit": "K",
+        "effective_date": "16/07/2020 08.54.29",
+        "journal": "744467",
+        "posting_date": "16/07/2020 08.54.29",
+        "transaction_description": "668049 TRFIPAYITOP-UP ECHANNEL | 6013013032171006 00000000260777364190"
+      },
+      {
+        "amount": "Rp 650.000,00",
+        "balance": "Rp 463.414.629,00",
+        "branch": "KOTABUMI",
+        "debit_credit": "K",
+        "effective_date": "16/07/2020 11.48.43",
+        "journal": null,
+        "posting_date": "16/07/2020 11.48.43",
+        "transaction_description": "412055 SETOR TUNAI MARYULI HESY SMSTER 6"
+      },
+      {
+        "amount": "Rp 5.000.000,00",
+        "balance": "Rp 468.414.629,00",
+        "branch": "INTERNAL",
+        "debit_credit": "K",
+        "effective_date": "16/07/2020 15.55.51",
+        "journal": null,
+        "posting_date": "16/07/2020 15.55.51",
+        "transaction_description": "626320  TRFIPAYITOP-UP ECHANNEL 5221845013282074 00000O00260777366260"
+      },
+      {
+        "amount": "Rp 3.700.000,00",
+        "balance": "Rp 472.114.629,00",
+        "branch": "BRANCH",
+        "debit_credit": "K",
+        "effective_date": "17/07/2020 10.34.45",
+        "journal": null,
+        "posting_date": "17/07/2020 10.34.45",
+        "transaction_description": "979953  TRANSFER DARI PEMINDAHAN DARI 550200467 Bpk SAIPUDIN 114485-TRANSFER ANTAR BNI"
+      },
+      {
+        "amount": "Rp 550.000,00",
+        "balance": "Rp 472.664.629,00",
+        "branch": "KOTABUMI",
+        "debit_credit": "K",
+        "effective_date": "17/07/2020 13.41.17",
+        "journal": null,
+        "posting_date": "17/07/2020 13.41.17",
+        "transaction_description": "727655 SETOR TUNAI RIA FAMELIA SMT II JURUSAN TARBIYAH NIM 191402016"
+      },
+      {
+        "amount": "Rp 4.250.000,00",
+        "balance": "Rp 476.914.629,00",
+        "branch": "BRANCH",
+        "debit_credit": "K",
+        "effective_date": "17/07/2020 14.16.32",
+        "journal": null,
+        "posting_date": "17/07/2020 14.16.32",
+        "transaction_description": "992369  TRANSFER DARI PEMINDAHAN DARI 550200467 Bpk SAIPUDIN 114485-TRANSFER ANTAR BNI"
+      },
+      {
+        "amount": "Rp 150.000,00",
+        "balance": "Rp 477.064.629,00",
+        "branch": "19",
+        "debit_credit": "K",
+        "effective_date": "Total Credit",
+        "journal": "442546",
+        "posting_date": "18/07/2020 09.59.20",
+        "transaction_description": "TRFIPAYITOP-UP ECHANNEL PEMINDAHAN DARI 219101000463566 5326595005758482 54700075 7180 30,000,000.00 53,210,000.00"
+      }
+    ]
+  },
+  "message": "ok"
+}

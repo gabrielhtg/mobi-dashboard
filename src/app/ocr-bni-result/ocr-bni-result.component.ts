@@ -4,6 +4,13 @@ import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import {
+  convertToFloat,
+  getDateFrequency,
+  getMonthlyChartDebitData,
+  getMonthlyChartLabels,
+  getSaldoMovement,
+} from './ocr-bni-result.service';
 
 @Component({
   selector: 'app-ocr-bni-result',
@@ -80,36 +87,36 @@ export class OcrBniResultComponent {
   }
 
   ngOnInit(): void {
-    // this.barChartDebitKreditLabels = getMonthlyChartLabels(
-    //   this.transactionData
-    // );
+    this.barChartDebitKreditLabels = getMonthlyChartLabels(
+      this.transactionData
+    );
 
-    // this.barChartDebitKreditData = {
-    //   labels: this.barChartDebitKreditLabels,
-    //   datasets: getMonthlyChartDebitData(this.transactionData),
-    // };
+    this.barChartDebitKreditData = {
+      labels: this.barChartDebitKreditLabels,
+      datasets: getMonthlyChartDebitData(this.transactionData),
+    };
 
-    // this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
-    // this.barTotalDebitKreditData = {
-    //   labels: this.barTotalDebitKreditLabels,
-    //   datasets: [
-    //     {
-    //       data: [convertToFloat(this.analysisData.sum_kredit)],
-    //       label: 'Kredit',
-    //     },
-    //     {
-    //       data: [convertToFloat(this.analysisData.sum_debit)],
-    //       label: 'Debit',
-    //     },
-    //   ],
-    // };
+    this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
+    this.barTotalDebitKreditData = {
+      labels: this.barTotalDebitKreditLabels,
+      datasets: [
+        {
+          data: [convertToFloat(this.analysisData.sum_kredit)],
+          label: 'Kredit',
+        },
+        {
+          data: [convertToFloat(this.analysisData.sum_debit)],
+          label: 'Debit',
+        },
+      ],
+    };
 
-    // this.dateTransactionData = getDateFrequency(this.transactionData);
+    this.dateTransactionData = getDateFrequency(this.transactionData);
 
-    // this.saldoMovementData = getSaldoMovement(
-    //   this.transactionData,
-    //   this.dateTransactionData.labels
-    // );
+    this.saldoMovementData = getSaldoMovement(
+      this.transactionData,
+      this.dateTransactionData.labels
+    );
 
     this.validateBankAccount('009', this.nomorRekening, this.pemilikRekening);
   }
