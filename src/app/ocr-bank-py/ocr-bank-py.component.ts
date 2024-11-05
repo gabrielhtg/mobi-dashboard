@@ -11,6 +11,7 @@ import { proceedOcrBca } from './services/bca.services';
 import proceedOcrBri from './services/bri.services';
 import proceedOcrPermata from './services/permata.services';
 import proceedOcrDanamon from './services/danamon.services';
+import proceedOcrBni from './services/bni.services';
 
 @Component({
   selector: 'app-ocr-bank-py',
@@ -74,6 +75,17 @@ export class OcrBankPyComponent implements AfterViewInit {
 
       if (this.selectedBankStatement == '3') {
         proceedOcrBri(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          files
+        );
+      }
+
+      if (this.selectedBankStatement == '5') {
+        proceedOcrBni(
           this.isZipPasswordProtected,
           this.zipPassword,
           this.selectedBankStatement,

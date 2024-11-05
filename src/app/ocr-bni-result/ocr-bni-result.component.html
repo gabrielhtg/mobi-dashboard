@@ -1,4 +1,4 @@
-<h1 class="font-bold text-2xl mb-7">OCR BRI Results</h1>
+<h1 class="font-bold text-2xl mb-7">OCR Permata Results</h1>
 
 <div class="border-b border-gray-200 dark:border-neutral-700">
   <nav
@@ -76,246 +76,213 @@
           >
             <div class="flex justify-evenly w-full gap-x-3">
               <div class="w-full gap-3">
-                <div class="w-full gap-3">
-                  <div class="max-w-sm min-w-full mb-3">
-                    <label
-                      class="block text-sm font-medium mb-2 dark:text-white"
-                      >Periode Laporan</label
-                    >
+                <div class="max-w-sm min-w-full mb-3">
+                  <label class="block text-sm font-medium mb-2 dark:text-white"
+                    >Periode Laporan</label
+                  >
+                  <input
+                    type="text"
+                    [value]="periodeRekening"
+                    class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                    placeholder="Type Here"
+                  />
+                </div>
+
+                <div class="max-w-sm min-w-full mb-3">
+                  <label class="block text-sm font-medium mb-2 dark:text-white"
+                    >Pemilik Rekening</label
+                  >
+
+                  <div class="relative">
                     <input
+                      #pemilikRekeningEl
+                      name="pemilikRekening"
+                      [value]="pemilikRekening"
                       type="text"
-                      [value]="periodeTransaksi"
+                      (change)="
+                        validateBankAccount(
+                          '014',
+                          nomorRekeningElement.nativeElement.value,
+                          pemilikRekeningElement.nativeElement.value
+                        )
+                      "
                       class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                       placeholder="Type Here"
                     />
-                  </div>
 
-                  <div class="max-w-sm min-w-full mb-3">
-                    <label
-                      class="block text-sm font-medium mb-2 dark:text-white"
-                      >Pemilik Rekening</label
+                    <div
+                      class="absolute inset-y-0 end-0 {{
+                        isRekeningValid ? 'flex' : 'hidden'
+                      }} items-center pe-3"
                     >
-
-                    <div class="relative">
-                      <input
-                        #pemilikRekeningEl
-                        name="pemilikRekening"
-                        [value]="pemilikRekening"
-                        type="text"
-                        (change)="
-                          validateBankAccount(
-                            '014',
-                            nomorRekeningElement.nativeElement.value,
-                            pemilikRekeningElement.nativeElement.value
-                          )
-                        "
-                        class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                        placeholder="Type Here"
-                      />
-
-                      <div
-                        class="absolute inset-y-0 end-0 {{
-                          isRekeningValid ? 'flex' : 'hidden'
-                        }} items-center pe-3"
-                      >
-                        <div class="col-start-2 text-center">
-                          <div class="hs-tooltip inline-block">
-                            <button
-                              type="button"
-                              class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                      <div class="col-start-2 text-center">
+                        <div class="hs-tooltip inline-block">
+                          <button
+                            type="button"
+                            class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                          >
+                            <svg
+                              class="shrink-0 size-4 text-teal-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
                             >
-                              <svg
-                                class="shrink-0 size-4 text-teal-500"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              >
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                              </svg>
-                              <span
-                                class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
-                                role="tooltip"
-                              >
-                                Bank Account Valid
-                              </span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div
-                        class="absolute inset-y-0 end-0 {{
-                          isRekeningValid !== null && !isRekeningValid
-                            ? 'flex'
-                            : 'hidden'
-                        }} items-center pe-3"
-                      >
-                        <div class="col-start-2 text-center">
-                          <div class="hs-tooltip inline-block">
-                            <button
-                              type="button"
-                              class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                              <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span
+                              class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
+                              role="tooltip"
                             >
-                              <svg
-                                class="shrink-0 size-4 text-red-500"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              >
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" x2="12" y1="8" y2="12"></line>
-                                <line x1="12" x2="12.01" y1="16" y2="16"></line>
-                              </svg>
-                              <span
-                                class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
-                                role="tooltip"
-                              >
-                                {{ validationRemark }}
-                              </span>
-                            </button>
-                          </div>
+                              Bank Account Valid
+                            </span>
+                          </button>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="max-w-sm min-w-full mb-3">
-                    <label
-                      class="block text-sm font-medium mb-2 dark:text-white"
-                      >Nomor Rekening</label
+                    <div
+                      class="absolute inset-y-0 end-0 {{
+                        isRekeningValid !== null && !isRekeningValid
+                          ? 'flex'
+                          : 'hidden'
+                      }} items-center pe-3"
                     >
-                    <div class="relative">
-                      <input
-                        #nomorRekeningEl
-                        [value]="nomorRekening"
-                        name="nomorNasabah"
-                        (change)="
-                          validateBankAccount(
-                            '014',
-                            nomorRekeningElement.nativeElement.value,
-                            pemilikRekeningElement.nativeElement.value
-                          )
-                        "
-                        class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                        placeholder="Type Here"
-                      />
-
-                      <div
-                        class="absolute inset-y-0 end-0 {{
-                          isRekeningValid ? 'flex' : 'hidden'
-                        }} items-center pe-3"
-                      >
-                        <div class="col-start-2 text-center">
-                          <div class="hs-tooltip inline-block">
-                            <button
-                              type="button"
-                              class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                      <div class="col-start-2 text-center">
+                        <div class="hs-tooltip inline-block">
+                          <button
+                            type="button"
+                            class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                          >
+                            <svg
+                              class="shrink-0 size-4 text-red-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
                             >
-                              <svg
-                                class="shrink-0 size-4 text-teal-500"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              >
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                              </svg>
-                              <span
-                                class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
-                                role="tooltip"
-                              >
-                                Bank Account Valid
-                              </span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div
-                        class="absolute inset-y-0 end-0 {{
-                          isRekeningValid !== null && !isRekeningValid
-                            ? 'flex'
-                            : 'hidden'
-                        }} items-center pe-3"
-                      >
-                        <div class="col-start-2 text-center">
-                          <div class="hs-tooltip inline-block">
-                            <button
-                              type="button"
-                              class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <line x1="12" x2="12" y1="8" y2="12"></line>
+                              <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                            </svg>
+                            <span
+                              class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
+                              role="tooltip"
                             >
-                              <svg
-                                class="shrink-0 size-4 text-red-500"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              >
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" x2="12" y1="8" y2="12"></line>
-                                <line x1="12" x2="12.01" y1="16" y2="16"></line>
-                              </svg>
-                              <span
-                                class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
-                                role="tooltip"
-                              >
-                                {{ validationRemark }}
-                              </span>
-                            </button>
-                          </div>
+                              {{ validationRemark }}
+                            </span>
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="w-full gap-3">
-                  <div class="max-w-sm min-w-full mb-3">
-                    <label
-                      class="block text-sm font-medium mb-2 dark:text-white"
-                      >Alamat Unit Kerja</label
-                    >
+                <div class="max-w-sm min-w-full mb-3">
+                  <label class="block text-sm font-medium mb-2 dark:text-white"
+                    >Nomor Rekening</label
+                  >
+                  <div class="relative">
                     <input
-                      type="text"
-                      [value]="alamatUnitKerja"
+                      #nomorRekeningEl
+                      [value]="nomorRekening"
+                      name="nomorNasabah"
+                      (change)="
+                        validateBankAccount(
+                          '014',
+                          nomorRekeningElement.nativeElement.value,
+                          pemilikRekeningElement.nativeElement.value
+                        )
+                      "
                       class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                       placeholder="Type Here"
                     />
-                  </div>
 
-                  <div class="max-w-sm min-w-full mb-3">
-                    <label
-                      class="block text-sm font-medium mb-2 dark:text-white"
-                      >Nama Produk</label
+                    <div
+                      class="absolute inset-y-0 end-0 {{
+                        isRekeningValid ? 'flex' : 'hidden'
+                      }} items-center pe-3"
                     >
-                    <input
-                      type="text"
-                      [value]="namaProduk"
-                      class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                      placeholder="Type Here"
-                    />
+                      <div class="col-start-2 text-center">
+                        <div class="hs-tooltip inline-block">
+                          <button
+                            type="button"
+                            class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                          >
+                            <svg
+                              class="shrink-0 size-4 text-teal-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                              <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span
+                              class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
+                              role="tooltip"
+                            >
+                              Bank Account Valid
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="absolute inset-y-0 end-0 {{
+                        isRekeningValid !== null && !isRekeningValid
+                          ? 'flex'
+                          : 'hidden'
+                      }} items-center pe-3"
+                    >
+                      <div class="col-start-2 text-center">
+                        <div class="hs-tooltip inline-block">
+                          <button
+                            type="button"
+                            class="hs-tooltip-toggle inline-flex justify-center items-center text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-50 focus:border-blue-200 focus:text-blue-600 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:border-white/10 dark:hover:text-white dark:focus:bg-white/10 dark:focus:border-white/10 dark:focus:text-white"
+                          >
+                            <svg
+                              class="shrink-0 size-4 text-red-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <line x1="12" x2="12" y1="8" y2="12"></line>
+                              <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                            </svg>
+                            <span
+                              class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
+                              role="tooltip"
+                            >
+                              {{ validationRemark }}
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -335,46 +302,11 @@
 
                 <div class="max-w-sm min-w-full mb-3">
                   <label class="block text-sm font-medium mb-2 dark:text-white"
-                    >Valuta</label
+                    >Tipe Akun</label
                   >
                   <input
                     type="text"
-                    [value]="valuta"
-                    class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                    placeholder="Type Here"
-                  />
-                </div>
-
-                <div class="max-w-sm min-w-full mb-3">
-                  <label class="block text-sm font-medium mb-2 dark:text-white"
-                    >Tanggal Laporan</label
-                  >
-                  <input
-                    type="text"
-                    [value]="tanggalLaporan"
-                    class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                    placeholder="Type Here"
-                  />
-                </div>
-                <div class="max-w-sm min-w-full mb-3">
-                  <label class="block text-sm font-medium mb-2 dark:text-white"
-                    >Unit Kerja</label
-                  >
-                  <input
-                    type="text"
-                    [value]="unitKerja"
-                    class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                    placeholder="Type Here"
-                  />
-                </div>
-
-                <div class="max-w-sm min-w-full mb-3">
-                  <label class="block text-sm font-medium mb-2 dark:text-white"
-                    >Valuta</label
-                  >
-                  <input
-                    type="text"
-                    [value]="valuta"
+                    [value]="tipeAkun"
                     class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                     placeholder="Type Here"
                   />
@@ -395,45 +327,56 @@
               scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
             >
-              Tanggal Transaksi
+              Posting Date
             </th>
             <th
               scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 max-w-[45%] uppercase dark:text-neutral-400"
             >
-              Uraian Transaksi
+              Effective Date
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-start text-xs font-medium text-gray-500 max-w-[45%] uppercase dark:text-neutral-400"
+            >
+              Branch
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-start text-xs font-medium text-gray-500 max-w-[45%] uppercase dark:text-neutral-400"
+            >
+              Journal
             </th>
             <th
               scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
             >
-              Teller
+              Transaction Description
             </th>
             <th
               scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
             >
-              Debet
+              Amount
             </th>
             <th
               scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
             >
-              Kredit
+              DB/CR
             </th>
             <th
               scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
             >
-              Saldo
+              Balance
             </th>
-            <th
+            <!-- <th
               scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
             >
               File
-            </th>
-            <!--            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400">Page</th>-->
+            </th> -->
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
@@ -442,7 +385,7 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
-                [value]="e[0]"
+                [value]="e.posting_date"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
               />
@@ -450,8 +393,43 @@
             <td
               class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
             >
+              <input
+                [value]="e.effective_date == null ? '-' : e.effective_date"
+                type="text"
+                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                placeholder="Type Here"
+              />
+            </td>
+
+            <td
+              class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
+            >
+              <input
+                [value]="e.branch == null ? '-' : e.branch"
+                type="text"
+                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                placeholder="Type Here"
+              />
+            </td>
+            <td
+              class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
+            >
+              <input
+                [value]="e.journal == null ? '-' : e.journal"
+                type="text"
+                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                placeholder="Type Here"
+              />
+            </td>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+            >
               <textarea
-                [value]="e[1] !== null ? e[1] : ''"
+                [value]="
+                  e.transaction_description !== null
+                    ? e.transaction_description
+                    : null
+                "
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                 rows="4"
                 placeholder="This is a textarea placeholder"
@@ -461,7 +439,7 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
-                [value]="e[2] == '' ? '-' : e[2]"
+                [value]="e.amount == null ? '-' : e.amount"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
@@ -471,7 +449,7 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
-                [value]="e[3] == '' ? '-' : e[3]"
+                [value]="e.debit_credit == null ? '-' : e.debit_credit"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
@@ -481,23 +459,17 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
-                [value]="e[4] == '' ? '-' : e[4]"
+                [value]="e.balance == null ? '-' : e.balance"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
               />
             </td>
-            <td
+            <!-- <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              {{ e[5] == "" ? "-" : e[5] }}
-            </td>
-
-            <td
-              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-            >
-              {{ e[6] == "" ? "-" : e[6] }}
-            </td>
+              {{ e.saldo == "" ? "-" : e.saldo }}
+            </td> -->
           </tr>
         </tbody>
       </table>
@@ -511,12 +483,6 @@
           <tr class="divide-x">
             <th
               scope="col"
-              class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
-            >
-              Saldo Awal
-            </th>
-            <th
-              scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 max-w-[45%] uppercase dark:text-neutral-400"
             >
               Total Transaksi Debet
@@ -527,13 +493,6 @@
             >
               Total Transaksi Kredit
             </th>
-            <th
-              scope="col"
-              class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
-            >
-              Saldo Akhir
-            </th>
-            <!--            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400">Page</th>-->
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
@@ -542,7 +501,7 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
-                [value]="summaryData[0]"
+                [value]="totalDebit"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
               />
@@ -551,29 +510,9 @@
               class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
             >
               <input
-                [value]="summaryData[1]"
+                [value]="totalKredit"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-              />
-            </td>
-            <td
-              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-            >
-              <input
-                [value]="summaryData[2] == '' ? '-' : summaryData[2]"
-                type="text"
-                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                placeholder="Type Here"
-              />
-            </td>
-            <td
-              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-            >
-              <input
-                [value]="summaryData[3] == '' ? '-' : summaryData[3]"
-                type="text"
-                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
-                placeholder="Type Here"
               />
             </td>
           </tr>
@@ -589,7 +528,7 @@
     aria-labelledby="tabs-with-icons-item-2"
   >
     <div class="border rounded-lg overflow-hidden dark:border-neutral-700">
-      <table
+      <!-- <table
         class="w-full max-w-full divide-y divide-gray-200 dark:divide-neutral-700"
       >
         <thead class="bg-gray-50 dark:bg-neutral-700">
@@ -712,11 +651,11 @@
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
     </div>
 
     <!-- Tempat tabel Chart.js -->
-    <div id="tempat-chart" class="mt-5">
+    <!-- <div id="tempat-chart" class="mt-5">
       <div id="chart-kredit-debit">
         <h3 class="text-xl font-bold">Tabel Debit Kredit</h3>
         <canvas
@@ -763,7 +702,7 @@
         >
         </canvas>
       </div>
-    </div>
+    </div> -->
   </div>
   <div
     id="tabs-with-icons-3"

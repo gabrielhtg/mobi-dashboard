@@ -48,7 +48,7 @@ export default function proceedOcrBri(
 
       router
         .navigate(['/dashboard/ocr-bri-result'], {
-          state: value,
+          state: value.data,
         })
         .then();
     },
