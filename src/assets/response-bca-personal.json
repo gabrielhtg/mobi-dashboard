@@ -1,0 +1,146 @@
+{
+  "data": {
+    "alamat": "CIPAGERAN/CIMAHI UTARA KP PASIRKIARA RT 002 RW 016 JL KARYA BHAKTI NO 26 KOTA CIMAHI 40511 INDONESIA",
+    "analytics_data": {
+      "avg_debit": "Rp 220.681,82",
+      "avg_kredit": "Rp 585.000,00",
+      "freq_debit": 11,
+      "freq_kredit": 4,
+      "max_debit": "Rp 1.000.000,00",
+      "max_kredit": "Rp 2.000.000,00",
+      "min_debit": "Rp 7.500,00",
+      "min_kredit": "Rp 15.000,00",
+      "net_balance": "Rp -87.500,00",
+      "sum_debit": "Rp 2.427.500,00",
+      "sum_kredit": "Rp 2.340.000,00"
+    },
+    "kcp": "KCP CIMAHI",
+    "mata_uang": "IDR",
+    "mutasi_debit": "Rp 2.427.500,00",
+    "mutasi_kredit": "Rp 2.340.000,00",
+    "nomor_rekening": "1390563121",
+    "pemilik_rekening": "AGUS SETIAWAN",
+    "periode": "JULI 2022",
+    "saldo_akhir": "Rp 38.027,56",
+    "saldo_awal": "Rp 125.527,56",
+    "total_debet": "Rp 2.427.500,00",
+    "total_kredit": "Rp 2.340.000,00",
+    "total_mutasi_debit": "1l",
+    "total_mutasi_kredit": "4",
+    "transaction_data": [
+      {
+        "cbg": null,
+        "keterangan": "SALDO AWAL",
+        "mutasi": null,
+        "saldo": "Rp 125.527,56",
+        "tanggal": "01/07"
+      },
+      {
+        "cbg": "7495",
+        "keterangan": "SETORAN TUNAI",
+        "mutasi": "Rp 2.000.000,00",
+        "saldo": "Rp 2.125.527,56",
+        "tanggal": "01/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TRSF E-BANKING DB 01/07 /95031/00000 GALUH IBRAHIM",
+        "mutasi": "Rp 100.000,00 DB",
+        "saldo": "Rp 2.025.527,56",
+        "tanggal": "01/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TRSF E-BANKING CR 02/07 /95031/00000 TANGGAL 02/07 ARIFIN",
+        "mutasi": "Rp 25.000,00",
+        "saldo": null,
+        "tanggal": "04/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TARIKAN ATM 02/07",
+        "mutasi": "Rp 1.000.000,00 DB",
+        "saldo": null,
+        "tanggal": "04/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TRSF E-BANKING DB 0407/FTFVA/WS95031 39358/0V0 085317038917",
+        "mutasi": "Rp 20.000,00 DB",
+        "saldo": "Rp 1.030.527,56",
+        "tanggal": "04/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TARIKAN ATM 06/07",
+        "mutasi": "Rp 100.000,00 DB",
+        "saldo": null,
+        "tanggal": "07/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TRSF E BANKING CR 07/07 /95031/00000 TITIP K MMH UDIN DETI SOPIANTY SKOM",
+        "mutasi": "Rp 300.000,00",
+        "saldo": null,
+        "tanggal": "07/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TARIKAN ATM 07/07",
+        "mutasi": "Rp 500.000,00 DB",
+        "saldo": "Rp 730.527,56",
+        "tanggal": "07/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TARIKAN ATM 12/07",
+        "mutasi": "Rp 200.000,00 DB",
+        "saldo": "Rp 530.527,56",
+        "tanggal": "12/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TARIKAN ATM 15/07",
+        "mutasi": "Rp 100.000,00 DB",
+        "saldo": null,
+        "tanggal": "15/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "BIAYA ADM",
+        "mutasi": "Rp 7.500,00 DB",
+        "saldo": "Rp 423.027,56",
+        "tanggal": "15/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TARIKAN ATM 19/07",
+        "mutasi": "Rp 200.000,00 DB",
+        "saldo": "Rp 223.027,56",
+        "tanggal": "19/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TRSF E BANKING CR 2007/FTSCY/WS95031 15000 00 RISKA FEBRYANTI",
+        "mutasi": "Rp 15.000,00",
+        "saldo": "Rp 238.027,56",
+        "tanggal": "20/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TARIKAN ATM 23/07",
+        "mutasi": "Rp 100.000,00 DB",
+        "saldo": "Rp 138.027,56",
+        "tanggal": "25/07"
+      },
+      {
+        "cbg": null,
+        "keterangan": "TARIKAN ATM 26/07",
+        "mutasi": "Rp 100.000,00 DB",
+        "saldo": "Rp 38.027,56",
+        "tanggal": "26/07"
+      }
+    ]
+  },
+  "message": "ok"
+}

@@ -36,25 +36,24 @@ export class OcrBcaResultComponent implements OnInit {
 
   isRekeningValid: any = null;
 
-  // input form
-  saldoAkhir: string = '';
-  mutasiDebit: string = '';
-  mutasiKredit: string = '';
-  jumlahMutasiKredit: string = '';
-  jumlahMutasiDebit: string = '';
-  saldoAwal: string = '';
-
-  // ----------------
-
   // Data Chart.js
   transactionData: any;
   analyticsData: any;
-  tipeRekening: any;
-  kcp: any;
-  pemilikRekeningVal: any;
-  nomorRekeningVal: any;
-  periode: any;
-  mataUang: any;
+
+  alamat: string = '';
+  kcp: string = '';
+  mataUang: string = '';
+  mutasiDebit: string = '';
+  mutasiKredit: string = '';
+  nomorRekening: string = '';
+  pemilikRekening: string = '';
+  periode: string = '';
+  saldoAkhir: string = '';
+  saldoAwal: string = '';
+  totalDebet: string = '';
+  totalKredit: string = '';
+  totalMutasiDebit: string = '';
+  totalMutasiKredit: string = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -89,90 +88,82 @@ export class OcrBcaResultComponent implements OnInit {
 
   netBal: any;
 
-  // -------------
-
   constructor(private router: Router, private http: HttpClient) {
     const navigation = this.router.getCurrentNavigation();
-    this.transactionData = navigation?.extras.state?.['transaction-data'];
-    this.analyticsData = navigation?.extras.state?.['analitics-data'];
-    this.tipeRekening = navigation?.extras.state?.['tipe_rekening'];
+    this.transactionData = navigation?.extras.state?.['transaction_data'];
+    this.analyticsData = navigation?.extras.state?.['analytics_data'];
+    this.alamat = navigation?.extras.state?.['alamat'];
     this.kcp = navigation?.extras.state?.['kcp'];
-    this.pemilikRekeningVal = navigation?.extras.state?.['pemilik_rekening'];
-    this.nomorRekeningVal = navigation?.extras.state?.['nomor_rekening'];
-    this.periode = navigation?.extras.state?.['periode'];
     this.mataUang = navigation?.extras.state?.['mata_uang'];
+    this.mutasiDebit = navigation?.extras.state?.['mutasi_debit'];
+    this.mutasiKredit = navigation?.extras.state?.['mutasi_kredit'];
+    this.nomorRekening = navigation?.extras.state?.['nomor_rekening'];
+    this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
+    this.periode = navigation?.extras.state?.['periode'];
+    this.saldoAkhir = navigation?.extras.state?.['saldo_akhir'];
+    this.saldoAwal = navigation?.extras.state?.['saldo_awal'];
+    this.totalDebet = navigation?.extras.state?.['total_debet'];
+    this.totalKredit = navigation?.extras.state?.['total_kredit'];
+    this.totalMutasiDebit = navigation?.extras.state?.['total_mutasi_debit'];
+    this.totalMutasiKredit = navigation?.extras.state?.['total_mutasi_kredit'];
   }
 
   ngOnInit(): void {
-    this.saldoAwal = this.analyticsData.saldo_awal;
-    this.mutasiKredit = this.analyticsData.mutasi_cr;
-    this.jumlahMutasiKredit = this.analyticsData.jumlah_mutasi_cr;
-    this.mutasiDebit = this.analyticsData.mutasi_db;
-    this.jumlahMutasiDebit = this.analyticsData.jumlah_mutasi_db;
-    this.saldoAkhir = this.analyticsData.saldo_akhir;
-
-    this.barChartDebitKreditLabels = getMonthlyChartLabels(
-      this.transactionData
-    );
-
-    this.barChartDebitKreditData = {
-      labels: this.barChartDebitKreditLabels,
-      datasets: getMonthlyChartDebitData(this.transactionData),
-    };
-
-    this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
-    this.barTotalDebitKreditData = {
-      labels: this.barTotalDebitKreditLabels,
-      datasets: [
-        {
-          data: [parseFloat(this.analyticsData.sum_cr.replaceAll(',', ''))],
-          label: 'Kredit',
-        },
-        {
-          data: [parseFloat(this.analyticsData.sum_db.replaceAll(',', ''))],
-          label: 'Debit',
-        },
-      ],
-    };
-
-    this.dateTransactionData = getDateFrequency(this.transactionData);
-
-    this.saldoMovementData = getSaldoMovement(this.transactionData);
-
-    this.netBal =
-      parseFloat(this.analyticsData.mutasi_cr.replaceAll(',', '')) -
-      parseFloat(this.analyticsData.mutasi_db.replaceAll(',', ''));
-
-    this.netBal = this.netBal.toLocaleString('en-US', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-
-    this.validateBankAccount(
-      '014',
-      this.nomorRekeningVal,
-      this.pemilikRekeningVal
-    );
+    // this.barChartDebitKreditLabels = getMonthlyChartLabels(
+    //   this.transactionData
+    // );
+    // this.barChartDebitKreditData = {
+    //   labels: this.barChartDebitKreditLabels,
+    //   datasets: getMonthlyChartDebitData(this.transactionData),
+    // };
+    // this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
+    // this.barTotalDebitKreditData = {
+    //   labels: this.barTotalDebitKreditLabels,
+    //   datasets: [
+    //     {
+    //       data: [parseFloat(this.analyticsData.sum_cr.replaceAll(',', ''))],
+    //       label: 'Kredit',
+    //     },
+    //     {
+    //       data: [parseFloat(this.analyticsData.sum_db.replaceAll(',', ''))],
+    //       label: 'Debit',
+    //     },
+    //   ],
+    // };
+    // this.dateTransactionData = getDateFrequency(this.transactionData);
+    // this.saldoMovementData = getSaldoMovement(this.transactionData);
+    // this.netBal =
+    //   parseFloat(this.analyticsData.mutasi_cr.replaceAll(',', '')) -
+    //   parseFloat(this.analyticsData.mutasi_db.replaceAll(',', ''));
+    // this.netBal = this.netBal.toLocaleString('en-US', {
+    //   minimumFractionDigits: 2,
+    //   maximumFractionDigits: 2,
+    // });
+    // this.validateBankAccount(
+    //   '014',
+    //   this.nomorRekeningVal,
+    //   this.pemilikRekeningVal
+    // );
   }
 
-  updateValue(data: any, key: any, newValue: any) {
-    data[key] = newValue;
+  // updateValue(data: any, key: any, newValue: any) {
+  //   data[key] = newValue;
 
-    this.barTotalDebitKreditData = {
-      ...this.barTotalDebitKreditData,
-      labels: this.barTotalDebitKreditLabels,
-      datasets: [
-        {
-          data: [parseFloat(this.analyticsData.sum_cr.replaceAll(',', ''))],
-          label: 'Kredit',
-        },
-        {
-          data: [parseFloat(this.analyticsData.sum_db.replaceAll(',', ''))],
-          label: 'Debit',
-        },
-      ],
-    };
-  }
+  //   this.barTotalDebitKreditData = {
+  //     ...this.barTotalDebitKreditData,
+  //     labels: this.barTotalDebitKreditLabels,
+  //     datasets: [
+  //       {
+  //         data: [parseFloat(this.analyticsData.sum_cr.replaceAll(',', ''))],
+  //         label: 'Kredit',
+  //       },
+  //       {
+  //         data: [parseFloat(this.analyticsData.sum_db.replaceAll(',', ''))],
+  //         label: 'Debit',
+  //       },
+  //     ],
+  //   };
+  // }
 
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {
     const requestBody = [
