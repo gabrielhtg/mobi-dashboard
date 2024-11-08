@@ -23,26 +23,7 @@ export function proceedOcrBca(
     formData.append('zip-password', zipPassword!);
   }
 
-  http.get<any>('assets/response-bca-personal.json').subscribe({
-    next: (value) => {
-      Swal.close();
-
-      router
-        .navigate(['/dashboard/ocr-bca-result'], {
-          state: value.data,
-        })
-        .then();
-    },
-    error: (err) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Upload Failed',
-        text: err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-      });
-    },
-  });
-
-  // http.post<any>(`${apiUrlPy}/proceed-bca`, formData).subscribe({
+  // http.get<any>('assets/response-bca-personal.json').subscribe({
   //   next: (value) => {
   //     Swal.close();
 
@@ -60,4 +41,23 @@ export function proceedOcrBca(
   //     });
   //   },
   // });
+
+  http.post<any>(`${apiUrlPy}/proceed-bca`, formData).subscribe({
+    next: (value) => {
+      Swal.close();
+
+      router
+        .navigate(['/dashboard/ocr-bca-result'], {
+          state: value.data,
+        })
+        .then();
+    },
+    error: (err) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+      });
+    },
+  });
 }
