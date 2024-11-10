@@ -17,6 +17,7 @@ import {
 } from './ocr-bca-result.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { convertToFloat } from '../ocr-permata-result/ocr-permata-result.service';
 
 @Component({
   selector: 'app-ocr-bca-result',
@@ -109,41 +110,40 @@ export class OcrBcaResultComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.barChartDebitKreditLabels = getMonthlyChartLabels(
-    //   this.transactionData
-    // );
-    // this.barChartDebitKreditData = {
-    //   labels: this.barChartDebitKreditLabels,
-    //   datasets: getMonthlyChartDebitData(this.transactionData),
-    // };
-    // this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
-    // this.barTotalDebitKreditData = {
-    //   labels: this.barTotalDebitKreditLabels,
-    //   datasets: [
-    //     {
-    //       data: [parseFloat(this.analyticsData.sum_cr.replaceAll(',', ''))],
-    //       label: 'Kredit',
-    //     },
-    //     {
-    //       data: [parseFloat(this.analyticsData.sum_db.replaceAll(',', ''))],
-    //       label: 'Debit',
-    //     },
-    //   ],
-    // };
-    // this.dateTransactionData = getDateFrequency(this.transactionData);
-    // this.saldoMovementData = getSaldoMovement(this.transactionData);
-    // this.netBal =
-    //   parseFloat(this.analyticsData.mutasi_cr.replaceAll(',', '')) -
-    //   parseFloat(this.analyticsData.mutasi_db.replaceAll(',', ''));
-    // this.netBal = this.netBal.toLocaleString('en-US', {
-    //   minimumFractionDigits: 2,
-    //   maximumFractionDigits: 2,
-    // });
-    // this.validateBankAccount(
-    //   '014',
-    //   this.nomorRekeningVal,
-    //   this.pemilikRekeningVal
-    // );
+    this.barChartDebitKreditLabels = getMonthlyChartLabels(
+      this.transactionData
+    );
+
+    this.barChartDebitKreditData = {
+      labels: this.barChartDebitKreditLabels,
+      datasets: getMonthlyChartDebitData(this.transactionData),
+    };
+
+    this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
+
+    this.barTotalDebitKreditData = {
+      labels: this.barTotalDebitKreditLabels,
+      datasets: [
+        {
+          data: [convertToFloat(this.analyticsData.sum_kredit)],
+          label: 'Kredit',
+        },
+        {
+          data: [convertToFloat(this.analyticsData.sum_debit)],
+          label: 'Debit',
+        },
+      ],
+    };
+
+    this.dateTransactionData = getDateFrequency(this.transactionData);
+    this.saldoMovementData = getSaldoMovement(
+      this.transactionData,
+      this.dateTransactionData.labels
+    );
+
+    console.log(this.saldoMovementData);
+
+    this.validateBankAccount('014', this.nomorRekening, this.pemilikRekening);
   }
 
   // updateValue(data: any, key: any, newValue: any) {

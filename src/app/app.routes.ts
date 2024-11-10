@@ -17,6 +17,7 @@ import { OcrBriResultComponent } from './ocr-bri-result/ocr-bri-result.component
 import { OcrPermataResultComponent } from './ocr-permata-result/ocr-permata-result.component';
 import { OcrDanamonResultComponent } from './ocr-danamon-result/ocr-danamon-result.component';
 import { OcrBniResultComponent } from './ocr-bni-result/ocr-bni-result.component';
+import { OcrCimbResultComponent } from './ocr-cimb-result/ocr-cimb-result.component';
 
 export const routes: Routes = [
   {
@@ -112,6 +113,11 @@ export const routes: Routes = [
         path: 'ocr-bni-result',
         component: OcrBniResultComponent,
         title: 'OCR BNI Result',
+      },
+      {
+        path: 'ocr-cimb-result',
+        component: OcrCimbResultComponent,
+        title: 'OCR CIMB Result',
       },
     ],
   },

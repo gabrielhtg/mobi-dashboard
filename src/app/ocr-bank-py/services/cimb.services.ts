@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { apiUrlPy } from '../../env';
-import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { apiUrlPy } from '../../env';
 
-export function proceedOcrBca(
+export default function proceedOcrCimb(
   isZipPasswordProtected: any,
   zipPassword: any,
   selectedBankStatement: any,
@@ -17,37 +17,18 @@ export function proceedOcrBca(
     formData.append('files', file, file.name); // 'files' is the key for multiple files
   });
 
-  formData.append('bank-statement-type', selectedBankStatement);
-
   if (isZipPasswordProtected) {
     formData.append('zip-password', zipPassword!);
   }
 
-  http.get<any>('assets/response-bca-personal.json').subscribe({
-    next: (value) => {
-      Swal.close();
+  formData.append('bank-statement-type', selectedBankStatement);
 
-      router
-        .navigate(['/dashboard/ocr-bca-result'], {
-          state: value.data,
-        })
-        .then();
-    },
-    error: (err) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Upload Failed',
-        text: err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-      });
-    },
-  });
-
-  // http.post<any>(`${apiUrlPy}/proceed-bca`, formData).subscribe({
+  // http.get<any>('assets/response-cimb.json').subscribe({
   //   next: (value) => {
   //     Swal.close();
 
   //     router
-  //       .navigate(['/dashboard/ocr-bca-result'], {
+  //       .navigate(['/dashboard/ocr-cimb-result'], {
   //         state: value.data,
   //       })
   //       .then();
@@ -60,4 +41,23 @@ export function proceedOcrBca(
   //     });
   //   },
   // });
+
+  http.post<any>(`${apiUrlPy}/proceed-cimb`, formData).subscribe({
+    next: (value) => {
+      Swal.close();
+
+      router
+        .navigate(['/dashboard/ocr-cimb-result'], {
+          state: value.data,
+        })
+        .then();
+    },
+    error: (err) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: err.error.data == undefined ? 'Unknown Error!' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+      });
+    },
+  });
 }

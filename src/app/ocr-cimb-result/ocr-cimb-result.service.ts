@@ -1,4 +1,14 @@
-import { convertToFloat } from '../ocr-permata-result/ocr-permata-result.service';
+export function convertToFloat(stringNum: string | null) {
+  if (stringNum !== null) {
+    return (
+      parseFloat(
+        stringNum!.replaceAll(',', '').replaceAll('Rp ', '').replaceAll('.', '')
+      ) / 100
+    );
+  }
+
+  return 0;
+}
 
 export function getMonthlyChartDebitData(data: any) {
   const creditData: any = {
@@ -12,22 +22,23 @@ export function getMonthlyChartDebitData(data: any) {
   };
 
   data.forEach((e: any) => {
-    if (e.mutasi == null) {
-      creditData.data.push(0);
-      debitData.data.push(0);
-      return;
-    }
-
-    if (e.mutasi.includes('DB')) {
-      creditData.data.push(0);
-      debitData.data.push(convertToFloat(e.mutasi));
-    } else {
-      debitData.data.push(0);
-      creditData.data.push(convertToFloat(e.mutasi));
-    }
+    debitData.data.push(convertToFloat(e.debet));
+    creditData.data.push(convertToFloat(e.kredit));
   });
 
   return [creditData, debitData];
+}
+
+export function getMonthlyChartLabels(data: any) {
+  const arrTemp: any[] = [];
+
+  data.forEach((e: any) => {
+    if (e.tanggal_transaksi !== null) {
+      arrTemp.push(e.tanggal_transaksi.trim());
+    }
+  });
+
+  return arrTemp;
 }
 
 export function getDateFrequency(transactionData: any) {
@@ -43,7 +54,7 @@ export function getDateFrequency(transactionData: any) {
   let currentLabel = '';
 
   transactionData.forEach((e: any) => {
-    currentLabel = e.tanggal;
+    currentLabel = e.tanggal_transaksi;
 
     if (before == null) {
       if (currentLabel == null) {
@@ -54,23 +65,23 @@ export function getDateFrequency(transactionData: any) {
 
       before = currentLabel;
 
-      if (e.mutasi != null) {
-        if (e.mutasi.includes('DB')) {
-          freqDebet += 1;
-        } else {
-          freqKredit += 1;
-        }
+      if (e.debit != null) {
+        freqDebet += 1;
+      }
+
+      if (e.kredit != null) {
+        freqKredit += 1;
       }
     } else {
       if (currentLabel == before) {
         freqTotal += 1;
 
-        if (e.mutasi != null) {
-          if (e.mutasi.includes('DB')) {
-            freqDebet += 1;
-          } else {
-            freqKredit += 1;
-          }
+        if (e.debit != null) {
+          freqDebet += 1;
+        }
+
+        if (e.kredit != null) {
+          freqKredit += 1;
         }
       } else {
         // simpan data sebelumnya
@@ -84,12 +95,12 @@ export function getDateFrequency(transactionData: any) {
         freqDebet = 0;
         freqKredit = 0;
 
-        if (e.mutasi != null) {
-          if (e.mutasi.includes('DB')) {
-            freqDebet += 1;
-          } else {
-            freqKredit += 1;
-          }
+        if (e.debit != null) {
+          freqDebet += 1;
+        }
+
+        if (e.kredit != null) {
+          freqKredit += 1;
         }
       }
     }
@@ -110,23 +121,6 @@ export function getDateFrequency(transactionData: any) {
   };
 }
 
-export function getMonthlyChartLabels(data: any) {
-  const arrTemp: any[] = [];
-
-  data.forEach((e: any) => {
-    arrTemp.push(e.tanggal);
-  });
-
-  return arrTemp;
-}
-
-/**
- *
- * @param data
- *
- * Method ini digunakan untuk membuat data untuk tabel saldo
- */
-
 export function getSaldoMovement(transactionData: any, labelArr: any) {
   let currentSaldo: number | null = null;
   let labelPointer = 0;
@@ -135,7 +129,7 @@ export function getSaldoMovement(transactionData: any, labelArr: any) {
   transactionData.forEach((e: any): any => {
     currentSaldo = convertToFloat(e.saldo);
 
-    if (e.tanggal == labelArr[labelPointer]) {
+    if (e.tanggal_transaksi == labelArr[labelPointer]) {
       saldoArr.push(currentSaldo);
 
       if (labelPointer < labelArr.length) {

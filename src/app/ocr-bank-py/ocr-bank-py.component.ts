@@ -12,6 +12,7 @@ import proceedOcrBri from './services/bri.services';
 import proceedOcrPermata from './services/permata.services';
 import proceedOcrDanamon from './services/danamon.services';
 import proceedOcrBni from './services/bni.services';
+import proceedOcrCimb from './services/cimb.services';
 
 @Component({
   selector: 'app-ocr-bank-py',
@@ -108,6 +109,17 @@ export class OcrBankPyComponent implements AfterViewInit {
 
       if (this.selectedBankStatement == '7') {
         proceedOcrDanamon(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          files
+        );
+      }
+
+      if (this.selectedBankStatement == '8') {
+        proceedOcrCimb(
           this.isZipPasswordProtected,
           this.zipPassword,
           this.selectedBankStatement,

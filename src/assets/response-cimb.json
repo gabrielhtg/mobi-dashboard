@@ -1,0 +1,191 @@
+{
+  "data": {
+    "alamat": "JALAN KUMUDASMORO UTARA NO.25 RT.0O6 RW.0o6, KELURAHAN BONGSARI KECAMATAN SEMARANG BARAT 50148 0991 KOTA SEMARANG",
+    "analytics_data": {
+      "avg_debit": "Rp 315.574,94",
+      "avg_kredit": "Rp 6.524.229,69",
+      "freq_debit": 8,
+      "freq_kredit": 8,
+      "max_debit": "Rp 1.845.078,00",
+      "max_kredit": "Rp 20.056.355,00",
+      "min_debit": "Rp 3.500,00",
+      "min_kredit": "Rp 44.529,84",
+      "net_balance": "Rp 49.669.238,03",
+      "sum_debit": "Rp 2.524.599,50",
+      "sum_kredit": "Rp 52.193.837,53"
+    },
+    "mata_uang": "IDR",
+    "nama_produk": "XTRA Savers",
+    "nomor_cif": "11110000392428",
+    "nomor_rekening": "700126490000",
+    "pemilik_rekening": "TNIBPKISDR AGUS TJONDRO WIJONO",
+    "periode_laporan": "01 JAN 2023  31 JAN 2023",
+    "tanggal_laporan": "31 JAN 2023",
+    "tanggal_pembukaan": "08 APR 2009",
+    "total_debet": "Rp 2.524.599,50",
+    "total_kredit": "Rp 52.193.837,53",
+    "transaction_data": [
+      {
+        "debet": null,
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": "Rp 173.718,46",
+        "nomor_cek": null,
+        "saldo": "Rp 227.850.491,98",
+        "tanggal_transaksi": "01/01",
+        "tanggal_valuta": "01/01",
+        "uraian_transaksi": "XTRA SAVERS REWARD 230101VMIRO51600"
+      },
+      {
+        "debet": "Rp 34.743,69",
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": null,
+        "nomor_cek": null,
+        "saldo": "Rp 227.815.748,29",
+        "tanggal_transaksi": "01/01",
+        "tanggal_valuta": "01/01",
+        "uraian_transaksi": "GOVERNMENT SERVICE TAX 230101VMIRO51600"
+      },
+      {
+        "debet": null,
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": "Rp 86.859,23",
+        "nomor_cek": null,
+        "saldo": "Rp 227.902.607,52",
+        "tanggal_transaksi": "01/01",
+        "tanggal_valuta": "01/01",
+        "uraian_transaksi": "XTRA SAVERS REWARD 230101 VMIRO51601"
+      },
+      {
+        "debet": "Rp 17.371,84",
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": null,
+        "nomor_cek": null,
+        "saldo": "Rp 227.885.235,68",
+        "tanggal_transaksi": "01/01",
+        "tanggal_valuta": "01/01",
+        "uraian_transaksi": "GOVERNMENT SERVICE TAX 230101 VMIRO51601"
+      },
+      {
+        "debet": "Rp 3.500,00",
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": null,
+        "nomor_cek": null,
+        "saldo": "Rp 227.881.735,68",
+        "tanggal_transaksi": "02/01",
+        "tanggal_valuta": "02/01",
+        "uraian_transaksi": "BILL PAYMENT ADMIN CHARGES 230102GM01903177 BILL PAYMENT"
+      },
+      {
+        "debet": "Rp 1.845.078,00",
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": null,
+        "nomor_cek": null,
+        "saldo": "Rp 226.036.657,68",
+        "tanggal_transaksi": "02/01",
+        "tanggal_valuta": "02/01",
+        "uraian_transaksi": "OCTOmobile BILL 523020163959 9595628122500058 PLN PRAQTIS 230102GM01903177"
+      },
+      {
+        "debet": "Rp 4.000,00",
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": null,
+        "nomor_cek": null,
+        "saldo": "Rp 226.032.657,68",
+        "tanggal_transaksi": "(02/01",
+        "tanggal_valuta": "02/01",
+        "uraian_transaksi": "BILL PAYMENT ADMIN CHARGES 230102GMO1903545 BILL PAYMENT OCTOmobile BILL 06161854"
+      },
+      {
+        "debet": "Rp 341.000,00",
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": null,
+        "nomor_cek": null,
+        "saldo": "Rp 225.691.657,68",
+        "tanggal_transaksi": "02/01",
+        "tanggal_valuta": "02/01",
+        "uraian_transaksi": "9595628122500058 PDAM KOTA SEMARANG 230102GM01903545 REMITTANCE CR BIFAST 202301O5BMRIIDJA01009932056961"
+      },
+      {
+        "debet": null,
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": "Rp 5.173.100,00",
+        "nomor_cek": null,
+        "saldo": "Rp 230.864.757,68",
+        "tanggal_transaksi": "05/01",
+        "tanggal_valuta": "05/01",
+        "uraian_transaksi": "BI FAST Transfer BFS FR BMRIIDJA SA ENERGI BUMI SA 230105BF01947564"
+      },
+      {
+        "debet": null,
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": "Rp 44.529,84",
+        "nomor_cek": null,
+        "saldo": "Rp 230.909.287,52",
+        "tanggal_transaksi": "[08/01",
+        "tanggal_valuta": "08/01",
+        "uraian_transaksi": "CREDIT INTEREST DD4400025000054"
+      },
+      {
+        "debet": "Rp 8.905,97",
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": null,
+        "nomor_cek": null,
+        "saldo": "Rp 230.900.381,55",
+        "tanggal_transaksi": "[08/01",
+        "tanggal_valuta": "08/01",
+        "uraian_transaksi": "WITHHOLDING TAX DD4400025000055 BILLPAYMENT TO CCARD OCTOmobile BILL 5289190009619073"
+      },
+      {
+        "debet": "Rp 270.000,00",
+        "filename": "cimb_niaga_1.jpg",
+        "kredit": null,
+        "nomor_cek": null,
+        "saldo": "Rp 230.630.381,55",
+        "tanggal_transaksi": "[20/01",
+        "tanggal_valuta": "20/01",
+        "uraian_transaksi": "95956281225000588 PAYMENT CC BY SA (MA 001038008982 230120GMO1054039"
+      },
+      {
+        "debet": null,
+        "filename": "cimb_niaga_2.jpg",
+        "kredit": "Rp 4.005.650,00",
+        "nomor_cek": null,
+        "saldo": "Rp 237.636.031,55",
+        "tanggal_transaksi": "24/01",
+        "tanggal_valuta": "24/01",
+        "uraian_transaksi": "BI FAST Transfer BFS FR BMRIIDJA SA ENERGI BUMI SA 230124BF01034799 CASH DEPOSIT"
+      },
+      {
+        "debet": null,
+        "filename": "cimb_niaga_2.jpg",
+        "kredit": "Rp 12.653.625,00",
+        "nomor_cek": null,
+        "saldo": "Rp 250.289.656,55",
+        "tanggal_transaksi": "[25/01",
+        "tanggal_valuta": "25/01",
+        "uraian_transaksi": "BDS 230125J512000033 REMITTANCE CR BIFAST 20230125BMRIIDJA01009932336757"
+      },
+      {
+        "debet": null,
+        "filename": "cimb_niaga_2.jpg",
+        "kredit": "Rp 20.056.355,00",
+        "nomor_cek": null,
+        "saldo": "Rp 270.346.011,55",
+        "tanggal_transaksi": "25/01",
+        "tanggal_valuta": "25/01",
+        "uraian_transaksi": "BI FAST Transfer BFS FR BMRIIDJA SA ENERGI BUMI SA 230125BF01110326 REMITTANCE CR BIFAST 20230130CENAIDJAO10O0227932095"
+      },
+      {
+        "debet": null,
+        "filename": "cimb_niaga_2.jpg",
+        "kredit": "Rp 10.000.000,00",
+        "nomor_cek": null,
+        "saldo": "Rp 280.346.011,55",
+        "tanggal_transaksi": "(30/01",
+        "tanggal_valuta": "30/01",
+        "uraian_transaksi": "BFS FR CENAIDJA SA ADI HARTONO 230130BF01454495"
+      }
+    ]
+  },
+  "message": "ok"
+}
