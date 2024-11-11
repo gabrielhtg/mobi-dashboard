@@ -44,6 +44,7 @@ export class OcrCimbResultComponent {
   periodeLaporan: string = '';
   tanggalLaporan: string = '';
   tanggalPembukaan: string = '';
+  cabang: string = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -89,6 +90,7 @@ export class OcrCimbResultComponent {
     this.alamat = navigation?.extras.state?.['alamat'];
     this.mataUang = navigation?.extras.state?.['mata_uang'];
     this.namaProduk = navigation?.extras.state?.['nama_produk'];
+    this.cabang = navigation?.extras.state?.['cabang'];
     this.nomorCif = navigation?.extras.state?.['nomor_cif'];
     this.nomorRekening = navigation?.extras.state?.['nomor_rekening'];
     this.periodeLaporan = navigation?.extras.state?.['periode_laporan'];
