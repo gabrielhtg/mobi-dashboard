@@ -1,0 +1,297 @@
+{
+  "data": {
+    "analytics_data": {
+      "avg_debit": "Rp 1.638.421,21",
+      "avg_kredit": "Rp 1.315.789,47",
+      "freq_debit": 19,
+      "freq_kredit": 19,
+      "max_debit": "Rp 15.613.903,00",
+      "max_kredit": "Rp 15.000.000,00",
+      "min_debit": "Rp 0,00",
+      "min_kredit": "Rp 0,00",
+      "net_balance": "Rp -6.130.003,00",
+      "sum_debit": "Rp 31.130.003,00",
+      "sum_kredit": "Rp 25.000.000,00"
+    },
+    "branch": "KCP Pasuruan",
+    "currency": "IDR",
+    "nomor_rekening": "1440003022453",
+    "pemilik_rekening": "ROSANA HAYATI",
+    "period": "From 12 January 2021 To 22 January 2021",
+    "total_debet": "Rp 31.130.003,00",
+    "total_kredit": "Rp 25.000.000,00",
+    "transaction_data": [
+      {
+        "date_and_time": "12/01/2021 13.18.32",
+        "debit": null,
+        "description": "KE MANDIRI PRIBADI MCM InhouseTrf DARI ROSANA BIRO PERJALANAN WISATA",
+        "filename": "mandiri_1.jpg",
+        "kredit": null,
+        "refference_no": null,
+        "saldo": null,
+        "value_date": "12/01/2021"
+      },
+      {
+        "date_and_time": "12/01/2021 13.23.00",
+        "debit": "2,500.00",
+        "description": "030302160140152705304940 INT-B(Bil Pmt)   Telkom 0152705304940",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": null,
+        "saldo": "10,170,109.62",
+        "value_date": "12/01/2021"
+      },
+      {
+        "date_and_time": "12/01/2021 13.23.00",
+        "debit": "352,000.00",
+        "description": "030302160140152705304940 INT-B(Bil Pmt)   Telkom 0152705304940",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": null,
+        "saldo": "9,818,109.62",
+        "value_date": "12/01/2021"
+      },
+      {
+        "date_and_time": "12/01/2021 14.27.41",
+        "debit": "0.00",
+        "description": "KE MANDIRI PRIBADI MCM InhouseTrf DARI ROSANA BIRO PERJALANAN WISATA",
+        "filename": "mandiri_1.jpg",
+        "kredit": "10,000,000.00",
+        "refference_no": null,
+        "saldo": "19,818,109.62",
+        "value_date": "12/01/2021"
+      },
+      {
+        "date_and_time": "12/01/2021 14.30.12",
+        "debit": "10,000,000,00",
+        "description": "CHEF KULINER INDRAGI MCM InhouseTrf KE TEGUH BASUKI UTOMO",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": null,
+        "saldo": "9,818,109.62",
+        "value_date": "12/01/2021"
+      },
+      {
+        "date_and_time": "14/01/2021 09.06.32",
+        "debit": "850,000.00",
+        "description": "BRT INA KHATAMAN BHU MCM Outw CN MUTMAINAH",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": null,
+        "saldo": "8,968,109.62",
+        "value_date": "14/01/2021"
+      },
+      {
+        "date_and_time": "14/01/2021 09.06.32",
+        "debit": "25,000.00",
+        "description": "Clearing Fee BRT INA KHATAMAN BH Clearina Fee MENGGANTI ONGKOS KCA",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": "KHATAMAN BH",
+        "saldo": "8,940,209.62",
+        "value_date": "15/01/2021"
+      },
+      {
+        "date_and_time": "15/01/2021 08.26,40",
+        "debit": null,
+        "description": "MCM Outw CN ROBI HANGGARA",
+        "filename": "mandiri_1.jpg",
+        "kredit": null,
+        "refference_no": null,
+        "saldo": null,
+        "value_date": null
+      },
+      {
+        "date_and_time": "08.26,40",
+        "debit": "2,900.00",
+        "description": "Clearing Fee MENGGANTI",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": "MENGGANTI",
+        "saldo": "8,937,309.62",
+        "value_date": "15/01/2021"
+      },
+      {
+        "date_and_time": "15/01/2021",
+        "debit": "2,265,000.00",
+        "description": "ONGKOS KC Clearina Fee BRT UPAH PAK PARNI",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": "ONGKOS KC",
+        "saldo": "6,672,309.62",
+        "value_date": "16/01/2021"
+      },
+      {
+        "date_and_time": "16/01/2021 12.48.21",
+        "debit": null,
+        "description": "MCM InhouseTrf KE SUPARNI",
+        "filename": "mandiri_1.jpg",
+        "kredit": null,
+        "refference_no": null,
+        "saldo": null,
+        "value_date": null
+      },
+      {
+        "date_and_time": "12.48.22",
+        "debit": "825,000.00",
+        "description": "BRT UPAH PAK PARNI",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": null,
+        "saldo": "5,847,309.62",
+        "value_date": "16/01/2021"
+      },
+      {
+        "date_and_time": "16/01/2021",
+        "debit": null,
+        "description": "MCM InhouseTrf KE SUPARNI",
+        "filename": "mandiri_1.jpg",
+        "kredit": null,
+        "refference_no": null,
+        "saldo": null,
+        "value_date": null
+      },
+      {
+        "date_and_time": "23",
+        "debit": "330,000.00",
+        "description": "BRT UPAH PAK PARNI",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": null,
+        "saldo": "5,517,309.62",
+        "value_date": "16/01/2021"
+      },
+      {
+        "date_and_time": "16/01/2021 12.48",
+        "debit": null,
+        "description": "MCM InhouseTrf KE SUPARNI",
+        "filename": "mandiri_1.jpg",
+        "kredit": null,
+        "refference_no": null,
+        "saldo": null,
+        "value_date": null
+      },
+      {
+        "date_and_time": "24",
+        "debit": "330,000.00",
+        "description": "BRT UPAH PAK PARNI",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": null,
+        "saldo": "5,187,309.62",
+        "value_date": "16/01/2021"
+      },
+      {
+        "date_and_time": "16/01/2021 12.48.",
+        "debit": null,
+        "description": "MCM InhouseTrf KE SUPARNI",
+        "filename": "mandiri_1.jpg",
+        "kredit": null,
+        "refference_no": null,
+        "saldo": null,
+        "value_date": null
+      },
+      {
+        "date_and_time": "09.00.34",
+        "debit": "200,000.00",
+        "description": "MENGGANTI TIPS TEGAL",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": null,
+        "saldo": "4,987,309.62",
+        "value_date": "18/01/2021"
+      },
+      {
+        "date_and_time": "18/01/2021",
+        "debit": null,
+        "description": "MCM Outw CN BPK MUHAMAD SHOLEH",
+        "filename": "mandiri_1.jpg",
+        "kredit": null,
+        "refference_no": null,
+        "saldo": null,
+        "value_date": null
+      },
+      {
+        "date_and_time": "09.00.34",
+        "debit": "2,900.00",
+        "description": "Clearing Fee MENGGANTI",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": "MENGGANTI TIPS",
+        "saldo": "4,984,409.62",
+        "value_date": "18/01/2021"
+      },
+      {
+        "date_and_time": "18/01/2021",
+        "debit": null,
+        "description": "TIPS TEGA Clearina Fee",
+        "filename": "mandiri_1.jpg",
+        "kredit": null,
+        "refference_no": "TEGA",
+        "saldo": null,
+        "value_date": null
+      },
+      {
+        "date_and_time": "18/01/2021 09.00.35",
+        "debit": "200,000.,00",
+        "description": "MENGGANTI BBM PICKUP MCM Outw CN ROBI HANGGARA",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": null,
+        "saldo": "4,784,409.62",
+        "value_date": "18/01/2021"
+      },
+      {
+        "date_and_time": "18/01/2021 09.00.35",
+        "debit": "2,900.00",
+        "description": "Clearing Fee MENGGANTI BBM PICKU",
+        "filename": "mandiri_1.jpg",
+        "kredit": "0.00",
+        "refference_no": "PICKU",
+        "saldo": "4,781,509.62",
+        "value_date": "18/01/2021"
+      },
+      {
+        "date_and_time": "20/01/2021 08.55.53",
+        "debit": "0.00",
+        "description": "KE MANDIRI PRIBADI MCM InhouseTrf DARI ROSANA BIRO PERJALANAN WISATA",
+        "filename": "mandiri_2.jpg",
+        "kredit": "15,000,000.00",
+        "refference_no": null,
+        "saldo": "19,781,509.62",
+        "value_date": "20/01/2021"
+      },
+      {
+        "date_and_time": "20/01/2021 11.54.40",
+        "debit": "15,613,903.00",
+        "description": "ANGSURAN PB SUDIRMAN MCM Outw CN Hj- ROSANA HAYATI",
+        "filename": "mandiri_2.jpg",
+        "kredit": "0.00",
+        "refference_no": null,
+        "saldo": "4,167,606.62",
+        "value_date": "20/01/2021"
+      },
+      {
+        "date_and_time": "20/01/2021 11.54.40",
+        "debit": "2,900.00",
+        "description": "Clearing Fee ANGSURAN PB SUDIRMA Clearina Fee",
+        "filename": "mandiri_2.jpg",
+        "kredit": "0.00",
+        "refference_no": "SUDIRMA",
+        "saldo": "4,164,706.62",
+        "value_date": "20/01/2021"
+      },
+      {
+        "date_and_time": "21/01/2021 11.53.59",
+        "debit": "125,000.00",
+        "description": "UBP6O218902201FFFFFF8902222 503110082",
+        "filename": "mandiri_2.jpg",
+        "kredit": "0.00",
+        "refference_no": null,
+        "saldo": "4,039,706.62",
+        "value_date": "21/01/2021"
+      }
+    ]
+  },
+  "message": "ok"
+}

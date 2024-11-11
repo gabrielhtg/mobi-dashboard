@@ -13,6 +13,8 @@ import proceedOcrPermata from './services/permata.services';
 import proceedOcrDanamon from './services/danamon.services';
 import proceedOcrBni from './services/bni.services';
 import proceedOcrCimb from './services/cimb.services';
+import proceedOcrOcbc from './services/ocbc.services';
+import proceedOcrMandiri from './services/mandiri.services';
 
 @Component({
   selector: 'app-ocr-bank-py',
@@ -57,6 +59,8 @@ export class OcrBankPyComponent implements AfterViewInit {
         5 = BNI
         6 = Permata
         7 = Danamon
+        8 = CIMB
+        9 = Mandiri
        */
 
       // Untuk bank BCA CORP ataupun BCA PERSONAL
@@ -76,6 +80,17 @@ export class OcrBankPyComponent implements AfterViewInit {
 
       if (this.selectedBankStatement == '3') {
         proceedOcrBri(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          files
+        );
+      }
+
+      if (this.selectedBankStatement == '4') {
+        proceedOcrOcbc(
           this.isZipPasswordProtected,
           this.zipPassword,
           this.selectedBankStatement,
@@ -120,6 +135,17 @@ export class OcrBankPyComponent implements AfterViewInit {
 
       if (this.selectedBankStatement == '8') {
         proceedOcrCimb(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          files
+        );
+      }
+
+      if (this.selectedBankStatement == '9') {
+        proceedOcrMandiri(
           this.isZipPasswordProtected,
           this.zipPassword,
           this.selectedBankStatement,

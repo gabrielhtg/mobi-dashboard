@@ -18,6 +18,8 @@ import { OcrPermataResultComponent } from './ocr-permata-result/ocr-permata-resu
 import { OcrDanamonResultComponent } from './ocr-danamon-result/ocr-danamon-result.component';
 import { OcrBniResultComponent } from './ocr-bni-result/ocr-bni-result.component';
 import { OcrCimbResultComponent } from './ocr-cimb-result/ocr-cimb-result.component';
+import { OcrOcbcResultComponent } from './ocr-ocbc-result/ocr-ocbc-result.component';
+import { OcrMandiriResultComponent } from './ocr-mandiri-result/ocr-mandiri-result.component';
 
 export const routes: Routes = [
   {
@@ -118,6 +120,16 @@ export const routes: Routes = [
         path: 'ocr-cimb-result',
         component: OcrCimbResultComponent,
         title: 'OCR CIMB Result',
+      },
+      {
+        path: 'ocr-ocbc-result',
+        component: OcrOcbcResultComponent,
+        title: 'OCR OCBC Result',
+      },
+      {
+        path: 'ocr-mandiri-result',
+        component: OcrMandiriResultComponent,
+        title: 'OCR Mandiri Result',
       },
     ],
   },

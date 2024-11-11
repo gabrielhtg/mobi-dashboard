@@ -10,15 +10,15 @@ import {
   getMonthlyChartDebitData,
   getMonthlyChartLabels,
   getSaldoMovement,
-} from './ocr-ocbc-result.service';
+} from './ocr-mandiri-result.service';
 
 @Component({
-  selector: 'app-ocr-ocbc-result',
+  selector: 'app-ocr-mandiri-result',
   standalone: true,
   imports: [NgForOf, BaseChartDirective],
-  templateUrl: './ocr-ocbc-result.component.html',
+  templateUrl: './ocr-mandiri-result.component.html',
 })
-export class OcrOcbcResultComponent {
+export class OcrMandiriResultComponent {
   @ViewChildren(BaseChartDirective) charts:
     | QueryList<BaseChartDirective>
     | undefined;
@@ -36,13 +36,11 @@ export class OcrOcbcResultComponent {
   analysisData: any;
   totalDebit: string = '';
   totalKredit: string = '';
-  alamat: string = '';
-  cabang: string = '';
-  mataUang: string = '';
+  periode: string = '';
   nomorRekening: string = '';
   pemilikRekening: string = '';
-  periode: string = '';
-  tanggalPercetakan: string = '';
+  currency: string = '';
+  branch: string = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -75,18 +73,14 @@ export class OcrOcbcResultComponent {
   constructor(private http: HttpClient, private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
-    this.summaryData = navigation?.extras.state?.['summary_data'];
     this.analysisData = navigation?.extras.state?.['analytics_data'];
     this.totalDebit = navigation?.extras.state?.['total_debet'];
     this.totalKredit = navigation?.extras.state?.['total_kredit'];
-    this.alamat = navigation?.extras.state?.['alamat'];
-    this.cabang = navigation?.extras.state?.['cabang'];
-    this.mataUang = navigation?.extras.state?.['mata_uang'];
+    this.periode = navigation?.extras.state?.['period'];
     this.nomorRekening = navigation?.extras.state?.['nomor_rekening'];
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
-    this.periode = navigation?.extras.state?.['periode'];
-    this.tanggalPercetakan = navigation?.extras.state?.['tanggal_percetakan'];
-    this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
+    this.currency = navigation?.extras.state?.['currency'];
+    this.branch = navigation?.extras.state?.['branch'];
   }
 
   ngOnInit(): void {
@@ -98,6 +92,8 @@ export class OcrOcbcResultComponent {
       labels: this.barChartDebitKreditLabels,
       datasets: getMonthlyChartDebitData(this.transactionData),
     };
+
+    console.log(this.barChartDebitKreditData);
 
     this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
     this.barTotalDebitKreditData = {
@@ -121,7 +117,9 @@ export class OcrOcbcResultComponent {
       this.dateTransactionData.labels
     );
 
-    this.validateBankAccount('028', this.nomorRekening, this.pemilikRekening);
+    console.log(this.saldoMovementData);
+
+    this.validateBankAccount('008', this.nomorRekening, this.pemilikRekening);
   }
 
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {
