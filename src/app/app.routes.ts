@@ -77,19 +77,19 @@ export const routes: Routes = [
         title: 'Profile',
       },
       {
-        path: 'g-ocr',
+        path: 'ocr-ktp',
         component: GOcrComponent,
-        title: 'G-OCR',
+        title: 'OCR KTP',
       },
       {
-        path: 'g-ocr-bank',
+        path: 'ocr-bank-manual',
         component: GOcrBankComponent,
-        title: 'G-OCR Bank',
+        title: 'OCR Bank Manual',
       },
       {
-        path: 'ocr-bank-py',
+        path: 'ocr-bank-auto',
         component: OcrBankPyComponent,
-        title: 'OCR Bank Python',
+        title: 'OCR Bank Auto',
       },
       {
         path: 'ocr-bca-result',
