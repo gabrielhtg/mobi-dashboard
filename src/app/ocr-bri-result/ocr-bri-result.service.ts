@@ -1,3 +1,15 @@
+export function convertToFloat(stringNum: string | null) {
+  if (stringNum !== null) {
+    return (
+      parseFloat(
+        stringNum!.replaceAll(',', '').replaceAll('Rp ', '').replaceAll('.', '')
+      ) / 100
+    );
+  }
+
+  return 0;
+}
+
 export function getMonthlyChartDebitData(data: any) {
   const creditData: any = {
     data: [],
@@ -9,168 +21,125 @@ export function getMonthlyChartDebitData(data: any) {
     label: 'Debit',
   };
 
-  data.forEach((e: String) => {
-    debitData.data.push(parseFloat(e[3].replaceAll(',', '')));
-    creditData.data.push(parseFloat(e[4].replaceAll(',', '')));
+  data.forEach((e: any) => {
+    debitData.data.push(convertToFloat(e.debit));
+    creditData.data.push(convertToFloat(e.kredit));
   });
 
   return [creditData, debitData];
 }
 
-function getDateOnly(text: string) {
-  return text.trim().split(' ')[0];
+export function getMonthlyChartLabels(data: any) {
+  const arrTemp: any[] = [];
+
+  data.forEach((e: any) => {
+    if (e.tanggal_transaksi !== null) {
+      arrTemp.push(e.tanggal_transaksi.trim().split(' ')[0]);
+    }
+  });
+
+  return arrTemp;
 }
 
-export function getDateFrequency(data: any) {
-  const labelArr = [];
-  const freqTotalArr = [];
-  const freqKreditArr = [];
-  const freqDebitArr = [];
+export function getDateFrequency(transactionData: any) {
+  let before: string | null = null;
+  const labelArr: any = [];
+  const freqTotalArr: any = [];
+  const freqKreditArr: any = [];
+  const freqDebetArr: any = [];
+
   let freqTotal = 0;
+  let freqDebet = 0;
   let freqKredit = 0;
-  let freqDebit = 0;
-  let currentDebit = '';
-  let currentKredit = '';
-  let currentTanggal = null;
-  let beforeTanggal = null;
+  let currentLabel = '';
 
-  for (let i = 0; i < data.length; i++) {
-    currentTanggal = getDateOnly(data[i][0]);
-    currentDebit = data[i][3].trim();
-    currentKredit = data[i][4].trim();
-
-    // ketika beforeTanggal masih belum ada
-    if (beforeTanggal == null) {
-      freqTotal++;
-
-      // jika ini adalah debit maka tambahkan freq debit
-      if (currentDebit !== '0.00') {
-        freqDebit++;
-      }
-
-      // jika ini adalah kredit maka tambahkan freq kredit
-      if (currentKredit !== '0.00') {
-        freqKredit++;
-      }
-
-      beforeTanggal = currentTanggal;
-      continue;
+  transactionData.forEach((e: any) => {
+    if (e.tanggal_transaksi == null) {
+      return;
     }
 
-    // ketika beforeTanggal sudah ada
-    else {
-      // jika tanggal sekarang sama dengan tanggal sebelumnya
-      if (currentTanggal == beforeTanggal) {
-        freqTotal++;
+    currentLabel = e.tanggal_transaksi.trim().split(' ')[0];
 
-        // jika ini adalah debit maka tambahkan freq debit
-        if (currentDebit !== '0.00') {
-          freqDebit++;
-        }
+    if (before == null) {
+      freqTotal += 1;
 
-        // jika ini adalah kredit maka tambahkan freq kredit
-        if (currentKredit !== '0.00') {
-          freqKredit++;
-        }
+      before = currentLabel;
+
+      if (convertToFloat(e.debit) != 0) {
+        freqDebet += 1;
       }
 
-      // jika tanggal sekarang berbeda dengan tanggal sebelumnya,
-      // artinya kita sudah saatnya untuk reset frequensi
-      else {
-        // tambahkan label dengan tanggal sebelumnya
-        labelArr.push(beforeTanggal);
-        beforeTanggal = currentTanggal;
+      if (convertToFloat(e.kredit) != 0) {
+        freqKredit += 1;
+      }
+    } else {
+      if (currentLabel == before) {
+        freqTotal += 1;
 
+        if (convertToFloat(e.debit) != 0) {
+          freqDebet += 1;
+        }
+
+        if (convertToFloat(e.kredit) != 0) {
+          freqKredit += 1;
+        }
+      } else {
+        // simpan data sebelumnya
+        labelArr.push(before);
         freqTotalArr.push(freqTotal);
-        freqTotal = 1;
-
+        freqDebetArr.push(freqDebet);
         freqKreditArr.push(freqKredit);
+
+        before = currentLabel;
+        freqTotal = 1;
+        freqDebet = 0;
         freqKredit = 0;
-        // jika ini adalah kredit maka tambahkan freq kredit
-        if (currentKredit !== '0.00') {
-          freqKredit++;
+
+        if (convertToFloat(e.debit) != 0) {
+          freqDebet += 1;
         }
 
-        freqDebitArr.push(freqDebit);
-        freqDebit = 0;
-        // jika ini adalah debit maka tambahkan freq debit
-        if (currentDebit !== '0.00') {
-          freqDebit++;
+        if (convertToFloat(e.kredit) != 0) {
+          freqKredit += 1;
         }
       }
     }
-  }
+  });
 
-  // jika tanggal sekarang berbeda dengan tanggal sebelumnya,
-  // artinya kita sudah saatnya untuk reset frequensi
-  // tambahkan label dengan tanggal sebelumnya
-  labelArr.push(beforeTanggal);
-  beforeTanggal = currentTanggal;
-
+  labelArr.push(before);
   freqTotalArr.push(freqTotal);
-  freqTotal = 1;
-
+  freqDebetArr.push(freqDebet);
   freqKreditArr.push(freqKredit);
-  freqKredit = 0;
-  // jika ini adalah kredit maka tambahkan freq kredit
-  if (currentKredit !== '0.00') {
-    freqKredit++;
-  }
-
-  freqDebitArr.push(freqDebit);
-  freqDebit = 0;
-  // jika ini adalah debit maka tambahkan freq debit
-  if (currentDebit !== '0.00') {
-    freqDebit++;
-  }
 
   return {
     labels: labelArr,
     datasets: [
       { data: freqTotalArr, label: 'Frequency', borderColor: '#55aa00' },
       { data: freqKreditArr, label: 'Kredit', borderColor: '#98cdf2' },
-      { data: freqDebitArr, label: 'Debit', borderColor: '#fbafbe' },
+      { data: freqDebetArr, label: 'Debit', borderColor: '#fbafbe' },
     ],
   };
 }
 
-export function getMonthlyChartLabels(data: any) {
-  const arrTemp: any[] = [];
+export function getSaldoMovement(transactionData: any, labelArr: any) {
+  let currentSaldo: number | null = null;
+  let labelPointer = 0;
+  const saldoArr: any = [];
 
-  data.forEach((e: String) => {
-    arrTemp.push(e[0].trim().split(' ')[0]);
-  });
+  transactionData.forEach((e: any): any => {
+    currentSaldo = convertToFloat(e.saldo);
 
-  return arrTemp;
-}
-
-export function getSaldoMovement(data: any) {
-  const labelArr: any[] = [];
-  const saldoArr: any[] = [];
-  let tanggalBefore: any = null;
-  let currentTanggal = null;
-  let currentSaldo = 0;
-
-  data.forEach((e: any) => {
-    currentTanggal = getDateOnly(e[0]);
-    currentSaldo = parseFloat(e[5].replaceAll(',', ''));
-
-    // ketika tanggalBefore masih null
-    if (tanggalBefore == null) {
-      tanggalBefore = currentTanggal;
-      saldoArr.push(currentSaldo);
-      labelArr.push(currentTanggal);
-    }
-
-    // saat tanggalBefore sudah ada
-    else {
-      if (tanggalBefore !== currentTanggal) {
+    if (e.tanggal_transaksi != null) {
+      if (e.tanggal_transaksi.trim().split(' ')[0] == labelArr[labelPointer]) {
         saldoArr.push(currentSaldo);
-        labelArr.push(currentTanggal);
+
+        if (labelPointer < labelArr.length) {
+          labelPointer += 1;
+        } else {
+          return true;
+        }
       }
     }
-
-    tanggalBefore = currentTanggal;
   });
 
   return {

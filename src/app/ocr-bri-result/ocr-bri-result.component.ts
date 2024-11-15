@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartOptions, ChartData, ChartConfiguration } from 'chart.js';
 import {
+  convertToFloat,
   getDateFrequency,
   getMonthlyChartDebitData,
   getMonthlyChartLabels,
@@ -33,18 +34,23 @@ export class OcrBriResultComponent implements OnInit {
   @ViewChild('nomorRekening', { static: false })
   nomorRekeningElement!: any;
 
-  transactionData: any;
-  summaryData: any;
-  analysisData: any;
-  alamat: string = '';
-  alamatUnitKerja: string = '';
-  namaProduk: string = '';
-  nomorRekening: string = '';
   pemilikRekening: string = '';
-  periodeTransaksi: string = '';
-  tanggalLaporan: string = '';
+  alamat: string = '';
+  nomorRekening: string = '';
+  namaProduk: string = '';
   valuta: string = '';
+  tanggalLaporan: string = '';
+  periodeTransaksi: string = '';
+  transactionData: any;
+  totalDebit: string = '';
+  totalKredit: string = '';
+  analyticsData: any;
+  saldoAwal: string = '';
+  saldoAkhir: string = '';
+  totalTransaksiDebit: string = '';
+  totalTransaksiKredit: string = '';
   unitKerja: string = '';
+  alamatUnitKerja: string = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -79,18 +85,25 @@ export class OcrBriResultComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient) {
     const navigation = this.router.getCurrentNavigation();
-    this.transactionData = navigation?.extras.state?.['transaction_data'];
-    this.summaryData = navigation?.extras.state?.['summary_data'];
-    this.analysisData = navigation?.extras.state?.['analysis_data'];
-    this.alamat = navigation?.extras.state?.['alamat'];
-    this.alamatUnitKerja = navigation?.extras.state?.['alamat_unit_kerja'];
-    this.namaProduk = navigation?.extras.state?.['nama_produk'];
-    this.nomorRekening = navigation?.extras.state?.['nomor_rekening'];
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
-    this.periodeTransaksi = navigation?.extras.state?.['periode_transaksi'];
-    this.tanggalLaporan = navigation?.extras.state?.['tanggal_laporan'];
-    this.unitKerja = navigation?.extras.state?.['unit_kerja'];
+    this.alamat = navigation?.extras.state?.['alamat'];
+    this.nomorRekening = navigation?.extras.state?.['nomor_rekening'];
+    this.namaProduk = navigation?.extras.state?.['nama_produk'];
     this.valuta = navigation?.extras.state?.['valuta'];
+    this.tanggalLaporan = navigation?.extras.state?.['tanggal_laporan'];
+    this.transactionData = navigation?.extras.state?.['transaction_data'];
+    this.totalDebit = navigation?.extras.state?.['total_debit'];
+    this.totalKredit = navigation?.extras.state?.['total_kredit'];
+    this.analyticsData = navigation?.extras.state?.['analytics_data'];
+    this.saldoAwal = navigation?.extras.state?.['saldo_awal'];
+    this.periodeTransaksi = navigation?.extras.state?.['periode_transaksi'];
+    this.saldoAkhir = navigation?.extras.state?.['saldo_akhir'];
+    this.unitKerja = navigation?.extras.state?.['unit_kerja'];
+    this.alamatUnitKerja = navigation?.extras.state?.['alamat_unit_kerja'];
+    this.totalTransaksiDebit =
+      navigation?.extras.state?.['total_transaksi_debit'];
+    this.totalTransaksiKredit =
+      navigation?.extras.state?.['total_transaksi_kredit'];
   }
 
   ngOnInit(): void {
@@ -108,11 +121,11 @@ export class OcrBriResultComponent implements OnInit {
       labels: this.barTotalDebitKreditLabels,
       datasets: [
         {
-          data: [parseFloat(this.analysisData.sum_kredit.replaceAll(',', ''))],
+          data: [convertToFloat(this.analyticsData.sum_kredit)],
           label: 'Kredit',
         },
         {
-          data: [parseFloat(this.analysisData.sum_debit.replaceAll(',', ''))],
+          data: [convertToFloat(this.analyticsData.sum_debit)],
           label: 'Debit',
         },
       ],
@@ -120,7 +133,12 @@ export class OcrBriResultComponent implements OnInit {
 
     this.dateTransactionData = getDateFrequency(this.transactionData);
 
-    this.saldoMovementData = getSaldoMovement(this.transactionData);
+    this.saldoMovementData = getSaldoMovement(
+      this.transactionData,
+      this.dateTransactionData.labels
+    );
+
+    console.log(this.saldoMovementData);
 
     this.validateBankAccount('014', this.nomorRekening, this.pemilikRekening);
   }
