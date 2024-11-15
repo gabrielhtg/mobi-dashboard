@@ -185,12 +185,12 @@ export class OcrBankPyComponent implements AfterViewInit {
       Swal.fire({
         icon: 'error',
         title: 'Upload Failed',
-        text: 'Tentukan jenis bank statement!',
+        text: 'Determine the type of bank statement!',
       });
     } else {
       Swal.fire({
         title: 'Processing',
-        text: 'Sedang melakukan processing. Mohon tunggu ...',
+        text: 'Processing is underway. Please wait ... ',
         didOpen: () => {
           Swal.showLoading();
         },
