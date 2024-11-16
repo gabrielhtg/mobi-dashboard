@@ -34,14 +34,19 @@ export class OcrBniResultComponent {
   transactionData: any;
   summaryData: any;
   analysisData: any;
-  totalDebit: string = '';
-  totalKredit: string = '';
+  totalDebetByOcr: string = '';
+  totalCreditByOcr: string = '';
   akunRekening: string = '';
   alamat: string = '';
   nomorRekening: string = '';
   pemilikRekening: string = '';
   periodeRekening: string = '';
   tipeAkun: string = '';
+  endingBalance: string = '';
+  totalDebet: string = '';
+  totalCredit: string = '';
+  totalDebetAmount: string = '';
+  totalCreditAmount: string = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -76,14 +81,19 @@ export class OcrBniResultComponent {
     this.transactionData = navigation?.extras.state?.['transaction_data'];
     this.summaryData = navigation?.extras.state?.['summary_data'];
     this.analysisData = navigation?.extras.state?.['analytics_data'];
-    this.totalDebit = navigation?.extras.state?.['total_debet'];
-    this.totalKredit = navigation?.extras.state?.['total_kredit'];
+    this.totalDebetByOcr = navigation?.extras.state?.['total_debet_by_ocr'];
+    this.totalCreditByOcr = navigation?.extras.state?.['total_kredit_by_ocr'];
     this.akunRekening = navigation?.extras.state?.['akun_rekening'];
     this.alamat = navigation?.extras.state?.['alamat'];
     this.nomorRekening = navigation?.extras.state?.['nomor_rekening'];
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
     this.periodeRekening = navigation?.extras.state?.['periode_rekening'];
     this.tipeAkun = navigation?.extras.state?.['tipe_akun'];
+    this.endingBalance = navigation?.extras.state?.['ending_balance'];
+    this.totalDebet = navigation?.extras.state?.['total_debet'];
+    this.totalCredit = navigation?.extras.state?.['total_credit'];
+    this.totalDebetAmount = navigation?.extras.state?.['total_debet_amount'];
+    this.totalCreditAmount = navigation?.extras.state?.['total_credit_amount'];
   }
 
   ngOnInit(): void {

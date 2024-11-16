@@ -41,6 +41,7 @@ export class OcrMandiriResultComponent {
   pemilikRekening: string = '';
   currency: string = '';
   branch: string = '';
+  totalTransaction: number = 0;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -81,6 +82,7 @@ export class OcrMandiriResultComponent {
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
     this.currency = navigation?.extras.state?.['currency'];
     this.branch = navigation?.extras.state?.['branch'];
+    this.totalTransaction = this.analysisData.total_transaction;
   }
 
   ngOnInit(): void {
