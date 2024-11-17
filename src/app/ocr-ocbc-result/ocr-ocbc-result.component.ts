@@ -43,6 +43,13 @@ export class OcrOcbcResultComponent {
   pemilikRekening: string = '';
   periode: string = '';
   tanggalPercetakan: string = '';
+  tunggakanBunga: string = '';
+  tunggakanDenda: string = '';
+  tunggakanBiayaLain: string = '';
+  totalTunggakan: string = '';
+  kursValasIDR: string = '';
+  saldoDalamMataUangIDR: string = '';
+  totalSaldoDalamIDR: string = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -87,6 +94,16 @@ export class OcrOcbcResultComponent {
     this.periode = navigation?.extras.state?.['periode'];
     this.tanggalPercetakan = navigation?.extras.state?.['tanggal_percetakan'];
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
+    this.tunggakanBunga = navigation?.extras.state?.['tunggakan_bunga'];
+    this.tunggakanDenda = navigation?.extras.state?.['tunggakan_denda'];
+    this.tunggakanBiayaLain =
+      navigation?.extras.state?.['tunggakan_biaya_lain'];
+    this.totalTunggakan = navigation?.extras.state?.['total_tunggakan'];
+    this.kursValasIDR = navigation?.extras.state?.['kurs_valas_idr'];
+    this.saldoDalamMataUangIDR =
+      navigation?.extras.state?.['saldo_dalam_mata_uang_idr'];
+    this.totalSaldoDalamIDR =
+      navigation?.extras.state?.['total_saldo_dalam_idr'];
   }
 
   ngOnInit(): void {
