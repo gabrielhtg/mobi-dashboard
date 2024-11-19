@@ -191,6 +191,9 @@ export class OcrBankPyComponent implements AfterViewInit {
       Swal.fire({
         title: 'Processing',
         text: 'Processing is underway. Please wait ... ',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
         didOpen: () => {
           Swal.showLoading();
         },
