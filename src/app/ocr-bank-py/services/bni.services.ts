@@ -58,7 +58,7 @@ export default function proceedOcrBni(
         title: 'Upload Failed',
         text:
           err.error.data == undefined
-            ? 'Please re-upload your photo with better quality because the system cannot read it.'
+            ? 'Please re-upload your photo with better quality because the system cannot read it or make sure the bank statement type is the same.'
             : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
       });
     },
