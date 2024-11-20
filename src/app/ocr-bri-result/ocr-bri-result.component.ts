@@ -5,7 +5,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartOptions, ChartData, ChartConfiguration } from 'chart.js';
@@ -21,7 +21,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-ocr-bri-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective],
+  imports: [NgForOf, BaseChartDirective, NgIf],
   templateUrl: './ocr-bri-result.component.html',
 })
 export class OcrBriResultComponent implements OnInit {
@@ -51,6 +51,7 @@ export class OcrBriResultComponent implements OnInit {
   totalTransaksiKredit: string = '';
   unitKerja: string = '';
   alamatUnitKerja: string = '';
+  isPdfModified: any = null;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -100,6 +101,7 @@ export class OcrBriResultComponent implements OnInit {
     this.saldoAkhir = navigation?.extras.state?.['saldo_akhir'];
     this.unitKerja = navigation?.extras.state?.['unit_kerja'];
     this.alamatUnitKerja = navigation?.extras.state?.['alamat_unit_kerja'];
+    this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
     this.totalTransaksiDebit =
       navigation?.extras.state?.['total_transaksi_debit'];
     this.totalTransaksiKredit =

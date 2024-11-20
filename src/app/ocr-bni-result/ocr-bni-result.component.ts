@@ -1,4 +1,4 @@
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import {
 @Component({
   selector: 'app-ocr-bni-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective],
+  imports: [NgForOf, BaseChartDirective, NgIf],
   templateUrl: './ocr-bni-result.component.html',
 })
 export class OcrBniResultComponent {
@@ -47,6 +47,7 @@ export class OcrBniResultComponent {
   totalCredit: string = '';
   totalDebetAmount: string = '';
   totalCreditAmount: string = '';
+  isPdfModified: any = null;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -94,6 +95,7 @@ export class OcrBniResultComponent {
     this.totalCredit = navigation?.extras.state?.['total_credit'];
     this.totalDebetAmount = navigation?.extras.state?.['total_debet_amount'];
     this.totalCreditAmount = navigation?.extras.state?.['total_credit_amount'];
+    this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
   }
 
   ngOnInit(): void {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import {
@@ -15,7 +15,7 @@ import {
 @Component({
   selector: 'app-ocr-mandiri-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective],
+  imports: [NgForOf, BaseChartDirective, NgIf],
   templateUrl: './ocr-mandiri-result.component.html',
 })
 export class OcrMandiriResultComponent {
@@ -42,6 +42,7 @@ export class OcrMandiriResultComponent {
   currency: string = '';
   branch: string = '';
   totalTransaction: number = 0;
+  isPdfModified: any;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -82,6 +83,7 @@ export class OcrMandiriResultComponent {
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
     this.currency = navigation?.extras.state?.['currency'];
     this.branch = navigation?.extras.state?.['branch'];
+    this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
     this.totalTransaction = this.analysisData.total_transaction;
   }
 

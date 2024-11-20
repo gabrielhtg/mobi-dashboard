@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
@@ -14,7 +14,7 @@ import {
 @Component({
   selector: 'app-ocr-permata-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective],
+  imports: [NgForOf, BaseChartDirective, NgIf],
   templateUrl: './ocr-permata-result.component.html',
 })
 export class OcrPermataResultComponent {
@@ -44,6 +44,7 @@ export class OcrPermataResultComponent {
   tanggalLaporan: string = '';
   totalDebet: string = '';
   totalKredit: string = '';
+  isPdfModified: any = null;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -87,6 +88,7 @@ export class OcrPermataResultComponent {
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
     this.periodeLaporan = navigation?.extras.state?.['periode_laporan'];
     this.tanggalLaporan = navigation?.extras.state?.['tanggal_laporan'];
+    this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
     this.totalDebet = String(navigation?.extras.state?.['total_debet']);
     this.totalKredit = String(navigation?.extras.state?.['total_kredit']);
   }

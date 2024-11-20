@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import {
@@ -15,7 +15,7 @@ import {
 @Component({
   selector: 'app-ocr-ocbc-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective],
+  imports: [NgForOf, BaseChartDirective, NgIf],
   templateUrl: './ocr-ocbc-result.component.html',
 })
 export class OcrOcbcResultComponent {
@@ -50,6 +50,7 @@ export class OcrOcbcResultComponent {
   kursValasIDR: string = '';
   saldoDalamMataUangIDR: string = '';
   totalSaldoDalamIDR: string = '';
+  isPdfModified: any = null;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -96,6 +97,7 @@ export class OcrOcbcResultComponent {
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
     this.tunggakanBunga = navigation?.extras.state?.['tunggakan_bunga'];
     this.tunggakanDenda = navigation?.extras.state?.['tunggakan_denda'];
+    this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
     this.tunggakanBiayaLain =
       navigation?.extras.state?.['tunggakan_biaya_lain'];
     this.totalTunggakan = navigation?.extras.state?.['total_tunggakan'];

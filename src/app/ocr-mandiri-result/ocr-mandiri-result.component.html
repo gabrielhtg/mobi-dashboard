@@ -1,4 +1,4 @@
-<div>
+<div class="mb-7">
   <!-- <div class="bg-[#75121c] p-5 rounded-lg max-w-[200px]"> -->
   <img
     src="assets/images/logo-bank/mandiri.png"
@@ -6,7 +6,14 @@
     alt="logo-mandiri"
   />
   <!-- </div> -->
-  <h1 class="font-bold text-4xl mb-7 mt-3">OCR Mandiri Results</h1>
+  <h1 class="font-bold text-4xl mt-3">OCR Mandiri Results</h1>
+  <span *ngIf="isPdfModified == true" class="text-red-500"
+    >The document indicates it has been modified.</span
+  >
+
+  <span *ngIf="isPdfModified == false" class="text-green-500"
+    >The document does not indicate it has been modified.</span
+  >
 </div>
 
 <div class="border-b border-gray-200 dark:border-neutral-700">

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import {
@@ -15,7 +15,7 @@ import {
 @Component({
   selector: 'app-ocr-danamon-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective],
+  imports: [NgForOf, BaseChartDirective, NgIf],
   templateUrl: './ocr-danamon-result.component.html',
 })
 export class OcrDanamonResultComponent {
@@ -41,6 +41,7 @@ export class OcrDanamonResultComponent {
   nomorNasabah: string = '';
   pemilikRekening: string = '';
   periodeLaporan: string = '';
+  isPdfModified: any;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -82,6 +83,7 @@ export class OcrDanamonResultComponent {
     this.totalDebit = navigation?.extras.state?.['total_debet'];
     this.totalKredit = navigation?.extras.state?.['total_kredit'];
     this.periodeLaporan = navigation?.extras.state?.['periode_laporan'];
+    this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
   }
 
   ngOnInit(): void {

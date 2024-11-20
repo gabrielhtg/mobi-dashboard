@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import {
@@ -15,7 +15,7 @@ import {
 @Component({
   selector: 'app-ocr-cimb-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective],
+  imports: [NgForOf, BaseChartDirective, NgIf],
   templateUrl: './ocr-cimb-result.component.html',
 })
 export class OcrCimbResultComponent {
@@ -45,6 +45,7 @@ export class OcrCimbResultComponent {
   tanggalLaporan: string = '';
   tanggalPembukaan: string = '';
   cabang: string = '';
+  isPdfModified: any;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -99,6 +100,7 @@ export class OcrCimbResultComponent {
     this.totalDebit = navigation?.extras.state?.['total_debet'];
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
     this.totalKredit = navigation?.extras.state?.['total_kredit'];
+    this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
   }
 
   ngOnInit(): void {

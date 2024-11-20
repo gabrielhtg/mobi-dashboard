@@ -6,7 +6,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartOptions, ChartData, ChartConfiguration } from 'chart.js';
 import {
@@ -22,7 +22,7 @@ import { convertToFloat } from '../ocr-permata-result/ocr-permata-result.service
 @Component({
   selector: 'app-ocr-bca-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, FormsModule],
+  imports: [NgForOf, BaseChartDirective, FormsModule, NgIf],
   templateUrl: './ocr-bca-result.component.html',
 })
 export class OcrBcaResultComponent implements OnInit {
@@ -55,6 +55,7 @@ export class OcrBcaResultComponent implements OnInit {
   totalKredit: string = '';
   totalMutasiDebit: string = '';
   totalMutasiKredit: string = '';
+  isPdfModified: any = null;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -107,6 +108,7 @@ export class OcrBcaResultComponent implements OnInit {
     this.totalKredit = navigation?.extras.state?.['total_kredit'];
     this.totalMutasiDebit = navigation?.extras.state?.['total_mutasi_debit'];
     this.totalMutasiKredit = navigation?.extras.state?.['total_mutasi_kredit'];
+    this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
   }
 
   ngOnInit(): void {
