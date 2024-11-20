@@ -32,6 +32,10 @@ export class OcrBankPyComponent implements AfterViewInit {
   // model untuk menyimpan input password zip yang dimasukkan oleh user
   zipPassword: string | undefined;
 
+  isSingle: string = 'true';
+
+  selectedFile: File | null = null;
+
   constructor(private router: Router, private http: HttpClient) {}
 
   ngAfterViewInit() {
@@ -157,6 +161,13 @@ export class OcrBankPyComponent implements AfterViewInit {
     });
   }
 
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0]; // Ambil file pertama
+    }
+  }
+
   tampilkanPesanError() {
     const { element }: any = HSFileUpload.getInstance(
       '#hs-file-upload-with-limited-file-size',
@@ -180,7 +191,124 @@ export class OcrBankPyComponent implements AfterViewInit {
     });
   }
 
-  uploadFile(selectedBankStatement: string) {
+  uploadFileSingle(selectedBankStatement: string) {
+    if (!this.selectedFile) {
+      alert('Please select a file first!');
+      return;
+    }
+
+    if (selectedBankStatement == '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: 'Determine the type of bank statement!',
+      });
+    } else {
+      Swal.fire({
+        title: 'Processing',
+        text: 'Processing is underway. Please wait ... ',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+
+      if (
+        this.selectedBankStatement == '1' ||
+        this.selectedBankStatement == '2'
+      ) {
+        proceedOcrBca(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          [this.selectedFile]
+        );
+      }
+
+      if (this.selectedBankStatement == '3') {
+        proceedOcrBri(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          [this.selectedFile]
+        );
+      }
+
+      if (this.selectedBankStatement == '4') {
+        proceedOcrOcbc(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          [this.selectedFile]
+        );
+      }
+
+      if (this.selectedBankStatement == '5') {
+        proceedOcrBni(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          [this.selectedFile]
+        );
+      }
+
+      if (this.selectedBankStatement == '6') {
+        proceedOcrPermata(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          [this.selectedFile]
+        );
+      }
+
+      if (this.selectedBankStatement == '7') {
+        proceedOcrDanamon(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          [this.selectedFile]
+        );
+      }
+
+      if (this.selectedBankStatement == '8') {
+        proceedOcrCimb(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          [this.selectedFile]
+        );
+      }
+
+      if (this.selectedBankStatement == '9') {
+        proceedOcrMandiri(
+          this.isZipPasswordProtected,
+          this.zipPassword,
+          this.selectedBankStatement,
+          this.http,
+          this.router,
+          [this.selectedFile]
+        );
+      }
+    }
+  }
+
+  uploadFileMultiple(selectedBankStatement: string) {
     if (selectedBankStatement == '') {
       Swal.fire({
         icon: 'error',
@@ -202,4 +330,6 @@ export class OcrBankPyComponent implements AfterViewInit {
       this.element.dropzone.processQueue();
     }
   }
+
+  checkSingleOrMultiple() {}
 }

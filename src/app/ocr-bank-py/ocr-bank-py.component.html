@@ -1,6 +1,248 @@
 <div class="min-h-[calc(100vh-190px)]">
   <h1 class="font-bold text-2xl mb-7">OCR Bank</h1>
 
+  <div class="flex gap-x-6 mb-3">
+    <div class="flex">
+      <input
+        type="radio"
+        name="upload-type"
+        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+        id="single-upload"
+        [(ngModel)]="isSingle"
+        value="true"
+      />
+      <label
+        for="single-upload"
+        class="text-sm text-gray-500 ms-2 dark:text-neutral-400"
+        >Single Upload</label
+      >
+    </div>
+
+    <div class="flex">
+      <input
+        type="radio"
+        name="upload-type"
+        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+        id="multiple-upload"
+        [(ngModel)]="isSingle"
+        value="false"
+      />
+      <label
+        for="multiple-upload"
+        class="text-sm text-gray-500 ms-2 dark:text-neutral-400"
+        >Multiple Upload</label
+      >
+    </div>
+  </div>
+
+  <!-- <div class="relative border rounded-lg max-w-sm" data-hs-combo-box="">
+    <div class="relative">
+      <input
+        class="py-3 ps-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+        type="text"
+        role="combobox"
+        aria-expanded="false"
+        value="Select Bank Statement"
+        data-hs-combo-box-input=""
+      />
+      <div
+        class="absolute top-1/2 end-3 -translate-y-1/2"
+        aria-expanded="false"
+        data-hs-combo-box-toggle=""
+      >
+        <svg
+          class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m7 15 5 5 5-5"></path>
+          <path d="m7 9 5-5 5 5"></path>
+        </svg>
+      </div>
+    </div>
+    <div
+      class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+      style="display: none"
+      data-hs-combo-box-output=""
+    >
+      <div
+        class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+        tabindex="0"
+        data-hs-combo-box-output-item=""
+      >
+        <div class="flex justify-between items-center w-full">
+          <span
+            data-hs-combo-box-search-text="Argentina"
+            data-hs-combo-box-value=""
+            >BCA Corporate</span
+          >
+          <span class="hidden hs-combo-box-selected:block">
+            <svg
+              class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+        tabindex="1"
+        data-hs-combo-box-output-item=""
+      >
+        <div class="flex justify-between items-center w-full">
+          <span
+            data-hs-combo-box-search-text="Brazil"
+            data-hs-combo-box-value=""
+            >Brazil</span
+          >
+          <span class="hidden hs-combo-box-selected:block">
+            <svg
+              class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+        tabindex="2"
+        data-hs-combo-box-output-item=""
+      >
+        <div class="flex justify-between items-center w-full">
+          <span data-hs-combo-box-search-text="China" data-hs-combo-box-value=""
+            >China</span
+          >
+          <span class="hidden hs-combo-box-selected:block">
+            <svg
+              class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+        tabindex="3"
+        data-hs-combo-box-output-item=""
+      >
+        <div class="flex justify-between items-center w-full">
+          <span data-hs-combo-box-search-text="USA" data-hs-combo-box-value=""
+            >USA</span
+          >
+          <span class="hidden hs-combo-box-selected:block">
+            <svg
+              class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+        tabindex="3"
+        data-hs-combo-box-output-item=""
+      >
+        <div class="flex justify-between items-center w-full">
+          <span data-hs-combo-box-search-text="Italy" data-hs-combo-box-value=""
+            >Italy</span
+          >
+          <span class="hidden hs-combo-box-selected:block">
+            <svg
+              class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+        tabindex="3"
+        data-hs-combo-box-output-item=""
+      >
+        <div class="flex justify-between items-center w-full">
+          <span
+            data-hs-combo-box-search-text="France"
+            data-hs-combo-box-value=""
+            >France</span
+          >
+          <span class="hidden hs-combo-box-selected:block">
+            <svg
+              class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
   <select
     [(ngModel)]="selectedBankStatement"
     class="py-3 max-w-sm mb-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
@@ -17,139 +259,190 @@
     <option value="9">Mandiri (2021)</option>
   </select>
 
-  <div class="flex mb-3">
-    <input
-      [(ngModel)]="isZipPasswordProtected"
-      type="checkbox"
-      class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-      id="hs-checked-checkbox"
-    />
-    <label
-      for="hs-checked-checkbox"
-      class="text-sm text-gray-500 ms-3 dark:text-neutral-400"
-      >Is Zip Password Protected</label
-    >
-  </div>
-
-  <div class="max-w-sm mb-3" [hidden]="!isZipPasswordProtected">
-    <div class="relative">
+  <div *ngIf="isSingle == 'true'">
+    <form class="max-w-sm">
+      <label for="file-input" class="sr-only">Choose file</label>
       <input
-        [(ngModel)]="zipPassword"
-        id="hs-toggle-password"
-        type="password"
-        class="py-3 ps-4 border pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-        placeholder="Enter zip password"
+        type="file"
+        name="file-input"
+        id="file-input"
+        (change)="onFileSelected($event)"
+        class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4 dark:file:bg-neutral-700 dark:file:text-neutral-400"
       />
-      <button
-        type="button"
-        data-hs-toggle-password='{
-          "target": "#hs-toggle-password"
-        }'
-        class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500"
-      >
-        <svg
-          class="shrink-0 size-3.5"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path
-            class="hs-password-active:hidden"
-            d="M9.88 9.88a3 3 0 1 0 4.24 4.24"
-          ></path>
-          <path
-            class="hs-password-active:hidden"
-            d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"
-          ></path>
-          <path
-            class="hs-password-active:hidden"
-            d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"
-          ></path>
-          <line
-            class="hs-password-active:hidden"
-            x1="2"
-            x2="22"
-            y1="2"
-            y2="22"
-          ></line>
-          <path
-            class="hidden hs-password-active:block"
-            d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"
-          ></path>
-          <circle
-            class="hidden hs-password-active:block"
-            cx="12"
-            cy="12"
-            r="3"
-          ></circle>
-        </svg>
-      </button>
-    </div>
+    </form>
+
+    <button
+      (click)="uploadFileSingle(selectedBankStatement)"
+      type="button"
+      class="py-3 px-4 mt-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+    >
+      Proceed
+    </button>
   </div>
 
-  <div
-    id="hs-file-upload-with-limited-file-size"
-    data-hs-file-upload='{
-  "url": "http://149.129.243.237/OCR_flask_api/",
-  "method": "GET",
-  "paramName": "file",
-  "autoProcessQueue" : false,
-  "uploadMultiple" : true,
-  "parallelUploads" : 30,
-  "extensions": {
-    "default": {
-      "class": "shrink-0 size-5"
-    }
-  }
-}'
-  >
-    <template data-hs-file-upload-preview="">
-      <div
-        class="p-3 bg-white border border-solid border-gray-300 rounded-xl dark:bg-neutral-800 dark:border-neutral-600"
+  <div *ngIf="isSingle == 'false'">
+    <div class="flex mb-3">
+      <input
+        [(ngModel)]="isZipPasswordProtected"
+        type="checkbox"
+        class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+        id="hs-checked-checkbox"
+      />
+      <label
+        for="hs-checked-checkbox"
+        class="text-sm text-gray-500 ms-3 dark:text-neutral-400"
+        >Is Zip Password Protected</label
       >
-        <div class="mb-1 flex justify-between items-center">
-          <div class="flex items-center gap-x-3">
-            <span
-              class="size-10 flex justify-center items-center border border-gray-200 text-gray-500 rounded-lg dark:border-neutral-700 dark:text-neutral-500"
-              data-hs-file-upload-file-icon=""
-            >
-              <img class="rounded-lg hidden" data-dz-thumbnail="" />
-            </span>
-            <div>
-              <p class="text-sm font-medium text-gray-800 dark:text-white">
-                <span
-                  class="truncate inline-block max-w-[300px] align-bottom"
-                  data-hs-file-upload-file-name=""
-                ></span
-                >.<span data-hs-file-upload-file-ext=""></span>
-              </p>
-              <p
-                class="text-xs text-gray-500 dark:text-neutral-500"
-                data-hs-file-upload-file-size=""
-                data-hs-file-upload-file-success=""
-              ></p>
-              <p
-                class="text-xs text-red-500"
+    </div>
+
+    <div class="max-w-sm mb-3" [hidden]="!isZipPasswordProtected">
+      <div class="relative">
+        <input
+          [(ngModel)]="zipPassword"
+          id="hs-toggle-password"
+          type="password"
+          class="py-3 ps-4 border pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+          placeholder="Enter zip password"
+        />
+        <button
+          type="button"
+          data-hs-toggle-password='{
+              "target": "#hs-toggle-password"
+            }'
+          class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500"
+        >
+          <svg
+            class="shrink-0 size-3.5"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              class="hs-password-active:hidden"
+              d="M9.88 9.88a3 3 0 1 0 4.24 4.24"
+            ></path>
+            <path
+              class="hs-password-active:hidden"
+              d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"
+            ></path>
+            <path
+              class="hs-password-active:hidden"
+              d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"
+            ></path>
+            <line
+              class="hs-password-active:hidden"
+              x1="2"
+              x2="22"
+              y1="2"
+              y2="22"
+            ></line>
+            <path
+              class="hidden hs-password-active:block"
+              d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"
+            ></path>
+            <circle
+              class="hidden hs-password-active:block"
+              cx="12"
+              cy="12"
+              r="3"
+            ></circle>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="hs-file-upload-with-limited-file-size"
+      data-hs-file-upload='{
+      "url": "http://149.129.243.237/OCR_flask_api/",
+      "method": "GET",
+      "paramName": "file",
+      "autoProcessQueue" : false,
+      "uploadMultiple" : true,
+      "parallelUploads" : 30,
+      "extensions": {
+        "default": {
+          "class": "shrink-0 size-5"
+        }
+      }
+    }'
+    >
+      <template data-hs-file-upload-preview="">
+        <div
+          class="p-3 bg-white border border-solid border-gray-300 rounded-xl dark:bg-neutral-800 dark:border-neutral-600"
+        >
+          <div class="mb-1 flex justify-between items-center">
+            <div class="flex items-center gap-x-3">
+              <span
+                class="size-10 flex justify-center items-center border border-gray-200 text-gray-500 rounded-lg dark:border-neutral-700 dark:text-neutral-500"
+                data-hs-file-upload-file-icon=""
+              >
+                <img class="rounded-lg hidden" data-dz-thumbnail="" />
+              </span>
+              <div>
+                <p class="text-sm font-medium text-gray-800 dark:text-white">
+                  <span
+                    class="truncate inline-block max-w-[300px] align-bottom"
+                    data-hs-file-upload-file-name=""
+                  ></span
+                  >.<span data-hs-file-upload-file-ext=""></span>
+                </p>
+                <p
+                  class="text-xs text-gray-500 dark:text-neutral-500"
+                  data-hs-file-upload-file-size=""
+                  data-hs-file-upload-file-success=""
+                ></p>
+                <p
+                  class="text-xs text-red-500"
+                  style="display: none"
+                  data-hs-file-upload-file-error=""
+                >
+                  File exceeds size limit.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-x-2">
+              <span
+                class="hs-tooltip [--placement:top] inline-block"
                 style="display: none"
                 data-hs-file-upload-file-error=""
               >
-                File exceeds size limit.
-              </p>
-            </div>
-          </div>
-          <div class="flex items-center gap-x-2">
-            <span
-              class="hs-tooltip [--placement:top] inline-block"
-              style="display: none"
-              data-hs-file-upload-file-error=""
-            >
-              <span
-                class="hs-tooltip-toggle text-red-500 hover:text-red-800 focus:outline-none focus:text-red-800 dark:text-red-500 dark:hover:text-red-200 dark:focus:text-red-200"
+                <span
+                  class="hs-tooltip-toggle text-red-500 hover:text-red-800 focus:outline-none focus:text-red-800 dark:text-red-500 dark:hover:text-red-200 dark:focus:text-red-200"
+                >
+                  <svg
+                    class="shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" x2="12" y1="8" y2="12"></line>
+                    <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                  </svg>
+                  <span
+                    class="hs-tooltip-content max-w-[100px] hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
+                    role="tooltip"
+                  >
+                    Please try to upload a file smaller than 1MB.
+                  </span>
+                </span>
+              </span>
+              <button
+                type="button"
+                class="text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
+                data-hs-file-upload-reload=""
               >
                 <svg
                   class="shrink-0 size-4"
@@ -163,161 +456,133 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" x2="12" y1="8" y2="12"></line>
-                  <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                  <path
+                    d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"
+                  ></path>
+                  <path d="M21 3v5h-5"></path>
                 </svg>
-                <span
-                  class="hs-tooltip-content max-w-[100px] hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700"
-                  role="tooltip"
+              </button>
+              <button
+                type="button"
+                class="text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
+                data-hs-file-upload-remove=""
+              >
+                <svg
+                  class="shrink-0 size-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
-                  Please try to upload a file smaller than 1MB.
-                </span>
-              </span>
-            </span>
-            <button
-              type="button"
-              class="text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
-              data-hs-file-upload-reload=""
-            >
-              <svg
-                class="shrink-0 size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"
-                ></path>
-                <path d="M21 3v5h-5"></path>
-              </svg>
-            </button>
-            <button
-              type="button"
-              class="text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
-              data-hs-file-upload-remove=""
-            >
-              <svg
-                class="shrink-0 size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M3 6h18"></path>
-                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                <line x1="10" x2="10" y1="11" y2="17"></line>
-                <line x1="14" x2="14" y1="11" y2="17"></line>
-              </svg>
-            </button>
+                  <path d="M3 6h18"></path>
+                  <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                  <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                  <line x1="10" x2="10" y1="11" y2="17"></line>
+                  <line x1="14" x2="14" y1="11" y2="17"></line>
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
 
-        <div class="flex items-center gap-x-3 whitespace-nowrap">
-          <div
-            class="flex w-full h-2 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700"
-            role="progressbar"
-            aria-valuenow="0"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            data-hs-file-upload-progress-bar=""
-          >
+          <div class="flex items-center gap-x-3 whitespace-nowrap">
             <div
-              class="flex flex-col justify-center rounded-full overflow-hidden bg-blue-600 text-xs text-white text-center whitespace-nowrap transition-all duration-500 hs-file-upload-complete:bg-green-500"
-              style="width: 0"
-              data-hs-file-upload-progress-bar-pane=""
-            ></div>
-          </div>
-          <div class="w-10 text-end">
-            <span class="text-sm text-gray-800 dark:text-white">
-              <span data-hs-file-upload-progress-bar-value="">0</span>%
-            </span>
+              class="flex w-full h-2 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              data-hs-file-upload-progress-bar=""
+            >
+              <div
+                class="flex flex-col justify-center rounded-full overflow-hidden bg-blue-600 text-xs text-white text-center whitespace-nowrap transition-all duration-500 hs-file-upload-complete:bg-green-500"
+                style="width: 0"
+                data-hs-file-upload-progress-bar-pane=""
+              ></div>
+            </div>
+            <div class="w-10 text-end">
+              <span class="text-sm text-gray-800 dark:text-white">
+                <span data-hs-file-upload-progress-bar-value="">0</span>%
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    </template>
+      </template>
 
-    <div
-      class="cursor-pointer p-12 flex justify-center bg-white border border-dashed border-gray-300 rounded-xl dark:bg-neutral-800 dark:border-neutral-600"
-      data-hs-file-upload-trigger=""
-    >
-      <div class="text-center">
-        <span
-          class="inline-flex justify-center items-center size-16 bg-gray-100 text-gray-800 rounded-full dark:bg-neutral-700 dark:text-neutral-200"
-        >
-          <svg
-            class="shrink-0 size-6"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="17 8 12 3 7 8"></polyline>
-            <line x1="12" x2="12" y1="3" y2="15"></line>
-          </svg>
-        </span>
-
-        <div
-          class="mt-4 flex flex-wrap justify-center text-sm leading-6 text-gray-600"
-        >
-          <span class="pe-1 font-medium text-gray-800 dark:text-neutral-200">
-            Drop your file here or
-          </span>
-          <span
-            class="bg-white font-semibold text-blue-600 hover:text-blue-700 rounded-lg decoration-2 hover:underline focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2 dark:bg-neutral-800 dark:text-blue-500 dark:hover:text-blue-600"
-            >browse</span
-          >
-        </div>
-
-        <p class="mt-1 text-xs text-gray-400 dark:text-neutral-400">
-          Pick a file up to 20MB.
-        </p>
-      </div>
-    </div>
-
-    <div>
-      <span class="text-red-400"
-        >* For more than 30 images, please zip the file first.</span
+      <div
+        class="cursor-pointer p-12 flex justify-center bg-white border border-dashed border-gray-300 rounded-xl dark:bg-neutral-800 dark:border-neutral-600"
+        data-hs-file-upload-trigger=""
       >
+        <div class="text-center">
+          <span
+            class="inline-flex justify-center items-center size-16 bg-gray-100 text-gray-800 rounded-full dark:bg-neutral-700 dark:text-neutral-200"
+          >
+            <svg
+              class="shrink-0 size-6"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" x2="12" y1="3" y2="15"></line>
+            </svg>
+          </span>
+
+          <div
+            class="mt-4 flex flex-wrap justify-center text-sm leading-6 text-gray-600"
+          >
+            <span class="pe-1 font-medium text-gray-800 dark:text-neutral-200">
+              Drop your file here or
+            </span>
+            <span
+              class="bg-white font-semibold text-blue-600 hover:text-blue-700 rounded-lg decoration-2 hover:underline focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2 dark:bg-neutral-800 dark:text-blue-500 dark:hover:text-blue-600"
+              >browse</span
+            >
+          </div>
+
+          <p class="mt-1 text-xs text-gray-400 dark:text-neutral-400">
+            Pick a file up to 20MB.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <span class="text-red-400"
+          >* For more than 30 images, please zip the file first.</span
+        >
+      </div>
+
+      <div
+        class="mt-4 space-y-2 empty:mt-0"
+        data-hs-file-upload-previews=""
+      ></div>
+
+      <button
+        data-hs-file-upload-clear
+        type="button"
+        class="py-3 px-4 mt-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+      >
+        Clear
+      </button>
+
+      <button
+        (click)="uploadFileMultiple(selectedBankStatement)"
+        type="button"
+        class="py-3 px-4 ms-3 mt-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+      >
+        Proceed
+      </button>
     </div>
-
-    <div
-      class="mt-4 space-y-2 empty:mt-0"
-      data-hs-file-upload-previews=""
-    ></div>
-
-    <button
-      data-hs-file-upload-clear
-      type="button"
-      class="py-3 px-4 mt-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-    >
-      Clear
-    </button>
-
-    <button
-      (click)="uploadFile(selectedBankStatement)"
-      type="button"
-      class="py-3 px-4 ms-3 mt-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-    >
-      Proceed
-    </button>
   </div>
 </div>
