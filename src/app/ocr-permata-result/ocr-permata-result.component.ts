@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
@@ -156,7 +156,12 @@ export class OcrPermataResultComponent {
     this.http
       .post<any>(
         'http://147.139.136.231/api/v5_ifinrmd_api/api/BankValidator/CheckBankAccountNo',
-        requestBody
+        requestBody,
+        {
+          headers: new HttpHeaders({
+            UserId: 'bmltZEE%3D',
+          }),
+        }
       )
       .subscribe({
         next: (value) => {

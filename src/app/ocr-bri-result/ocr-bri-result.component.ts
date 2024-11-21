@@ -16,7 +16,7 @@ import {
   getMonthlyChartLabels,
   getSaldoMovement,
 } from './ocr-bri-result.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-ocr-bri-result',
@@ -157,7 +157,12 @@ export class OcrBriResultComponent implements OnInit {
     this.http
       .post<any>(
         'http://147.139.136.231/api/v5_ifinrmd_api/api/BankValidator/CheckBankAccountNo',
-        requestBody
+        requestBody,
+        {
+          headers: new HttpHeaders({
+            UserId: 'bmltZEE%3D',
+          }),
+        }
       )
       .subscribe({
         next: (value) => {
