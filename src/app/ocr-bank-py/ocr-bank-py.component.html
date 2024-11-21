@@ -259,7 +259,7 @@
     <option value="9">Mandiri (2021)</option>
   </select>
 
-  <div *ngIf="isSingle == 'true'">
+  <div [hidden]="isSingle == 'false'">
     <form class="max-w-sm">
       <label for="file-input" class="sr-only">Choose file</label>
       <input
@@ -280,7 +280,7 @@
     </button>
   </div>
 
-  <div *ngIf="isSingle == 'false'">
+  <div [hidden]="isSingle == 'true'">
     <div class="flex mb-3">
       <input
         [(ngModel)]="isZipPasswordProtected"
@@ -359,18 +359,18 @@
     <div
       id="hs-file-upload-with-limited-file-size"
       data-hs-file-upload='{
-      "url": "http://149.129.243.237/OCR_flask_api/",
-      "method": "GET",
-      "paramName": "file",
-      "autoProcessQueue" : false,
-      "uploadMultiple" : true,
-      "parallelUploads" : 30,
-      "extensions": {
-        "default": {
-          "class": "shrink-0 size-5"
-        }
-      }
-    }'
+  "url": "http://149.129.243.237/OCR_flask_api/",
+  "method": "GET",
+  "paramName": "file",
+  "autoProcessQueue" : false,
+  "uploadMultiple" : true,
+  "parallelUploads" : 10,
+  "extensions": {
+    "default": {
+      "class": "shrink-0 size-5"
+    }
+  }
+}'
     >
       <template data-hs-file-upload-preview="">
         <div
@@ -555,12 +555,6 @@
             Pick a file up to 20MB.
           </p>
         </div>
-      </div>
-
-      <div>
-        <span class="text-red-400"
-          >* For more than 30 images, please zip the file first.</span
-        >
       </div>
 
       <div

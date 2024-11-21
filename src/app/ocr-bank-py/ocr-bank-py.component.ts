@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { NgForOf, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import HSFileUpload from '@preline/file-upload';
-import { HSStaticMethods } from 'preline/preline';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { proceedOcrBca } from './services/bca.services';
@@ -15,15 +14,17 @@ import proceedOcrBni from './services/bni.services';
 import proceedOcrCimb from './services/cimb.services';
 import proceedOcrOcbc from './services/ocbc.services';
 import proceedOcrMandiri from './services/mandiri.services';
+import { HSStaticMethods } from 'preline/preline';
 
 @Component({
   selector: 'app-ocr-bank-py',
   standalone: true,
-  imports: [AngularCropperjsModule, FormsModule, NgForOf, NgIf],
+  imports: [AngularCropperjsModule, FormsModule, NgForOf],
   templateUrl: './ocr-bank-py.component.html',
 })
 export class OcrBankPyComponent implements AfterViewInit {
   element: HSFileUpload | any;
+
   selectedBankStatement = '';
 
   // menyimpan value dari checkbox untuk memeriksa apakah zip yang diupload password protected
@@ -330,6 +331,4 @@ export class OcrBankPyComponent implements AfterViewInit {
       this.element.dropzone.processQueue();
     }
   }
-
-  checkSingleOrMultiple() {}
 }

@@ -16,7 +16,7 @@ import {
   getSaldoMovement,
 } from './ocr-bca-result.service';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { convertToFloat } from '../ocr-permata-result/ocr-permata-result.service';
 
 @Component({
@@ -56,6 +56,7 @@ export class OcrBcaResultComponent implements OnInit {
   totalMutasiDebit: string = '';
   totalMutasiKredit: string = '';
   isPdfModified: any = null;
+  // accountValidation: any = {};
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -109,6 +110,7 @@ export class OcrBcaResultComponent implements OnInit {
     this.totalMutasiDebit = navigation?.extras.state?.['total_mutasi_debit'];
     this.totalMutasiKredit = navigation?.extras.state?.['total_mutasi_kredit'];
     this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
+    // this.accountValidation = navigation?.extras.state?.['is_pdf_modified'];
   }
 
   ngOnInit(): void {
@@ -179,7 +181,12 @@ export class OcrBcaResultComponent implements OnInit {
     this.http
       .post<any>(
         'http://147.139.136.231/api/v5_ifinrmd_api/api/BankValidator/CheckBankAccountNo',
-        requestBody
+        requestBody,
+        {
+          headers: new HttpHeaders({
+            UserId: 'bmltZEE%3D',
+          }),
+        }
       )
       .subscribe({
         next: (value) => {
