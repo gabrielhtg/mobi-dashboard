@@ -51,6 +51,15 @@ export default function proceedOcrBni(
           state: value.data,
         })
         .then();
+
+      var audio = new Audio('assets/bell.wav');
+      audio.play();
+      // .then(() => {
+      //   console.log('Audio playing!');
+      // })
+      // .catch((error) => {
+      //   console.error('Error playing audio:', error);
+      // });
     },
     error: (err) => {
       Swal.fire({
@@ -61,6 +70,8 @@ export default function proceedOcrBni(
             ? 'Please re-upload your photo with better quality because the system cannot read it or make sure the bank statement type is the same.'
             : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
       });
+      var audio = new Audio('assets/bell.wav');
+      audio.play();
     },
   });
 }
