@@ -22,9 +22,9 @@ export class OcrPermataResultComponent {
     | QueryList<BaseChartDirective>
     | undefined;
 
-  @ViewChild('pemilikRekening', { static: false })
+  @ViewChild('pemilikRekeningEl', { static: false })
   pemilikRekeningElement!: any;
-  @ViewChild('nomorRekening', { static: false })
+  @ViewChild('nomorRekeningEl', { static: false })
   nomorRekeningElement!: any;
 
   validationRemark: any = null;
