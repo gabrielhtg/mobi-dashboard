@@ -118,7 +118,7 @@ export class OcrDanamonResultComponent {
       this.dateTransactionData.labels
     );
 
-    this.validateBankAccount('014', this.nomorNasabah, this.pemilikRekening);
+    this.validateBankAccount('011', this.nomorNasabah, this.pemilikRekening);
   }
 
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {

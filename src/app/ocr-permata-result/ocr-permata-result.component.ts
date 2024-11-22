@@ -141,7 +141,7 @@ export class OcrPermataResultComponent {
       this.dateTransactionData.labels
     );
 
-    this.validateBankAccount('014', this.nomorRekening, this.pemilikRekening);
+    this.validateBankAccount('013', this.nomorRekening, this.pemilikRekening);
   }
 
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {

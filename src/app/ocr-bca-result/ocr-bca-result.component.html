@@ -113,6 +113,7 @@
                   <div class="relative">
                     <input
                       [value]="pemilikRekening"
+                      #pemilikRekeningEl
                       type="text"
                       (change)="
                         validateBankAccount(
@@ -211,6 +212,7 @@
                     <input
                       [value]="nomorRekening"
                       name="nomorRekening"
+                      #nomorRekeningEl
                       (change)="
                         validateBankAccount(
                           '014',

@@ -142,7 +142,7 @@ export class OcrBriResultComponent implements OnInit {
 
     console.log(this.saldoMovementData);
 
-    this.validateBankAccount('014', this.nomorRekening, this.pemilikRekening);
+    this.validateBankAccount('002', this.nomorRekening, this.pemilikRekening);
   }
 
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {
