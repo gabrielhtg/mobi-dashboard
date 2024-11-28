@@ -15,6 +15,7 @@ import proceedOcrCimb from './services/cimb.services';
 import proceedOcrOcbc from './services/ocbc.services';
 import proceedOcrMandiri from './services/mandiri.services';
 import { HSStaticMethods } from 'preline/preline';
+import { isAuthorizedByIp } from '../allservice';
 
 @Component({
   selector: 'app-ocr-bank-py',
@@ -67,6 +68,8 @@ export class OcrBankPyComponent implements AfterViewInit {
         8 = CIMB
         9 = Mandiri
        */
+
+      isAuthorizedByIp(this.http, this.router);
 
       // Untuk bank BCA CORP ataupun BCA PERSONAL
       if (

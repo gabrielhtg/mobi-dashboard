@@ -7,6 +7,7 @@ import { AngularCropperjsModule, CropperComponent } from 'angular-cropperjs';
 import { TableLogActivityComponent } from '../tables/table-log-activity/table-log-activity.component';
 import { Router } from '@angular/router';
 import FileSaver from 'file-saver';
+import { isAuthorizedByIp } from '../allservice';
 
 @Component({
   selector: 'app-g-ocr',
@@ -20,7 +21,7 @@ import FileSaver from 'file-saver';
   ],
   templateUrl: './g-ocr.component.html',
 })
-export class GOcrComponent implements OnInit {
+export class GOcrComponent {
   file: any;
   hideTakeAll = false;
   dataKTP: any = [
@@ -101,9 +102,7 @@ export class GOcrComponent implements OnInit {
     }
   }
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   onChange(event: any) {
     const file: File = event.target.files[0];
@@ -126,6 +125,8 @@ export class GOcrComponent implements OnInit {
   }
 
   doOcr() {
+    isAuthorizedByIp(this.http, this.router);
+
     this.angularCropper.cropper
       .getCroppedCanvas({
         imageSmoothingEnabled: true,
@@ -194,6 +195,7 @@ export class GOcrComponent implements OnInit {
   }
 
   exportPDF() {
+    isAuthorizedByIp(this.http, this.router);
     this.angularCropper.cropper.getCroppedCanvas().toBlob((blob) => {
       const fd = new FormData();
       fd.append('file', blob!);

@@ -11,7 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { GOcrComponent } from './g-ocr/g-ocr.component';
 import { GOcrBankComponent } from './g-ocr-bank/g-ocr-bank.component';
 import { OcrBankPyComponent } from './ocr-bank-py/ocr-bank-py.component';
-import { authGuard } from './auth.guard';
+import { authGuard, authGuardChild } from './auth.guard';
 import { OcrBcaResultComponent } from './ocr-bca-result/ocr-bca-result.component';
 import { OcrBriResultComponent } from './ocr-bri-result/ocr-bri-result.component';
 import { OcrPermataResultComponent } from './ocr-permata-result/ocr-permata-result.component';
@@ -31,6 +31,7 @@ export const routes: Routes = [
     component: MainDashboardComponent,
     title: 'Main Menu',
     canActivate: [authGuard],
+    canActivateChild: [authGuardChild],
     children: [
       {
         path: '',

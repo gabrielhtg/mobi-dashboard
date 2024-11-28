@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { apiUrl } from '../env';
 import { NgForOf, NgIf } from '@angular/common';
 import FileSaver from 'file-saver';
+import { isAuthorizedByIp } from '../allservice';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-g-ocr-bank',
@@ -72,7 +74,7 @@ export class GOcrBankComponent {
     }
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   onChange(event: any) {
     const file: File = event.target.files[0];
@@ -95,6 +97,8 @@ export class GOcrBankComponent {
   }
 
   doOcr(page: boolean) {
+    isAuthorizedByIp(this.http, this.router);
+
     this.angularCropper.cropper.getCroppedCanvas().toBlob((blob) => {
       const fd = new FormData();
       fd.append('file', blob!);

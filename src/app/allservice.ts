@@ -81,3 +81,30 @@ export function getName(): string | null {
 export function getEmail(): string | null {
   return sessionStorage.getItem('email');
 }
+
+export function isAuthorizedByIp(http: HttpClient, router: Router) {
+  http
+    .get<any>(`${apiUrl}/auth/checkIp/${sessionStorage.getItem('username')}`)
+    .subscribe({
+      next: (value) => {
+        return true;
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Upload Failed',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false,
+          text: 'Other activity detected with your credentials. Come back in!',
+          confirmButtonText: 'OK',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            router.navigate(['/']); // Arahkan ke halaman login
+          }
+        });
+        sessionStorage.clear();
+        return false;
+      },
+    });
+}
