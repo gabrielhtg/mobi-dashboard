@@ -1,144 +1,593 @@
 {
   "data": {
-    "alamat": "CIPAGERAN/CIMAHI UTARA KP PASIRKIARA RT 002 RW 016 JL KARYA BHAKTI NO 26 KOTA CIMAHI 40511 INDONESIA",
+    "alamat": "SEYEGAN SLEMAN MARGODADI RT 01 RW 09 DUSUN PENDEKAN YOGYAKARTA 55561 INDONESIA",
     "analytics_data": {
-      "avg_debit": "Rp 220.681,82",
-      "avg_kredit": "Rp 585.000,00",
-      "freq_debit": 11,
-      "freq_kredit": 4,
-      "max_debit": "Rp 1.000.000,00",
-      "max_kredit": "Rp 2.000.000,00",
-      "min_debit": "Rp 7.500,00",
-      "min_kredit": "Rp 15.000,00",
-      "net_balance": "Rp -87.500,00",
-      "sum_debit": "Rp 2.427.500,00",
-      "sum_kredit": "Rp 2.340.000,00"
+      "avg_debit": "Rp 156.857.308,75",
+      "avg_kredit": "Rp 224.711.391,07",
+      "freq_debit": 40,
+      "freq_kredit": 28,
+      "max_debit": "Rp 375.000.000,00",
+      "max_kredit": "Rp 387.342.200,00",
+      "min_debit": "Rp 2.500,00",
+      "min_kredit": "Rp 67.911.350,00",
+      "net_balance": "Rp 17.626.600,00",
+      "sum_debit": "Rp 6.274.292.350,00",
+      "sum_kredit": "Rp 6.291.918.950,00"
     },
-    "kcp": "KCP CIMAHI",
+    "is_pdf_modified": false,
+    "kcp": "KCP GEJAYAN",
     "mata_uang": "IDR",
-    "mutasi_debit": "Rp 2.427.500,00",
-    "mutasi_kredit": "Rp 2.340.000,00",
-    "nomor_rekening": "1390563121",
-    "pemilik_rekening": "AGUS SETIAWAN",
+    "mutasi_debit": "Rp 6.274.292.350,00",
+    "mutasi_kredit": "Rp 6.291.918.950,00",
+    "nomor_rekening": "4569087888",
+    "pemilik_rekening": "MOLAY SATRYA",
     "periode": "JULI 2022",
-    "saldo_akhir": "Rp 38.027,56",
-    "saldo_awal": "Rp 125.527,56",
-    "total_debet": "Rp 2.427.500,00",
-    "total_kredit": "Rp 2.340.000,00",
-    "total_mutasi_debit": "1l",
-    "total_mutasi_kredit": "4",
+    "saldo_akhir": "Rp 851.621.045,63",
+    "saldo_awal": "Rp 833.994.445,63",
+    "total_debet": "Rp 6.274.292.350,00",
+    "total_kredit": "Rp 6.291.918.950,00",
+    "total_mutasi_debit": "40",
+    "total_mutasi_kredit": "28",
     "transaction_data": [
       {
         "cbg": null,
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
         "keterangan": "SALDO AWAL",
         "mutasi": null,
-        "saldo": "Rp 125.527,56",
-        "tanggal": "01/07"
-      },
-      {
-        "cbg": "7495",
-        "keterangan": "SETORAN TUNAI",
-        "mutasi": "Rp 2.000.000,00",
-        "saldo": "Rp 2.125.527,56",
+        "saldo": "Rp 833.994.445,63",
         "tanggal": "01/07"
       },
       {
         "cbg": null,
-        "keterangan": "TRSF E-BANKING DB 01/07 /95031/00000 GALUH IBRAHIM",
-        "mutasi": "Rp 100.000,00 DB",
-        "saldo": "Rp 2.025.527,56",
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "TRSF E-BANKING CR 01/07 /95031/00000 DADANG ISKANDAR",
+        "mutasi": "Rp 171.544.350,00",
+        "saldo": "Rp 1.005.538.795,63",
         "tanggal": "01/07"
       },
       {
         "cbg": null,
-        "keterangan": "TRSF E-BANKING CR 02/07 /95031/00000 TANGGAL 02/07 ARIFIN",
-        "mutasi": "Rp 25.000,00",
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "TRSF E-BANKING CR 01/07 /95031/00000 BAJU TACTICAL COMB AT PEACEKEEPING FADLIL UMART BAHAD",
+        "mutasi": "Rp 319.722.500,00",
+        "saldo": null,
+        "tanggal": "01/07"
+      },
+      {
+        "cbg": null,
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "TRSF E-BANKING CR 01/07 /95031/00000 189953300.00 NICO DARMAWAN CORN",
+        "mutasi": "Rp 189.953.300,00",
+        "saldo": null,
+        "tanggal": "01/07"
+      },
+      {
+        "cbg": null,
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "BI-FAST DB BIF TRANSFER KE 002 MAXISTAR INTERMODA BRI JKT",
+        "mutasi": "Rp 250.000.000,00 DB",
+        "saldo": null,
+        "tanggal": "01/07"
+      },
+      {
+        "cbg": null,
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "BI-FAST DB BIF BIAYA TXN KE 002 MAXISTAR INTERMODA BRI JKT",
+        "mutasi": "Rp 2.500,00 DB",
+        "saldo": "Rp 1.265.212.095,63",
+        "tanggal": "01/07"
+      },
+      {
+        "cbg": null,
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "TRSF E-BANKING DB 0207/FTSCY /WS95051 TANGGAL :02/07 215668350.00 RECON LONG SLEEVE OUTDOOR-BLUE-OLIVE AGUS ISMAIL",
+        "mutasi": "Rp 215.668.350,00 DB",
         "saldo": null,
         "tanggal": "04/07"
       },
       {
         "cbg": null,
-        "keterangan": "TARIKAN ATM 02/07",
-        "mutasi": "Rp 1.000.000,00 DB",
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "TRSF E-BANKING CR 02/07 /95031/00000 TANGGAL :02/07 288376700 .00 SEPATU PDL HONU TC ISWANTO",
+        "mutasi": "Rp 288.376.700,00",
         "saldo": null,
         "tanggal": "04/07"
       },
       {
         "cbg": null,
-        "keterangan": "TRSF E-BANKING DB 0407/FTFVA/WS95031 39358/0V0 085317038917",
-        "mutasi": "Rp 20.000,00 DB",
-        "saldo": "Rp 1.030.527,56",
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "TRSF E-BANKING DB 0207/FTSCY /1/S95051 TANGGAL :02/07 25350000.00 DNSJOG JULI 22 TRIS SATRYA PRATAM",
+        "mutasi": "Rp 25.350.000,00 DB",
+        "saldo": null,
         "tanggal": "04/07"
       },
       {
         "cbg": null,
-        "keterangan": "TARIKAN ATM 06/07",
-        "mutasi": "Rp 100.000,00 DB",
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "TRSF E-BANKING DB 0407 /FTSCY /WS95051 119974800 .00 B MATERIAL TACTICA ARIE SETYA YUDHA",
+        "mutasi": "Rp 119.974.800,00 DB",
+        "saldo": null,
+        "tanggal": "04/07"
+      },
+      {
+        "cbg": null,
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "TRSF E-BANKING DB 0407/FTSCY /WS95051 9400000 . 00 JOGVIP/2022070352 PILAR PRIMA NUSANT",
+        "mutasi": "Rp 9.400.000,00 DB",
+        "saldo": null,
+        "tanggal": "04/07"
+      },
+      {
+        "cbg": null,
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "TRSF E-BANKING CR 04/07 /95031/00000 189711900 .00 DARWIN MICHAEL AGU",
+        "mutasi": "Rp 189.711.900,00",
+        "saldo": null,
+        "tanggal": "04/07"
+      },
+      {
+        "cbg": null,
+        "filename": "536c0290221c4d97a7fc42bf018e3ff5_page_1.png",
+        "keterangan": "TRSF E-BANKING DB 0407/FTFVA/WS95051 23789500.00",
+        "mutasi": "Rp 23.789.500,00 DB",
+        "saldo": "Rp 1.349.118.045,63",
+        "tanggal": "04/07"
+      },
+      {
+        "cbg": null,
+        "filename": "db678195895141b6b1b84ed80a049c1c_page_2.png",
+        "keterangan": "BELI MANAKIN KANT OR JKT KENDRI SETIAWAN",
+        "mutasi": null,
+        "saldo": null,
+        "tanggal": null
+      },
+      {
+        "cbg": null,
+        "filename": "db678195895141b6b1b84ed80a049c1c_page_2.png",
+        "keterangan": "TRSF E-BANKING DB 0507/FTSCY /WS95051 319980500.00 INV O21/MSI/PO/07/ BULK HONU POLRI LAI HERMANTO",
+        "mutasi": "Rp 319.980.500,00 DB",
+        "saldo": "Rp 1.029.137.545,63",
+        "tanggal": "05/07"
+      },
+      {
+        "cbg": null,
+        "filename": "db678195895141b6b1b84ed80a049c1c_page_2.png",
+        "keterangan": "TRSF E-BANKING DB 0507/FTSCY /WS95051 224112350.00 PMBYRN BAHAN MATER IAL MOLAY PEACEKEE FANY SANTOSO",
+        "mutasi": "Rp 224.112.350,00 DB",
+        "saldo": "Rp 805.025.195,63",
+        "tanggal": "05/07"
+      },
+      {
+        "cbg": null,
+        "filename": "db678195895141b6b1b84ed80a049c1c_page_2.png",
+        "keterangan": "TRSF E-BANKING CR 06/07 /95031/00000 291136750.00 PEMBAYARAN PAMEN DAN PATCH SOGILI SONG RAHMAWATI",
+        "mutasi": "Rp 291.136.750,00",
+        "saldo": null,
+        "tanggal": "06/07"
+      },
+      {
+        "cbg": null,
+        "filename": "db678195895141b6b1b84ed80a049c1c_page_2.png",
+        "keterangan": "TRSF E-BANKING CR 06/07 /95031/00000 NKS SERAGAM NIKITA AYU DINI MA",
+        "mutasi": "Rp 132.000.000,00",
+        "saldo": null,
+        "tanggal": "06/07"
+      },
+      {
+        "cbg": null,
+        "filename": "db678195895141b6b1b84ed80a049c1c_page_2.png",
+        "keterangan": "TRSF E-BANKING CR 06/07 /95031/00000 KAOS THE INDONESIA N BADASS LILIK WIJANARKO",
+        "mutasi": "Rp 67.911.350,00",
+        "saldo": null,
+        "tanggal": "06/07"
+      },
+      {
+        "cbg": null,
+        "filename": "db678195895141b6b1b84ed80a049c1c_page_2.png",
+        "keterangan": "TRSF E-BANKING DB 0607 FTSCY /WS95051 236191500.00 TAG T.5-C VRENGKI JUN PARAMA",
+        "mutasi": "Rp 236.191.500,00 DB",
+        "saldo": "Rp 1.059.881.795,63",
+        "tanggal": "06/07"
+      },
+      {
+        "cbg": null,
+        "filename": "db678195895141b6b1b84ed80a049c1c_page_2.png",
+        "keterangan": "BI-FAST DB BIF TRANSFER KE 097 IDA MURWANTI KBB",
+        "mutasi": "Rp 197.884.300,00 DB",
         "saldo": null,
         "tanggal": "07/07"
       },
       {
         "cbg": null,
-        "keterangan": "TRSF E BANKING CR 07/07 /95031/00000 TITIP K MMH UDIN DETI SOPIANTY SKOM",
-        "mutasi": "Rp 300.000,00",
+        "filename": "db678195895141b6b1b84ed80a049c1c_page_2.png",
+        "keterangan": "BI-FAST DB BIF BIAYA TXN KE 097 IDA MURWANTI KBB",
+        "mutasi": "Rp 2.500,00 DB",
         "saldo": null,
         "tanggal": "07/07"
       },
       {
         "cbg": null,
-        "keterangan": "TARIKAN ATM 07/07",
-        "mutasi": "Rp 500.000,00 DB",
-        "saldo": "Rp 730.527,56",
+        "filename": "db678195895141b6b1b84ed80a049c1c_page_2.png",
+        "keterangan": "TRSF E-BANKING DB 0707/FTSCY /WS95051 200000000 .00 KORDINASI LAP JOGJ TRIS SATRYA PRATAM",
+        "mutasi": "Rp 200.000.000,00 DB",
+        "saldo": null,
         "tanggal": "07/07"
       },
       {
         "cbg": null,
-        "keterangan": "TARIKAN ATM 12/07",
-        "mutasi": "Rp 200.000,00 DB",
-        "saldo": "Rp 530.527,56",
-        "tanggal": "12/07"
+        "filename": "db678195895141b6b1b84ed80a049c1c_page_2.png",
+        "keterangan": "TRSF E-BANKING CR 07/07 /95031/00000 HONU 42 BLACK PETER RIADI",
+        "mutasi": "Rp 155.997.000,00",
+        "saldo": "Rp 817.991.995,63",
+        "tanggal": "07/07"
       },
       {
         "cbg": null,
-        "keterangan": "TARIKAN ATM 15/07",
-        "mutasi": "Rp 100.000,00 DB",
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "TRSF E-BANKING CR 08/07 /95031/00000 ZULFIAN ANDREW PRA",
+        "mutasi": "Rp 216.669.400,00",
+        "saldo": "Rp 1.034.661.395,63",
+        "tanggal": "08/07"
+      },
+      {
+        "cbg": null,
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "TRSF E-BANKING CR 08/07 /95031/00000 IMAM BAGUS WICAKSO",
+        "mutasi": "Rp 174.312.500,00",
+        "saldo": null,
+        "tanggal": "08/07"
+      },
+      {
+        "cbg": null,
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "BI-FAST DB BIF TRANSFER KE 153 MITRA MULIA TEXIND KBB",
+        "mutasi": "Rp 227.118.500,00 DB",
+        "saldo": null,
+        "tanggal": "08/07"
+      },
+      {
+        "cbg": null,
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "BI-FAST DB BIF BIAYA TXN KE 153 MITRA MULIA TEXIND KBB",
+        "mutasi": "Rp 2.500,00 DB",
+        "saldo": "Rp 981.852.895,63",
+        "tanggal": "08/07"
+      },
+      {
+        "cbg": null,
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "BI-FAST DB BIF TRANSFER KE TANGGAL :09/07 451 MUKH NURKHOLIS DAN BRI JKT",
+        "mutasi": "Rp 125.000.000,00 DB",
+        "saldo": null,
+        "tanggal": "11/07"
+      },
+      {
+        "cbg": null,
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "BI-FAST DB BIF BIAYA TXN KE TANGGAL 09/07 451 MUKH NURKHOLIS DAN KBB",
+        "mutasi": "Rp 2.500,00 DB",
+        "saldo": null,
+        "tanggal": "11/07"
+      },
+      {
+        "cbg": null,
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "BI-FAST CR BIF TRANSFER DR TANGGAL :09/07 009 HAPOSAN SINAGA",
+        "mutasi": "Rp 318.775.500,00",
+        "saldo": null,
+        "tanggal": "11/07"
+      },
+      {
+        "cbg": null,
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "TRSF E-BANKING CR 1107/FTSCY /WS95051 231167750.00 INV 124 /MSI/IV/22 PT MOLAY SATRYA IN ZULFIAN ANDREW PRA",
+        "mutasi": "Rp 231.167.750,00",
+        "saldo": null,
+        "tanggal": "11/07"
+      },
+      {
+        "cbg": null,
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "TRSF E-BANKING DB 1107/FTSCY /WS95051 07969/PT JARINGAN INV CA2022051217 MEI 2022 JARINGAN SAMUDRA L",
+        "mutasi": "Rp 211.345.500,00 DB",
+        "saldo": null,
+        "tanggal": "11/07"
+      },
+      {
+        "cbg": null,
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "TRSF E-BANKING DB 1107/FTSCY /WS95051 322500000.00 MAT HONU TACTICAL TRIS SATRYA PRATAM",
+        "mutasi": "Rp 322.500.000,00 DB",
+        "saldo": "Rp 872.948.145,63",
+        "tanggal": "11/07"
+      },
+      {
+        "cbg": null,
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "TRSF E-BANKING DB 1307/FTSCY /WS95051 297115300.00 014/MSI/PO/VI/22 EVERSHINE TEX TBK",
+        "mutasi": "Rp 297.115.300,00 DB",
+        "saldo": null,
+        "tanggal": "13/07"
+      },
+      {
+        "cbg": null,
+        "filename": "fa35daa2500c4d37a921c8802ee85fa7_page_3.png",
+        "keterangan": "TRSF E-BANKING DB 1307/FTSCY /WS95051 178554000.00 ABADI EXPRESS PT",
+        "mutasi": "Rp 178.554.000,00 DB",
+        "saldo": "Rp 397.278.845,63",
+        "tanggal": "13/07"
+      },
+      {
+        "cbg": null,
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "TRSF E-BANKING CR 13/07 /95031/00000 TAGIHAN BSO PETER RIADI",
+        "mutasi": "Rp 331.654.400,00",
+        "saldo": "Rp 728.933.245,63",
+        "tanggal": "13/07"
+      },
+      {
+        "cbg": null,
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "TRSF E-BANKING DB 1307/FTSCY /WS95051 199233300.00 PEMBELIAN MATERIAL KEMEJA TACTICAL PER JULI 2022 ARIE SETYA YUDHA",
+        "mutasi": "Rp 199.233.300,00 DB",
+        "saldo": null,
+        "tanggal": "13/07"
+      },
+      {
+        "cbg": null,
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "TRSF E-BANKING CR 13/07 /95031/00000 IMAM BAGUS WICAKSO",
+        "mutasi": "Rp 211.862.000,00",
+        "saldo": "Rp 741.561.945,63",
+        "tanggal": "13/07"
+      },
+      {
+        "cbg": null,
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "TRSF E-BANKING CR 15/07 /95031/00000 75000000 .00 PETER RIADI",
+        "mutasi": "Rp 75.000.000,00",
         "saldo": null,
         "tanggal": "15/07"
       },
       {
         "cbg": null,
-        "keterangan": "BIAYA ADM",
-        "mutasi": "Rp 7.500,00 DB",
-        "saldo": "Rp 423.027,56",
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "TRSF E-BANKING DB 1507/FTFVA/WS95051 21000000 .00 B CETAK KATALOG DIAH SUPROBOWATI",
+        "mutasi": "Rp 21.000.000,00 DB",
+        "saldo": "Rp 795.561.945,63",
         "tanggal": "15/07"
       },
       {
         "cbg": null,
-        "keterangan": "TARIKAN ATM 19/07",
-        "mutasi": "Rp 200.000,00 DB",
-        "saldo": "Rp 223.027,56",
-        "tanggal": "19/07"
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "BI-FAST DB BIF TRANSFER KE TANGGAL :16/07 002 MAXISTAR INTERMODA KBB",
+        "mutasi": "Rp 220.000.000,00 DB",
+        "saldo": null,
+        "tanggal": "18/07"
       },
       {
         "cbg": null,
-        "keterangan": "TRSF E BANKING CR 2007/FTSCY/WS95031 15000 00 RISKA FEBRYANTI",
-        "mutasi": "Rp 15.000,00",
-        "saldo": "Rp 238.027,56",
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "BI-FAST DB BIF BIAYA TXN KE TANGGAL :16/07 002 MAXISTAR INTERMODA KBB",
+        "mutasi": "Rp 2.500,00 DB",
+        "saldo": null,
+        "tanggal": "18/07"
+      },
+      {
+        "cbg": null,
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "TRSF E-BANKING DB 1807/FTSCY /WS95051 227293000.00 PEM JASA LOGISTIK JARINGAN SAMUDRA L",
+        "mutasi": "Rp 227.293.000,00 DB",
+        "saldo": null,
+        "tanggal": "18/07"
+      },
+      {
+        "cbg": null,
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "TRSF E-BANKING DB 1807/FTSCY /WS95051 188522000.00 JAEGER FULL LEATHE WANGTA AGUNG PT",
+        "mutasi": "Rp 188.522.000,00 DB",
+        "saldo": "Rp 159.744.445,63",
+        "tanggal": "18/07"
+      },
+      {
+        "cbg": null,
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "TRSF E-BANKING CR 20/07 /95031/00000 RIZKY KARISMA MAHA",
+        "mutasi": "Rp 387.342.200,00",
+        "saldo": null,
         "tanggal": "20/07"
       },
       {
         "cbg": null,
-        "keterangan": "TARIKAN ATM 23/07",
-        "mutasi": "Rp 100.000,00 DB",
-        "saldo": "Rp 138.027,56",
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "TRSF E-BANKING DB 2007/FTSCT /WS95051 227845750.00 HERMANTO",
+        "mutasi": "Rp 227.845.750,00 DB",
+        "saldo": null,
+        "tanggal": "20/07"
+      },
+      {
+        "cbg": null,
+        "filename": "41f97dfeaa024417908c52624016ac86_page_4.png",
+        "keterangan": "TRSF E-BANKING DB 2007/FTSCY /WS95051 15o000000 .00 KORDI DINAS JUNI ARIE SETYA YUDHA",
+        "mutasi": "Rp 150.000.000,00 DB",
+        "saldo": "Rp 169.240.895,63",
+        "tanggal": "20/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "TRSF E-BANKING CR 23/07 /95031/00000 TANGGAL :23/07 ORDER AN DIAH AREN DRA MB DIAH MAHARANI W",
+        "mutasi": "Rp 288.112.500,00",
+        "saldo": "Rp 457.353.395,63",
         "tanggal": "25/07"
       },
       {
         "cbg": null,
-        "keterangan": "TARIKAN ATM 26/07",
-        "mutasi": "Rp 100.000,00 DB",
-        "saldo": "Rp 38.027,56",
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "TRSF E-BANKING CR 2307/FTSCY /WS95041 TANGGAL 23/07 267525750.00 DEDIK SETIAWAN",
+        "mutasi": "Rp 267.525.750,00",
+        "saldo": null,
+        "tanggal": "25/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "BI-FAST DB BIF TRANSFER KE 009 STEVANUS HENRI SET BRI JKT",
+        "mutasi": "Rp 178.992.000,00 DB",
+        "saldo": null,
+        "tanggal": "25/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "BI-FAST DB BIF BIAYA TXN   KE 009 STEVANUS HENRI SET KBB",
+        "mutasi": "Rp 2.500,00 DB",
+        "saldo": null,
+        "tanggal": "25/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "TRSF E-BANKING CR 25/07 /95031/00000 TAGIHAN BSO PETER RIADI",
+        "mutasi": "Rp 199.523.000,00",
+        "saldo": "Rp 745.407.645,63",
+        "tanggal": "25/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "SWITCHING DB TRANSFER KE 023 LAKSMI LEELA GARME /KBB",
+        "mutasi": "Rp 295.000.000,00 DB",
+        "saldo": null,
         "tanggal": "26/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "SWITCHING DB BIAYA TXN   KE 023 LAKSMI LEELA GARME /KBB",
+        "mutasi": "Rp 6.500,00 DB",
+        "saldo": null,
+        "tanggal": "26/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "TRSF E BANKING CR 26/07 /95031/00000 FADLIL UMART BAHAD",
+        "mutasi": "Rp 270.000.000,00",
+        "saldo": null,
+        "tanggal": "26/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "TRSF E-BANKING CR 26/07 /95031/00000 JOKO PRANOTO SISWA",
+        "mutasi": "Rp 87.663.300,00",
+        "saldo": null,
+        "tanggal": "26/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "TRSF E-BANKING DB 2607 FTSCT /WS95051 258000000 .00 PEMBAYARAN JASA EXPORT HONU TACTIC HERMANTO",
+        "mutasi": "Rp 258.000.000,00 DB",
+        "saldo": "Rp 550.064.445,63",
+        "tanggal": "26/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "TRSF E-BANKING CR 2707/FTSCY /WS95041 124755000.00 WD202207178 PT Molay satrya I TOKOPEDIA PT",
+        "mutasi": "Rp 124.755.000,00",
+        "saldo": null,
+        "tanggal": "27/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "TRSF E-BANKING CR 27/07 /95031/00000 138113500 .00 JOKO PRANOTO SISWA",
+        "mutasi": "Rp 138.113.500,00",
+        "saldo": null,
+        "tanggal": "27/07"
+      },
+      {
+        "cbg": null,
+        "filename": "82b73829168b40a7bf0878f92c0c4be9_page_5.png",
+        "keterangan": "SWITCHING DB TRANSFER KE 213 ARIE SETYA YUDHA IKBB",
+        "mutasi": "Rp 150.000.000,00 DB",
+        "saldo": "Rp 662.932.945,63",
+        "tanggal": "27/07"
+      },
+      {
+        "cbg": null,
+        "filename": "0a5736bbd2234cc68cfce2c1dacb343c_page_6.png",
+        "keterangan": "SWITCHING DB BIAYA TXN KE 213 ARIE SETYA YUDHA /KBB",
+        "mutasi": "Rp 6.500,00 DB",
+        "saldo": "Rp 662.926.445,63",
+        "tanggal": "28/07"
+      },
+      {
+        "cbg": null,
+        "filename": "0a5736bbd2234cc68cfce2c1dacb343c_page_6.png",
+        "keterangan": "TRSF E-BANKING CR 28/07 /95031/00000 314986300.00 VELOX RICON LONG SLEEVE ELVIN DWI LARASWAT",
+        "mutasi": "Rp 314.986.300,00",
+        "saldo": null,
+        "tanggal": "28/07"
+      },
+      {
+        "cbg": null,
+        "filename": "0a5736bbd2234cc68cfce2c1dacb343c_page_6.png",
+        "keterangan": "TRSF E-BANKING CR 2807 FTSCY /WS95041 HONU SIZE 40,45 46 MUGIA YARRY JUNAND",
+        "mutasi": "Rp 331.752.000,00",
+        "saldo": null,
+        "tanggal": "28/07"
+      },
+      {
+        "cbg": null,
+        "filename": "0a5736bbd2234cc68cfce2c1dacb343c_page_6.png",
+        "keterangan": "TRSF E-BANKING DB 2807/FTSCY /WS95051 299467200 .00 CNTN MOLAY APR 22 INV 12042022P118 HAFIZH OKTANIA ZUK",
+        "mutasi": "Rp 299.467.200,00 DB",
+        "saldo": "Rp 1.010.197.545,63",
+        "tanggal": "28/07"
+      },
+      {
+        "cbg": null,
+        "filename": "0a5736bbd2234cc68cfce2c1dacb343c_page_6.png",
+        "keterangan": "SWITCHING CR TRANSFER DR 049 IMAM DIPSA MAULANA /81228109345",
+        "mutasi": "Rp 288.700.000,00",
+        "saldo": null,
+        "tanggal": "29/07"
+      },
+      {
+        "cbg": null,
+        "filename": "0a5736bbd2234cc68cfce2c1dacb343c_page_6.png",
+        "keterangan": "TRSF E-BANKING CR 29/07 /95031/00000 TAGIHAN BSO PETER RIADI",
+        "mutasi": "Rp 227.650.000,00",
+        "saldo": null,
+        "tanggal": "29/07"
+      },
+      {
+        "cbg": null,
+        "filename": "0a5736bbd2234cc68cfce2c1dacb343c_page_6.png",
+        "keterangan": "TRSF E-BANKING DB 2907/FTSCY /WS95051 375000000 .00 DIAH SUPROBOWATI",
+        "mutasi": "Rp 375.000.000,00 DB",
+        "saldo": null,
+        "tanggal": "29/07"
+      },
+      {
+        "cbg": null,
+        "filename": "0a5736bbd2234cc68cfce2c1dacb343c_page_6.png",
+        "keterangan": "TRSF E-BANKING DB 2907/FTSCY /WS95051 299896500 .00 INV 014/MSI/PO/IV/ ABADI EXPRESS PT",
+        "mutasi": "Rp 299.896.500,00 DB",
+        "saldo": "Rp 851.651.045,63",
+        "tanggal": "29/07"
+      },
+      {
+        "cbg": null,
+        "filename": "0a5736bbd2234cc68cfce2c1dacb343c_page_6.png",
+        "keterangan": "BIAYA ADM",
+        "mutasi": "Rp 30.000,00 DB",
+        "saldo": "Rp 851.621.045,63",
+        "tanggal": "31/07"
       }
     ]
   },
