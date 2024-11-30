@@ -83,28 +83,37 @@ export function getEmail(): string | null {
 }
 
 export function isAuthorizedByIp(http: HttpClient, router: Router) {
-  http
-    .get<any>(`${apiUrl}/auth/checkIp/${sessionStorage.getItem('username')}`)
-    .subscribe({
-      next: (value) => {
-        return true;
-      },
-      error: (err) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Upload Failed',
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          allowEnterKey: false,
-          text: 'Other activity detected with your credentials. Come back in!',
-          confirmButtonText: 'OK',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            router.navigate(['/']); // Arahkan ke halaman login
+  http.get<any>('https://api.ipify.org?format=json').subscribe({
+    next: (ipData) => {
+      http
+        .post<any>(
+          `${apiUrl}/auth/checkIp/${sessionStorage.getItem('username')}`,
+          {
+            ip_address: ipData.ip,
           }
+        )
+        .subscribe({
+          next: (value) => {
+            return true;
+          },
+          error: (err) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Upload Failed',
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+              allowEnterKey: false,
+              text: 'Other activity detected with your credentials. Come back in!',
+              confirmButtonText: 'OK',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                router.navigate(['/']); // Arahkan ke halaman login
+              }
+            });
+            sessionStorage.clear();
+            return false;
+          },
         });
-        sessionStorage.clear();
-        return false;
-      },
-    });
+    },
+  });
 }

@@ -15,21 +15,33 @@ export class LoginComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(formLogin: NgForm) {
-    this.http.post<any>(`${apiUrl}/auth/login`, formLogin.value).subscribe({
-      next: (value) => {
-        sessionStorage.setItem('name', value.data.nama);
-        sessionStorage.setItem('profile_picture', value.data.profile_picture);
-        sessionStorage.setItem('email', value.data.email);
-        sessionStorage.setItem('username', value.data.username);
-        this.router.navigate(['dashboard']);
-      },
-      error: (err) => {
-        console.log(err);
+    this.http.get<any>('https://api.ipify.org?format=json').subscribe({
+      next: (ipData) => {
+        const loginData = {
+          ...formLogin.value,
+          ip_address: ipData.ip,
+        };
 
-        Swal.fire({
-          icon: 'error',
-          title: 'Unauthorized',
-          text: 'Pastikan username dan password kamu sudah tepat!',
+        this.http.post<any>(`${apiUrl}/auth/login`, loginData).subscribe({
+          next: (value) => {
+            sessionStorage.setItem('name', value.data.nama);
+            sessionStorage.setItem(
+              'profile_picture',
+              value.data.profile_picture
+            );
+            sessionStorage.setItem('email', value.data.email);
+            sessionStorage.setItem('username', value.data.username);
+            this.router.navigate(['dashboard']);
+          },
+          error: (err) => {
+            console.log(err);
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Unauthorized',
+              text: 'Pastikan username dan password kamu sudah tepat!',
+            });
+          },
         });
       },
     });
