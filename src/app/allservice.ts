@@ -86,12 +86,10 @@ export function isAuthorizedByIp(http: HttpClient, router: Router) {
   http.get<any>('https://api.ipify.org?format=json').subscribe({
     next: (ipData) => {
       http
-        .post<any>(
-          `${apiUrl}/auth/checkIp/${sessionStorage.getItem('username')}`,
-          {
-            ip_address: ipData.ip,
-          }
-        )
+        .post<any>(`${apiUrl}/auth/checkIp`, {
+          username: sessionStorage.getItem('username'),
+          ip_address: ipData.ip,
+        })
         .subscribe({
           next: (value) => {
             return true;
