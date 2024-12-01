@@ -23,29 +23,7 @@ export function proceedOcrBca(
     formData.append('zip-password', zipPassword!);
   }
 
-  http.get<any>('assets/response-bca-personal.json').subscribe({
-    next: (value) => {
-      Swal.close();
-
-      router
-        .navigate(['/dashboard/ocr-bca-result'], {
-          state: value.data,
-        })
-        .then();
-    },
-    error: (err) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Upload Failed',
-        text:
-          err.error.data == undefined
-            ? 'Please re-upload your photo with better quality because the system cannot read it.'
-            : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-      });
-    },
-  });
-
-  // http.post<any>(`${apiUrlPy}/proceed-bca`, formData).subscribe({
+  // http.get<any>('assets/response-bca-personal.json').subscribe({
   //   next: (value) => {
   //     Swal.close();
 
@@ -54,9 +32,6 @@ export function proceedOcrBca(
   //         state: value.data,
   //       })
   //       .then();
-
-  //     var audio = new Audio('assets/bell.wav');
-  //     audio.play();
   //   },
   //   error: (err) => {
   //     Swal.fire({
@@ -64,11 +39,36 @@ export function proceedOcrBca(
   //       title: 'Upload Failed',
   //       text:
   //         err.error.data == undefined
-  //           ? 'Please re-upload your photo with better quality because the system cannot read it or make sure the bank statement type is the same.'
+  //           ? 'Please re-upload your photo with better quality because the system cannot read it.'
   //           : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
   //     });
-  //     var audio = new Audio('assets/bell.wav');
-  //     audio.play();
   //   },
   // });
+
+  http.post<any>(`${apiUrlPy}/proceed-bca`, formData).subscribe({
+    next: (value) => {
+      Swal.close();
+
+      router
+        .navigate(['/dashboard/ocr-bca-result'], {
+          state: value.data,
+        })
+        .then();
+
+      var audio = new Audio('assets/bell.wav');
+      audio.play();
+    },
+    error: (err) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text:
+          err.error.data == undefined
+            ? 'Please re-upload your photo with better quality because the system cannot read it or make sure the bank statement type is the same.'
+            : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+      });
+      var audio = new Audio('assets/bell.wav');
+      audio.play();
+    },
+  });
 }

@@ -1,44 +1,45 @@
 {
   "data": {
-    "alamat": "KALIBOKOR 2/40A RT,04/08,Rt.04/08,KOTA SURABAYA GUBENG KOTA SURABAYA",
+    "alamat": "KALIBOKOR 2/40A RT.04/08,Rt.04/08,KOTA SURABAYA GUBENG KOTA SURABAYA",
     "alamat_unit_kerja": "KANCA SURABAYA KERTAJAYA",
     "analytics_data": {
-      "avg_debit": "Rp 169.327,67",
-      "avg_kredit": "Rp 188.888,89",
-      "freq_debit": 18,
-      "freq_kredit": 18,
+      "avg_debit": "Rp 149.876,35",
+      "avg_kredit": "Rp 200.000,00",
+      "freq_debit": 17,
+      "freq_kredit": 17,
       "max_debit": "Rp 953.300,00",
       "max_kredit": "Rp 2.000.000,00",
       "min_debit": "Rp 0,00",
       "min_kredit": "Rp 0,00",
-      "net_balance": "Rp 352.102,00",
-      "sum_debit": "Rp 3.047.898,00",
+      "net_balance": "Rp 852.102,00",
+      "sum_debit": "Rp 2.547.898,00",
       "sum_kredit": "Rp 3.400.000,00"
     },
-    "nama_produk": "Slmpedes UMI",
+    "is_pdf_modified": null,
+    "nama_produk": "Simpedes UMI",
     "nomor_rekening": "97301036029536",
     "pemilik_rekening": "JUNITA RATIH KARTIKA SARI",
     "periode_transaksi": "01/11/23 - 30/11/23",
     "saldo_akhir": "447,602.00",
     "saldo_awal": "95,500.00",
     "tanggal_laporan": "29/01/24",
-    "total_debit": "Rp 3.047.898,00",
+    "total_debit": "Rp 2.547.898,00",
     "total_kredit": "Rp 3.400.000,00",
     "total_transaksi_debit": "3,047,898.00",
     "total_transaksi_kredit": "3,400,000.00",
     "transaction_data": [
       {
         "debit": "0.00",
-        "filename": "BRI_1.jpg",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
         "kredit": "1,200,000.00",
         "saldo": "1,295,500.00",
-        "tanggal_transaksi": "17/11/23 19.18.24",
+        "tanggal_transaksi": "17/11/23 19:18:24",
         "teller": "9942417",
         "uraian_transaksi": "601301262690465700790388"
       },
       {
         "debit": "0.00",
-        "filename": "BRI_1.jpg",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
         "kredit": "2,000,000.00",
         "saldo": "3,295,500.00",
         "tanggal_transaksi": "17/11/23 19.19.37",
@@ -47,156 +48,138 @@
       },
       {
         "debit": "0.00",
-        "filename": "BRI_1.jpg",
-        "kredit": "100,000,00",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
+        "kredit": "100,000.00",
         "saldo": "3,395,500.00",
-        "tanggal_transaksi": "18/11/23 09.27:47",
+        "tanggal_transaksi": "18/11/23 09.27.47",
         "teller": "0371878",
-        "uraian_transaksi": "FLP486296984 WS_OB;486296984 - 0973010360;77850 ESB;T:0371878.S.0371892:WSOB"
+        "uraian_transaksi": "FLP486296984 WS_OB;486296984- 0973010360,77850 ESB:T.0371878.8.0371892:WSOB"
       },
       {
         "debit": "76,826.00",
-        "filename": "BRI_1.jpg",
-        "kredit": "0,00",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
+        "kredit": "0.00",
         "saldo": "3,318,674.00",
-        "tanggal_transaksi": "18/11/23 14*05.32",
+        "tanggal_transaksi": "18/11/23 14.05.32",
         "teller": "8888384",
-        "uraian_transaksi": "NBMB JUNITA RATIH K TO FLIPTECH LENTERA ESB:NBMB;0001500F:610926367258"
+        "uraian_transaksi": "NBMB JUNITA RATIH K TO FLIPTECH LENTERA ESB:NBMB:0001500F:610926367258"
       },
       {
         "debit": "41,627.00",
-        "filename": "BRI_1.jpg",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
         "kredit": "0.00",
         "saldo": "3,277,047.00",
-        "tanggal_transaksi": "18/11/23 20.16:01",
+        "tanggal_transaksi": "18/11/23 20.16.01",
         "teller": "0852738",
         "uraian_transaksi": "PRCH601301262690465707132724#10335797"
       },
       {
         "debit": "22,790.00",
-        "filename": "BRI_1.jpg",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
         "kredit": "0.00",
         "saldo": "3,254,257.00",
-        "tanggal_transaksi": "18/11/23 20.23:09",
+        "tanggal_transaksi": "18/11/23 20.23.09",
         "teller": "0888158",
-        "uraian_transaksi": "NP 83415 000000551 NP6o130126269046570000000005510000000245"
+        "uraian_transaksi": "NP 83415 000000551 NP60130126269046570000000005510000000245"
       },
       {
         "debit": "953,300.00",
-        "filename": "BRI_1.jpg",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
         "kredit": "0.00",
         "saldo": "2,300,957.00",
         "tanggal_transaksi": "18/11/23 21.08:19",
         "teller": "0852087",
-        "uraian_transaksi": "PRCH601301262690465709357971*10071209"
+        "uraian_transaksi": "PRCH601301262690465709357971#10071209"
       },
       {
         "debit": "63,050.00",
-        "filename": "BRI_1.jpg",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
         "kredit": "0.00",
         "saldo": "2,237,907.00",
-        "tanggal_transaksi": "19/11/23 16.22:08",
+        "tanggal_transaksi": "19/11/23 16.22.08",
         "teller": "8888593",
-        "uraian_transaksi": "NBMB JUNITA RATIH K TO FLIPTECH LENTERA ESB:NBMB:0001500F.611352584034"
+        "uraian_transaksi": "NBMB JUNITA RATIH K TO FLIPTECH LENTERA ESB:NBMB:0001500F:611352584034"
       },
       {
         "debit": "87,053.00",
-        "filename": "BRI_1.jpg",
-        "kredit": "0,00",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
+        "kredit": "0.00",
         "saldo": "2,150,854.00",
         "tanggal_transaksi": "21/11/23 15.08.48",
         "teller": "8888464",
-        "uraian_transaksi": "NBMB JUNITA RATIH K TO FLIPTECH LENTERA ESB:NBMB:0001500F.612163100807"
+        "uraian_transaksi": "NBMB JUNITA RATIH K TO FLIPTECH LENTERA ESB:NBMB:0001500F:612163100807"
       },
       {
         "debit": "117,052.00",
-        "filename": "BRI_1.jpg",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
         "kredit": "0.00",
         "saldo": "2,033,802.00",
-        "tanggal_transaksi": "23/11/23 18:37:22",
+        "tanggal_transaksi": "23/11/23 18.37:22",
         "teller": "8888034",
-        "uraian_transaksi": "NBMB JUNITA RATIH K TO FLIPTECH LENTERA ESB:NBMB:0001500F.613064287980"
+        "uraian_transaksi": "NBMB JUNITA RATIH K TO FLIPTECH LENTERA ESB:NBMB:0001500F:613064287980"
       },
       {
         "debit": "108,500.00",
-        "filename": "BRI_1.jpg",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
         "kredit": "0.00",
         "saldo": "1,925,302.00",
-        "tanggal_transaksi": "25/11/23 12.23:28",
+        "tanggal_transaksi": "25/11/23 12:23.28",
         "teller": "0888157",
         "uraian_transaksi": "NP 10149 329135175 NP60130126269046570033291351750000000122"
       },
       {
         "debit": "200,000.00",
-        "filename": "BRI_1.jpg",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
         "kredit": "0.00",
         "saldo": "1,725,302.00",
-        "tanggal_transaksi": "29/11/23 20.39,07",
+        "tanggal_transaksi": "29/11/23 20:39:07",
         "teller": "9942417",
         "uraian_transaksi": "601301262690465700790388"
       },
       {
         "debit": "465,100.00",
-        "filename": "BRI_1.jpg",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
         "kredit": "0.00",
         "saldo": "1,260,202.00",
-        "tanggal_transaksi": "30/11/23 11:08.39",
+        "tanggal_transaksi": "30/11/23 11:08:39",
         "teller": "8888209",
-        "uraian_transaksi": "BRIVA8O777085163230855NBMBPLS2841530016 BRIVA 8077708516323085SNBMBPLS2841530016 ESB:NBMB:0200200P.615815907195"
+        "uraian_transaksi": "BRIVA8O777085163230855NBMBPLS2841530016 BRIVA 80777085163230855NBMBPLS2841530016 ESB:NBMB:0200200P:615815907195"
       },
       {
         "debit": "310,100.00",
-        "filename": "BRI_1.jpg",
+        "filename": "ef02459976c6486594e1146ac42bfdd9_page_1.png",
         "kredit": "0.00",
         "saldo": "950,102.00",
-        "tanggal_transaksi": "30/11/23 13.58,45",
+        "tanggal_transaksi": "30/11/23 13.58.45",
         "teller": "8888243",
         "uraian_transaksi": "NBMB JUNITA RATIH K TO FLIPTECH LENTERA ESB:NBMB:0001500F:615894207127"
       },
       {
-        "debit": "500,000.00",
-        "filename": "BRI_1.jpg",
-        "kredit": "0.00",
-        "saldo": "450,102.00",
-        "tanggal_transaksi": "30/11/23 21.28.28",
-        "teller": "8888571",
-        "uraian_transaksi": "NBMB JUNITA RATIH K TO ANANG SUGIARSO $ ESB:NBMB:0001500F.616116451059"
-      },
-      {
-        "debit": null,
-        "filename": "BRI_2.jpg",
-        "kredit": null,
-        "saldo": null,
-        "tanggal_transaksi": null,
-        "teller": null,
-        "uraian_transaksi": null
-      },
-      {
         "debit": "0.00",
-        "filename": "BRI_2.jpg",
+        "filename": "cdb86bc21097483aa228b5f62b9ccf13_page_2.png",
         "kredit": "100,000.00",
-        "saldo": "550,102,00",
+        "saldo": "550,102.00",
         "tanggal_transaksi": "30/11/23 23.31.36",
         "teller": "8888674",
-        "uraian_transaksi": "BFSTO97301036029536ACHMAD FATHU:BSMDIDJA 2023113OBSMDIDJA01000298990249 ESB:BFST:OOO8N: 20231130FASTIDJAO10896476"
+        "uraian_transaksi": "BFSTO97301036029536ACHMAD FATHU:BSMDIDJA 2023113OBSMDIDJA010O0298990249 ESB:BFST:0008N:2023113OFASTIDJA010896476"
       },
       {
         "debit": "2,500.00",
-        "filename": "BRI_2.jpg",
+        "filename": "cdb86bc21097483aa228b5f62b9ccf13_page_2.png",
         "kredit": "0.00",
         "saldo": "547,602.00",
         "tanggal_transaksi": "30/11/23 23.33.02",
         "teller": "8888299",
-        "uraian_transaksi": "BFSTI045861178 NBMB:BSMDIDJA 2023113OBRINIDJAO10O0237555554 ESB:NBMB:0008GO0F:616154151719"
+        "uraian_transaksi": "BFST1045861178 NBMB:BSMDIDJA 20231130BRINIDJA010O0237555554 ESB:NBMB:0008GOOF:616154151719"
       },
       {
         "debit": "100,000.00",
-        "filename": "BRI_2.jpg",
+        "filename": "cdb86bc21097483aa228b5f62b9ccf13_page_2.png",
         "kredit": "0.00",
         "saldo": "447,602.00",
-        "tanggal_transaksi": "30/11/23 23.33.02",
+        "tanggal_transaksi": "30/11/23 23.33:02",
         "teller": "8888299",
-        "uraian_transaksi": "BFST1045861178 NBMB:BSMDIDJA 2023113OBRINIDJAO10O0237555554 ESB:NBMB:0008G00F:616154151719"
+        "uraian_transaksi": "BFST1045861178 NBMB:BSMDIDJA 2023113OBRINIDJA010O0237555554 ESB:NBMB:0008GOOF:616154151719"
       }
     ],
     "unit_kerja": "UNIT PUCANG ANOM SURABAYA KERT",
