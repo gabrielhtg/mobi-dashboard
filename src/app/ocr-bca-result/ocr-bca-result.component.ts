@@ -56,6 +56,9 @@ export class OcrBcaResultComponent implements OnInit {
   totalMutasiDebit: string = '';
   totalMutasiKredit: string = '';
   isPdfModified: any = null;
+  saldoFraudDetection: boolean | null = null;
+  transactionFraudDetection: boolean | null = null;
+  susModFraudDetection: boolean | null = null;
   // accountValidation: any = {};
 
   barChartOptions: ChartOptions = {
@@ -202,5 +205,37 @@ export class OcrBcaResultComponent implements OnInit {
           console.log(error);
         },
       });
+  }
+
+  checkPotentialFraud(
+    saldoAwal: string,
+    totalKredit: string,
+    totalDebit: string,
+    saldoAkhir: string
+  ) {
+    const saldoAwalConverted = convertToFloat(saldoAwal);
+    const totalKreditConverted = convertToFloat(totalKredit);
+    const totalDebitConverted = convertToFloat(totalDebit);
+    const saldoAkhirConverted = convertToFloat(saldoAkhir);
+    const expectedSaldoAkhir =
+      saldoAwalConverted + totalKreditConverted - totalDebitConverted;
+
+    if (expectedSaldoAkhir === saldoAkhirConverted) {
+      this.saldoFraudDetection = true;
+    } else {
+      this.saldoFraudDetection = false;
+    }
+
+    console.log({
+      saldoFraudDetection: this.saldoFraudDetection,
+      transactionFraudDetection: this.transactionFraudDetection,
+      susModFraudDetection: this.susModFraudDetection,
+    });
+
+    return {
+      saldoFraudDetection: this.saldoFraudDetection,
+      transactionFraudDetection: this.transactionFraudDetection,
+      susModFraudDetection: this.susModFraudDetection,
+    };
   }
 }
