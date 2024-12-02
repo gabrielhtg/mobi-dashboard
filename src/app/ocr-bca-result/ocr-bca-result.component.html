@@ -7,14 +7,6 @@
     />
   </div>
   <h1 class="font-bold text-4xl mt-2">OCR BCA Results</h1>
-
-  <span *ngIf="isPdfModified == true" class="text-red-500"
-    >The document indicates it has been modified.</span
-  >
-
-  <span *ngIf="isPdfModified == false" class="text-green-500"
-    >The document does not indicate it has been modified.</span
-  >
 </div>
 
 <div class="border-b border-gray-200 dark:border-neutral-700">
@@ -392,12 +384,13 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
-          <tr *ngFor="let e of transactionData" class="divide-x">
+          <tr *ngFor="let e of transactionData; let i = index" class="divide-x">
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
                 [value]="e.tanggal"
+                (change)="updateField(i, 'tanggal', $event)"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
@@ -410,6 +403,7 @@
                 [value]="e.keterangan !== null ? e.keterangan : ''"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                 rows="4"
+                (change)="updateField(i, 'keterangan', $event)"
                 placeholder="This is a textarea placeholder"
               ></textarea>
             </td>
@@ -419,6 +413,7 @@
               <input
                 [value]="e.cbg == null ? '-' : e.cbg"
                 type="text"
+                (change)="updateField(i, 'cbg', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
               />
@@ -429,6 +424,7 @@
               <input
                 [value]="e.mutasi == null ? '-' : e.mutasi"
                 type="text"
+                (change)="updateField(i, 'mutasi', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
               />
@@ -439,6 +435,7 @@
               <input
                 [value]="e.saldo == null ? '-' : e.saldo"
                 type="text"
+                (change)="updateField(i, 'saldo', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
               />
@@ -576,6 +573,11 @@
                     </svg>
                   </span>
                 </td>
+                <td
+                  class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
+                >
+                  {{ keteranganSaldoFraudDetection }}
+                </td>
               </tr>
 
               <tr class="divide-x">
@@ -620,6 +622,11 @@
                     </svg>
                   </span>
                 </td>
+                <td
+                  class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
+                >
+                  {{ keteranganTransactionFraudDetection }}
+                </td>
               </tr>
 
               <tr class="divide-x">
@@ -663,6 +670,11 @@
                       />
                     </svg>
                   </span>
+                </td>
+                <td
+                  class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
+                >
+                  {{ keteranganSusModFraudDetection }}
                 </td>
               </tr>
             </tbody>
@@ -759,14 +771,8 @@
                 </button>
                 <button
                   type="button"
-                  (click)="
-                    checkPotentialFraud(
-                      transactionData[0].saldo,
-                      analyticsData.sum_kredit,
-                      analyticsData.sum_debit,
-                      transactionData[transactionData.length - 1].saldo
-                    )
-                  "
+                  (click)="checkPotentialFraud()"
+                  data-hs-overlay="#hs-vertically-centered-modal"
                   class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                 >
                   Start

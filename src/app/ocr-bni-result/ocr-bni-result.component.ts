@@ -77,6 +77,10 @@ export class OcrBniResultComponent {
   // Data pergerakan saldo
   saldoMovementData: any;
 
+  saldoFraudDetection: boolean | null = null;
+  transactionFraudDetection: boolean | null = null;
+  susModFraudDetection: boolean | null = null;
+
   constructor(private http: HttpClient, private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
@@ -166,5 +170,37 @@ export class OcrBniResultComponent {
           console.log(error);
         },
       });
+  }
+
+  checkPotentialFraud(
+    saldoAwal: string,
+    totalKredit: string,
+    totalDebit: string,
+    saldoAkhir: string
+  ) {
+    const saldoAwalConverted = convertToFloat(saldoAwal);
+    const totalKreditConverted = convertToFloat(totalKredit);
+    const totalDebitConverted = convertToFloat(totalDebit);
+    const saldoAkhirConverted = convertToFloat(saldoAkhir);
+    const expectedSaldoAkhir =
+      saldoAwalConverted + totalKreditConverted - totalDebitConverted;
+
+    if (expectedSaldoAkhir === saldoAkhirConverted) {
+      this.saldoFraudDetection = true;
+    } else {
+      this.saldoFraudDetection = false;
+    }
+
+    console.log({
+      saldoFraudDetection: this.saldoFraudDetection,
+      transactionFraudDetection: this.transactionFraudDetection,
+      susModFraudDetection: this.susModFraudDetection,
+    });
+
+    return {
+      saldoFraudDetection: this.saldoFraudDetection,
+      transactionFraudDetection: this.transactionFraudDetection,
+      susModFraudDetection: this.susModFraudDetection,
+    };
   }
 }

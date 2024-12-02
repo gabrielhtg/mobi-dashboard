@@ -115,3 +115,19 @@ export function isAuthorizedByIp(http: HttpClient, router: Router) {
     },
   });
 }
+
+export function convertToFloat(stringNum: string | null) {
+  if (stringNum !== null) {
+    return (
+      parseFloat(
+        stringNum!
+          .replaceAll(',', '')
+          .replaceAll('Rp ', '')
+          .replaceAll('.', '')
+          .replaceAll('DB', '')
+      ) / 100
+    );
+  }
+
+  return 0;
+}

@@ -52,6 +52,9 @@ export class OcrBriResultComponent implements OnInit {
   unitKerja: string = '';
   alamatUnitKerja: string = '';
   isPdfModified: any = null;
+  saldoFraudDetection: boolean | null = null;
+  transactionFraudDetection: boolean | null = null;
+  susModFraudDetection: boolean | null = null;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -178,5 +181,39 @@ export class OcrBriResultComponent implements OnInit {
           console.log(error);
         },
       });
+  }
+
+  checkPotentialFraud(
+    saldoAwal: string,
+    totalKredit: string,
+    totalDebit: string,
+    saldoAkhir: string
+  ) {
+    const saldoAwalConverted = convertToFloat(saldoAwal);
+    const totalKreditConverted = convertToFloat(totalKredit);
+    const totalDebitConverted = convertToFloat(totalDebit);
+    const saldoAkhirConverted = convertToFloat(saldoAkhir);
+    const expectedSaldoAkhir =
+      saldoAwalConverted + totalKreditConverted - totalDebitConverted;
+
+    console.log(`Expected Saldo Akhir ${expectedSaldoAkhir}`);
+
+    if (expectedSaldoAkhir === saldoAkhirConverted) {
+      this.saldoFraudDetection = true;
+    } else {
+      this.saldoFraudDetection = false;
+    }
+
+    console.log({
+      saldoFraudDetection: this.saldoFraudDetection,
+      transactionFraudDetection: this.transactionFraudDetection,
+      susModFraudDetection: this.susModFraudDetection,
+    });
+
+    return {
+      saldoFraudDetection: this.saldoFraudDetection,
+      transactionFraudDetection: this.transactionFraudDetection,
+      susModFraudDetection: this.susModFraudDetection,
+    };
   }
 }
