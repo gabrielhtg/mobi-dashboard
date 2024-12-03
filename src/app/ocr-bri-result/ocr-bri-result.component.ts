@@ -55,6 +55,9 @@ export class OcrBriResultComponent implements OnInit {
   saldoFraudDetection: boolean | null = null;
   transactionFraudDetection: boolean | null = null;
   susModFraudDetection: boolean | null = null;
+  keteranganSaldoFraudDetection: string = '-';
+  keteranganTransactionFraudDetection: string = '-';
+  keteranganSusModFraudDetection: string = '-';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -183,32 +186,52 @@ export class OcrBriResultComponent implements OnInit {
       });
   }
 
-  checkPotentialFraud(
-    saldoAwal: string,
-    totalKredit: string,
-    totalDebit: string,
-    saldoAkhir: string
-  ) {
-    const saldoAwalConverted = convertToFloat(saldoAwal);
-    const totalKreditConverted = convertToFloat(totalKredit);
-    const totalDebitConverted = convertToFloat(totalDebit);
-    const saldoAkhirConverted = convertToFloat(saldoAkhir);
-    const expectedSaldoAkhir =
-      saldoAwalConverted + totalKreditConverted - totalDebitConverted;
+  checkPotentialFraud() {
+    let tempTotalDebet = 0;
+    let tempTotalKredit = 0;
+    let tempSaldoAwal = convertToFloat(this.saldoAwal);
+    let saldoAkhir = convertToFloat(
+      this.transactionData[this.transactionData.length - 1].saldo
+    );
 
-    console.log(`Expected Saldo Akhir ${expectedSaldoAkhir}`);
+    this.transactionData.forEach((e: any) => {
+      if (e.debit !== null) {
+        tempTotalDebet = tempTotalDebet + convertToFloat(e.debit);
+      }
 
-    if (expectedSaldoAkhir === saldoAkhirConverted) {
+      if (e.kredit !== null) {
+        tempTotalKredit = tempTotalKredit + convertToFloat(e.kredit);
+      }
+    });
+
+    const expectedSaldoAkhir = parseFloat(
+      (tempSaldoAwal + tempTotalKredit - tempTotalDebet).toFixed(2)
+    );
+
+    console.log(expectedSaldoAkhir);
+    console.log(saldoAkhir);
+    console.log(tempTotalDebet);
+    console.log(tempTotalKredit);
+
+    if (expectedSaldoAkhir === saldoAkhir) {
       this.saldoFraudDetection = true;
+      this.keteranganSaldoFraudDetection =
+        'The total balance match based on the transaction report';
     } else {
       this.saldoFraudDetection = false;
+      this.keteranganSaldoFraudDetection =
+        'The total balance does not match based on the transaction report. Please check back!';
     }
 
-    console.log({
-      saldoFraudDetection: this.saldoFraudDetection,
-      transactionFraudDetection: this.transactionFraudDetection,
-      susModFraudDetection: this.susModFraudDetection,
-    });
+    if (this.isPdfModified) {
+      this.susModFraudDetection = false;
+      this.keteranganSusModFraudDetection =
+        'The document indicates it has been modified.';
+    } else {
+      this.susModFraudDetection = true;
+      this.keteranganSusModFraudDetection =
+        'The document does not indicate it has been modified.';
+    }
 
     return {
       saldoFraudDetection: this.saldoFraudDetection,

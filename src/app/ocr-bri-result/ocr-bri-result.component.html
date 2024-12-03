@@ -626,6 +626,11 @@
                   </svg>
                 </span>
               </td>
+              <td
+                class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
+              >
+                {{ keteranganSaldoFraudDetection }}
+              </td>
             </tr>
 
             <tr class="divide-x">
@@ -670,6 +675,11 @@
                   </svg>
                 </span>
               </td>
+              <td
+                class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
+              >
+                {{ keteranganTransactionFraudDetection }}
+              </td>
             </tr>
 
             <tr class="divide-x">
@@ -713,6 +723,11 @@
                     />
                   </svg>
                 </span>
+              </td>
+              <td
+                class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
+              >
+                {{ keteranganSusModFraudDetection }}
               </td>
             </tr>
           </tbody>
@@ -810,14 +825,7 @@
               <button
                 type="button"
                 data-hs-overlay="#hs-vertically-centered-modal"
-                (click)="
-                  checkPotentialFraud(
-                    saldoAwal,
-                    analyticsData.sum_kredit,
-                    analyticsData.sum_debit,
-                    transactionData[transactionData.length - 1].saldo
-                  )
-                "
+                (click)="checkPotentialFraud()"
                 class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
               >
                 Start

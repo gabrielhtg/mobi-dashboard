@@ -37,7 +37,10 @@ export default function proceedOcrBni(
   //     Swal.fire({
   //       icon: 'error',
   //       title: 'Upload Failed',
-  //       text: err.error.data == undefined ? 'Please re-upload your photo with better quality because the system cannot read it.' : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+  //       text:
+  //         err.error.data == undefined
+  //           ? 'Please re-upload your photo with better quality because the system cannot read it.'
+  //           : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
   //     });
   //   },
   // });
