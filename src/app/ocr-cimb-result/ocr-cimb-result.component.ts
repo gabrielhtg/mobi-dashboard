@@ -203,6 +203,8 @@ export class OcrCimbResultComponent {
 
     console.log(expectedSaldoAkhir);
     console.log(saldoAkhir);
+    console.log(tempTotalDebet);
+    console.log(tempTotalKredit);
 
     if (expectedSaldoAkhir === saldoAkhir) {
       this.saldoFraudDetection = true;
