@@ -42,6 +42,12 @@ export class OcrDanamonResultComponent {
   pemilikRekening: string = '';
   periodeLaporan: string = '';
   isPdfModified: any;
+  saldoFraudDetection: boolean | null = null;
+  transactionFraudDetection: boolean | null = null;
+  susModFraudDetection: boolean | null = null;
+  keteranganSaldoFraudDetection: string = '-';
+  keteranganTransactionFraudDetection: string = '-';
+  keteranganSusModFraudDetection: string = '-';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -154,5 +160,53 @@ export class OcrDanamonResultComponent {
           console.log(error);
         },
       });
+  }
+
+  checkPotentialFraud() {
+    let tempTotalDebet = 0;
+    let tempTotalKredit = 0;
+    let saldoAwal = convertToFloat(this.transactionData[0].saldo);
+    let saldoAkhir = convertToFloat(
+      this.transactionData[this.transactionData.length - 1].saldo
+    );
+
+    this.transactionData.forEach((e: any) => {
+      if (e.debit !== null) {
+        tempTotalDebet = tempTotalDebet + convertToFloat(e.debit);
+      }
+
+      if (e.kredit !== null) {
+        tempTotalKredit = tempTotalKredit + convertToFloat(e.kredit);
+      }
+    });
+
+    const expectedSaldoAkhir = parseFloat(
+      (saldoAwal + tempTotalKredit - tempTotalDebet).toFixed(2)
+    );
+
+    if (expectedSaldoAkhir === saldoAkhir) {
+      this.saldoFraudDetection = true;
+      this.keteranganSaldoFraudDetection =
+        'The total balance match based on the transaction report';
+    } else {
+      this.saldoFraudDetection = false;
+      this.keteranganSaldoFraudDetection = `The total balance does not match based on the transaction report. Expected : ${expectedSaldoAkhir}, Actual : ${saldoAkhir}. Please check back!`;
+    }
+
+    if (this.isPdfModified) {
+      this.susModFraudDetection = false;
+      this.keteranganSusModFraudDetection =
+        'The document indicates it has been modified.';
+    } else {
+      this.susModFraudDetection = true;
+      this.keteranganSusModFraudDetection =
+        'The document does not indicate it has been modified.';
+    }
+
+    return {
+      saldoFraudDetection: this.saldoFraudDetection,
+      transactionFraudDetection: this.transactionFraudDetection,
+      susModFraudDetection: this.susModFraudDetection,
+    };
   }
 }
