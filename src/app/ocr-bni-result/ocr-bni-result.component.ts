@@ -206,8 +206,7 @@ export class OcrBniResultComponent {
         'The total balance match based on the transaction report';
     } else {
       this.saldoFraudDetection = false;
-      this.keteranganSaldoFraudDetection =
-        'The total balance does not match based on the transaction report. Please check back!';
+      this.keteranganSaldoFraudDetection = `The total balance does not match based on the transaction report. Expected : ${expectedSaldoAkhir}, Actual : ${saldoAkhir}. Please check back!`;
     }
 
     if (this.isPdfModified) {
