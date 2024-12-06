@@ -319,19 +319,33 @@ export class OcrBankPyComponent implements AfterViewInit {
         title: 'Upload Failed',
         text: 'Determine the type of bank statement!',
       });
-    } else {
-      Swal.fire({
-        title: 'Processing',
-        text: 'Processing is underway. Please wait ... ',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        allowEnterKey: false,
-        didOpen: () => {
-          Swal.showLoading();
-        },
-      });
 
-      this.element.dropzone.processQueue();
+      return;
     }
+
+    if (
+      !this.element.dropzone.files ||
+      this.element.dropzone.files.length === 0
+    ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: 'Please add at least one file before processing!',
+      });
+      return;
+    }
+
+    Swal.fire({
+      title: 'Processing',
+      text: 'Processing is underway. Please wait ... ',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    this.element.dropzone.processQueue();
   }
 }
