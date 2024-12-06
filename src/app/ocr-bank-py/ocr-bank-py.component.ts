@@ -69,98 +69,98 @@ export class OcrBankPyComponent implements AfterViewInit {
         9 = Mandiri
        */
 
-      isAuthorizedByIp(this.http, this.router);
+      if (isAuthorizedByIp(this.http, this.router)) {
+        // Untuk bank BCA CORP ataupun BCA PERSONAL
+        if (
+          this.selectedBankStatement == '1' ||
+          this.selectedBankStatement == '2'
+        ) {
+          proceedOcrBca(
+            this.isZipPasswordProtected,
+            this.zipPassword,
+            this.selectedBankStatement,
+            this.http,
+            this.router,
+            files
+          );
+        }
 
-      // Untuk bank BCA CORP ataupun BCA PERSONAL
-      if (
-        this.selectedBankStatement == '1' ||
-        this.selectedBankStatement == '2'
-      ) {
-        proceedOcrBca(
-          this.isZipPasswordProtected,
-          this.zipPassword,
-          this.selectedBankStatement,
-          this.http,
-          this.router,
-          files
-        );
-      }
+        if (this.selectedBankStatement == '3') {
+          proceedOcrBri(
+            this.isZipPasswordProtected,
+            this.zipPassword,
+            this.selectedBankStatement,
+            this.http,
+            this.router,
+            files
+          );
+        }
 
-      if (this.selectedBankStatement == '3') {
-        proceedOcrBri(
-          this.isZipPasswordProtected,
-          this.zipPassword,
-          this.selectedBankStatement,
-          this.http,
-          this.router,
-          files
-        );
-      }
+        if (this.selectedBankStatement == '4') {
+          proceedOcrOcbc(
+            this.isZipPasswordProtected,
+            this.zipPassword,
+            this.selectedBankStatement,
+            this.http,
+            this.router,
+            files
+          );
+        }
 
-      if (this.selectedBankStatement == '4') {
-        proceedOcrOcbc(
-          this.isZipPasswordProtected,
-          this.zipPassword,
-          this.selectedBankStatement,
-          this.http,
-          this.router,
-          files
-        );
-      }
+        if (this.selectedBankStatement == '5') {
+          proceedOcrBni(
+            this.isZipPasswordProtected,
+            this.zipPassword,
+            this.selectedBankStatement,
+            this.http,
+            this.router,
+            files
+          );
+        }
 
-      if (this.selectedBankStatement == '5') {
-        proceedOcrBni(
-          this.isZipPasswordProtected,
-          this.zipPassword,
-          this.selectedBankStatement,
-          this.http,
-          this.router,
-          files
-        );
-      }
+        if (this.selectedBankStatement == '6') {
+          proceedOcrPermata(
+            this.isZipPasswordProtected,
+            this.zipPassword,
+            this.selectedBankStatement,
+            this.http,
+            this.router,
+            files
+          );
+        }
 
-      if (this.selectedBankStatement == '6') {
-        proceedOcrPermata(
-          this.isZipPasswordProtected,
-          this.zipPassword,
-          this.selectedBankStatement,
-          this.http,
-          this.router,
-          files
-        );
-      }
+        if (this.selectedBankStatement == '7') {
+          proceedOcrDanamon(
+            this.isZipPasswordProtected,
+            this.zipPassword,
+            this.selectedBankStatement,
+            this.http,
+            this.router,
+            files
+          );
+        }
 
-      if (this.selectedBankStatement == '7') {
-        proceedOcrDanamon(
-          this.isZipPasswordProtected,
-          this.zipPassword,
-          this.selectedBankStatement,
-          this.http,
-          this.router,
-          files
-        );
-      }
+        if (this.selectedBankStatement == '8') {
+          proceedOcrCimb(
+            this.isZipPasswordProtected,
+            this.zipPassword,
+            this.selectedBankStatement,
+            this.http,
+            this.router,
+            files
+          );
+        }
 
-      if (this.selectedBankStatement == '8') {
-        proceedOcrCimb(
-          this.isZipPasswordProtected,
-          this.zipPassword,
-          this.selectedBankStatement,
-          this.http,
-          this.router,
-          files
-        );
-      }
-
-      if (this.selectedBankStatement == '9') {
-        proceedOcrMandiri(
-          this.isZipPasswordProtected,
-          this.zipPassword,
-          this.selectedBankStatement,
-          this.http,
-          this.router,
-          files
-        );
+        if (this.selectedBankStatement == '9') {
+          proceedOcrMandiri(
+            this.isZipPasswordProtected,
+            this.zipPassword,
+            this.selectedBankStatement,
+            this.http,
+            this.router,
+            files
+          );
+        }
       }
     });
   }

@@ -82,7 +82,9 @@ export function getEmail(): string | null {
   return sessionStorage.getItem('email');
 }
 
-export function isAuthorizedByIp(http: HttpClient, router: Router) {
+export function isAuthorizedByIp(http: HttpClient, router: Router): boolean {
+  let result = false;
+
   http.get<any>('https://api.ipify.org?format=json').subscribe({
     next: (ipData) => {
       http
@@ -92,7 +94,7 @@ export function isAuthorizedByIp(http: HttpClient, router: Router) {
         })
         .subscribe({
           next: (value) => {
-            return true;
+            result = true;
           },
           error: (err) => {
             Swal.fire({
@@ -103,17 +105,18 @@ export function isAuthorizedByIp(http: HttpClient, router: Router) {
               allowEnterKey: false,
               text: 'Other activity detected with your credentials. Come back in!',
               confirmButtonText: 'OK',
-            }).then((result) => {
-              if (result.isConfirmed) {
+            }).then((res) => {
+              if (res.isConfirmed) {
                 router.navigate(['/']); // Arahkan ke halaman login
               }
             });
             sessionStorage.clear();
-            return false;
+            result = false;
           },
         });
     },
   });
+  return result;
 }
 
 export function convertToFloat(stringNum: string | null) {
