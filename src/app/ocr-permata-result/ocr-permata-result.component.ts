@@ -152,6 +152,13 @@ export class OcrPermataResultComponent {
     this.validateBankAccount('013', this.nomorRekening, this.pemilikRekening);
   }
 
+  updateField(index: number, field: string, event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      this.transactionData[index][field] = target.value;
+    }
+  }
+
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {
     const requestBody = [
       {

@@ -215,4 +215,11 @@ export class OcrMandiriResultComponent {
       susModFraudDetection: this.susModFraudDetection,
     };
   }
+
+  updateField(index: number, field: string, event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      this.transactionData[index][field] = target.value;
+    }
+  }
 }

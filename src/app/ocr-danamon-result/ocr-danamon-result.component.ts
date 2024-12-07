@@ -162,6 +162,13 @@ export class OcrDanamonResultComponent {
       });
   }
 
+  updateField(index: number, field: string, event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      this.transactionData[index][field] = target.value;
+    }
+  }
+
   checkPotentialFraud() {
     let tempTotalDebet = 0;
     let tempTotalKredit = 0;

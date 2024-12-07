@@ -434,13 +434,14 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
-          <tr *ngFor="let e of transactionData" class="divide-x">
+          <tr *ngFor="let e of transactionData; let i = index" class="divide-x">
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
                 [value]="e.tanggal_transaksi"
                 type="text"
+                (change)="updateField(i, 'tanggal_transaksi', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
               />
             </td>
@@ -451,6 +452,7 @@
                 [value]="e.uraian_transaksi !== null ? e.uraian_transaksi : ''"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                 rows="4"
+                (change)="updateField(i, 'uraian_transaksi', $event)"
                 placeholder="This is a textarea placeholder"
               ></textarea>
             </td>
@@ -460,6 +462,7 @@
               <input
                 [value]="e.teller == '' ? '-' : e.teller"
                 type="text"
+                (change)="updateField(i, 'teller', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
               />
@@ -470,6 +473,7 @@
               <input
                 [value]="e.debit == '' ? '-' : e.debit"
                 type="text"
+                (change)="updateField(i, 'debit', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
               />
@@ -480,6 +484,7 @@
               <input
                 [value]="e.kredit == '' ? '-' : e.kredit"
                 type="text"
+                (change)="updateField(i, 'kredit', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
               />
@@ -487,9 +492,14 @@
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              {{ e.saldo == "" ? "-" : e.saldo }}
+              <input
+                [value]="e.saldo == '' ? '-' : e.saldo"
+                type="text"
+                (change)="updateField(i, 'saldo', $event)"
+                class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
+                placeholder="Type Here"
+              />
             </td>
-
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
