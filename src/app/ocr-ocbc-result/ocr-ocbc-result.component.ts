@@ -11,6 +11,7 @@ import {
   getMonthlyChartLabels,
   getSaldoMovement,
 } from './ocr-ocbc-result.service';
+import { map, mean, sum } from 'lodash';
 
 @Component({
   selector: 'app-ocr-ocbc-result',
@@ -192,6 +193,74 @@ export class OcrOcbcResultComponent {
     }
   }
 
+  stdev(array: any[]) {
+    var avg = sum(array) / array.length;
+    return Math.sqrt(
+      sum(map(array, (i) => Math.pow(i - avg, 2))) / array.length
+    );
+  }
+
+  cekTransaksiJanggal(transactionData: any) {
+    const kumpulanBiaya: any[] = [];
+    const kumpulanPembelian: any[] = [];
+    const kumpulanAdmin: any[] = [];
+
+    let banyakTransaksiMencurigakan = 0;
+
+    transactionData.forEach((e: any) => {
+      if (e.debet !== null) {
+        if (String(e.uraian).toLowerCase().includes('biaya')) {
+          kumpulanBiaya.push(convertToFloat(e.debet));
+        }
+
+        if (String(e.uraian).toLowerCase().includes('pembelian')) {
+          kumpulanPembelian.push(convertToFloat(e.debet));
+        }
+
+        if (String(e.uraian).toLowerCase().includes('admin')) {
+          kumpulanAdmin.push(convertToFloat(e.debet));
+        }
+      }
+    });
+
+    const avgBiaya = mean(kumpulanBiaya);
+    const stdDevBiaya = this.stdev(kumpulanBiaya);
+
+    const avgPembelian = mean(kumpulanPembelian);
+    const stdDevPembelian = this.stdev(kumpulanPembelian);
+
+    const avgAdmin = mean(kumpulanAdmin);
+    const stdDevAdmin = this.stdev(kumpulanAdmin);
+
+    kumpulanBiaya.forEach((e: any) => {
+      if (e > stdDevBiaya * 2) {
+        banyakTransaksiMencurigakan++;
+      }
+    });
+
+    kumpulanPembelian.forEach((e: any) => {
+      if (e > stdDevPembelian * 2) {
+        banyakTransaksiMencurigakan++;
+      }
+    });
+
+    kumpulanAdmin.forEach((e: any) => {
+      if (e > stdDevAdmin * 2) {
+        banyakTransaksiMencurigakan++;
+      }
+    });
+
+    return {
+      avgBiaya: avgBiaya,
+      stdDevBiaya: stdDevBiaya,
+      avgPembelian: avgPembelian,
+      stdDevPembelian: stdDevPembelian,
+      avgAdmin: avgAdmin,
+      stdDevAdmin: stdDevAdmin,
+      banyakTransaksiMencurigakan: banyakTransaksiMencurigakan,
+    };
+  }
+
   checkPotentialFraud() {
     let tempTotalDebet = 0;
     let tempTotalKredit = 0;
@@ -231,6 +300,18 @@ export class OcrOcbcResultComponent {
       this.susModFraudDetection = true;
       this.keteranganSusModFraudDetection =
         'The document does not indicate it has been modified.';
+    }
+
+    const dataTransaksiMencurigakan = this.cekTransaksiJanggal(
+      this.transactionData
+    );
+
+    if (dataTransaksiMencurigakan.banyakTransaksiMencurigakan > 0) {
+      this.transactionFraudDetection = false;
+      this.keteranganTransactionFraudDetection = `${dataTransaksiMencurigakan.banyakTransaksiMencurigakan} suspicious transactions were found in this transaction report.`;
+    } else {
+      this.transactionFraudDetection = true;
+      this.keteranganTransactionFraudDetection = `No suspicious transactions were found in this transaction report.`;
     }
 
     return {
