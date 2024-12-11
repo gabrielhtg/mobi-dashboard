@@ -196,7 +196,22 @@ export class OcrBankPyComponent implements AfterViewInit {
 
   uploadFileSingle(selectedBankStatement: string) {
     if (!this.selectedFile) {
-      alert('Please select a file first!');
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: 'Please select a file first!',
+      });
+      return;
+    }
+
+    const allowedExtensions = ['application/pdf'];
+
+    if (!allowedExtensions.includes(this.selectedFile.type)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: 'Invalid file detected! Only PDF files are allowed.',
+      });
       return;
     }
 
@@ -341,6 +356,7 @@ export class OcrBankPyComponent implements AfterViewInit {
       'image/jpg',
       'application/zip',
     ];
+
     const invalidFiles = this.element.dropzone.files.filter(
       (file: any) => !allowedExtensions.includes(file.type)
     );
@@ -367,45 +383,4 @@ export class OcrBankPyComponent implements AfterViewInit {
 
     this.element.dropzone.processQueue();
   }
-
-  // uploadFileMultiple(selectedBankStatement: string) {
-  //   if (selectedBankStatement == '') {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Upload Failed',
-  //       text: 'Determine the type of bank statement!',
-  //     });
-
-  //     return;
-  //   }
-
-  //   if (
-  //     !this.element.dropzone.files ||
-  //     this.element.dropzone.files.length === 0
-  //   ) {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Upload Failed',
-  //       text: 'Please add at least one file before processing!',
-  //     });
-  //     return;
-  //   }
-
-  //   Swal.fire({
-  //     title: 'Processing',
-  //     text: 'Processing is underway. Please wait ... ',
-  //     allowOutsideClick: false,
-  //     allowEscapeKey: false,
-  //     allowEnterKey: false,
-  //     didOpen: () => {
-  //       Swal.showLoading();
-  //     },
-  //   });
-  //   Swal.fire({
-  //     icon: 'error',
-  //     title: 'Upload Failed',
-  //     text: 'Invalid file type detected. Only images (JPEG, PNG) and ZIP files are allowed.',
-  //   });
-  //   this.element.dropzone.processQueue();
-  // }
 }
