@@ -387,6 +387,9 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 [value]="e.tanggal_transaksi"
                 (change)="updateField(i, 'tanggal_transaksi', $event)"
                 type="text"
@@ -397,6 +400,9 @@
               class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
             >
               <input
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 [value]="e.tanggal_valuta == null ? '-' : e.tanggal_valuta"
                 type="text"
                 (change)="updateField(i, 'tanggal_valuta', $event)"
@@ -408,6 +414,9 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <textarea
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 [value]="
                   e.uraian_transaksi !== null ? e.uraian_transaksi : null
                 "
@@ -421,6 +430,9 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 [value]="e.debet == null ? '-' : e.debet"
                 type="text"
                 (change)="updateField(i, 'debet', $event)"
@@ -432,6 +444,9 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 [value]="e.kredit == null ? '-' : e.kredit"
                 type="text"
                 (change)="updateField(i, 'kredit', $event)"
@@ -440,6 +455,9 @@
               />
             </td>
             <td
+              [ngClass]="{
+                'text-red-600': indexTransaksiJanggal.includes(i)
+              }"
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               {{ e.saldo == "" ? "-" : e.saldo }}

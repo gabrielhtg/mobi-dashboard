@@ -6,7 +6,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForOf, NgIf } from '@angular/common';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartOptions, ChartData, ChartConfiguration } from 'chart.js';
 import {
@@ -23,7 +23,7 @@ import { convertToFloat } from '../allservice';
 @Component({
   selector: 'app-ocr-bca-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, FormsModule, NgIf],
+  imports: [NgForOf, BaseChartDirective, FormsModule, NgIf, NgClass],
   templateUrl: './ocr-bca-result.component.html',
 })
 export class OcrBcaResultComponent implements OnInit {
@@ -63,6 +63,7 @@ export class OcrBcaResultComponent implements OnInit {
   keteranganSaldoFraudDetection: string = '-';
   keteranganTransactionFraudDetection: string = '-';
   keteranganSusModFraudDetection: string = '-';
+  indexTransaksiJanggal: number[] = [];
   // accountValidation: any = {};
 
   barChartOptions: ChartOptions = {
@@ -229,49 +230,64 @@ export class OcrBcaResultComponent implements OnInit {
     const kumpulanBiaya: any[] = [];
     const kumpulanPembelian: any[] = [];
     const kumpulanAdmin: any[] = [];
+    const indexTransaksiMencurigakan: number[] = [];
 
     let banyakTransaksiMencurigakan = 0;
 
-    transactionData.forEach((e: any) => {
+    transactionData.forEach((e: any, index: number) => {
       if (String(e.mutasi).includes('DB')) {
         if (String(e.keterangan).toLowerCase().includes('biaya')) {
-          kumpulanBiaya.push(convertToFloat(e.mutasi));
+          kumpulanBiaya.push({
+            index: index,
+            value: convertToFloat(e.mutasi),
+          });
         }
 
         if (String(e.keterangan).toLowerCase().includes('pembelian')) {
-          kumpulanPembelian.push(convertToFloat(e.mutasi));
+          kumpulanPembelian.push({
+            index: index,
+            value: convertToFloat(e.mutasi),
+          });
         }
 
         if (String(e.keterangan).toLowerCase().includes('admin')) {
-          kumpulanAdmin.push(convertToFloat(e.mutasi));
+          kumpulanAdmin.push({
+            index: index,
+            value: convertToFloat(e.mutasi),
+          });
         }
       }
     });
 
-    const avgBiaya = mean(kumpulanBiaya);
-    const stdDevBiaya = this.stdev(kumpulanBiaya);
+    const avgBiaya = mean(kumpulanBiaya.map((item) => item.value));
+    const stdDevBiaya = this.stdev(kumpulanBiaya.map((item) => item.value));
 
-    const avgPembelian = mean(kumpulanPembelian);
-    const stdDevPembelian = this.stdev(kumpulanPembelian);
+    const avgPembelian = mean(kumpulanPembelian.map((item) => item.value));
+    const stdDevPembelian = this.stdev(
+      kumpulanPembelian.map((item) => item.value)
+    );
 
-    const avgAdmin = mean(kumpulanAdmin);
-    const stdDevAdmin = this.stdev(kumpulanAdmin);
+    const avgAdmin = mean(kumpulanAdmin.map((item) => item.value));
+    const stdDevAdmin = this.stdev(kumpulanAdmin.map((item) => item.value));
 
     kumpulanBiaya.forEach((e: any) => {
-      if (e > stdDevBiaya * 2) {
+      if (e.value > stdDevBiaya * 2) {
         banyakTransaksiMencurigakan++;
+        indexTransaksiMencurigakan.push(e.index);
       }
     });
 
     kumpulanPembelian.forEach((e: any) => {
-      if (e > stdDevPembelian * 2) {
+      if (e.value > stdDevPembelian * 2) {
         banyakTransaksiMencurigakan++;
+        indexTransaksiMencurigakan.push(e.index);
       }
     });
 
     kumpulanAdmin.forEach((e: any) => {
-      if (e > stdDevAdmin * 2) {
+      if (e.value > stdDevAdmin * 2) {
         banyakTransaksiMencurigakan++;
+        indexTransaksiMencurigakan.push(e.index);
       }
     });
 
@@ -283,6 +299,7 @@ export class OcrBcaResultComponent implements OnInit {
       avgAdmin: avgAdmin,
       stdDevAdmin: stdDevAdmin,
       banyakTransaksiMencurigakan: banyakTransaksiMencurigakan,
+      indexTransaksiMencurigakan: indexTransaksiMencurigakan,
     };
   }
 
@@ -333,9 +350,12 @@ export class OcrBcaResultComponent implements OnInit {
 
     if (dataTransaksiMencurigakan.banyakTransaksiMencurigakan > 0) {
       this.transactionFraudDetection = false;
-      this.keteranganTransactionFraudDetection = `${dataTransaksiMencurigakan.banyakTransaksiMencurigakan} suspicious transactions were found in this transaction report.`;
+      this.indexTransaksiJanggal =
+        dataTransaksiMencurigakan.indexTransaksiMencurigakan;
+      this.keteranganTransactionFraudDetection = `${dataTransaksiMencurigakan.banyakTransaksiMencurigakan} suspicious transactions were found in this transaction report. The transactions are marked in red in the table above.`;
     } else {
       this.transactionFraudDetection = true;
+      this.indexTransaksiJanggal = [];
       this.keteranganTransactionFraudDetection = `No suspicious transactions were found in this transaction report.`;
     }
 

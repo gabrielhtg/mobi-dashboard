@@ -396,6 +396,9 @@
             >
               <input
                 [value]="e.date_and_time"
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 (change)="updateField(i, 'date_and_time', $event)"
                 type="text"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
@@ -405,6 +408,9 @@
               class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
             >
               <input
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 [value]="e.value_date == null ? '-' : e.value_date"
                 type="text"
                 (change)="updateField(i, 'value_date', $event)"
@@ -416,6 +422,9 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <textarea
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 [value]="e.description !== null ? e.description : null"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                 rows="4"
@@ -427,6 +436,9 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 [value]="e.refference_no == null ? '-' : e.refference_no"
                 type="text"
                 (change)="updateField(i, 'refference_no', $event)"
@@ -438,6 +450,9 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 [value]="e.debit == null ? '-' : e.debit"
                 type="text"
                 (change)="updateField(i, 'debit', $event)"
@@ -449,6 +464,9 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 [value]="e.kredit == null ? '-' : e.kredit"
                 type="text"
                 (change)="updateField(i, 'kredit', $event)"
@@ -460,6 +478,9 @@
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               <input
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 [value]="e.saldo == null ? '-' : e.saldo"
                 type="text"
                 (change)="updateField(i, 'saldo', $event)"
@@ -468,6 +489,9 @@
               />
             </td>
             <td
+              [ngClass]="{
+                'text-red-600': indexTransaksiJanggal.includes(i)
+              }"
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               {{ e.filename == "" ? "-" : e.filename }}

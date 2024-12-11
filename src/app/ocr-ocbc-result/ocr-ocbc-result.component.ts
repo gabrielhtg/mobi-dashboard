@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForOf, NgIf } from '@angular/common';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import {
@@ -16,7 +16,7 @@ import { map, mean, sum } from 'lodash';
 @Component({
   selector: 'app-ocr-ocbc-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, NgIf],
+  imports: [NgForOf, BaseChartDirective, NgIf, NgClass],
   templateUrl: './ocr-ocbc-result.component.html',
 })
 export class OcrOcbcResultComponent {
@@ -52,6 +52,7 @@ export class OcrOcbcResultComponent {
   saldoDalamMataUangIDR: string = '';
   totalSaldoDalamIDR: string = '';
   isPdfModified: any = null;
+  indexTransaksiJanggal: number[] = [];
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -207,46 +208,62 @@ export class OcrOcbcResultComponent {
 
     let banyakTransaksiMencurigakan = 0;
 
-    transactionData.forEach((e: any) => {
+    transactionData.forEach((e: any, index: number) => {
       if (e.debet !== null) {
         if (String(e.uraian).toLowerCase().includes('biaya')) {
-          kumpulanBiaya.push(convertToFloat(e.debet));
+          kumpulanBiaya.push({
+            index: index,
+            value: convertToFloat(e.debet),
+          });
         }
 
         if (String(e.uraian).toLowerCase().includes('pembelian')) {
-          kumpulanPembelian.push(convertToFloat(e.debet));
+          kumpulanPembelian.push({
+            index: index,
+            value: convertToFloat(e.debet),
+          });
         }
 
         if (String(e.uraian).toLowerCase().includes('admin')) {
-          kumpulanAdmin.push(convertToFloat(e.debet));
+          kumpulanAdmin.push({
+            index: index,
+            value: convertToFloat(e.debet),
+          });
         }
       }
     });
 
-    const avgBiaya = mean(kumpulanBiaya);
-    const stdDevBiaya = this.stdev(kumpulanBiaya);
+    const avgBiaya = mean(kumpulanBiaya.map((item) => item.value));
+    const stdDevBiaya = this.stdev(kumpulanBiaya.map((item) => item.value));
 
-    const avgPembelian = mean(kumpulanPembelian);
-    const stdDevPembelian = this.stdev(kumpulanPembelian);
+    const avgPembelian = mean(kumpulanPembelian.map((item) => item.value));
+    const stdDevPembelian = this.stdev(
+      kumpulanPembelian.map((item) => item.value)
+    );
 
-    const avgAdmin = mean(kumpulanAdmin);
-    const stdDevAdmin = this.stdev(kumpulanAdmin);
+    const avgAdmin = mean(kumpulanAdmin.map((item) => item.value));
+    const stdDevAdmin = this.stdev(kumpulanAdmin.map((item) => item.value));
+
+    const indexTransaksiMencurigakan: number[] = [];
 
     kumpulanBiaya.forEach((e: any) => {
-      if (e > stdDevBiaya * 2) {
+      if (e.value > stdDevBiaya * 2) {
         banyakTransaksiMencurigakan++;
+        indexTransaksiMencurigakan.push(e.index);
       }
     });
 
     kumpulanPembelian.forEach((e: any) => {
-      if (e > stdDevPembelian * 2) {
+      if (e.value > stdDevPembelian * 2) {
         banyakTransaksiMencurigakan++;
+        indexTransaksiMencurigakan.push(e.index);
       }
     });
 
     kumpulanAdmin.forEach((e: any) => {
-      if (e > stdDevAdmin * 2) {
+      if (e.value > stdDevAdmin * 2) {
         banyakTransaksiMencurigakan++;
+        indexTransaksiMencurigakan.push(e.index);
       }
     });
 
@@ -258,6 +275,7 @@ export class OcrOcbcResultComponent {
       avgAdmin: avgAdmin,
       stdDevAdmin: stdDevAdmin,
       banyakTransaksiMencurigakan: banyakTransaksiMencurigakan,
+      indexTransaksiMencurigakan: indexTransaksiMencurigakan,
     };
   }
 
@@ -308,9 +326,12 @@ export class OcrOcbcResultComponent {
 
     if (dataTransaksiMencurigakan.banyakTransaksiMencurigakan > 0) {
       this.transactionFraudDetection = false;
-      this.keteranganTransactionFraudDetection = `${dataTransaksiMencurigakan.banyakTransaksiMencurigakan} suspicious transactions were found in this transaction report.`;
+      this.indexTransaksiJanggal =
+        dataTransaksiMencurigakan.indexTransaksiMencurigakan;
+      this.keteranganTransactionFraudDetection = `${dataTransaksiMencurigakan.banyakTransaksiMencurigakan} suspicious transactions were found in this transaction report. The transactions are marked in red in the table above.`;
     } else {
       this.transactionFraudDetection = true;
+      this.indexTransaksiJanggal = [];
       this.keteranganTransactionFraudDetection = `No suspicious transactions were found in this transaction report.`;
     }
 

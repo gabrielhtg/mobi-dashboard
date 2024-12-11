@@ -5,7 +5,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { NgForOf, NgIf } from '@angular/common';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartOptions, ChartData, ChartConfiguration } from 'chart.js';
@@ -22,7 +22,7 @@ import { map, mean, sum } from 'lodash';
 @Component({
   selector: 'app-ocr-bri-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, NgIf],
+  imports: [NgForOf, BaseChartDirective, NgIf, NgClass],
   templateUrl: './ocr-bri-result.component.html',
 })
 export class OcrBriResultComponent implements OnInit {
@@ -59,6 +59,7 @@ export class OcrBriResultComponent implements OnInit {
   keteranganSaldoFraudDetection: string = '-';
   keteranganTransactionFraudDetection: string = '-';
   keteranganSusModFraudDetection: string = '-';
+  indexTransaksiJanggal: number[] = [];
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -198,49 +199,64 @@ export class OcrBriResultComponent implements OnInit {
     const kumpulanBiaya: any[] = [];
     const kumpulanPembelian: any[] = [];
     const kumpulanAdmin: any[] = [];
+    const indexTransaksiMencurigakan: number[] = [];
 
     let banyakTransaksiMencurigakan = 0;
 
-    transactionData.forEach((e: any) => {
+    transactionData.forEach((e: any, index: number) => {
       if (e.debit !== null) {
         if (String(e.uraian_transaksi).toLowerCase().includes('biaya')) {
-          kumpulanBiaya.push(convertToFloat(e.debit));
+          kumpulanBiaya.push({
+            index: index,
+            value: convertToFloat(e.debit),
+          });
         }
 
         if (String(e.uraian_transaksi).toLowerCase().includes('pembelian')) {
-          kumpulanPembelian.push(convertToFloat(e.debit));
+          kumpulanPembelian.push({
+            index: index,
+            value: convertToFloat(e.debit),
+          });
         }
 
         if (String(e.uraian_transaksi).toLowerCase().includes('admin')) {
-          kumpulanAdmin.push(convertToFloat(e.debit));
+          kumpulanAdmin.push({
+            index: index,
+            value: convertToFloat(e.debit),
+          });
         }
       }
     });
 
-    const avgBiaya = mean(kumpulanBiaya);
-    const stdDevBiaya = this.stdev(kumpulanBiaya); // Tambahkan ekstensi Lodash FP jika std tidak tersedia.
+    const avgBiaya = mean(kumpulanBiaya.map((item) => item.value));
+    const stdDevBiaya = this.stdev(kumpulanBiaya.map((item) => item.value));
 
-    const avgPembelian = mean(kumpulanPembelian);
-    const stdDevPembelian = this.stdev(kumpulanPembelian);
+    const avgPembelian = mean(kumpulanPembelian.map((item) => item.value));
+    const stdDevPembelian = this.stdev(
+      kumpulanPembelian.map((item) => item.value)
+    );
 
-    const avgAdmin = mean(kumpulanAdmin);
-    const stdDevAdmin = this.stdev(kumpulanAdmin);
+    const avgAdmin = mean(kumpulanAdmin.map((item) => item.value));
+    const stdDevAdmin = this.stdev(kumpulanAdmin.map((item) => item.value));
 
     kumpulanBiaya.forEach((e: any) => {
-      if (e > stdDevBiaya * 2) {
+      if (e.value > stdDevBiaya * 2) {
         banyakTransaksiMencurigakan++;
+        indexTransaksiMencurigakan.push(e.index);
       }
     });
 
     kumpulanPembelian.forEach((e: any) => {
-      if (e > stdDevPembelian * 2) {
+      if (e.value > stdDevPembelian * 2) {
         banyakTransaksiMencurigakan++;
+        indexTransaksiMencurigakan.push(e.index);
       }
     });
 
     kumpulanAdmin.forEach((e: any) => {
-      if (e > stdDevAdmin * 2) {
+      if (e.value > stdDevAdmin * 2) {
         banyakTransaksiMencurigakan++;
+        indexTransaksiMencurigakan.push(e.index);
       }
     });
 
@@ -252,6 +268,7 @@ export class OcrBriResultComponent implements OnInit {
       avgAdmin: avgAdmin,
       stdDevAdmin: stdDevAdmin,
       banyakTransaksiMencurigakan: banyakTransaksiMencurigakan,
+      indexTransaksiMencurigakan: indexTransaksiMencurigakan,
     };
   }
 
@@ -276,11 +293,6 @@ export class OcrBriResultComponent implements OnInit {
     const expectedSaldoAkhir = parseFloat(
       (tempSaldoAwal + tempTotalKredit - tempTotalDebet).toFixed(2)
     );
-
-    console.log(expectedSaldoAkhir);
-    console.log(saldoAkhir);
-    console.log(tempTotalDebet);
-    console.log(tempTotalKredit);
 
     if (expectedSaldoAkhir === saldoAkhir) {
       this.saldoFraudDetection = true;
@@ -307,9 +319,12 @@ export class OcrBriResultComponent implements OnInit {
 
     if (dataTransaksiMencurigakan.banyakTransaksiMencurigakan > 0) {
       this.transactionFraudDetection = false;
-      this.keteranganTransactionFraudDetection = `${dataTransaksiMencurigakan.banyakTransaksiMencurigakan} suspicious transactions were found in this transaction report.`;
+      this.indexTransaksiJanggal =
+        dataTransaksiMencurigakan.indexTransaksiMencurigakan;
+      this.keteranganTransactionFraudDetection = `${dataTransaksiMencurigakan.banyakTransaksiMencurigakan} suspicious transactions were found in this transaction report. The transactions are marked in red in the table above.`;
     } else {
       this.transactionFraudDetection = true;
+      this.indexTransaksiJanggal = [];
       this.keteranganTransactionFraudDetection = `No suspicious transactions were found in this transaction report.`;
     }
 

@@ -390,6 +390,9 @@
               <input
                 [value]="e.posting_date"
                 type="text"
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 (change)="updateField(i, 'posting_date', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
               />
@@ -400,6 +403,9 @@
               <input
                 [value]="e.effective_date == null ? '-' : e.effective_date"
                 type="text"
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 (change)="updateField(i, 'effective_date', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
@@ -412,6 +418,9 @@
               <input
                 [value]="e.branch == null ? '-' : e.branch"
                 type="text"
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 (change)="updateField(i, 'branch', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
@@ -423,6 +432,9 @@
               <input
                 [value]="e.journal == null ? '-' : e.journal"
                 type="text"
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 (change)="updateField(i, 'journal', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
@@ -437,6 +449,9 @@
                     ? e.transaction_description
                     : null
                 "
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                 rows="4"
                 (change)="updateField(i, 'transaction_description', $event)"
@@ -449,6 +464,9 @@
               <input
                 [value]="e.amount == null ? '-' : e.amount"
                 type="text"
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 (change)="updateField(i, 'amount', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
@@ -460,6 +478,9 @@
               <input
                 [value]="e.debit_credit == null ? '-' : e.debit_credit"
                 type="text"
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 (change)="updateField(i, 'debit_credit', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
@@ -471,12 +492,18 @@
               <input
                 [value]="e.balance == null ? '-' : e.balance"
                 type="text"
+                [ngClass]="{
+                  'text-red-600': indexTransaksiJanggal.includes(i)
+                }"
                 (change)="updateField(i, 'balance', $event)"
                 class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-500"
                 placeholder="Type Here"
               />
             </td>
             <td
+              [ngClass]="{
+                'text-red-600': indexTransaksiJanggal.includes(i)
+              }"
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
               {{ e.filename == "" ? "-" : e.filename }}
