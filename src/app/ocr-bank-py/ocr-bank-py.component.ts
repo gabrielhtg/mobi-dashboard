@@ -70,6 +70,7 @@ export class OcrBankPyComponent implements AfterViewInit {
        */
 
       // Untuk bank BCA CORP ataupun BCA PERSONAL
+
       if (
         this.selectedBankStatement == '1' ||
         this.selectedBankStatement == '2'
@@ -333,6 +334,26 @@ export class OcrBankPyComponent implements AfterViewInit {
       return;
     }
 
+    // Validasi tipe file
+    const allowedExtensions = [
+      'image/jpeg',
+      'image/png',
+      'image/jpg',
+      'application/zip',
+    ];
+    const invalidFiles = this.element.dropzone.files.filter(
+      (file: any) => !allowedExtensions.includes(file.type)
+    );
+
+    if (invalidFiles.length > 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Upload Failed',
+        text: `Invalid file detected! Only images (JPEG, PNG) and ZIP files are allowed.`,
+      });
+      return;
+    }
+
     Swal.fire({
       title: 'Processing',
       text: 'Processing is underway. Please wait ... ',
@@ -346,4 +367,45 @@ export class OcrBankPyComponent implements AfterViewInit {
 
     this.element.dropzone.processQueue();
   }
+
+  // uploadFileMultiple(selectedBankStatement: string) {
+  //   if (selectedBankStatement == '') {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Upload Failed',
+  //       text: 'Determine the type of bank statement!',
+  //     });
+
+  //     return;
+  //   }
+
+  //   if (
+  //     !this.element.dropzone.files ||
+  //     this.element.dropzone.files.length === 0
+  //   ) {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Upload Failed',
+  //       text: 'Please add at least one file before processing!',
+  //     });
+  //     return;
+  //   }
+
+  //   Swal.fire({
+  //     title: 'Processing',
+  //     text: 'Processing is underway. Please wait ... ',
+  //     allowOutsideClick: false,
+  //     allowEscapeKey: false,
+  //     allowEnterKey: false,
+  //     didOpen: () => {
+  //       Swal.showLoading();
+  //     },
+  //   });
+  //   Swal.fire({
+  //     icon: 'error',
+  //     title: 'Upload Failed',
+  //     text: 'Invalid file type detected. Only images (JPEG, PNG) and ZIP files are allowed.',
+  //   });
+  //   this.element.dropzone.processQueue();
+  // }
 }
