@@ -16,12 +16,13 @@ export const authGuardChild: CanActivateChildFn = (route, state) => {
 // Fungsi pengecekan authorization
 function checkAuthorization() {
   const router = inject(Router);
-  const http = inject(HttpClient);
-  const username = getUsername();
+  // const http = inject(HttpClient);
+  // const username = getUsername();
+  const token = localStorage.getItem('login_token');
 
-  isAuthorizedByIp(http, router);
+  // isAuthorizedByIp(http, router);
 
-  if (username) {
+  if (token) {
     return true;
   }
 
