@@ -23,7 +23,7 @@ export function formatWaktu(date: string) {
   const month = months[dateObj.getMonth()];
   const year = dateObj.getFullYear();
   const hours = dateObj.getHours();
-  const minutes = dateObj.getMinutes();
+  const minutes = String(dateObj.getMinutes()).padStart(2, '0');
   const seconds = dateObj.getSeconds();
 
   // Format ulang sesuai kebutuhan
