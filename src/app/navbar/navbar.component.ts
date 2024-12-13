@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    this.loginData.username = sessionStorage.getItem('username');
+    this.loginData.username = localStorage.getItem('username');
     this.loginData.name = sessionStorage.getItem('name');
     this.loginData.profile_picture = sessionStorage.getItem('profile_picture');
     this.loginData.email = sessionStorage.getItem('email');
