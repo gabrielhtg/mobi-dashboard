@@ -30,8 +30,8 @@ export const routes: Routes = [
     path: 'dashboard',
     component: MainDashboardComponent,
     title: 'Main Menu',
-    canActivate: [authGuard],
-    canActivateChild: [authGuardChild],
+    // canActivate: [authGuard],
+    // canActivateChild: [authGuardChild],
     children: [
       {
         path: '',

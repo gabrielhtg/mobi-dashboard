@@ -15,33 +15,30 @@ export class LoginComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(formLogin: NgForm) {
-    this.http.get<any>('https://api.ipify.org?format=json').subscribe({
-      next: (ipData) => {
-        const loginData = {
-          ...formLogin.value,
-          ip_address: ipData.ip,
-        };
+    const loginData = {
+      ...formLogin.value,
+      token: localStorage.getItem('login_token'),
+    };
 
-        this.http.post<any>(`${apiUrl}/auth/login`, loginData).subscribe({
-          next: (value) => {
-            sessionStorage.setItem('name', value.data.nama);
-            sessionStorage.setItem(
-              'profile_picture',
-              value.data.profile_picture
-            );
-            sessionStorage.setItem('email', value.data.email);
-            sessionStorage.setItem('username', value.data.username);
-            this.router.navigate(['dashboard']);
-          },
-          error: (err) => {
-            console.log(err);
+    this.http.post<any>(`${apiUrl}/auth/login`, loginData).subscribe({
+      next: (value) => {
+        sessionStorage.setItem('name', value.data.user.nama);
+        sessionStorage.setItem(
+          'profile_picture',
+          value.data.user.profile_picture
+        );
+        sessionStorage.setItem('email', value.data.user.email);
+        sessionStorage.setItem('username', value.data.user.username);
+        localStorage.setItem('login_token', value.data.login_token);
+        this.router.navigate(['dashboard']);
+      },
+      error: (err) => {
+        console.log(err);
 
-            Swal.fire({
-              icon: 'error',
-              title: 'Unauthorized',
-              text: 'Pastikan username dan password kamu sudah tepat!',
-            });
-          },
+        Swal.fire({
+          icon: 'error',
+          title: 'Unauthorized',
+          text: `${err.error.msg}`,
         });
       },
     });
