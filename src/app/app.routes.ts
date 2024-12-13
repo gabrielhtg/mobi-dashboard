@@ -25,11 +25,12 @@ export const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
+    title: 'eReader Demo',
   },
   {
     path: 'dashboard',
     component: MainDashboardComponent,
-    title: 'Main Menu',
+    title: 'eReader Demo',
     canActivate: [authGuard],
     canActivateChild: [authGuardChild],
     children: [
