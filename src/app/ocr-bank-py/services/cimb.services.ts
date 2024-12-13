@@ -9,7 +9,8 @@ export default function proceedOcrCimb(
   selectedBankStatement: any,
   http: HttpClient,
   router: Router,
-  files: any
+  files: any,
+  dropzone: any
 ) {
   const formData = new FormData();
 
@@ -62,6 +63,11 @@ export default function proceedOcrCimb(
           err.error.data == undefined
             ? 'Please re-upload your photo with better quality because the system cannot read it or make sure the bank statement type is the same.'
             : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Clear all files from Dropzone
+          dropzone.removeAllFiles();
+        }
       });
       var audio = new Audio('assets/bell.wav');
       audio.play();

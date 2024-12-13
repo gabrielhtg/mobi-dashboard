@@ -81,7 +81,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          files
+          files,
+          this.element.dropzone
         );
       }
 
@@ -92,7 +93,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          files
+          files,
+          this.element.dropzone
         );
       }
 
@@ -103,7 +105,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          files
+          files,
+          this.element.dropzone
         );
       }
 
@@ -114,7 +117,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          files
+          files,
+          this.element.dropzone
         );
       }
 
@@ -125,7 +129,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          files
+          files,
+          this.element.dropzone
         );
       }
 
@@ -136,7 +141,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          files
+          files,
+          this.element.dropzone
         );
       }
 
@@ -147,7 +153,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          files
+          files,
+          this.element.dropzone
         );
       }
 
@@ -158,7 +165,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          files
+          files,
+          this.element.dropzone
         );
       }
     });
@@ -200,6 +208,10 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: 'Please select a file first!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.element.dropzone.removeAllFiles();
+        }
       });
       return;
     }
@@ -211,6 +223,10 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: 'Invalid file detected! Only PDF files are allowed.',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.element.dropzone.removeAllFiles();
+        }
       });
       return;
     }
@@ -220,6 +236,10 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: 'Determine the type of bank statement!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.element.dropzone.removeAllFiles();
+        }
       });
     } else {
       Swal.fire({
@@ -243,7 +263,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          [this.selectedFile]
+          [this.selectedFile],
+          this.element.dropzone
         );
       }
 
@@ -254,7 +275,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          [this.selectedFile]
+          [this.selectedFile],
+          this.element.dropzone
         );
       }
 
@@ -265,7 +287,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          [this.selectedFile]
+          [this.selectedFile],
+          this.element.dropzone
         );
       }
 
@@ -276,7 +299,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          [this.selectedFile]
+          [this.selectedFile],
+          this.element.dropzone
         );
       }
 
@@ -287,7 +311,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          [this.selectedFile]
+          [this.selectedFile],
+          this.element.dropzone
         );
       }
 
@@ -298,7 +323,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          [this.selectedFile]
+          [this.selectedFile],
+          this.element.dropzone
         );
       }
 
@@ -309,7 +335,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          [this.selectedFile]
+          [this.selectedFile],
+          this.element.dropzone
         );
       }
 
@@ -320,7 +347,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.selectedBankStatement,
           this.http,
           this.router,
-          [this.selectedFile]
+          [this.selectedFile],
+          this.element.dropzone
         );
       }
     }
@@ -332,6 +360,10 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: 'Determine the type of bank statement!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.element.dropzone.removeAllFiles();
+        }
       });
 
       return;
@@ -345,6 +377,10 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: 'Please add at least one file before processing!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.element.dropzone.removeAllFiles();
+        }
       });
       return;
     }
@@ -369,6 +405,10 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: `Invalid file detected! Only images (JPEG, PNG) and ZIP files are allowed.`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.element.dropzone.removeAllFiles();
+        }
       });
       return;
     }
