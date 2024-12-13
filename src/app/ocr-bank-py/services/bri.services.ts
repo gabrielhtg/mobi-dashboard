@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { apiUrlPy } from '../../env';
 import Swal from 'sweetalert2';
@@ -43,7 +43,12 @@ export default function proceedOcrBri(
   //   },
   // });
 
-  http.post<any>(`${apiUrlPy}/proceed-bri`, formData).subscribe({
+  const headers = new HttpHeaders().set(
+    'X-Username',
+    localStorage.getItem('username')!
+  );
+
+  http.post<any>(`${apiUrlPy}/proceed-bri`, formData, { headers }).subscribe({
     next: (value) => {
       Swal.close();
 

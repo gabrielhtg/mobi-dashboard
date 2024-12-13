@@ -28,7 +28,7 @@ export class LoginComponent {
           value.data.user.profile_picture
         );
         sessionStorage.setItem('email', value.data.user.email);
-        sessionStorage.setItem('username', value.data.user.username);
+        localStorage.setItem('username', value.data.user.username);
         localStorage.setItem('login_token', value.data.login_token);
         this.router.navigate(['dashboard']);
       },

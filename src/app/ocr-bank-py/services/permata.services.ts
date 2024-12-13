@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { apiUrlPy } from '../../env';
@@ -43,34 +43,41 @@ export default function proceedOcrPermata(
   //   },
   // });
 
-  http.post<any>(`${apiUrlPy}/proceed-permata`, formData).subscribe({
-    next: (value) => {
-      Swal.close();
+  const headers = new HttpHeaders().set(
+    'X-Username',
+    localStorage.getItem('username')!
+  );
 
-      router
-        .navigate(['/dashboard/ocr-permata-result'], {
-          state: value.data,
-        })
-        .then();
-      var audio = new Audio('assets/bell.wav');
-      audio.play();
-    },
-    error: (err) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Upload Failed',
-        text:
-          err.error.data == undefined
-            ? 'Please re-upload your photo with better quality because the system cannot read it or make sure the bank statement type is the same.'
-            : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Clear all files from Dropzone
-          dropzone.removeAllFiles();
-        }
-      });
-      var audio = new Audio('assets/bell.wav');
-      audio.play();
-    },
-  });
+  http
+    .post<any>(`${apiUrlPy}/proceed-permata`, formData, { headers })
+    .subscribe({
+      next: (value) => {
+        Swal.close();
+
+        router
+          .navigate(['/dashboard/ocr-permata-result'], {
+            state: value.data,
+          })
+          .then();
+        var audio = new Audio('assets/bell.wav');
+        audio.play();
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Upload Failed',
+          text:
+            err.error.data == undefined
+              ? 'Please re-upload your photo with better quality because the system cannot read it or make sure the bank statement type is the same.'
+              : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Clear all files from Dropzone
+            dropzone.removeAllFiles();
+          }
+        });
+        var audio = new Audio('assets/bell.wav');
+        audio.play();
+      },
+    });
 }

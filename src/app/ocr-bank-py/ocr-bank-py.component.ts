@@ -15,7 +15,6 @@ import proceedOcrCimb from './services/cimb.services';
 import proceedOcrOcbc from './services/ocbc.services';
 import proceedOcrMandiri from './services/mandiri.services';
 import { HSStaticMethods } from 'preline/preline';
-import { isAuthorizedByIp } from '../allservice';
 
 @Component({
   selector: 'app-ocr-bank-py',

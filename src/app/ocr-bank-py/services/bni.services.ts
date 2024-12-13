@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { apiUrlPy } from '../../env';
@@ -46,7 +46,12 @@ export default function proceedOcrBni(
   //   },
   // });
 
-  http.post<any>(`${apiUrlPy}/proceed-bni`, formData).subscribe({
+  const headers = new HttpHeaders().set(
+    'X-Username',
+    localStorage.getItem('username')!
+  );
+
+  http.post<any>(`${apiUrlPy}/proceed-bni`, formData, { headers }).subscribe({
     next: (value) => {
       Swal.close();
 

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { apiUrlPy } from '../../env';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -46,7 +46,12 @@ export function proceedOcrBca(
   //   },
   // });
 
-  http.post<any>(`${apiUrlPy}/proceed-bca`, formData).subscribe({
+  const headers = new HttpHeaders().set(
+    'X-Username',
+    localStorage.getItem('username')!
+  );
+
+  http.post<any>(`${apiUrlPy}/proceed-bca`, formData, { headers }).subscribe({
     next: (value) => {
       Swal.close();
 
