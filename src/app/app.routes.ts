@@ -134,9 +134,9 @@ export const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'create-account',
-    component: CreateAccountComponent,
-    title: 'Create Account',
-  },
+  // {
+  //   path: 'create-account',
+  //   component: CreateAccountComponent,
+  //   title: 'Create Account',
+  // },
 ];

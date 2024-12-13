@@ -357,13 +357,12 @@ export class OcrBankPyComponent implements AfterViewInit {
       'application/zip',
     ];
 
-    const invalidFiles = this.element.dropzone.files.filter((file: any) => {
-      console.log(file);
-      console.log(allowedExtensions.includes(file.type));
-      !allowedExtensions.includes(file.type);
+    const invalidFiles: File[] = [];
+    this.element.dropzone.files.forEach((element: File) => {
+      if (!allowedExtensions.includes(element.type)) {
+        invalidFiles.push(element);
+      }
     });
-
-    console.log(invalidFiles);
 
     if (invalidFiles.length > 0) {
       Swal.fire({
