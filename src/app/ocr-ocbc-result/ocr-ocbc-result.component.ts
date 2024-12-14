@@ -215,12 +215,25 @@ export class OcrOcbcResultComponent {
             index: index,
             value: convertToFloat(e.debet),
           });
+        } else {
+          kumpulanBiaya.push({
+            index: null,
+            value: 0,
+          });
         }
 
-        if (String(e.uraian).toLowerCase().includes('pembelian')) {
+        if (
+          String(e.uraian).toLowerCase().includes('pembelian') ||
+          String(e.uraian).toLowerCase().includes('payment')
+        ) {
           kumpulanPembelian.push({
             index: index,
             value: convertToFloat(e.debet),
+          });
+        } else {
+          kumpulanPembelian.push({
+            index: null,
+            value: 0,
           });
         }
 
@@ -228,6 +241,11 @@ export class OcrOcbcResultComponent {
           kumpulanAdmin.push({
             index: index,
             value: convertToFloat(e.debet),
+          });
+        } else {
+          kumpulanAdmin.push({
+            index: null,
+            value: 0,
           });
         }
       }

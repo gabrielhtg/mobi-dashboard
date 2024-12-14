@@ -199,14 +199,27 @@ export class OcrBniResultComponent {
             index: index,
             value: convertToFloat(e.amount),
           });
+        } else {
+          kumpulanBiaya.push({
+            index: null,
+            value: 0,
+          });
         }
 
         if (
-          String(e.transaction_description).toLowerCase().includes('pembelian')
+          String(e.transaction_description)
+            .toLowerCase()
+            .includes('pembelian') ||
+          String(e.transaction_description).toLowerCase().includes('payment')
         ) {
           kumpulanPembelian.push({
             index: index,
             value: convertToFloat(e.amount),
+          });
+        } else {
+          kumpulanPembelian.push({
+            index: null,
+            value: 0,
           });
         }
 
@@ -214,6 +227,11 @@ export class OcrBniResultComponent {
           kumpulanAdmin.push({
             index: index,
             value: convertToFloat(e.amount),
+          });
+        } else {
+          kumpulanAdmin.push({
+            index: null,
+            value: 0,
           });
         }
       }

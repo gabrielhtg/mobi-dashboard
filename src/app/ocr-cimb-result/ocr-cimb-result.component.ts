@@ -203,12 +203,25 @@ export class OcrCimbResultComponent {
             index: index,
             value: convertToFloat(e.debet),
           });
+        } else {
+          kumpulanBiaya.push({
+            index: null,
+            value: 0,
+          });
         }
 
-        if (String(e.uraian_transaksi).toLowerCase().includes('pembelian')) {
+        if (
+          String(e.uraian_transaksi).toLowerCase().includes('pembelian') ||
+          String(e.uraian_transaksi).toLowerCase().includes('payment')
+        ) {
           kumpulanPembelian.push({
             index: index,
             value: convertToFloat(e.debet),
+          });
+        } else {
+          kumpulanPembelian.push({
+            index: null,
+            value: 0,
           });
         }
 
@@ -216,6 +229,11 @@ export class OcrCimbResultComponent {
           kumpulanAdmin.push({
             index: index,
             value: convertToFloat(e.debet),
+          });
+        } else {
+          kumpulanAdmin.push({
+            index: null,
+            value: 0,
           });
         }
       }

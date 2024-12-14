@@ -192,12 +192,25 @@ export class OcrMandiriResultComponent {
             index: index,
             value: convertToFloat(e.debit),
           });
+        } else {
+          kumpulanBiaya.push({
+            index: null,
+            value: 0,
+          });
         }
 
-        if (String(e.description).toLowerCase().includes('pembelian')) {
+        if (
+          String(e.description).toLowerCase().includes('pembelian') ||
+          String(e.description).toLowerCase().includes('payment')
+        ) {
           kumpulanPembelian.push({
             index: index,
             value: convertToFloat(e.debit),
+          });
+        } else {
+          kumpulanBiaya.push({
+            index: null,
+            value: 0,
           });
         }
 
@@ -205,6 +218,11 @@ export class OcrMandiriResultComponent {
           kumpulanAdmin.push({
             index: index,
             value: convertToFloat(e.debit),
+          });
+        } else {
+          kumpulanAdmin.push({
+            index: null,
+            value: 0,
           });
         }
       }

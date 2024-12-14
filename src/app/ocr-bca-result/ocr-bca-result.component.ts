@@ -241,12 +241,25 @@ export class OcrBcaResultComponent implements OnInit {
             index: index,
             value: convertToFloat(e.mutasi),
           });
+        } else {
+          kumpulanBiaya.push({
+            index: null,
+            value: 0,
+          });
         }
 
-        if (String(e.keterangan).toLowerCase().includes('pembelian')) {
+        if (
+          String(e.keterangan).toLowerCase().includes('pembelian') ||
+          String(e.keterangan).toLowerCase().includes('payment')
+        ) {
           kumpulanPembelian.push({
             index: index,
             value: convertToFloat(e.mutasi),
+          });
+        } else {
+          kumpulanPembelian.push({
+            index: null,
+            value: 0,
           });
         }
 
@@ -254,6 +267,11 @@ export class OcrBcaResultComponent implements OnInit {
           kumpulanAdmin.push({
             index: index,
             value: convertToFloat(e.mutasi),
+          });
+        } else {
+          kumpulanAdmin.push({
+            index: null,
+            value: 0,
           });
         }
       }
