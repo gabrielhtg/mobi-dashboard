@@ -19,7 +19,7 @@ import { HSStaticMethods } from 'preline/preline';
 @Component({
   selector: 'app-ocr-bank-py',
   standalone: true,
-  imports: [AngularCropperjsModule, FormsModule, NgForOf],
+  imports: [AngularCropperjsModule, FormsModule, NgForOf, NgIf],
   templateUrl: './ocr-bank-py.component.html',
 })
 export class OcrBankPyComponent implements AfterViewInit {
@@ -36,6 +36,10 @@ export class OcrBankPyComponent implements AfterViewInit {
   isSingle: string = 'true';
 
   selectedFile: File | null = null;
+
+  isNotAllowedUsernameDetected =
+    localStorage.getItem('username') === 'pocbfi1' ||
+    localStorage.getItem('username') === 'pocbfi2';
 
   constructor(private router: Router, private http: HttpClient) {}
 
