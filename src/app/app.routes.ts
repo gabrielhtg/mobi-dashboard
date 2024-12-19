@@ -99,8 +99,18 @@ export const routes: Routes = [
         title: 'OCR BCA Result',
       },
       {
+        path: 'ocr-bca-result/:id',
+        component: OcrBcaResultComponent,
+        title: 'OCR BCA Result',
+      },
+      {
         path: 'ocr-bri-result',
         component: OcrBriResultComponent,
+        title: 'OCR BRI Result',
+      },
+      {
+        path: 'ocr-bri-result/:id',
+        component: OcrBcaResultComponent,
         title: 'OCR BRI Result',
       },
       {
@@ -109,8 +119,18 @@ export const routes: Routes = [
         title: 'OCR Permata Result',
       },
       {
+        path: 'ocr-permata-result/:id',
+        component: OcrBcaResultComponent,
+        title: 'OCR Permata Result',
+      },
+      {
         path: 'ocr-danamon-result',
         component: OcrDanamonResultComponent,
+        title: 'OCR Danamon Result',
+      },
+      {
+        path: 'ocr-danamon-result/:id',
+        component: OcrBcaResultComponent,
         title: 'OCR Danamon Result',
       },
       {
@@ -119,8 +139,18 @@ export const routes: Routes = [
         title: 'OCR BNI Result',
       },
       {
+        path: 'ocr-bni-result/:id',
+        component: OcrBcaResultComponent,
+        title: 'OCR BNI Result',
+      },
+      {
         path: 'ocr-cimb-result',
         component: OcrCimbResultComponent,
+        title: 'OCR CIMB Result',
+      },
+      {
+        path: 'ocr-cimb-result/:id',
+        component: OcrBcaResultComponent,
         title: 'OCR CIMB Result',
       },
       {
@@ -129,8 +159,18 @@ export const routes: Routes = [
         title: 'OCR OCBC Result',
       },
       {
+        path: 'ocr-ocbc-result/:id',
+        component: OcrBcaResultComponent,
+        title: 'OCR OCBC Result',
+      },
+      {
         path: 'ocr-mandiri-result',
         component: OcrMandiriResultComponent,
+        title: 'OCR Mandiri Result',
+      },
+      {
+        path: 'ocr-mandiri-result/:id',
+        component: OcrBcaResultComponent,
         title: 'OCR Mandiri Result',
       },
     ],

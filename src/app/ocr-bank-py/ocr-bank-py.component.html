@@ -608,6 +608,12 @@
             </th>
             <th
               scope="col"
+              class="px-6 py-3 text-start text-xs font-medium text-gray-500 max-w-[45%] uppercase dark:text-neutral-400"
+            >
+              File Name
+            </th>
+            <th
+              scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
             >
               Total File
@@ -616,7 +622,13 @@
               scope="col"
               class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
             >
-              Created At
+              Status
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
+            >
+              Uploaded At
             </th>
             <th
               scope="col"
@@ -627,36 +639,71 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
-          <tr class="divide-x">
+          <tr *ngFor="let e of ocrData; let i = index" class="divide-x">
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              temp
+              {{ e.bank_type }}
             </td>
             <td
               class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
             >
-              temp
+              {{ e.file_type }}
+            </td>
+            <td
+              class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
+            >
+              <ul class="list-disc list-inside text-gray-800 dark:text-white">
+                <li *ngFor="let filename of e.file_name; let i = index">
+                  {{ filename }}
+                </li>
+              </ul>
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              temp
+              {{ e.total_page ? e.total_page : "-" }}
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
-              temp
+              {{ e.status }}
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
             >
+              {{ formatWaktu(e.upload_date) }}
+            </td>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+            >
+              <a
+                [href]="'dashboard/' + e.link + '/' + e.id"
+                *ngIf="e.status == 'Success'"
+              >
+                <button
+                  type="button"
+                  class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:hover:bg-blue-900 dark:focus:bg-blue-900"
+                >
+                  Open
+                </button>
+              </a>
               <button
                 type="button"
+                (click)="showError(e.error_message)"
+                *ngIf="e.status == 'Failed'"
                 class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:hover:bg-blue-900 dark:focus:bg-blue-900"
               >
-                Open
+                Show Error
               </button>
+            </td>
+          </tr>
+          <tr *ngIf="ocrData.length == 0">
+            <td
+              colspan="7"
+              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-center"
+            >
+              There is no data
             </td>
           </tr>
         </tbody>

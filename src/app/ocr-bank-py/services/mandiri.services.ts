@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { apiUrlPy } from '../../env';
+import { apiUrl, apiUrlPy } from '../../env';
 
 export default function proceedOcrMandiri(
   isZipPasswordProtected: any,
@@ -10,12 +10,24 @@ export default function proceedOcrMandiri(
   http: HttpClient,
   router: Router,
   files: any,
-  dropzone: any
+  dropzone: any,
+  ocrData: any
 ) {
   const formData = new FormData();
+  const fileName: string[] = [];
+  let fileType = '';
+
+  if (files[0].name.includes('.pdf')) {
+    fileType = 'pdf';
+  } else if (files[0].name.includes('.zip')) {
+    fileType = 'zip';
+  } else {
+    fileType = 'image';
+  }
 
   files.forEach((file: any, index: number) => {
     formData.append('files', file, file.name); // 'files' is the key for multiple files
+    fileName.push(file.name);
   });
 
   if (isZipPasswordProtected) {
@@ -54,6 +66,25 @@ export default function proceedOcrMandiri(
       next: (value) => {
         Swal.close();
 
+        if (
+          localStorage.getItem('username') !== 'pocbfi1' ||
+          localStorage.getItem('username') !== 'pocbfi2'
+        ) {
+          http
+            .post<any>(`${apiUrl}/g-ocr-bank/save-ocr-data`, {
+              result: JSON.stringify(value.data),
+              uploaded_by: localStorage.getItem('username'),
+              total_page: value.data.banyak_halaman,
+              bank_type: 'Mandiri',
+              link: 'ocr-mandiri-result',
+              file_type: fileType,
+              file_name: JSON.stringify(fileName),
+            })
+            .subscribe({
+              next: (value) => {},
+            });
+        }
+
         router
           .navigate(['/dashboard/ocr-mandiri-result'], {
             state: value.data,
@@ -63,6 +94,24 @@ export default function proceedOcrMandiri(
         audio.play();
       },
       error: (err) => {
+        http
+          .post<any>(`${apiUrl}/g-ocr-bank/save-ocr-data`, {
+            result: null,
+            uploaded_by: localStorage.getItem('username'),
+            total_page: null,
+            bank_type: 'Mandiri',
+            link: null,
+            file_type: fileType,
+            file_name: JSON.stringify(fileName),
+            error_message:
+              err.error.data == undefined
+                ? 'Please re-upload your photo with better quality because the system cannot read it or make sure the bank statement type is the same.'
+                : err.error.data,
+          })
+          .subscribe({
+            next: (value) => {},
+          });
+
         Swal.fire({
           icon: 'error',
           title: 'Upload Failed',
@@ -74,6 +123,22 @@ export default function proceedOcrMandiri(
           if (result.isConfirmed) {
             // Clear all files from Dropzone
             dropzone.removeAllFiles();
+            http
+              .get<any>(
+                `${apiUrl}/g-ocr-bank/get-ocr-data/${localStorage.getItem(
+                  'username'
+                )}`
+              )
+              .subscribe({
+                next: (value) => {
+                  ocrData = value.data.map((item: any) => {
+                    return {
+                      ...item,
+                      file_name: JSON.parse(item.file_name),
+                    };
+                  });
+                },
+              });
           }
         });
         var audio = new Audio('assets/bell.wav');

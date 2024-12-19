@@ -5,7 +5,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartOptions, ChartData, ChartConfiguration } from 'chart.js';
@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { mean, sum, map } from 'lodash';
 import { convertToFloat } from '../allservice';
+import { apiUrl } from '../env';
 
 @Component({
   selector: 'app-ocr-bca-result',
@@ -42,6 +43,7 @@ export class OcrBcaResultComponent implements OnInit {
   transactionData: any;
   analyticsData: any;
 
+  id: string | null = '';
   alamat: string = '';
   kcp: string = '';
   mataUang: string = '';
@@ -99,7 +101,11 @@ export class OcrBcaResultComponent implements OnInit {
 
   netBal: any;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
     this.analyticsData = navigation?.extras.state?.['analytics_data'];
@@ -118,10 +124,39 @@ export class OcrBcaResultComponent implements OnInit {
     this.totalMutasiDebit = navigation?.extras.state?.['total_mutasi_debit'];
     this.totalMutasiKredit = navigation?.extras.state?.['total_mutasi_kredit'];
     this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
-    // this.accountValidation = navigation?.extras.state?.['is_pdf_modified'];
   }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id')!;
+
+    if (this.id !== null) {
+      this.http
+        .get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data-by-id/${this.id}`)
+        .subscribe({
+          next: (value) => {
+            const tempResult = JSON.parse(value.data.result);
+
+            this.transactionData = tempResult.transaction_data;
+            this.analyticsData = tempResult.analytics_data;
+            this.alamat = tempResult.alamat;
+            this.kcp = tempResult.kcp;
+            this.mataUang = tempResult.mata_uang;
+            this.mutasiDebit = tempResult.mutasi_debit;
+            this.mutasiKredit = tempResult.mutasi_kredit;
+            this.nomorRekening = tempResult.nomor_rekening;
+            this.pemilikRekening = tempResult.pemilik_rekening;
+            this.periode = tempResult.periode;
+            this.saldoAkhir = tempResult.saldo_akhir;
+            this.saldoAwal = tempResult.saldo_awal;
+            this.totalDebet = tempResult.total_debet;
+            this.totalKredit = tempResult.total_kredit;
+            this.totalMutasiDebit = tempResult.total_mutasi_debit;
+            this.totalMutasiKredit = tempResult.total_mutasi_kredit;
+            this.isPdfModified = tempResult.is_pdf_modified;
+          },
+        });
+    }
+
     this.barChartDebitKreditLabels = getMonthlyChartLabels(
       this.transactionData
     );
@@ -157,25 +192,6 @@ export class OcrBcaResultComponent implements OnInit {
 
     this.validateBankAccount('014', this.nomorRekening, this.pemilikRekening);
   }
-
-  // updateValue(data: any, key: any, newValue: any) {
-  //   data[key] = newValue;
-
-  //   this.barTotalDebitKreditData = {
-  //     ...this.barTotalDebitKreditData,
-  //     labels: this.barTotalDebitKreditLabels,
-  //     datasets: [
-  //       {
-  //         data: [parseFloat(this.analyticsData.sum_cr.replaceAll(',', ''))],
-  //         label: 'Kredit',
-  //       },
-  //       {
-  //         data: [parseFloat(this.analyticsData.sum_db.replaceAll(',', ''))],
-  //         label: 'Debit',
-  //       },
-  //     ],
-  //   };
-  // }
 
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {
     const requestBody = [

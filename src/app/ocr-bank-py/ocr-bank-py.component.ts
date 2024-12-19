@@ -15,6 +15,7 @@ import proceedOcrCimb from './services/cimb.services';
 import proceedOcrOcbc from './services/ocbc.services';
 import proceedOcrMandiri from './services/mandiri.services';
 import { HSStaticMethods } from 'preline/preline';
+import { apiUrl } from '../env';
 
 @Component({
   selector: 'app-ocr-bank-py',
@@ -41,11 +42,31 @@ export class OcrBankPyComponent implements AfterViewInit {
     localStorage.getItem('username') === 'pocbfi1' ||
     localStorage.getItem('username') === 'pocbfi2';
 
+  ocrData: any[] = [];
+
   constructor(private router: Router, private http: HttpClient) {}
+
+  getRecentOcrData() {
+    this.http
+      .get<any>(
+        `${apiUrl}/g-ocr-bank/get-ocr-data/${localStorage.getItem('username')}`
+      )
+      .subscribe({
+        next: (value) => {
+          this.ocrData = value.data.map((item: any) => {
+            return {
+              ...item,
+              file_name: JSON.parse(item.file_name),
+            };
+          });
+        },
+      });
+  }
 
   ngAfterViewInit() {
     HSFileUpload.autoInit();
     this.tampilkanPesanError();
+    this.getRecentOcrData();
 
     /**
      * ! Penting untuk diketahui
@@ -85,7 +106,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           files,
-          this.element.dropzone
+          this.element.dropzone.ocrData,
+          this.ocrData
         );
       }
 
@@ -97,7 +119,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           files,
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -109,7 +132,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           files,
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -121,7 +145,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           files,
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -133,7 +158,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           files,
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -145,7 +171,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           files,
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -157,7 +184,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           files,
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -169,7 +197,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           files,
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
     });
@@ -267,7 +296,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           [this.selectedFile],
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -279,7 +309,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           [this.selectedFile],
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -291,7 +322,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           [this.selectedFile],
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -303,7 +335,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           [this.selectedFile],
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -315,7 +348,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           [this.selectedFile],
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -327,7 +361,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           [this.selectedFile],
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -339,7 +374,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           [this.selectedFile],
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
 
@@ -351,7 +387,8 @@ export class OcrBankPyComponent implements AfterViewInit {
           this.http,
           this.router,
           [this.selectedFile],
-          this.element.dropzone
+          this.element.dropzone,
+          this.ocrData
         );
       }
     }
@@ -428,5 +465,45 @@ export class OcrBankPyComponent implements AfterViewInit {
     });
 
     this.element.dropzone.processQueue();
+  }
+
+  formatWaktu(date: string) {
+    // Buat objek Date dari string input
+    const dateObj = new Date(date);
+
+    // Daftar nama bulan dalam Bahasa Inggris
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    // Ambil tanggal, bulan, tahun, jam, menit, dan detik dari objek Date
+    const day = dateObj.getDate();
+    const month = months[dateObj.getMonth()];
+    const year = dateObj.getFullYear();
+    const hours = String(dateObj.getHours()).padStart(2, '0');
+    const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+    const seconds = dateObj.getSeconds();
+
+    // Format ulang sesuai kebutuhan
+    return `${day} ${month} ${year} - ${hours}:${minutes}`;
+  }
+
+  showError(errorMsg: string) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Upload Failed',
+      text: errorMsg,
+    });
   }
 }
