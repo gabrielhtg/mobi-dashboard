@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
@@ -12,6 +12,7 @@ import {
   getSaldoMovement,
 } from './ocr-mandiri-result.service';
 import { map, mean, sum } from 'lodash';
+import { apiUrl } from '../env';
 
 @Component({
   selector: 'app-ocr-mandiri-result',
@@ -81,7 +82,11 @@ export class OcrMandiriResultComponent {
   keteranganTransactionFraudDetection: string = '-';
   keteranganSusModFraudDetection: string = '-';
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
     this.analysisData = navigation?.extras.state?.['analytics_data'];
@@ -97,6 +102,30 @@ export class OcrMandiriResultComponent {
   }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    if (id !== null) {
+      this.http
+        .get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data-by-id/${id}`)
+        .subscribe({
+          next: (value) => {
+            const tempResult = JSON.parse(value.data.result);
+
+            this.transactionData = tempResult.transaction_data;
+            this.analysisData = tempResult.analytics_data;
+            this.totalDebit = tempResult.total_debet;
+            this.totalKredit = tempResult.total_kredit;
+            this.periode = tempResult.period;
+            this.nomorRekening = tempResult.nomor_rekening;
+            this.pemilikRekening = tempResult.pemilik_rekening;
+            this.currency = tempResult.currency;
+            this.branch = tempResult.branch;
+            this.isPdfModified = tempResult.is_pdf_modified;
+            this.totalTransaction = this.analysisData.total_transaction;
+          },
+        });
+    }
+
     this.barChartDebitKreditLabels = getMonthlyChartLabels(
       this.transactionData
     );

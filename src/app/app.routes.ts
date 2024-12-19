@@ -110,7 +110,7 @@ export const routes: Routes = [
       },
       {
         path: 'ocr-bri-result/:id',
-        component: OcrBcaResultComponent,
+        component: OcrBriResultComponent,
         title: 'OCR BRI Result',
       },
       {
@@ -120,7 +120,7 @@ export const routes: Routes = [
       },
       {
         path: 'ocr-permata-result/:id',
-        component: OcrBcaResultComponent,
+        component: OcrPermataResultComponent,
         title: 'OCR Permata Result',
       },
       {
@@ -130,7 +130,7 @@ export const routes: Routes = [
       },
       {
         path: 'ocr-danamon-result/:id',
-        component: OcrBcaResultComponent,
+        component: OcrDanamonResultComponent,
         title: 'OCR Danamon Result',
       },
       {
@@ -140,7 +140,7 @@ export const routes: Routes = [
       },
       {
         path: 'ocr-bni-result/:id',
-        component: OcrBcaResultComponent,
+        component: OcrBniResultComponent,
         title: 'OCR BNI Result',
       },
       {
@@ -150,7 +150,7 @@ export const routes: Routes = [
       },
       {
         path: 'ocr-cimb-result/:id',
-        component: OcrBcaResultComponent,
+        component: OcrCimbResultComponent,
         title: 'OCR CIMB Result',
       },
       {
@@ -160,7 +160,7 @@ export const routes: Routes = [
       },
       {
         path: 'ocr-ocbc-result/:id',
-        component: OcrBcaResultComponent,
+        component: OcrOcbcResultComponent,
         title: 'OCR OCBC Result',
       },
       {
@@ -170,7 +170,7 @@ export const routes: Routes = [
       },
       {
         path: 'ocr-mandiri-result/:id',
-        component: OcrBcaResultComponent,
+        component: OcrMandiriResultComponent,
         title: 'OCR Mandiri Result',
       },
     ],

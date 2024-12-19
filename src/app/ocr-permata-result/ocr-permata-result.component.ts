@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import {
@@ -12,6 +12,7 @@ import {
 } from './ocr-permata-result.service';
 import { convertToFloat } from '../allservice';
 import { map, mean, sum } from 'lodash';
+import { apiUrl } from '../env';
 
 @Component({
   selector: 'app-ocr-permata-result',
@@ -84,7 +85,11 @@ export class OcrPermataResultComponent {
   keteranganTransactionFraudDetection: string = '-';
   keteranganSusModFraudDetection: string = '-';
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
     this.summaryData = navigation?.extras.state?.['summary_data'];
@@ -104,6 +109,34 @@ export class OcrPermataResultComponent {
   }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    if (id !== null) {
+      this.http
+        .get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data-by-id/${id}`)
+        .subscribe({
+          next: (value) => {
+            const tempResult = JSON.parse(value.data.result);
+
+            this.transactionData = tempResult.transaction_data;
+            this.summaryData = tempResult.summary_data;
+            this.analysisData = tempResult.analytics_data;
+            this.alamat = tempResult.alamat;
+            this.cabang = tempResult.cabang;
+            this.mataUang = tempResult.mata_uang;
+            this.namaProduk = tempResult.nama_produk;
+            this.nomorCif = tempResult.no_cif;
+            this.nomorRekening = tempResult.nomor_rekening;
+            this.pemilikRekening = tempResult.pemilik_rekening;
+            this.periodeLaporan = tempResult.periode_laporan;
+            this.tanggalLaporan = tempResult.tanggal_laporan;
+            this.isPdfModified = tempResult.is_pdf_modified;
+            this.totalDebet = String(tempResult.total_debet);
+            this.totalKredit = String(tempResult.total_kredit);
+          },
+        });
+    }
+
     this.barChartDebitKreditLabels = getMonthlyChartLabels(
       this.transactionData
     );

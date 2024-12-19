@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
@@ -12,6 +12,7 @@ import {
   getSaldoMovement,
 } from './ocr-ocbc-result.service';
 import { map, mean, sum } from 'lodash';
+import { apiUrl } from '../env';
 
 @Component({
   selector: 'app-ocr-ocbc-result',
@@ -89,7 +90,11 @@ export class OcrOcbcResultComponent {
   keteranganTransactionFraudDetection: string = '-';
   keteranganSusModFraudDetection: string = '-';
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
     this.summaryData = navigation?.extras.state?.['summary_data'];
@@ -118,6 +123,40 @@ export class OcrOcbcResultComponent {
   }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    if (id !== null) {
+      this.http
+        .get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data-by-id/${id}`)
+        .subscribe({
+          next: (value) => {
+            const tempResult = JSON.parse(value.data.result);
+
+            this.transactionData = tempResult.transaction_data;
+            this.summaryData = tempResult.summary_data;
+            this.analysisData = tempResult.analytics_data;
+            this.totalDebit = tempResult.total_debet;
+            this.totalKredit = tempResult.total_kredit;
+            this.alamat = tempResult.alamat;
+            this.cabang = tempResult.cabang;
+            this.mataUang = tempResult.mata_uang;
+            this.nomorRekening = tempResult.nomor_rekening;
+            this.pemilikRekening = tempResult.pemilik_rekening;
+            this.periode = tempResult.periode;
+            this.tanggalPercetakan = tempResult.tanggal_percetakan;
+            this.pemilikRekening = tempResult.pemilik_rekening;
+            this.tunggakanBunga = tempResult.tunggakan_bunga;
+            this.tunggakanDenda = tempResult.tunggakan_denda;
+            this.isPdfModified = tempResult.is_pdf_modified;
+            this.tunggakanBiayaLain = tempResult.tunggakan_biaya_lain;
+            this.totalTunggakan = tempResult.total_tunggakan;
+            this.kursValasIDR = tempResult.kurs_valas_idr;
+            this.saldoDalamMataUangIDR = tempResult.saldo_dalam_mata_uang_idr;
+            this.totalSaldoDalamIDR = tempResult.total_saldo_dalam_idr;
+          },
+        });
+    }
+
     this.barChartDebitKreditLabels = getMonthlyChartLabels(
       this.transactionData
     );

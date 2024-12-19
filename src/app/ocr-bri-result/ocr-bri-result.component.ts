@@ -6,7 +6,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartOptions, ChartData, ChartConfiguration } from 'chart.js';
 import {
@@ -18,6 +18,7 @@ import {
 } from './ocr-bri-result.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, mean, sum } from 'lodash';
+import { apiUrl } from '../env';
 
 @Component({
   selector: 'app-ocr-bri-result',
@@ -92,7 +93,11 @@ export class OcrBriResultComponent implements OnInit {
   validationRemark: any = null;
   isRekeningValid: any = null;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {
     const navigation = this.router.getCurrentNavigation();
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
     this.alamat = navigation?.extras.state?.['alamat'];
@@ -117,6 +122,37 @@ export class OcrBriResultComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    if (id !== null) {
+      this.http
+        .get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data-by-id/${id}`)
+        .subscribe({
+          next: (value) => {
+            const tempResult = JSON.parse(value.data.result);
+
+            this.pemilikRekening = tempResult.pemilik_rekening;
+            this.alamat = tempResult.alamat;
+            this.nomorRekening = tempResult.nomor_rekening;
+            this.namaProduk = tempResult.nama_produk;
+            this.valuta = tempResult.valuta;
+            this.tanggalLaporan = tempResult.tanggal_laporan;
+            this.transactionData = tempResult.transaction_data;
+            this.totalDebit = tempResult.total_debit;
+            this.totalKredit = tempResult.total_kredit;
+            this.analyticsData = tempResult.analytics_data;
+            this.saldoAwal = tempResult.saldo_awal;
+            this.periodeTransaksi = tempResult.periode_transaksi;
+            this.saldoAkhir = tempResult.saldo_akhir;
+            this.unitKerja = tempResult.unit_kerja;
+            this.alamatUnitKerja = tempResult.alamat_unit_kerja;
+            this.isPdfModified = tempResult.is_pdf_modified;
+            this.totalTransaksiDebit = tempResult.total_transaksi_debit;
+            this.totalTransaksiKredit = tempResult.total_transaksi_kredit;
+          },
+        });
+    }
+
     this.barChartDebitKreditLabels = getMonthlyChartLabels(
       this.transactionData
     );

@@ -1,7 +1,7 @@
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import {
@@ -12,6 +12,7 @@ import {
   getSaldoMovement,
 } from './ocr-bni-result.service';
 import { map, mean, sum } from 'lodash';
+import { apiUrl } from '../env';
 
 @Component({
   selector: 'app-ocr-bni-result',
@@ -86,7 +87,11 @@ export class OcrBniResultComponent {
   keteranganSusModFraudDetection: string = '-';
   indexTransaksiJanggal: number[] = [];
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
     this.summaryData = navigation?.extras.state?.['summary_data'];
@@ -108,6 +113,36 @@ export class OcrBniResultComponent {
   }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    if (id !== null) {
+      this.http
+        .get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data-by-id/${id}`)
+        .subscribe({
+          next: (value) => {
+            const tempResult = JSON.parse(value.data.result);
+
+            this.transactionData = tempResult.transaction_data;
+            this.summaryData = tempResult.summary_data;
+            this.analysisData = tempResult.analytics_data;
+            this.totalDebetByOcr = tempResult.total_debet_by_ocr;
+            this.totalCreditByOcr = tempResult.total_kredit_by_ocr;
+            this.akunRekening = tempResult.akun_rekening;
+            this.alamat = tempResult.alamat;
+            this.nomorRekening = tempResult.nomor_rekening;
+            this.pemilikRekening = tempResult.pemilik_rekening;
+            this.periodeRekening = tempResult.periode_rekening;
+            this.tipeAkun = tempResult.tipe_akun;
+            this.endingBalance = tempResult.ending_balance;
+            this.totalDebet = tempResult.total_debet;
+            this.totalCredit = tempResult.total_credit;
+            this.totalDebetAmount = tempResult.total_debet_amount;
+            this.totalCreditAmount = tempResult.total_credit_amount;
+            this.isPdfModified = tempResult.is_pdf_modified;
+          },
+        });
+    }
+
     this.barChartDebitKreditLabels = getMonthlyChartLabels(
       this.transactionData
     );

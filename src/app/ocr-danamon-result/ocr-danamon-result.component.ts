@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
@@ -12,6 +12,7 @@ import {
   getSaldoMovement,
 } from './ocr-danamon-result.service';
 import { map, mean, sum } from 'lodash';
+import { apiUrl } from '../env';
 
 @Component({
   selector: 'app-ocr-danamon-result',
@@ -79,7 +80,11 @@ export class OcrDanamonResultComponent {
   // Data pergerakan saldo
   saldoMovementData: any;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
     this.summaryData = navigation?.extras.state?.['summary_data'];
@@ -95,6 +100,30 @@ export class OcrDanamonResultComponent {
   }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    if (id !== null) {
+      this.http
+        .get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data-by-id/${id}`)
+        .subscribe({
+          next: (value) => {
+            const tempResult = JSON.parse(value.data.result);
+
+            this.transactionData = tempResult.transaction_data;
+            this.summaryData = tempResult.summary_data;
+            this.analysisData = tempResult.analytics_data;
+            this.alamat = tempResult.alamat;
+            this.cabang = tempResult.cabang;
+            this.pemilikRekening = tempResult.pemilik_rekening;
+            this.nomorNasabah = tempResult.nomor_nasabah;
+            this.totalDebit = tempResult.total_debet;
+            this.totalKredit = tempResult.total_kredit;
+            this.periodeLaporan = tempResult.periode_laporan;
+            this.isPdfModified = tempResult.is_pdf_modified;
+          },
+        });
+    }
+
     this.barChartDebitKreditLabels = getMonthlyChartLabels(
       this.transactionData
     );
