@@ -53,6 +53,11 @@ export class OcrCimbResultComponent {
   indexTransaksiJanggal: number[] = [];
   startDate = '';
   endDate = '';
+  startDateErrMsg = '';
+  endDateErrMsg = '';
+  isNotAllowedUsernameDetected =
+    localStorage.getItem('username') === 'pocbfi1' ||
+    localStorage.getItem('username') === 'pocbfi2';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -146,42 +151,79 @@ export class OcrCimbResultComponent {
             this.pemilikRekening = tempResult.pemilik_rekening;
             this.totalKredit = tempResult.total_kredit;
             this.isPdfModified = tempResult.is_pdf_modified;
+
+            this.barChartDebitKreditLabels = getMonthlyChartLabels(
+              this.transactionData
+            );
+
+            this.barChartDebitKreditData = {
+              labels: this.barChartDebitKreditLabels,
+              datasets: getMonthlyChartDebitData(this.transactionData),
+            };
+
+            this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
+
+            this.barTotalDebitKreditData = {
+              labels: this.barTotalDebitKreditLabels,
+              datasets: [
+                {
+                  data: [convertToFloat(this.analysisData.sum_kredit)],
+                  label: 'Kredit',
+                },
+                {
+                  data: [convertToFloat(this.analysisData.sum_debit)],
+                  label: 'Debit',
+                },
+              ],
+            };
+
+            this.dateTransactionData = getDateFrequency(this.transactionData);
+
+            this.saldoMovementData = getSaldoMovement(
+              this.transactionData,
+              this.dateTransactionData.labels
+            );
+            this.validateBankAccount(
+              '022',
+              this.nomorRekening,
+              this.pemilikRekening
+            );
           },
         });
+    } else {
+      this.barChartDebitKreditLabels = getMonthlyChartLabels(
+        this.transactionData
+      );
+
+      this.barChartDebitKreditData = {
+        labels: this.barChartDebitKreditLabels,
+        datasets: getMonthlyChartDebitData(this.transactionData),
+      };
+
+      this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
+
+      this.barTotalDebitKreditData = {
+        labels: this.barTotalDebitKreditLabels,
+        datasets: [
+          {
+            data: [convertToFloat(this.analysisData.sum_kredit)],
+            label: 'Kredit',
+          },
+          {
+            data: [convertToFloat(this.analysisData.sum_debit)],
+            label: 'Debit',
+          },
+        ],
+      };
+
+      this.dateTransactionData = getDateFrequency(this.transactionData);
+
+      this.saldoMovementData = getSaldoMovement(
+        this.transactionData,
+        this.dateTransactionData.labels
+      );
+      this.validateBankAccount('022', this.nomorRekening, this.pemilikRekening);
     }
-
-    this.barChartDebitKreditLabels = getMonthlyChartLabels(
-      this.transactionData
-    );
-
-    this.barChartDebitKreditData = {
-      labels: this.barChartDebitKreditLabels,
-      datasets: getMonthlyChartDebitData(this.transactionData),
-    };
-
-    this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
-
-    this.barTotalDebitKreditData = {
-      labels: this.barTotalDebitKreditLabels,
-      datasets: [
-        {
-          data: [convertToFloat(this.analysisData.sum_kredit)],
-          label: 'Kredit',
-        },
-        {
-          data: [convertToFloat(this.analysisData.sum_debit)],
-          label: 'Debit',
-        },
-      ],
-    };
-
-    this.dateTransactionData = getDateFrequency(this.transactionData);
-
-    this.saldoMovementData = getSaldoMovement(
-      this.transactionData,
-      this.dateTransactionData.labels
-    );
-    this.validateBankAccount('022', this.nomorRekening, this.pemilikRekening);
   }
 
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {
@@ -407,6 +449,55 @@ export class OcrCimbResultComponent {
   }
 
   exportData() {
+    let startDateFound = false;
+    let endDateFound = false;
+    let isStartDateFirst = false;
+    let isEndDateFirst = false;
+
+    if (this.startDate !== '' && this.endDate !== '') {
+      this.transactionData.forEach((e: any) => {
+        if (e.tanggal_transaksi !== null) {
+          if (e.tanggal_transaksi.trim() === this.startDate) {
+            startDateFound = true;
+
+            if (isEndDateFirst === false) {
+              isStartDateFirst = true;
+            }
+          }
+
+          if (e.tanggal_transaksi.trim() === this.endDate) {
+            endDateFound = true;
+
+            if (isStartDateFirst === false) {
+              isEndDateFirst = true;
+            }
+          }
+        }
+      });
+
+      this.startDateErrMsg = '';
+      this.endDateErrMsg = '';
+
+      if (!startDateFound) {
+        this.startDateErrMsg = `Transaction dated ${this.startDate} not found.`;
+      }
+
+      if (!endDateFound) {
+        this.endDateErrMsg = `Transaction dated ${this.endDate} not found.`;
+        return;
+      }
+
+      if (isEndDateFirst) {
+        this.endDateErrMsg =
+          'The end date cannot be earlier than the start date.';
+        return;
+      }
+
+      if (!startDateFound || !endDateFound || isEndDateFirst) {
+        return;
+      }
+    }
+
     this.excelExportService.exportToExcel(
       this.transactionData,
       'CIMB_Transaction_Data_Exported',

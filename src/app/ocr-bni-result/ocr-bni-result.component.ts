@@ -54,6 +54,8 @@ export class OcrBniResultComponent {
   isPdfModified: any = null;
   startDate: string = '';
   endDate: string = '';
+  startDateErrMsg = '';
+  endDateErrMsg = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -90,6 +92,9 @@ export class OcrBniResultComponent {
   keteranganTransactionFraudDetection: string = '-';
   keteranganSusModFraudDetection: string = '-';
   indexTransaksiJanggal: number[] = [];
+  isNotAllowedUsernameDetected =
+    localStorage.getItem('username') === 'pocbfi1' ||
+    localStorage.getItem('username') === 'pocbfi2';
 
   constructor(
     private http: HttpClient,
@@ -144,42 +149,79 @@ export class OcrBniResultComponent {
             this.totalDebetAmount = tempResult.total_debet_amount;
             this.totalCreditAmount = tempResult.total_credit_amount;
             this.isPdfModified = tempResult.is_pdf_modified;
+
+            this.barChartDebitKreditLabels = getMonthlyChartLabels(
+              this.transactionData
+            );
+
+            this.barChartDebitKreditData = {
+              labels: this.barChartDebitKreditLabels,
+              datasets: getMonthlyChartDebitData(this.transactionData),
+            };
+
+            this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
+            this.barTotalDebitKreditData = {
+              labels: this.barTotalDebitKreditLabels,
+              datasets: [
+                {
+                  data: [convertToFloat(this.analysisData.sum_kredit)],
+                  label: 'Kredit',
+                },
+                {
+                  data: [convertToFloat(this.analysisData.sum_debit)],
+                  label: 'Debit',
+                },
+              ],
+            };
+
+            this.dateTransactionData = getDateFrequency(this.transactionData);
+
+            this.saldoMovementData = getSaldoMovement(
+              this.transactionData,
+              this.dateTransactionData.labels
+            );
+
+            this.validateBankAccount(
+              '009',
+              this.nomorRekening,
+              this.pemilikRekening
+            );
           },
         });
+    } else {
+      this.barChartDebitKreditLabels = getMonthlyChartLabels(
+        this.transactionData
+      );
+
+      this.barChartDebitKreditData = {
+        labels: this.barChartDebitKreditLabels,
+        datasets: getMonthlyChartDebitData(this.transactionData),
+      };
+
+      this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
+      this.barTotalDebitKreditData = {
+        labels: this.barTotalDebitKreditLabels,
+        datasets: [
+          {
+            data: [convertToFloat(this.analysisData.sum_kredit)],
+            label: 'Kredit',
+          },
+          {
+            data: [convertToFloat(this.analysisData.sum_debit)],
+            label: 'Debit',
+          },
+        ],
+      };
+
+      this.dateTransactionData = getDateFrequency(this.transactionData);
+
+      this.saldoMovementData = getSaldoMovement(
+        this.transactionData,
+        this.dateTransactionData.labels
+      );
+
+      this.validateBankAccount('009', this.nomorRekening, this.pemilikRekening);
     }
-
-    this.barChartDebitKreditLabels = getMonthlyChartLabels(
-      this.transactionData
-    );
-
-    this.barChartDebitKreditData = {
-      labels: this.barChartDebitKreditLabels,
-      datasets: getMonthlyChartDebitData(this.transactionData),
-    };
-
-    this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
-    this.barTotalDebitKreditData = {
-      labels: this.barTotalDebitKreditLabels,
-      datasets: [
-        {
-          data: [convertToFloat(this.analysisData.sum_kredit)],
-          label: 'Kredit',
-        },
-        {
-          data: [convertToFloat(this.analysisData.sum_debit)],
-          label: 'Debit',
-        },
-      ],
-    };
-
-    this.dateTransactionData = getDateFrequency(this.transactionData);
-
-    this.saldoMovementData = getSaldoMovement(
-      this.transactionData,
-      this.dateTransactionData.labels
-    );
-
-    this.validateBankAccount('009', this.nomorRekening, this.pemilikRekening);
   }
 
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {
@@ -395,6 +437,55 @@ export class OcrBniResultComponent {
   }
 
   exportData() {
+    let startDateFound = false;
+    let endDateFound = false;
+    let isStartDateFirst = false;
+    let isEndDateFirst = false;
+
+    if (this.startDate !== '' && this.endDate !== '') {
+      this.transactionData.forEach((e: any) => {
+        if (e.posting_date !== null) {
+          if (e.posting_date.trim() === this.startDate) {
+            startDateFound = true;
+
+            if (isEndDateFirst === false) {
+              isStartDateFirst = true;
+            }
+          }
+
+          if (e.posting_date.trim() === this.endDate) {
+            endDateFound = true;
+
+            if (isStartDateFirst === false) {
+              isEndDateFirst = true;
+            }
+          }
+        }
+      });
+
+      this.startDateErrMsg = '';
+      this.endDateErrMsg = '';
+
+      if (!startDateFound) {
+        this.startDateErrMsg = `Transaction dated ${this.startDate} not found.`;
+      }
+
+      if (!endDateFound) {
+        this.endDateErrMsg = `Transaction dated ${this.endDate} not found.`;
+        return;
+      }
+
+      if (isEndDateFirst) {
+        this.endDateErrMsg =
+          'The end date cannot be earlier than the start date.';
+        return;
+      }
+
+      if (!startDateFound || !endDateFound || isEndDateFirst) {
+        return;
+      }
+    }
+
     this.excelExportService.exportToExcel(
       this.transactionData,
       'BNI_Transaction_Data_Exported',

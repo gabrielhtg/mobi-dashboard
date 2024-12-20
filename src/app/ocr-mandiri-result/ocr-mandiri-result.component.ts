@@ -48,6 +48,11 @@ export class OcrMandiriResultComponent {
   totalTransaction: number = 0;
   isPdfModified: any;
   indexTransaksiJanggal: number[] = [];
+  startDateErrMsg = '';
+  endDateErrMsg = '';
+  isNotAllowedUsernameDetected =
+    localStorage.getItem('username') === 'pocbfi1' ||
+    localStorage.getItem('username') === 'pocbfi2';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -130,46 +135,87 @@ export class OcrMandiriResultComponent {
             this.branch = tempResult.branch;
             this.isPdfModified = tempResult.is_pdf_modified;
             this.totalTransaction = this.analysisData.total_transaction;
+
+            this.barChartDebitKreditLabels = getMonthlyChartLabels(
+              this.transactionData
+            );
+
+            this.barChartDebitKreditData = {
+              labels: this.barChartDebitKreditLabels,
+              datasets: getMonthlyChartDebitData(this.transactionData),
+            };
+
+            console.log(this.barChartDebitKreditData);
+
+            this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
+            this.barTotalDebitKreditData = {
+              labels: this.barTotalDebitKreditLabels,
+              datasets: [
+                {
+                  data: [convertToFloat(this.analysisData.sum_kredit)],
+                  label: 'Kredit',
+                },
+                {
+                  data: [convertToFloat(this.analysisData.sum_debit)],
+                  label: 'Debit',
+                },
+              ],
+            };
+
+            this.dateTransactionData = getDateFrequency(this.transactionData);
+
+            this.saldoMovementData = getSaldoMovement(
+              this.transactionData,
+              this.dateTransactionData.labels
+            );
+
+            console.log(this.saldoMovementData);
+
+            this.validateBankAccount(
+              '008',
+              this.nomorRekening,
+              this.pemilikRekening
+            );
           },
         });
+    } else {
+      this.barChartDebitKreditLabels = getMonthlyChartLabels(
+        this.transactionData
+      );
+
+      this.barChartDebitKreditData = {
+        labels: this.barChartDebitKreditLabels,
+        datasets: getMonthlyChartDebitData(this.transactionData),
+      };
+
+      console.log(this.barChartDebitKreditData);
+
+      this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
+      this.barTotalDebitKreditData = {
+        labels: this.barTotalDebitKreditLabels,
+        datasets: [
+          {
+            data: [convertToFloat(this.analysisData.sum_kredit)],
+            label: 'Kredit',
+          },
+          {
+            data: [convertToFloat(this.analysisData.sum_debit)],
+            label: 'Debit',
+          },
+        ],
+      };
+
+      this.dateTransactionData = getDateFrequency(this.transactionData);
+
+      this.saldoMovementData = getSaldoMovement(
+        this.transactionData,
+        this.dateTransactionData.labels
+      );
+
+      console.log(this.saldoMovementData);
+
+      this.validateBankAccount('008', this.nomorRekening, this.pemilikRekening);
     }
-
-    this.barChartDebitKreditLabels = getMonthlyChartLabels(
-      this.transactionData
-    );
-
-    this.barChartDebitKreditData = {
-      labels: this.barChartDebitKreditLabels,
-      datasets: getMonthlyChartDebitData(this.transactionData),
-    };
-
-    console.log(this.barChartDebitKreditData);
-
-    this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
-    this.barTotalDebitKreditData = {
-      labels: this.barTotalDebitKreditLabels,
-      datasets: [
-        {
-          data: [convertToFloat(this.analysisData.sum_kredit)],
-          label: 'Kredit',
-        },
-        {
-          data: [convertToFloat(this.analysisData.sum_debit)],
-          label: 'Debit',
-        },
-      ],
-    };
-
-    this.dateTransactionData = getDateFrequency(this.transactionData);
-
-    this.saldoMovementData = getSaldoMovement(
-      this.transactionData,
-      this.dateTransactionData.labels
-    );
-
-    console.log(this.saldoMovementData);
-
-    this.validateBankAccount('008', this.nomorRekening, this.pemilikRekening);
   }
 
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {
@@ -379,6 +425,55 @@ export class OcrMandiriResultComponent {
   }
 
   exportData() {
+    let startDateFound = false;
+    let endDateFound = false;
+    let isStartDateFirst = false;
+    let isEndDateFirst = false;
+
+    if (this.startDate !== '' && this.endDate !== '') {
+      this.transactionData.forEach((e: any) => {
+        if (e.date_and_time !== null) {
+          if (e.date_and_time.trim() === this.startDate) {
+            startDateFound = true;
+
+            if (isEndDateFirst === false) {
+              isStartDateFirst = true;
+            }
+          }
+
+          if (e.date_and_time.trim() === this.endDate) {
+            endDateFound = true;
+
+            if (isStartDateFirst === false) {
+              isEndDateFirst = true;
+            }
+          }
+        }
+      });
+
+      this.startDateErrMsg = '';
+      this.endDateErrMsg = '';
+
+      if (!startDateFound) {
+        this.startDateErrMsg = `Transaction dated ${this.startDate} not found.`;
+      }
+
+      if (!endDateFound) {
+        this.endDateErrMsg = `Transaction dated ${this.endDate} not found.`;
+        return;
+      }
+
+      if (isEndDateFirst) {
+        this.endDateErrMsg =
+          'The end date cannot be earlier than the start date.';
+        return;
+      }
+
+      if (!startDateFound || !endDateFound || isEndDateFirst) {
+        return;
+      }
+    }
+
     this.excelExportService.exportToExcel(
       this.transactionData,
       'Mandiri_Transaction_Data_Exported',
