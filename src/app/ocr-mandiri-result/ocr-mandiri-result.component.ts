@@ -98,7 +98,10 @@ export class OcrMandiriResultComponent {
     this.currency = navigation?.extras.state?.['currency'];
     this.branch = navigation?.extras.state?.['branch'];
     this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
-    this.totalTransaction = this.analysisData.total_transaction;
+
+    if (this.analysisData) {
+      this.totalTransaction = this.analysisData.total_transaction;
+    }
   }
 
   ngOnInit(): void {

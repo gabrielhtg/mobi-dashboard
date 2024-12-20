@@ -2,6 +2,9 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { apiUrl } from './env';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { saveAs } from 'file-saver';
+import { Workbook } from 'exceljs';
 
 export function refreshPage(currentUrl: string, router: Router) {
   router.navigate(['/dashboard'], { skipLocationChange: true }).then(() => {
@@ -142,4 +145,64 @@ export function getUserInitials(name: string) {
   const words = name.trim().split(/\s+/);
 
   return words.map((word) => word[0].toUpperCase()).join('');
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ExcelExportService {
+  constructor() {}
+
+  exportToExcel(
+    data: any[],
+    fileName: string,
+    columnOrder: string[],
+    customHeaders?: string[]
+  ): void {
+    const workbook = new Workbook();
+    const worksheet = workbook.addWorksheet('Transaction Data');
+
+    // Add custom headers if provided
+    if (customHeaders) {
+      const headerRow = worksheet.addRow(customHeaders);
+      // Style the custom headers to make them bold
+      headerRow.eachCell((cell) => {
+        cell.font = { bold: true, color: { argb: '000000' } };
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        cell.fill = {
+          type: 'pattern',
+          pattern: 'solid',
+          fgColor: { argb: '75a1d0' }, // Ocean Blue background
+        };
+      });
+    }
+
+    // Map data based on column order
+    const mappedData = data.map((item) => {
+      const row: any = [];
+      columnOrder.forEach((key) => {
+        row.push(item[key]);
+      });
+      return row;
+    });
+
+    // Add data rows
+    worksheet.addRows(mappedData);
+
+    // Adjust column widths
+    const allData = [customHeaders || columnOrder, ...mappedData];
+    columnOrder.forEach((_, index) => {
+      const maxLength = allData.reduce((max, row) => {
+        const cellValue = row[index]?.toString() || '';
+        return Math.max(max, cellValue.length);
+      }, 0);
+      worksheet.getColumn(index + 1).width = maxLength + 2; // Add padding
+    });
+
+    // Generate Excel file
+    workbook.xlsx.writeBuffer().then((buffer) => {
+      const blob = new Blob([buffer], { type: 'application/octet-stream' });
+      saveAs(blob, `${fileName}.xlsx`);
+    });
+  }
 }

@@ -18,7 +18,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { mean, sum, map } from 'lodash';
-import { convertToFloat } from '../allservice';
+import { convertToFloat, ExcelExportService } from '../allservice';
 import { apiUrl } from '../env';
 
 @Component({
@@ -104,7 +104,8 @@ export class OcrBcaResultComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private excelExportService: ExcelExportService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
@@ -398,5 +399,14 @@ export class OcrBcaResultComponent implements OnInit {
       transactionFraudDetection: this.transactionFraudDetection,
       susModFraudDetection: this.susModFraudDetection,
     };
+  }
+
+  exportData() {
+    this.excelExportService.exportToExcel(
+      this.transactionData,
+      'BCA_Transaction_Data_Exported',
+      ['tanggal', 'keterangan', 'cbg', 'mutasi', 'saldo', 'filename'],
+      ['Tanggal', 'Keterangan', 'Cabang', 'Mutasi', 'Saldo', 'File Name']
+    );
   }
 }
