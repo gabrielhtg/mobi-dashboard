@@ -13,11 +13,13 @@ import {
 } from './ocr-mandiri-result.service';
 import { map, mean, sum } from 'lodash';
 import { apiUrl } from '../env';
+import { ExcelExportService } from '../allservice';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ocr-mandiri-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, NgIf, NgClass],
+  imports: [NgForOf, BaseChartDirective, NgIf, NgClass, FormsModule],
   templateUrl: './ocr-mandiri-result.component.html',
 })
 export class OcrMandiriResultComponent {
@@ -81,11 +83,14 @@ export class OcrMandiriResultComponent {
   keteranganSaldoFraudDetection: string = '-';
   keteranganTransactionFraudDetection: string = '-';
   keteranganSusModFraudDetection: string = '-';
+  startDate = '';
+  endDate = '';
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private excelExportService: ExcelExportService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
@@ -371,5 +376,34 @@ export class OcrMandiriResultComponent {
     if (target) {
       this.transactionData[index][field] = target.value;
     }
+  }
+
+  exportData() {
+    this.excelExportService.exportToExcel(
+      this.transactionData,
+      'Mandiri_Transaction_Data_Exported',
+      [
+        'date_and_time',
+        'value_date',
+        'description',
+        'refference_no',
+        'debit',
+        'kredit',
+        'saldo',
+        'filename',
+      ],
+      this.startDate,
+      this.endDate,
+      [
+        'Date and Time',
+        'Value Date',
+        'Description',
+        'Refference No',
+        'Debit',
+        'Kredit',
+        'Saldo',
+        'File Name',
+      ]
+    );
   }
 }

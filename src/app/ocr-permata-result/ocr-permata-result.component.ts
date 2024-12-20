@@ -10,14 +10,15 @@ import {
   getMonthlyChartLabels,
   getSaldoMovement,
 } from './ocr-permata-result.service';
-import { convertToFloat } from '../allservice';
+import { convertToFloat, ExcelExportService } from '../allservice';
 import { map, mean, sum } from 'lodash';
 import { apiUrl } from '../env';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ocr-permata-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, NgIf, NgClass],
+  imports: [NgForOf, BaseChartDirective, NgIf, NgClass, FormsModule],
   templateUrl: './ocr-permata-result.component.html',
 })
 export class OcrPermataResultComponent {
@@ -32,6 +33,8 @@ export class OcrPermataResultComponent {
 
   validationRemark: any = null;
   isRekeningValid: any = null;
+  startDate = '';
+  endDate = '';
 
   transactionData: any;
   summaryData: any;
@@ -88,7 +91,8 @@ export class OcrPermataResultComponent {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private excelExportService: ExcelExportService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
@@ -393,5 +397,32 @@ export class OcrPermataResultComponent {
       transactionFraudDetection: this.transactionFraudDetection,
       susModFraudDetection: this.susModFraudDetection,
     };
+  }
+
+  exportData() {
+    this.excelExportService.exportToExcel(
+      this.transactionData,
+      'Permata_Transaction_Data_Exported',
+      [
+        'tanggal_transaksi',
+        'tanggal_valuta',
+        'uraian_transaksi',
+        'debet',
+        'kredit',
+        'saldo',
+        'filename',
+      ],
+      this.startDate,
+      this.endDate,
+      [
+        'Tanggal Transaksi',
+        'Tanggal Valuta',
+        'Uraian Transaksi',
+        'Debet',
+        'Kredit',
+        'Saldo',
+        'File Name',
+      ]
+    );
   }
 }

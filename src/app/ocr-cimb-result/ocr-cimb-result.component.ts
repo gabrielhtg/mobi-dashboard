@@ -13,11 +13,13 @@ import {
 } from './ocr-cimb-result.service';
 import { map, mean, sum } from 'lodash';
 import { apiUrl } from '../env';
+import { ExcelExportService } from '../allservice';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ocr-cimb-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, NgIf, NgClass],
+  imports: [NgForOf, BaseChartDirective, NgIf, NgClass, FormsModule],
   templateUrl: './ocr-cimb-result.component.html',
 })
 export class OcrCimbResultComponent {
@@ -49,6 +51,8 @@ export class OcrCimbResultComponent {
   cabang: string = '';
   isPdfModified: any;
   indexTransaksiJanggal: number[] = [];
+  startDate = '';
+  endDate = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -96,7 +100,8 @@ export class OcrCimbResultComponent {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private excelExportService: ExcelExportService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
@@ -399,5 +404,34 @@ export class OcrCimbResultComponent {
     if (target) {
       this.transactionData[index][field] = target.value;
     }
+  }
+
+  exportData() {
+    this.excelExportService.exportToExcel(
+      this.transactionData,
+      'CIMB_Transaction_Data_Exported',
+      [
+        'tanggal_transaksi',
+        'tanggal_valuta',
+        'uraian_transaksi',
+        'nomor_cek',
+        'debet',
+        'kredit',
+        'saldo',
+        'filename',
+      ],
+      this.startDate,
+      this.endDate,
+      [
+        'Tanggal Transaksi',
+        'Tanggal Valuta',
+        'Uraian Transaksi',
+        'Nomor Cek',
+        'Debet',
+        'Kredit',
+        'Saldo',
+        'File Name',
+      ]
+    );
   }
 }

@@ -19,11 +19,13 @@ import {
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, mean, sum } from 'lodash';
 import { apiUrl } from '../env';
+import { ExcelExportService } from '../allservice';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ocr-bri-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, NgIf, NgClass],
+  imports: [NgForOf, BaseChartDirective, NgIf, NgClass, FormsModule],
   templateUrl: './ocr-bri-result.component.html',
 })
 export class OcrBriResultComponent implements OnInit {
@@ -61,6 +63,8 @@ export class OcrBriResultComponent implements OnInit {
   keteranganTransactionFraudDetection: string = '-';
   keteranganSusModFraudDetection: string = '-';
   indexTransaksiJanggal: number[] = [];
+  startDate: string = '';
+  endDate = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -96,7 +100,8 @@ export class OcrBriResultComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private excelExportService: ExcelExportService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
@@ -394,5 +399,32 @@ export class OcrBriResultComponent implements OnInit {
     if (target) {
       this.transactionData[index][field] = target.value;
     }
+  }
+
+  exportData() {
+    this.excelExportService.exportToExcel(
+      this.transactionData,
+      'BRI_Transaction_Data_Exported',
+      [
+        'tanggal_transaksi',
+        'uraian_transaksi',
+        'teller',
+        'debit',
+        'kredit',
+        'saldo',
+        'filename',
+      ],
+      this.startDate,
+      this.endDate,
+      [
+        'Tanggal Transaksi',
+        'Uraian Transaksi',
+        'Teller',
+        'Debit',
+        'Kredit',
+        'Saldo',
+        'File Name',
+      ]
+    );
   }
 }

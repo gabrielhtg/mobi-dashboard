@@ -13,11 +13,13 @@ import {
 } from './ocr-ocbc-result.service';
 import { map, mean, sum } from 'lodash';
 import { apiUrl } from '../env';
+import { ExcelExportService } from '../allservice';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ocr-ocbc-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, NgIf, NgClass],
+  imports: [NgForOf, BaseChartDirective, NgIf, NgClass, FormsModule],
   templateUrl: './ocr-ocbc-result.component.html',
 })
 export class OcrOcbcResultComponent {
@@ -32,6 +34,8 @@ export class OcrOcbcResultComponent {
 
   validationRemark: any = null;
   isRekeningValid: any = null;
+  startDate = '';
+  endDate = '';
 
   transactionData: any;
   summaryData: any;
@@ -93,7 +97,8 @@ export class OcrOcbcResultComponent {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private excelExportService: ExcelExportService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
@@ -397,5 +402,32 @@ export class OcrOcbcResultComponent {
       transactionFraudDetection: this.transactionFraudDetection,
       susModFraudDetection: this.susModFraudDetection,
     };
+  }
+
+  exportData() {
+    this.excelExportService.exportToExcel(
+      this.transactionData,
+      'OCBC_Transaction_Data_Exported',
+      [
+        'tanggal_transaksi',
+        'tanggal_valuta',
+        'uraian',
+        'debet',
+        'kredit',
+        'saldo',
+        'filename',
+      ],
+      this.startDate,
+      this.endDate,
+      [
+        'Tanggal Transaksi',
+        'Tanggal Valuta',
+        'Uraian Transaksi',
+        'Debet',
+        'Kredit',
+        'Saldo',
+        'File Name',
+      ]
+    );
   }
 }

@@ -13,11 +13,13 @@ import {
 } from './ocr-bni-result.service';
 import { map, mean, sum } from 'lodash';
 import { apiUrl } from '../env';
+import { ExcelExportService } from '../allservice';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ocr-bni-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, NgIf, NgClass],
+  imports: [NgForOf, BaseChartDirective, NgIf, NgClass, FormsModule],
   templateUrl: './ocr-bni-result.component.html',
 })
 export class OcrBniResultComponent {
@@ -50,6 +52,8 @@ export class OcrBniResultComponent {
   totalDebetAmount: string = '';
   totalCreditAmount: string = '';
   isPdfModified: any = null;
+  startDate: string = '';
+  endDate: string = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -90,7 +94,8 @@ export class OcrBniResultComponent {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private excelExportService: ExcelExportService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
@@ -387,5 +392,36 @@ export class OcrBniResultComponent {
     if (target) {
       this.transactionData[index][field] = target.value;
     }
+  }
+
+  exportData() {
+    this.excelExportService.exportToExcel(
+      this.transactionData,
+      'BNI_Transaction_Data_Exported',
+      [
+        'posting_date',
+        'effective_date',
+        'branch',
+        'journal',
+        'transaction_description',
+        'amount',
+        'debit_credit',
+        'balance',
+        'filename',
+      ],
+      this.startDate,
+      this.endDate,
+      [
+        'Posting Date',
+        'Effective Date',
+        'Branch',
+        'Journal',
+        'Transaction Description',
+        'Amount',
+        'Debit Credit',
+        'Balance',
+        'File Name',
+      ]
+    );
   }
 }

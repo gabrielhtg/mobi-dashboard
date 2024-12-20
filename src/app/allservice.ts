@@ -147,6 +147,37 @@ export function getUserInitials(name: string) {
   return words.map((word) => word[0].toUpperCase()).join('');
 }
 
+function getFilteredTransaction(
+  transactionData: any[],
+  key: string,
+  startDate: string,
+  endDate: string
+) {
+  const tempTransactionData: any[] = [];
+  let startDateDetected = false;
+  let endDateDetected = false;
+
+  transactionData.forEach((e) => {
+    if (e[key] === startDate.trim()) {
+      startDateDetected = true;
+    }
+
+    if (e[key] === endDate.trim()) {
+      endDateDetected = true;
+    }
+
+    if (startDateDetected && !endDateDetected) {
+      tempTransactionData.push(e);
+    }
+
+    if (startDateDetected && endDateDetected && e[key] === endDate.trim()) {
+      tempTransactionData.push(e);
+    }
+  });
+
+  return tempTransactionData;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -157,10 +188,13 @@ export class ExcelExportService {
     data: any[],
     fileName: string,
     columnOrder: string[],
+    startDate: string,
+    endDate: string,
     customHeaders?: string[]
   ): void {
     const workbook = new Workbook();
     const worksheet = workbook.addWorksheet('Transaction Data');
+    let mappedData: any[];
 
     // Add custom headers if provided
     if (customHeaders) {
@@ -177,14 +211,30 @@ export class ExcelExportService {
       });
     }
 
-    // Map data based on column order
-    const mappedData = data.map((item) => {
-      const row: any = [];
-      columnOrder.forEach((key) => {
-        row.push(item[key]);
+    if (startDate !== '') {
+      const filteredData = getFilteredTransaction(
+        data,
+        'tanggal',
+        startDate,
+        endDate
+      );
+
+      mappedData = filteredData.map((item) => {
+        const row: any = [];
+        columnOrder.forEach((key) => {
+          row.push(item[key]);
+        });
+        return row;
       });
-      return row;
-    });
+    } else {
+      mappedData = data.map((item) => {
+        const row: any = [];
+        columnOrder.forEach((key) => {
+          row.push(item[key]);
+        });
+        return row;
+      });
+    }
 
     // Add data rows
     worksheet.addRows(mappedData);

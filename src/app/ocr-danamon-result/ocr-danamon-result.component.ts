@@ -13,11 +13,13 @@ import {
 } from './ocr-danamon-result.service';
 import { map, mean, sum } from 'lodash';
 import { apiUrl } from '../env';
+import { ExcelExportService } from '../allservice';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ocr-danamon-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, NgIf, NgClass],
+  imports: [NgForOf, BaseChartDirective, NgIf, NgClass, FormsModule],
   templateUrl: './ocr-danamon-result.component.html',
 })
 export class OcrDanamonResultComponent {
@@ -51,6 +53,8 @@ export class OcrDanamonResultComponent {
   keteranganTransactionFraudDetection: string = '-';
   keteranganSusModFraudDetection: string = '-';
   indexTransaksiJanggal: number[] = [];
+  startDate = '';
+  endDate = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -83,7 +87,8 @@ export class OcrDanamonResultComponent {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private excelExportService: ExcelExportService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.transactionData = navigation?.extras.state?.['transaction_data'];
@@ -363,5 +368,34 @@ export class OcrDanamonResultComponent {
       transactionFraudDetection: this.transactionFraudDetection,
       susModFraudDetection: this.susModFraudDetection,
     };
+  }
+
+  exportData() {
+    this.excelExportService.exportToExcel(
+      this.transactionData,
+      'Danamon_Transaction_Data_Exported',
+      [
+        'tanggal_transaksi',
+        'tanggal_valuta',
+        'keterangan',
+        'reff',
+        'debit',
+        'kredit',
+        'saldo',
+        'filename',
+      ],
+      this.startDate,
+      this.endDate,
+      [
+        'Tanggal Transaksi',
+        'Tanggal Valuta',
+        'Keterangan',
+        'Reff',
+        'Debit',
+        'Kredit',
+        'Saldo',
+        'File Name',
+      ]
+    );
   }
 }

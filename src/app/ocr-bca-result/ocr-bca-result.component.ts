@@ -66,7 +66,8 @@ export class OcrBcaResultComponent implements OnInit {
   keteranganTransactionFraudDetection: string = '-';
   keteranganSusModFraudDetection: string = '-';
   indexTransaksiJanggal: number[] = [];
-  // accountValidation: any = {};
+  startDate = '';
+  endDate = '';
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -406,6 +407,8 @@ export class OcrBcaResultComponent implements OnInit {
       this.transactionData,
       'BCA_Transaction_Data_Exported',
       ['tanggal', 'keterangan', 'cbg', 'mutasi', 'saldo', 'filename'],
+      this.startDate,
+      this.endDate,
       ['Tanggal', 'Keterangan', 'Cabang', 'Mutasi', 'Saldo', 'File Name']
     );
   }
