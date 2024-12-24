@@ -15,6 +15,7 @@ import { map, mean, sum } from 'lodash';
 import { apiUrl } from '../env';
 import { ExcelExportService } from '../allservice';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ocr-mandiri-result',
@@ -49,6 +50,8 @@ export class OcrMandiriResultComponent {
   isPdfModified: any;
   indexTransaksiJanggal: number[] = [];
   startDateErrMsg = '';
+  holidayFraudDetection: boolean | null = null;
+  keteranganHolidayFraudDetection: string = '-';
   endDateErrMsg = '';
   isNotAllowedUsernameDetected =
     localStorage.getItem('username') === 'pocbfi1' ||
@@ -355,6 +358,66 @@ export class OcrMandiriResultComponent {
     };
   }
 
+  isHolidayTransaction() {
+    let holidayData: any[] = [];
+    const susDate: any[] = [];
+
+    this.http.get<any>(`${apiUrl}/g-ocr-bank/get-holiday`).subscribe({
+      next: (value) => {
+        holidayData = value.data;
+
+        this.transactionData.forEach((data: any, index: number) => {
+          for (let i = 0; i < holidayData.length; i++) {
+            const formattedDate = new Date(
+              holidayData[i].HOLIDAY_DATE
+            ).toLocaleDateString('en-GB', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+            });
+
+            if (data.date_and_time !== null) {
+              if (formattedDate === data.date_and_time.split(' ')[0].trim()) {
+                susDate.push({
+                  holiday_data: holidayData[i],
+                  sus_date: formattedDate,
+                });
+              }
+            }
+          }
+
+          if (susDate.length > 0) {
+            this.holidayFraudDetection = false;
+            const tempDate: any[] = [];
+
+            susDate.forEach((e) => {
+              tempDate.push(e.sus_date);
+            });
+
+            this.keteranganHolidayFraudDetection = `Suspicious transaction date detected at ${[
+              ...new Set(tempDate),
+            ].join(', ')}`;
+          } else {
+            this.holidayFraudDetection = true;
+            this.keteranganHolidayFraudDetection = `No suspicious transaction date detected.`;
+          }
+        });
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Upload Failed',
+          text:
+            err.error.data == undefined
+              ? 'Failed to connect with SYS_HOLIDAY.'
+              : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+        });
+
+        return;
+      },
+    });
+  }
+
   checkPotentialFraud() {
     let tempTotalDebet = 0;
     let tempTotalKredit = 0;
@@ -410,6 +473,9 @@ export class OcrMandiriResultComponent {
       this.indexTransaksiJanggal = [];
       this.keteranganTransactionFraudDetection = `No suspicious transactions were found in this transaction report.`;
     }
+
+    this.isHolidayTransaction();
+
     return {
       saldoFraudDetection: this.saldoFraudDetection,
       transactionFraudDetection: this.transactionFraudDetection,

@@ -20,6 +20,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { mean, sum, map } from 'lodash';
 import { convertToFloat, ExcelExportService } from '../allservice';
 import { apiUrl } from '../env';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ocr-bca-result',
@@ -62,6 +63,8 @@ export class OcrBcaResultComponent implements OnInit {
   saldoFraudDetection: boolean | null = null;
   transactionFraudDetection: boolean | null = null;
   susModFraudDetection: boolean | null = null;
+  holidayFraudDetection: boolean | null = null;
+  keteranganHolidayFraudDetection: string = '-';
   keteranganSaldoFraudDetection: string = '-';
   keteranganTransactionFraudDetection: string = '-';
   keteranganSusModFraudDetection: string = '-';
@@ -383,6 +386,65 @@ export class OcrBcaResultComponent implements OnInit {
     };
   }
 
+  isHolidayTransaction() {
+    let holidayData: any[] = [];
+    const susDate: any[] = [];
+
+    this.http.get<any>(`${apiUrl}/g-ocr-bank/get-holiday`).subscribe({
+      next: (value) => {
+        holidayData = value.data;
+
+        this.transactionData.forEach((data: any, index: number) => {
+          for (let i = 0; i < holidayData.length; i++) {
+            const formattedDate = new Date(
+              holidayData[i].HOLIDAY_DATE
+            ).toLocaleDateString('en-GB', {
+              day: '2-digit',
+              month: '2-digit',
+            });
+
+            if (data.tanggal !== null) {
+              if (formattedDate === data.tanggal.trim()) {
+                susDate.push({
+                  holiday_data: holidayData[i],
+                  sus_date: formattedDate,
+                });
+              }
+            }
+          }
+
+          if (susDate.length > 0) {
+            this.holidayFraudDetection = false;
+            const tempDate: any[] = [];
+
+            susDate.forEach((e) => {
+              tempDate.push(e.sus_date);
+            });
+
+            this.keteranganHolidayFraudDetection = `Suspicious transaction date detected at ${[
+              ...new Set(tempDate),
+            ].join(', ')}`;
+          } else {
+            this.holidayFraudDetection = true;
+            this.keteranganHolidayFraudDetection = `No suspicious transaction date detected.`;
+          }
+        });
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Upload Failed',
+          text:
+            err.error.data == undefined
+              ? 'Failed to connect with SYS_HOLIDAY.'
+              : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
+        });
+
+        return;
+      },
+    });
+  }
+
   checkPotentialFraud() {
     let tempTotalDebet = 0;
     let tempTotalKredit = 0;
@@ -438,6 +500,8 @@ export class OcrBcaResultComponent implements OnInit {
       this.indexTransaksiJanggal = [];
       this.keteranganTransactionFraudDetection = `No suspicious transactions were found in this transaction report.`;
     }
+
+    this.isHolidayTransaction();
 
     return {
       saldoFraudDetection: this.saldoFraudDetection,
