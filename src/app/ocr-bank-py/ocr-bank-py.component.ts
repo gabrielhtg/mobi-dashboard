@@ -47,7 +47,7 @@ export class OcrBankPyComponent implements AfterViewInit {
   constructor(private router: Router, private http: HttpClient) {}
 
   getRecentOcrData() {
-    this.http.get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data}`).subscribe({
+    this.http.get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data`).subscribe({
       next: (value) => {
         this.ocrData = value.data.map((item: any) => {
           return {
