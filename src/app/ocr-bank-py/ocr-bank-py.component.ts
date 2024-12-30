@@ -1,21 +1,20 @@
-import { AfterViewInit, Component } from '@angular/core';
-import { AngularCropperjsModule } from 'angular-cropperjs';
-import { FormsModule } from '@angular/forms';
-import { NgForOf, NgIf } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import HSFileUpload from '@preline/file-upload';
-import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
-import { proceedOcrBca } from './services/bca.services';
-import proceedOcrBri from './services/bri.services';
-import proceedOcrPermata from './services/permata.services';
-import proceedOcrDanamon from './services/danamon.services';
-import proceedOcrBni from './services/bni.services';
-import proceedOcrCimb from './services/cimb.services';
-import proceedOcrOcbc from './services/ocbc.services';
-import proceedOcrMandiri from './services/mandiri.services';
-import { HSStaticMethods } from 'preline/preline';
-import { apiUrl } from '../env';
+import { AfterViewInit, Component } from '@angular/core'
+import { AngularCropperjsModule } from 'angular-cropperjs'
+import { FormsModule } from '@angular/forms'
+import { NgForOf, NgIf } from '@angular/common'
+import { HttpClient } from '@angular/common/http'
+import HSFileUpload from '@preline/file-upload'
+import Swal from 'sweetalert2'
+import { Router } from '@angular/router'
+import { proceedOcrBca } from './services/bca.services'
+import proceedOcrBri from './services/bri.services'
+import proceedOcrPermata from './services/permata.services'
+import proceedOcrDanamon from './services/danamon.services'
+import proceedOcrBni from './services/bni.services'
+import proceedOcrCimb from './services/cimb.services'
+import proceedOcrOcbc from './services/ocbc.services'
+import proceedOcrMandiri from './services/mandiri.services'
+import { HSStaticMethods } from 'preline/preline'
 
 @Component({
   selector: 'app-ocr-bank-py',
@@ -24,48 +23,34 @@ import { apiUrl } from '../env';
   templateUrl: './ocr-bank-py.component.html',
 })
 export class OcrBankPyComponent implements AfterViewInit {
-  element: HSFileUpload | any;
+  element: HSFileUpload | any
 
-  selectedBankStatement = '';
+  selectedBankStatement = ''
 
   // menyimpan value dari checkbox untuk memeriksa apakah zip yang diupload password protected
-  isZipPasswordProtected = false;
+  isZipPasswordProtected = false
 
   // model untuk menyimpan input password zip yang dimasukkan oleh user
-  zipPassword: string | undefined;
+  zipPassword: string | undefined
 
-  isSingle: string = 'true';
+  isSingle: string = 'true'
 
-  selectedFile: File | null = null;
+  selectedFile: File | null = null
 
   isNotAllowedUsernameDetected =
     localStorage.getItem('username') === 'pocbfi1' ||
-    localStorage.getItem('username') === 'pocbfi2';
+    localStorage.getItem('username') === 'pocbfi2'
 
-  ocrData: any[] = [];
+  ocrData: any[] = []
 
   constructor(
     private router: Router,
     private http: HttpClient
   ) {}
 
-  getRecentOcrData() {
-    this.http.get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data`).subscribe({
-      next: value => {
-        this.ocrData = value.data.map((item: any) => {
-          return {
-            ...item,
-            file_name: JSON.parse(item.file_name),
-          };
-        });
-      },
-    });
-  }
-
   ngAfterViewInit() {
-    HSFileUpload.autoInit();
-    this.tampilkanPesanError();
-    this.getRecentOcrData();
+    HSFileUpload.autoInit()
+    this.tampilkanPesanError()
 
     /**
      * ! Penting untuk diketahui
@@ -107,7 +92,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           files,
           this.element.dropzone.ocrData,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '3') {
@@ -120,7 +105,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           files,
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '4') {
@@ -133,7 +118,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           files,
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '5') {
@@ -146,7 +131,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           files,
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '6') {
@@ -159,7 +144,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           files,
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '7') {
@@ -172,7 +157,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           files,
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '8') {
@@ -185,7 +170,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           files,
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '9') {
@@ -198,15 +183,15 @@ export class OcrBankPyComponent implements AfterViewInit {
           files,
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
-    });
+    })
   }
 
   onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
+    const input = event.target as HTMLInputElement
     if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0]; // Ambil file pertama
+      this.selectedFile = input.files[0] // Ambil file pertama
     }
   }
 
@@ -214,23 +199,23 @@ export class OcrBankPyComponent implements AfterViewInit {
     const { element }: any = HSFileUpload.getInstance(
       '#hs-file-upload-with-limited-file-size',
       true
-    );
-    this.element = element;
+    )
+    this.element = element
 
     this.element.dropzone.on('error', (file: any, response: any) => {
       if (file.size > this.element.concatOptions.maxFilesize * 1024 * 1024) {
         const successEls = document.querySelectorAll(
           '[data-hs-file-upload-file-success]'
-        );
+        )
         const errorEls = document.querySelectorAll(
           '[data-hs-file-upload-file-error]'
-        );
+        )
 
-        successEls.forEach((el: any) => (el.style.display = 'none'));
-        errorEls.forEach((el: any) => (el.style.display = ''));
-        HSStaticMethods.autoInit(['tooltip']);
+        successEls.forEach((el: any) => (el.style.display = 'none'))
+        errorEls.forEach((el: any) => (el.style.display = ''))
+        HSStaticMethods.autoInit(['tooltip'])
       }
-    });
+    })
   }
 
   uploadFileSingle(selectedBankStatement: string) {
@@ -241,13 +226,13 @@ export class OcrBankPyComponent implements AfterViewInit {
         text: 'Please select a file first!',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.element.dropzone.removeAllFiles();
+          this.element.dropzone.removeAllFiles()
         }
-      });
-      return;
+      })
+      return
     }
 
-    const allowedExtensions = ['application/pdf'];
+    const allowedExtensions = ['application/pdf']
 
     if (!allowedExtensions.includes(this.selectedFile.type)) {
       Swal.fire({
@@ -256,10 +241,10 @@ export class OcrBankPyComponent implements AfterViewInit {
         text: 'Invalid file detected! Only PDF files are allowed.',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.element.dropzone.removeAllFiles();
+          this.element.dropzone.removeAllFiles()
         }
-      });
-      return;
+      })
+      return
     }
 
     if (selectedBankStatement == '') {
@@ -269,9 +254,9 @@ export class OcrBankPyComponent implements AfterViewInit {
         text: 'Determine the type of bank statement!',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.element.dropzone.removeAllFiles();
+          this.element.dropzone.removeAllFiles()
         }
-      });
+      })
     } else {
       Swal.fire({
         title: 'Processing',
@@ -280,9 +265,9 @@ export class OcrBankPyComponent implements AfterViewInit {
         allowEscapeKey: false,
         allowEnterKey: false,
         didOpen: () => {
-          Swal.showLoading();
+          Swal.showLoading()
         },
-      });
+      })
 
       if (
         this.selectedBankStatement == '1' ||
@@ -297,7 +282,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           [this.selectedFile],
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '3') {
@@ -310,7 +295,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           [this.selectedFile],
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '4') {
@@ -323,7 +308,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           [this.selectedFile],
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '5') {
@@ -336,7 +321,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           [this.selectedFile],
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '6') {
@@ -349,7 +334,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           [this.selectedFile],
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '7') {
@@ -362,7 +347,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           [this.selectedFile],
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '8') {
@@ -375,7 +360,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           [this.selectedFile],
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
 
       if (this.selectedBankStatement == '9') {
@@ -388,7 +373,7 @@ export class OcrBankPyComponent implements AfterViewInit {
           [this.selectedFile],
           this.element.dropzone,
           this.ocrData
-        );
+        )
       }
     }
   }
@@ -401,11 +386,11 @@ export class OcrBankPyComponent implements AfterViewInit {
         text: 'Determine the type of bank statement!',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.element.dropzone.removeAllFiles();
+          this.element.dropzone.removeAllFiles()
         }
-      });
+      })
 
-      return;
+      return
     }
 
     if (
@@ -418,10 +403,10 @@ export class OcrBankPyComponent implements AfterViewInit {
         text: 'Please add at least one file before processing!',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.element.dropzone.removeAllFiles();
+          this.element.dropzone.removeAllFiles()
         }
-      });
-      return;
+      })
+      return
     }
 
     // Validasi tipe file
@@ -430,14 +415,14 @@ export class OcrBankPyComponent implements AfterViewInit {
       'image/png',
       'image/jpg',
       'application/zip',
-    ];
+    ]
 
-    const invalidFiles: File[] = [];
+    const invalidFiles: File[] = []
     this.element.dropzone.files.forEach((element: File) => {
       if (!allowedExtensions.includes(element.type)) {
-        invalidFiles.push(element);
+        invalidFiles.push(element)
       }
-    });
+    })
 
     if (invalidFiles.length > 0) {
       Swal.fire({
@@ -446,10 +431,10 @@ export class OcrBankPyComponent implements AfterViewInit {
         text: `Invalid file detected! Only images (JPEG, PNG) and ZIP files are allowed.`,
       }).then((result) => {
         if (result.isConfirmed) {
-          this.element.dropzone.removeAllFiles();
+          this.element.dropzone.removeAllFiles()
         }
-      });
-      return;
+      })
+      return
     }
 
     Swal.fire({
@@ -459,16 +444,16 @@ export class OcrBankPyComponent implements AfterViewInit {
       allowEscapeKey: false,
       allowEnterKey: false,
       didOpen: () => {
-        Swal.showLoading();
+        Swal.showLoading()
       },
-    });
+    })
 
-    this.element.dropzone.processQueue();
+    this.element.dropzone.processQueue()
   }
 
   formatWaktu(date: string) {
     // Buat objek Date dari string input
-    const dateObj = new Date(date);
+    const dateObj = new Date(date)
 
     // Daftar nama bulan dalam Bahasa Inggris
     const months = [
@@ -484,18 +469,18 @@ export class OcrBankPyComponent implements AfterViewInit {
       'October',
       'November',
       'December',
-    ];
+    ]
 
     // Ambil tanggal, bulan, tahun, jam, menit, dan detik dari objek Date
-    const day = dateObj.getDate();
-    const month = months[dateObj.getMonth()];
-    const year = dateObj.getFullYear();
-    const hours = String(dateObj.getHours()).padStart(2, '0');
-    const minutes = String(dateObj.getMinutes()).padStart(2, '0');
-    const seconds = dateObj.getSeconds();
+    const day = dateObj.getDate()
+    const month = months[dateObj.getMonth()]
+    const year = dateObj.getFullYear()
+    const hours = String(dateObj.getHours()).padStart(2, '0')
+    const minutes = String(dateObj.getMinutes()).padStart(2, '0')
+    const seconds = dateObj.getSeconds()
 
     // Format ulang sesuai kebutuhan
-    return `${day} ${month} ${year} - ${hours}:${minutes}`;
+    return `${day} ${month} ${year} - ${hours}:${minutes}`
   }
 
   showError(errorMsg: string) {
@@ -503,6 +488,6 @@ export class OcrBankPyComponent implements AfterViewInit {
       icon: 'error',
       title: 'Upload Failed',
       text: errorMsg,
-    });
+    })
   }
 }
