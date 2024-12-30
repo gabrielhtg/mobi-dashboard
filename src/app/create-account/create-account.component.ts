@@ -19,11 +19,11 @@ export class CreateAccountComponent {
 
   submit(createAccountForm: NgForm) {
     this.http.post<any>(`${apiUrl}/users`, createAccountForm.value).subscribe({
-      next: (value) => {
+      next: value => {
         this.alertMessage = value.msg;
         this.hideSuccessAlert = false;
       },
-      error: (error) => {
+      error: error => {
         this.alertMessage = error;
         this.hideSuccessAlert = false;
       },

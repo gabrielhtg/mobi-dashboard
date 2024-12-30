@@ -43,13 +43,13 @@ export class ProfileComponent implements OnInit {
     this.http
       .patch<any>(apiUrl + '/users/' + getUsername(), postData)
       .subscribe({
-        next: (value) => {
+        next: value => {
           showSuccessNotification(value.msg);
           sessionStorage.setItem('username', value.data.username);
           sessionStorage.setItem('email', value.data.email);
           sessionStorage.setItem('name', value.data.nama);
         },
-        error: (error) => {
+        error: error => {
           showErrorNotification(error.msg);
         },
       });

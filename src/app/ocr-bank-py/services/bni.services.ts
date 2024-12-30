@@ -64,7 +64,7 @@ export default function proceedOcrBni(
   );
 
   http.post<any>(`${apiUrlPy}/proceed-bni`, formData, { headers }).subscribe({
-    next: (value) => {
+    next: value => {
       Swal.close();
 
       if (
@@ -82,7 +82,7 @@ export default function proceedOcrBni(
             file_name: JSON.stringify(fileName),
           })
           .subscribe({
-            next: (value) => {},
+            next: value => {},
           });
       }
 
@@ -101,7 +101,7 @@ export default function proceedOcrBni(
       //   console.error('Error playing audio:', error);
       // });
     },
-    error: (err) => {
+    error: err => {
       http
         .post<any>(`${apiUrl}/g-ocr-bank/save-ocr-data`, {
           result: null,
@@ -117,7 +117,7 @@ export default function proceedOcrBni(
               : err.error.data,
         })
         .subscribe({
-          next: (value) => {},
+          next: value => {},
         });
 
       Swal.fire({
@@ -127,7 +127,7 @@ export default function proceedOcrBni(
           err.error.data == undefined
             ? 'Please re-upload your photo with better quality because the system cannot read it or make sure the bank statement type is the same.'
             : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-      }).then((result) => {
+      }).then(result => {
         if (result.isConfirmed) {
           // Clear all files from Dropzone
           dropzone.removeAllFiles();
@@ -138,7 +138,7 @@ export default function proceedOcrBni(
               )}`
             )
             .subscribe({
-              next: (value) => {
+              next: value => {
                 ocrData = value.data.map((item: any) => {
                   return {
                     ...item,

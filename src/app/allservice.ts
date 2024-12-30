@@ -54,12 +54,12 @@ export function showDeleteConfirmationDialog(
     showDenyButton: true,
     confirmButtonText: 'Yes',
     denyButtonText: `No`,
-  }).then((result) => {
+  }).then(result => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
       Swal.fire(`Berhasil menghapus data!`, '', 'success');
       http.delete<any>(APIurl).subscribe({
-        next: (value) => {
+        next: value => {
           refreshPage(refreshUrl, router);
         },
       });
@@ -89,17 +89,17 @@ export function isAuthorizedByIp(http: HttpClient, router: Router): boolean {
   let result = false;
 
   http.get<any>('https://api.ipify.org?format=json').subscribe({
-    next: (ipData) => {
+    next: ipData => {
       http
         .post<any>(`${apiUrl}/auth/checkIp`, {
           username: sessionStorage.getItem('username'),
           ip_address: ipData.ip,
         })
         .subscribe({
-          next: (value) => {
+          next: value => {
             result = true;
           },
-          error: (err) => {
+          error: err => {
             Swal.fire({
               icon: 'error',
               title: 'Upload Failed',
@@ -108,7 +108,7 @@ export function isAuthorizedByIp(http: HttpClient, router: Router): boolean {
               allowEnterKey: false,
               text: 'Other activity detected with your credentials. Come back in!',
               confirmButtonText: 'OK',
-            }).then((res) => {
+            }).then(res => {
               if (res.isConfirmed) {
                 router.navigate(['/']); // Arahkan ke halaman login
               }
@@ -144,7 +144,7 @@ export function getUserInitials(name: string) {
   }
   const words = name.trim().split(/\s+/);
 
-  return words.map((word) => word[0].toUpperCase()).join('');
+  return words.map(word => word[0].toUpperCase()).join('');
 }
 
 function getFilteredTransaction(
@@ -157,7 +157,7 @@ function getFilteredTransaction(
   let startDateDetected = false;
   let endDateDetected = false;
 
-  transactionData.forEach((e) => {
+  transactionData.forEach(e => {
     if (e[key] === startDate.trim()) {
       startDateDetected = true;
     }
@@ -200,7 +200,7 @@ export class ExcelExportService {
     if (customHeaders) {
       const headerRow = worksheet.addRow(customHeaders);
       // Style the custom headers to make them bold
-      headerRow.eachCell((cell) => {
+      headerRow.eachCell(cell => {
         cell.font = { bold: true, color: { argb: '000000' } };
         cell.alignment = { vertical: 'middle', horizontal: 'center' };
         cell.fill = {
@@ -219,17 +219,17 @@ export class ExcelExportService {
         endDate
       );
 
-      mappedData = filteredData.map((item) => {
+      mappedData = filteredData.map(item => {
         const row: any = [];
-        columnOrder.forEach((key) => {
+        columnOrder.forEach(key => {
           row.push(item[key]);
         });
         return row;
       });
     } else {
-      mappedData = data.map((item) => {
+      mappedData = data.map(item => {
         const row: any = [];
-        columnOrder.forEach((key) => {
+        columnOrder.forEach(key => {
           row.push(item[key]);
         });
         return row;
@@ -250,7 +250,7 @@ export class ExcelExportService {
     });
 
     // Generate Excel file
-    workbook.xlsx.writeBuffer().then((buffer) => {
+    workbook.xlsx.writeBuffer().then(buffer => {
       const blob = new Blob([buffer], { type: 'application/octet-stream' });
       saveAs(blob, `${fileName}.xlsx`);
     });

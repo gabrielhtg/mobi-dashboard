@@ -12,7 +12,10 @@ import Swal from 'sweetalert2';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   login(formLogin: NgForm) {
     const loginData = {
@@ -21,7 +24,7 @@ export class LoginComponent {
     };
 
     this.http.post<any>(`${apiUrl}/auth/login`, loginData).subscribe({
-      next: (value) => {
+      next: value => {
         sessionStorage.setItem('name', value.data.user.nama);
         sessionStorage.setItem(
           'profile_picture',
@@ -32,7 +35,7 @@ export class LoginComponent {
         localStorage.setItem('login_token', value.data.login_token);
         this.router.navigate(['dashboard']);
       },
-      error: (err) => {
+      error: err => {
         console.log(err);
 
         Swal.fire({

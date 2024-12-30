@@ -20,6 +20,7 @@ import { OcrBniResultComponent } from './ocr-bni-result/ocr-bni-result.component
 import { OcrCimbResultComponent } from './ocr-cimb-result/ocr-cimb-result.component';
 import { OcrOcbcResultComponent } from './ocr-ocbc-result/ocr-ocbc-result.component';
 import { OcrMandiriResultComponent } from './ocr-mandiri-result/ocr-mandiri-result.component';
+import { OcrAutoReportComponent } from './ocr-auto-report/ocr-auto-report.component';
 
 export const routes: Routes = [
   {
@@ -173,11 +174,16 @@ export const routes: Routes = [
         component: OcrMandiriResultComponent,
         title: 'OCR Mandiri Result',
       },
+      {
+        path: 'ocr-auto-report',
+        component: OcrAutoReportComponent,
+        title: 'OCR Auto Report',
+      },
     ],
   },
-  // {
-  //   path: 'create-account',
-  //   component: CreateAccountComponent,
-  //   title: 'Create Account',
-  // },
+  {
+    path: 'create-account',
+    component: CreateAccountComponent,
+    title: 'Create Account',
+  },
 ];

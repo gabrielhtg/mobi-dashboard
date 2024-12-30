@@ -74,7 +74,10 @@ export class GOcrBankComponent {
     }
   }
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   onChange(event: any) {
     const file: File = event.target.files[0];
@@ -99,11 +102,11 @@ export class GOcrBankComponent {
   doOcr(page: boolean) {
     isAuthorizedByIp(this.http, this.router);
 
-    this.angularCropper.cropper.getCroppedCanvas().toBlob((blob) => {
+    this.angularCropper.cropper.getCroppedCanvas().toBlob(blob => {
       const fd = new FormData();
       fd.append('file', blob!);
       this.http.post<any>(apiUrl + '/g-ocr-bank', fd).subscribe({
-        next: (value) => {
+        next: value => {
           if (page) {
             this.halamanTransaksi = value.data;
           } else {
@@ -149,7 +152,7 @@ export class GOcrBankComponent {
           }
           this.rawData = value.rawData;
         },
-        error: (error) => {
+        error: error => {
           console.log(error);
         },
       });
@@ -223,14 +226,14 @@ export class GOcrBankComponent {
   }
 
   exportPDF() {
-    this.angularCropper.cropper.getCroppedCanvas().toBlob((blob) => {
+    this.angularCropper.cropper.getCroppedCanvas().toBlob(blob => {
       const fd = new FormData();
       fd.append('file', blob!);
       this.http.post<any>(apiUrl + '/g-ocr/export', fd).subscribe({
-        next: (value) => {
+        next: value => {
           FileSaver.saveAs(value.data, 'ocr-result.pdf');
         },
-        error: (error) => {
+        error: error => {
           console.log(error);
           this.hideTakeAll = false;
         },
@@ -253,7 +256,7 @@ export class GOcrBankComponent {
         requestBody
       )
       .subscribe({
-        next: (value) => {
+        next: value => {
           if (value.data.validation_status == 'VALID') {
             this.validationRemark = value.data.validation_remark;
             this.isRekeningValid = true;
@@ -262,7 +265,7 @@ export class GOcrBankComponent {
             this.isRekeningValid = false;
           }
         },
-        error: (error) => {
+        error: error => {
           console.log(error);
         },
       });

@@ -1,0 +1,235 @@
+<div class="min-h-[calc(100vh-190px)]">
+  <h1 class="font-bold text-2xl mb-7">Recent OCR</h1>
+
+  <div class="grid grid-cols-3 gap-x-3">
+    <div class="mb-5 flex flex-col gap-3">
+      <span class="font-bold">Bank Type</span>
+
+      <select
+        [(ngModel)]="bankType"
+        (change)="getReportData()"
+        class="{{
+          'py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm ' +
+            'focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none ' +
+            'dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 ' +
+            'dark:focus:ring-neutral-600'
+        }}"
+      >
+        <option value="" selected>All</option>
+        <option value="BCA">BCA (2022)</option>
+        <option value="BRI">BRI (2024)</option>
+        <option value="OCBC">OCBC (2024)</option>
+        <option value="BNI">BNI (2020)</option>
+        <option value="Permata">Permata (2021)</option>
+        <option value="Danamon">Danamon (2021)</option>
+        <option value="CIMB">CIMB (2023)</option>
+        <option value="Mandiri">Mandiri (2021)</option>
+      </select>
+    </div>
+    <div class="mb-5 flex flex-col gap-3">
+      <span class="font-bold">File Type</span>
+
+      <select
+        [(ngModel)]="fileType"
+        (change)="getReportData()"
+        class="{{
+          'py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm ' +
+            'focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none ' +
+            'dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 ' +
+            'dark:focus:ring-neutral-600'
+        }}"
+      >
+        <option selected value="">All</option>
+        <option value="pdf">PDF</option>
+        <option value="image">Image</option>
+        <option value="zip">Zip</option>
+      </select>
+    </div>
+    <div class="mb-5 flex flex-col gap-3">
+      <span class="font-bold">OCR Status</span>
+
+      <select
+        [(ngModel)]="ocrStatus"
+        (change)="getReportData()"
+        class="{{
+          'py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm ' +
+            'focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none ' +
+            'dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 ' +
+            'dark:focus:ring-neutral-600'
+        }}"
+      >
+        <option selected value="">All</option>
+        <option value="Success">Success</option>
+        <option value="Failed">Failed</option>
+      </select>
+    </div>
+    <div class="mb-5 flex flex-col gap-3">
+      <span class="font-bold">Process Date</span>
+
+      <div class="grid grid-cols-2 gap-2">
+        <div class="max-w-sm">
+          <label for="to" class="block text-sm font-medium mb-2 dark:text-white"
+            >From</label
+          >
+          <input
+            type="date"
+            id="to"
+            (change)="getReportData()"
+            [(ngModel)]="fromDate"
+            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+            placeholder="you@site.com"
+          />
+        </div>
+
+        <div class="max-w-sm">
+          <label for="to" class="block text-sm font-medium mb-2 dark:text-white"
+            >To</label
+          >
+          <input
+            type="date"
+            id="from"
+            (change)="getReportData()"
+            [(ngModel)]="toDate"
+            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+            placeholder="you@site.com"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="border rounded-lg overflow-hidden dark:border-neutral-700 w-full overflow-x-scroll mt-3"
+  >
+    <table
+      class="w-full max-w-full divide-y divide-gray-200 dark:divide-neutral-700"
+    >
+      <thead class="bg-gray-50 dark:bg-neutral-700">
+        <tr class="divide-x">
+          <th
+            scope="col"
+            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
+          >
+            Bank Type
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-3 text-start text-xs font-medium text-gray-500 max-w-[45%] uppercase dark:text-neutral-400"
+          >
+            File Type
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-3 text-start text-xs font-medium text-gray-500 max-w-[45%] uppercase dark:text-neutral-400"
+          >
+            File Name
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
+          >
+            Total File
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
+          >
+            Status
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
+          >
+            Uploaded At
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
+          >
+            Uploaded By
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
+          >
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+        <tr *ngFor="let e of ocrData; let i = index" class="divide-x">
+          <td
+            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+          >
+            {{ e.bank_type }}
+          </td>
+          <td
+            class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
+          >
+            {{ e.file_type }}
+          </td>
+          <td
+            class="px-6 py-4 text-sm text-gray-800 max-w-[45%] dark:text-neutral-200"
+          >
+            <ul class="list-disc list-inside text-gray-800 dark:text-white">
+              <li *ngFor="let filename of e.file_name; let i = index">
+                {{ filename }}
+              </li>
+            </ul>
+          </td>
+          <td
+            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+          >
+            {{ e.total_page ? e.total_page : '-' }}
+          </td>
+          <td
+            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+          >
+            {{ e.status }}
+          </td>
+          <td
+            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+          >
+            {{ formatWaktu(e.upload_date) }}
+          </td>
+          <td
+            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+          >
+            {{ e.uploaded_by }}
+          </td>
+          <td
+            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+          >
+            <a
+              [href]="'dashboard/' + e.link + '/' + e.id"
+              *ngIf="e.status == 'Success'"
+            >
+              <button
+                type="button"
+                class="py-2 px-3 w-full max-w-[120px] inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+              >
+                <span class="text-center w-full">Open</span>
+              </button>
+            </a>
+            <button
+              type="button"
+              (click)="showError(e.error_message)"
+              *ngIf="e.status == 'Failed'"
+              class="py-2 px-3 w-full max-w-[120px] inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+            >
+              <span class="text-center w-full">Show Error</span>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="ocrData.length == 0">
+          <td
+            colspan="8"
+            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-center"
+          >
+            There is no data
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

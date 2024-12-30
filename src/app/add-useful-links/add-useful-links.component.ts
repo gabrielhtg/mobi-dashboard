@@ -36,13 +36,13 @@ export class AddUsefulLinksComponent implements OnInit {
       this.http
         .patch<any>(`${apiUrl}/usefull-link/${this.id}`, data)
         .subscribe({
-          next: (value) => {
+          next: value => {
             this.router.navigate(['/dashboard/usefull-links']);
           },
         });
     } else {
       this.http.post<any>(`${apiUrl}/usefull-link`, data).subscribe({
-        next: (value) => {
+        next: value => {
           this.router.navigate(['/dashboard/usefull-links']);
         },
       });
@@ -51,7 +51,7 @@ export class AddUsefulLinksComponent implements OnInit {
 
   loadData() {
     this.http.get<any>(`${apiUrl}/usefull-link/${this.id}`).subscribe({
-      next: (value) => {
+      next: value => {
         this.data = value.data;
       },
     });

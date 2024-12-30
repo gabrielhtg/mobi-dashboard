@@ -142,7 +142,7 @@ export class OcrOcbcResultComponent {
       this.http
         .get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data-by-id/${id}`)
         .subscribe({
-          next: (value) => {
+          next: value => {
             const tempResult = JSON.parse(value.data.result);
 
             this.transactionData = tempResult.transaction_data;
@@ -261,7 +261,7 @@ export class OcrOcbcResultComponent {
         }
       )
       .subscribe({
-        next: (value) => {
+        next: value => {
           if (value.data.validation_status == 'VALID') {
             this.validationRemark = value.data.validation_remark;
             this.isRekeningValid = true;
@@ -270,7 +270,7 @@ export class OcrOcbcResultComponent {
             this.isRekeningValid = false;
           }
         },
-        error: (error) => {
+        error: error => {
           console.log(error);
         },
       });
@@ -285,9 +285,7 @@ export class OcrOcbcResultComponent {
 
   stdev(array: any[]) {
     var avg = sum(array) / array.length;
-    return Math.sqrt(
-      sum(map(array, (i) => Math.pow(i - avg, 2))) / array.length
-    );
+    return Math.sqrt(sum(map(array, i => Math.pow(i - avg, 2))) / array.length);
   }
 
   cekTransaksiJanggal(transactionData: any) {
@@ -340,16 +338,16 @@ export class OcrOcbcResultComponent {
       }
     });
 
-    const avgBiaya = mean(kumpulanBiaya.map((item) => item.value));
-    const stdDevBiaya = this.stdev(kumpulanBiaya.map((item) => item.value));
+    const avgBiaya = mean(kumpulanBiaya.map(item => item.value));
+    const stdDevBiaya = this.stdev(kumpulanBiaya.map(item => item.value));
 
-    const avgPembelian = mean(kumpulanPembelian.map((item) => item.value));
+    const avgPembelian = mean(kumpulanPembelian.map(item => item.value));
     const stdDevPembelian = this.stdev(
-      kumpulanPembelian.map((item) => item.value)
+      kumpulanPembelian.map(item => item.value)
     );
 
-    const avgAdmin = mean(kumpulanAdmin.map((item) => item.value));
-    const stdDevAdmin = this.stdev(kumpulanAdmin.map((item) => item.value));
+    const avgAdmin = mean(kumpulanAdmin.map(item => item.value));
+    const stdDevAdmin = this.stdev(kumpulanAdmin.map(item => item.value));
 
     const indexTransaksiMencurigakan: number[] = [];
 
@@ -391,7 +389,7 @@ export class OcrOcbcResultComponent {
     const susDate: any[] = [];
 
     this.http.get<any>(`${apiUrl}/g-ocr-bank/get-holiday`).subscribe({
-      next: (value) => {
+      next: value => {
         holidayData = value.data;
 
         this.transactionData.forEach((data: any, index: number) => {
@@ -418,7 +416,7 @@ export class OcrOcbcResultComponent {
             this.holidayFraudDetection = false;
             const tempDate: any[] = [];
 
-            susDate.forEach((e) => {
+            susDate.forEach(e => {
               tempDate.push(e.sus_date);
             });
 
@@ -431,7 +429,7 @@ export class OcrOcbcResultComponent {
           }
         });
       },
-      error: (err) => {
+      error: err => {
         Swal.fire({
           icon: 'error',
           title: 'Upload Failed',

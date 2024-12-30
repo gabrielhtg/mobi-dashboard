@@ -19,7 +19,10 @@ import { showSuccessNotification } from '../allservice';
 export class AddCodeSnippetsComponent implements OnDestroy {
   code = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   editor = new Editor({
     extensions: [
@@ -50,7 +53,7 @@ export class AddCodeSnippetsComponent implements OnDestroy {
     const data = addCodeSnippetForm.value;
 
     this.http.post<any>(`${apiUrl}/code-snippets`, data).subscribe({
-      next: (value) => {
+      next: value => {
         showSuccessNotification('Berhasil membuat data baru!');
 
         this.router.navigate(['/dashboard/code-snippets']);

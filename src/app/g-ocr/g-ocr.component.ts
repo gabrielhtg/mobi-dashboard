@@ -102,7 +102,10 @@ export class GOcrComponent {
     }
   }
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   onChange(event: any) {
     const file: File = event.target.files[0];
@@ -132,11 +135,11 @@ export class GOcrComponent {
         imageSmoothingEnabled: true,
         imageSmoothingQuality: 'high',
       })
-      .toBlob((blob) => {
+      .toBlob(blob => {
         const fd = new FormData();
         fd.append('file', blob!);
         this.http.post<any>(apiUrl + '/g-ocr', fd).subscribe({
-          next: (value) => {
+          next: value => {
             this.dataKTP[this.selectedData] = value.data;
             this.cropData[this.selectedData] =
               this.angularCropper.cropper.getCropBoxData();
@@ -145,7 +148,7 @@ export class GOcrComponent {
             this.selectedData++;
             this.rawData = value.rawData;
           },
-          error: (error) => {
+          error: error => {
             console.log(error);
           },
         });
@@ -159,16 +162,16 @@ export class GOcrComponent {
         imageSmoothingEnabled: true,
         imageSmoothingQuality: 'high',
       })
-      .toBlob((blob) => {
+      .toBlob(blob => {
         const fd = new FormData();
         fd.append('file', blob!);
         this.http.post<any>(apiUrl + '/g-ocr/all', fd).subscribe({
-          next: (value) => {
+          next: value => {
             this.dataKTP = value.data;
 
             this.hideTakeAll = false;
           },
-          error: (error) => {
+          error: error => {
             console.log(error);
             this.hideTakeAll = false;
           },
@@ -196,14 +199,14 @@ export class GOcrComponent {
 
   exportPDF() {
     isAuthorizedByIp(this.http, this.router);
-    this.angularCropper.cropper.getCroppedCanvas().toBlob((blob) => {
+    this.angularCropper.cropper.getCroppedCanvas().toBlob(blob => {
       const fd = new FormData();
       fd.append('file', blob!);
       this.http.post<any>(apiUrl + '/g-ocr/export', fd).subscribe({
-        next: (value) => {
+        next: value => {
           FileSaver.saveAs(value.data, 'ocr-result.pdf');
         },
-        error: (error) => {
+        error: error => {
           console.log(error);
           this.hideTakeAll = false;
         },

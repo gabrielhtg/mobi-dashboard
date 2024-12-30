@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Event, NavigationEnd, Router, RouterOutlet} from '@angular/router';
+import { Event, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { IStaticMethods } from 'preline/preline';
 declare global {
   interface Window {
@@ -12,7 +12,7 @@ declare global {
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'g-dashboard-app';

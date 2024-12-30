@@ -1,52 +1,89 @@
 <h1 class="font-bold text-2xl mb-5">Add New Code Snippet</h1>
 
-<form #addCodeSnippetForm=ngForm (ngSubmit)="submit(addCodeSnippetForm)">
+<form #addCodeSnippetForm="ngForm" (ngSubmit)="submit(addCodeSnippetForm)">
   <div class="max-w-sm mb-3">
     <label class="block text-sm font-medium mb-2">Title</label>
-    <input type="email" ngModel name="title" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+    <input
+      type="email"
+      ngModel
+      name="title"
+      class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" />
   </div>
 
   <div class="max-w-sm mb-3">
     <label class="block text-sm font-medium mb-2">Description</label>
-    <input type="text" ngModel name="description" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+    <input
+      type="text"
+      ngModel
+      name="description"
+      class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" />
   </div>
 
   <div class="max-w-sm mb-3">
     <label class="block text-sm font-medium mb-2">Programming Language</label>
-    <input type="text" ngModel name="language" class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+    <input
+      type="text"
+      ngModel
+      name="language"
+      class="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" />
   </div>
 
   <span class="block text-sm font-medium mb-2">Code</span>
   <div class="border border-gray-200 rounded-lg p-3">
-
     <div class="flex flex-wrap gap-2 mb-3">
-<!--      <button (click)="editor.chain().focus().toggleBold().run()" type="button" class="py-1 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none">-->
-<!--        Bold-->
-<!--      </button>-->
-<!--      <button (click)="editor.chain().focus().toggleItalic().run()" type="button" class="py-1 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none">-->
-<!--        Italic-->
-<!--      </button>-->
-      <button (click)="editor.chain().focus().toggleCodeBlock().run()" type="button" class="py-1 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none">
+      <!--      <button (click)="editor.chain().focus().toggleBold().run()" type="button" class="py-1 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none">-->
+      <!--        Bold-->
+      <!--      </button>-->
+      <!--      <button (click)="editor.chain().focus().toggleItalic().run()" type="button" class="py-1 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none">-->
+      <!--        Italic-->
+      <!--      </button>-->
+      <button
+        (click)="editor.chain().focus().toggleCodeBlock().run()"
+        type="button"
+        class="py-1 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none">
         Code
       </button>
     </div>
 
-    <hr class="mb-2">
+    <hr class="mb-2" />
 
-    <tiptap-editor [editor]="editor" [(ngModel)]="code" name="code"></tiptap-editor>
+    <tiptap-editor
+      [editor]="editor"
+      [(ngModel)]="code"
+      name="code"></tiptap-editor>
   </div>
 
-  <button type="submit" class="mt-5 py-2 md:py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy-fill" viewBox="0 0 16 16">
-      <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z"/>
-      <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z"/>
+  <button
+    type="submit"
+    class="mt-5 py-2 md:py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-floppy-fill"
+      viewBox="0 0 16 16">
+      <path
+        d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z" />
+      <path
+        d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z" />
     </svg>
     Save
   </button>
 
-  <a routerLink="/dashboard/code-snippets" class="ms-3 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+  <a
+    routerLink="/dashboard/code-snippets"
+    class="ms-3 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-arrow-left"
+      viewBox="0 0 16 16">
+      <path
+        fill-rule="evenodd"
+        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
     </svg>
     Back
   </a>

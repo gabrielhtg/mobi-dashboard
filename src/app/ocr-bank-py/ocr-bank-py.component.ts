@@ -44,11 +44,14 @@ export class OcrBankPyComponent implements AfterViewInit {
 
   ocrData: any[] = [];
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   getRecentOcrData() {
-    this.http.get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data}`).subscribe({
-      next: (value) => {
+    this.http.get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data`).subscribe({
+      next: value => {
         this.ocrData = value.data.map((item: any) => {
           return {
             ...item,
@@ -236,7 +239,7 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: 'Please select a file first!',
-      }).then((result) => {
+      }).then(result => {
         if (result.isConfirmed) {
           this.element.dropzone.removeAllFiles();
         }
@@ -251,7 +254,7 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: 'Invalid file detected! Only PDF files are allowed.',
-      }).then((result) => {
+      }).then(result => {
         if (result.isConfirmed) {
           this.element.dropzone.removeAllFiles();
         }
@@ -264,7 +267,7 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: 'Determine the type of bank statement!',
-      }).then((result) => {
+      }).then(result => {
         if (result.isConfirmed) {
           this.element.dropzone.removeAllFiles();
         }
@@ -396,7 +399,7 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: 'Determine the type of bank statement!',
-      }).then((result) => {
+      }).then(result => {
         if (result.isConfirmed) {
           this.element.dropzone.removeAllFiles();
         }
@@ -413,7 +416,7 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: 'Please add at least one file before processing!',
-      }).then((result) => {
+      }).then(result => {
         if (result.isConfirmed) {
           this.element.dropzone.removeAllFiles();
         }
@@ -441,7 +444,7 @@ export class OcrBankPyComponent implements AfterViewInit {
         icon: 'error',
         title: 'Upload Failed',
         text: `Invalid file detected! Only images (JPEG, PNG) and ZIP files are allowed.`,
-      }).then((result) => {
+      }).then(result => {
         if (result.isConfirmed) {
           this.element.dropzone.removeAllFiles();
         }

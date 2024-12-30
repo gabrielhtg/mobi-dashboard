@@ -53,7 +53,7 @@ export class UsefullLinksComponent implements OnInit {
   loadData() {
     if (this.keywords === null) {
       this.http.get<any>(`${apiUrl}/usefull-link`).subscribe({
-        next: (value) => {
+        next: value => {
           this.links = value.data;
         },
       });
@@ -61,7 +61,7 @@ export class UsefullLinksComponent implements OnInit {
       this.http
         .get<any>(`${apiUrl}/usefull-link/search/${this.keywords}`)
         .subscribe({
-          next: (value) => {
+          next: value => {
             this.links = value.data;
           },
         });

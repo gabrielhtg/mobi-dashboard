@@ -47,13 +47,13 @@ export class CodeSnippetsComponent implements OnInit {
       this.http
         .get<any>(`${apiUrl}/code-snippets/search/${this.param}`)
         .subscribe({
-          next: (value) => {
+          next: value => {
             this.codes = value.data;
           },
         });
     } else {
       this.http.get<any>(`${apiUrl}/code-snippets`).subscribe({
-        next: (value) => {
+        next: value => {
           this.codes = value.data;
         },
       });

@@ -61,7 +61,7 @@ export default function proceedOcrOcbc(
   );
 
   http.post<any>(`${apiUrlPy}/proceed-ocbc`, formData, { headers }).subscribe({
-    next: (value) => {
+    next: value => {
       Swal.close();
 
       if (
@@ -79,7 +79,7 @@ export default function proceedOcrOcbc(
             file_name: JSON.stringify(fileName),
           })
           .subscribe({
-            next: (value) => {},
+            next: value => {},
           });
       }
 
@@ -91,7 +91,7 @@ export default function proceedOcrOcbc(
       var audio = new Audio('assets/bell.wav');
       audio.play();
     },
-    error: (err) => {
+    error: err => {
       http
         .post<any>(`${apiUrl}/g-ocr-bank/save-ocr-data`, {
           result: null,
@@ -107,7 +107,7 @@ export default function proceedOcrOcbc(
               : err.error.data,
         })
         .subscribe({
-          next: (value) => {},
+          next: value => {},
         });
 
       Swal.fire({
@@ -117,7 +117,7 @@ export default function proceedOcrOcbc(
           err.error.data == undefined
             ? 'Please re-upload your photo with better quality because the system cannot read it or make sure the bank statement type is the same.'
             : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-      }).then((result) => {
+      }).then(result => {
         if (result.isConfirmed) {
           // Clear all files from Dropzone
           dropzone.removeAllFiles();
@@ -128,7 +128,7 @@ export default function proceedOcrOcbc(
               )}`
             )
             .subscribe({
-              next: (value) => {
+              next: value => {
                 ocrData = value.data.map((item: any) => {
                   return {
                     ...item,

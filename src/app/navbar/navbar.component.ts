@@ -16,7 +16,10 @@ export class NavbarComponent implements OnInit {
   loginData: any = {};
   hideProfilePicturePlaceholder = false;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loginData.username = localStorage.getItem('username');
@@ -36,12 +39,12 @@ export class NavbarComponent implements OnInit {
         username: this.loginData.username,
       })
       .subscribe({
-        next: (value) => {
+        next: value => {
           this.router.navigate(['/']);
           localStorage.clear();
           sessionStorage.clear();
         },
-        error: (err) => {
+        error: err => {
           console.log(err);
 
           Swal.fire({
