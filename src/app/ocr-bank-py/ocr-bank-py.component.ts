@@ -47,20 +47,16 @@ export class OcrBankPyComponent implements AfterViewInit {
   constructor(private router: Router, private http: HttpClient) {}
 
   getRecentOcrData() {
-    this.http
-      .get<any>(
-        `${apiUrl}/g-ocr-bank/get-ocr-data/${localStorage.getItem('username')}`
-      )
-      .subscribe({
-        next: (value) => {
-          this.ocrData = value.data.map((item: any) => {
-            return {
-              ...item,
-              file_name: JSON.parse(item.file_name),
-            };
-          });
-        },
-      });
+    this.http.get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data}`).subscribe({
+      next: (value) => {
+        this.ocrData = value.data.map((item: any) => {
+          return {
+            ...item,
+            file_name: JSON.parse(item.file_name),
+          };
+        });
+      },
+    });
   }
 
   ngAfterViewInit() {
