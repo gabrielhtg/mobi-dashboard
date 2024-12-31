@@ -1,7 +1,7 @@
-<div class="h-[calc(100vh-190px)]">
+<div class="min-h-[calc(100vh-190px)]">
   <h1 class="font-bold text-2xl mb-7">Recent OCR</h1>
 
-  <div class="grid grid-cols-3 gap-x-3">
+  <div class="grid grid-cols-2 gap-x-3">
     <div class="mb-5 flex flex-col gap-3">
       <span class="font-bold">Bank Type</span>
 
@@ -63,6 +63,27 @@
         <option value="Failed">Failed</option>
       </select>
     </div>
+
+    <div class="mb-5 flex flex-col gap-3">
+      <span class="font-bold">Uploaded By</span>
+
+      <select
+        [(ngModel)]="uploader"
+        (change)="getReportData()"
+        class="{{
+          'py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm ' +
+            'focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none ' +
+            'dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 ' +
+            'dark:focus:ring-neutral-600'
+        }}"
+      >
+        <option selected value="">All</option>
+        <option *ngFor="let e of usersData" value="{{ e.username }}">
+          {{ e.nama }}
+        </option>
+      </select>
+    </div>
+
     <div class="mb-5 flex flex-col gap-3">
       <span class="font-bold">Process Date</span>
 

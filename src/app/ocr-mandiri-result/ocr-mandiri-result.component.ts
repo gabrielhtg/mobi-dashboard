@@ -558,7 +558,7 @@ export class OcrMandiriResultComponent implements OnInit {
         'debit',
         'kredit',
         'saldo',
-        // 'filename',
+        'filename',
       ],
       this.startDate,
       this.endDate,
@@ -570,7 +570,7 @@ export class OcrMandiriResultComponent implements OnInit {
         'Debit',
         'Kredit',
         'Saldo',
-        // 'File Name',
+        'File Name',
       ]
     )
   }

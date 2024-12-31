@@ -581,7 +581,7 @@ export class OcrBriResultComponent implements OnInit {
         'debit',
         'kredit',
         'saldo',
-        // 'filename',
+        'filename',
       ],
       this.startDate,
       this.endDate,
@@ -592,7 +592,7 @@ export class OcrBriResultComponent implements OnInit {
         'Debit',
         'Kredit',
         'Saldo',
-        // 'File Name',
+        'File Name',
       ]
     )
   }

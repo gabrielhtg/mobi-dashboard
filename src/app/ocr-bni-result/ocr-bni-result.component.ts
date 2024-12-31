@@ -577,7 +577,7 @@ export class OcrBniResultComponent implements OnInit {
         'amount',
         'debit_credit',
         'balance',
-        // 'filename',
+        'filename',
       ],
       this.startDate,
       this.endDate,
@@ -590,7 +590,7 @@ export class OcrBniResultComponent implements OnInit {
         'Amount',
         'Debit Credit',
         'Balance',
-        // 'File Name',
+        'File Name',
       ]
     )
   }

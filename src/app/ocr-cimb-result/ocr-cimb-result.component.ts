@@ -575,7 +575,7 @@ export class OcrCimbResultComponent {
         'debet',
         'kredit',
         'saldo',
-        // 'filename',
+        'filename',
       ],
       this.startDate,
       this.endDate,
@@ -587,7 +587,7 @@ export class OcrCimbResultComponent {
         'Debet',
         'Kredit',
         'Saldo',
-        // 'File Name',
+        'File Name',
       ]
     )
   }

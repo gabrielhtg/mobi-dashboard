@@ -590,7 +590,7 @@ export class OcrPermataResultComponent implements OnInit {
         'debet',
         'kredit',
         'saldo',
-        // 'filename',
+        'filename',
       ],
       this.startDate,
       this.endDate,
@@ -601,7 +601,7 @@ export class OcrPermataResultComponent implements OnInit {
         'Debet',
         'Kredit',
         'Saldo',
-        // 'File Name',
+        'File Name',
       ]
     )
   }
