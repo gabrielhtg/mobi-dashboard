@@ -1,103 +1,117 @@
-import { NgClass, NgForOf, NgIf } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+import { NgClass, NgForOf, NgIf, NgOptimizedImage } from '@angular/common'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import {
+  Component,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core'
+import { ActivatedRoute, Router } from '@angular/router'
+import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js'
+import { BaseChartDirective } from 'ng2-charts'
 import {
   convertToFloat,
   getDateFrequency,
   getMonthlyChartDebitData,
   getMonthlyChartLabels,
   getSaldoMovement,
-} from './ocr-bni-result.service';
-import { map, mean, sum } from 'lodash';
-import { apiUrl } from '../env';
-import { ExcelExportService } from '../allservice';
-import { FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
+} from './ocr-bni-result.service'
+import { map, mean, sum } from 'lodash'
+import { apiUrl } from '../env'
+import { ExcelExportService } from '../allservice'
+import { FormsModule } from '@angular/forms'
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-ocr-bni-result',
   standalone: true,
-  imports: [NgForOf, BaseChartDirective, NgIf, NgClass, FormsModule],
+  imports: [
+    NgForOf,
+    BaseChartDirective,
+    NgIf,
+    NgClass,
+    FormsModule,
+    NgOptimizedImage,
+  ],
   templateUrl: './ocr-bni-result.component.html',
 })
-export class OcrBniResultComponent {
+export class OcrBniResultComponent implements OnInit {
   @ViewChildren(BaseChartDirective) charts:
     | QueryList<BaseChartDirective>
-    | undefined;
+    | undefined
 
   @ViewChild('pemilikRekeningEl', { static: false })
-  pemilikRekeningElement!: any;
+  pemilikRekeningElement!: any
   @ViewChild('nomorRekeningEl', { static: false })
-  nomorRekeningElement!: any;
+  nomorRekeningElement!: any
 
-  validationRemark: any = null;
-  isRekeningValid: any = null;
+  validationRemark: any = null
+  isRekeningValid: any = null
 
-  transactionData: any;
-  summaryData: any;
-  analysisData: any;
-  totalDebetByOcr: string = '';
-  totalCreditByOcr: string = '';
-  akunRekening: string = '';
-  alamat: string = '';
-  nomorRekening: string = '';
-  pemilikRekening: string = '';
-  periodeRekening: string = '';
-  tipeAkun: string = '';
-  endingBalance: string = '';
-  totalDebet: string = '';
-  totalCredit: string = '';
-  totalDebetAmount: string = '';
-  totalCreditAmount: string = '';
-  isPdfModified: any = null;
-  startDate: string = '';
-  endDate: string = '';
-  startDateErrMsg = '';
-  endDateErrMsg = '';
-  holidayFraudDetection: boolean | null = null;
-  keteranganHolidayFraudDetection: string = '-';
+  transactionData: any
+  summaryData: any
+  analysisData: any
+  totalDebetByOcr: string = ''
+  totalCreditByOcr: string = ''
+  akunRekening: string = ''
+  alamat: string = ''
+  nomorRekening: string = ''
+  pemilikRekening: string = ''
+  periodeRekening: string = ''
+  tipeAkun: string = ''
+  endingBalance: string = ''
+  totalDebet: string = ''
+  totalCredit: string = ''
+  totalDebetAmount: string = ''
+  totalCreditAmount: string = ''
+  isPdfModified: any = null
+  startDate: string = ''
+  endDate: string = ''
+  startDateErrMsg = ''
+  endDateErrMsg = ''
+  holidayFraudDetection: boolean | null = null
+  keteranganHolidayFraudDetection: string = '-'
 
   barChartOptions: ChartOptions = {
     responsive: true,
-  };
+  }
   lineChartOptions: ChartConfiguration<
     'bar' | 'line',
     number[],
     string | number
   >['options'] = {
     responsive: true,
-  };
+  }
 
-  barChartDebitKreditLabels: (string | number)[] | undefined;
+  barChartDebitKreditLabels: (string | number)[] | undefined
   barChartDebitKreditData:
     | ChartData<'bar', number[], string | number>
-    | undefined;
+    | undefined
 
   // Data untuk perbandingan debit dengan kredit (bar chart)
-  barTotalDebitKreditLabels: (string | number)[] | undefined;
+  barTotalDebitKreditLabels: (string | number)[] | undefined
   barTotalDebitKreditData:
     | ChartData<'bar', number[], string | number>
-    | undefined;
+    | undefined
 
   // Data untuk perbandingan banyaknya transaksi per tanggal yang ada pada bank statement
-  dateTransactionData: any;
+  dateTransactionData: any
 
   // Data pergerakan saldo
-  saldoMovementData: any;
+  saldoMovementData: any
+  id = ''
 
-  saldoFraudDetection: boolean | null = null;
-  transactionFraudDetection: boolean | null = null;
-  susModFraudDetection: boolean | null = null;
-  keteranganSaldoFraudDetection: string = '-';
-  keteranganTransactionFraudDetection: string = '-';
-  keteranganSusModFraudDetection: string = '-';
-  indexTransaksiJanggal: number[] = [];
+  saldoFraudDetection: boolean | null = null
+  transactionFraudDetection: boolean | null = null
+  susModFraudDetection: boolean | null = null
+  keteranganSaldoFraudDetection: string = '-'
+  keteranganTransactionFraudDetection: string = '-'
+  keteranganSusModFraudDetection: string = '-'
+  indexTransaksiJanggal: number[] = []
   isNotAllowedUsernameDetected =
     localStorage.getItem('username') === 'pocbfi1' ||
-    localStorage.getItem('username') === 'pocbfi2';
+    localStorage.getItem('username') === 'pocbfi2'
 
   constructor(
     private http: HttpClient,
@@ -105,64 +119,64 @@ export class OcrBniResultComponent {
     private route: ActivatedRoute,
     private excelExportService: ExcelExportService
   ) {
-    const navigation = this.router.getCurrentNavigation();
-    this.transactionData = navigation?.extras.state?.['transaction_data'];
-    this.summaryData = navigation?.extras.state?.['summary_data'];
-    this.analysisData = navigation?.extras.state?.['analytics_data'];
-    this.totalDebetByOcr = navigation?.extras.state?.['total_debet_by_ocr'];
-    this.totalCreditByOcr = navigation?.extras.state?.['total_kredit_by_ocr'];
-    this.akunRekening = navigation?.extras.state?.['akun_rekening'];
-    this.alamat = navigation?.extras.state?.['alamat'];
-    this.nomorRekening = navigation?.extras.state?.['nomor_rekening'];
-    this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening'];
-    this.periodeRekening = navigation?.extras.state?.['periode_rekening'];
-    this.tipeAkun = navigation?.extras.state?.['tipe_akun'];
-    this.endingBalance = navigation?.extras.state?.['ending_balance'];
-    this.totalDebet = navigation?.extras.state?.['total_debet'];
-    this.totalCredit = navigation?.extras.state?.['total_credit'];
-    this.totalDebetAmount = navigation?.extras.state?.['total_debet_amount'];
-    this.totalCreditAmount = navigation?.extras.state?.['total_credit_amount'];
-    this.isPdfModified = navigation?.extras.state?.['is_pdf_modified'];
+    const navigation = this.router.getCurrentNavigation()
+    this.transactionData = navigation?.extras.state?.['transaction_data']
+    this.summaryData = navigation?.extras.state?.['summary_data']
+    this.analysisData = navigation?.extras.state?.['analytics_data']
+    this.totalDebetByOcr = navigation?.extras.state?.['total_debet_by_ocr']
+    this.totalCreditByOcr = navigation?.extras.state?.['total_kredit_by_ocr']
+    this.akunRekening = navigation?.extras.state?.['akun_rekening']
+    this.alamat = navigation?.extras.state?.['alamat']
+    this.nomorRekening = navigation?.extras.state?.['nomor_rekening']
+    this.pemilikRekening = navigation?.extras.state?.['pemilik_rekening']
+    this.periodeRekening = navigation?.extras.state?.['periode_rekening']
+    this.tipeAkun = navigation?.extras.state?.['tipe_akun']
+    this.endingBalance = navigation?.extras.state?.['ending_balance']
+    this.totalDebet = navigation?.extras.state?.['total_debet']
+    this.totalCredit = navigation?.extras.state?.['total_credit']
+    this.totalDebetAmount = navigation?.extras.state?.['total_debet_amount']
+    this.totalCreditAmount = navigation?.extras.state?.['total_credit_amount']
+    this.isPdfModified = navigation?.extras.state?.['is_pdf_modified']
   }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')!;
+    this.id = this.route.snapshot.paramMap.get('id')!
 
-    if (id !== null) {
+    if (this.id !== null) {
       this.http
-        .get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data-by-id/${id}`)
+        .get<any>(`${apiUrl}/g-ocr-bank/get-ocr-data-by-id/${this.id}`)
         .subscribe({
-          next: value => {
-            const tempResult = JSON.parse(value.data.result);
+          next: (value) => {
+            const tempResult = JSON.parse(value.data.result)
 
-            this.transactionData = tempResult.transaction_data;
-            this.summaryData = tempResult.summary_data;
-            this.analysisData = tempResult.analytics_data;
-            this.totalDebetByOcr = tempResult.total_debet_by_ocr;
-            this.totalCreditByOcr = tempResult.total_kredit_by_ocr;
-            this.akunRekening = tempResult.akun_rekening;
-            this.alamat = tempResult.alamat;
-            this.nomorRekening = tempResult.nomor_rekening;
-            this.pemilikRekening = tempResult.pemilik_rekening;
-            this.periodeRekening = tempResult.periode_rekening;
-            this.tipeAkun = tempResult.tipe_akun;
-            this.endingBalance = tempResult.ending_balance;
-            this.totalDebet = tempResult.total_debet;
-            this.totalCredit = tempResult.total_credit;
-            this.totalDebetAmount = tempResult.total_debet_amount;
-            this.totalCreditAmount = tempResult.total_credit_amount;
-            this.isPdfModified = tempResult.is_pdf_modified;
+            this.transactionData = tempResult.transaction_data
+            this.summaryData = tempResult.summary_data
+            this.analysisData = tempResult.analytics_data
+            this.totalDebetByOcr = tempResult.total_debet_by_ocr
+            this.totalCreditByOcr = tempResult.total_kredit_by_ocr
+            this.akunRekening = tempResult.akun_rekening
+            this.alamat = tempResult.alamat
+            this.nomorRekening = tempResult.nomor_rekening
+            this.pemilikRekening = tempResult.pemilik_rekening
+            this.periodeRekening = tempResult.periode_rekening
+            this.tipeAkun = tempResult.tipe_akun
+            this.endingBalance = tempResult.ending_balance
+            this.totalDebet = tempResult.total_debet
+            this.totalCredit = tempResult.total_credit
+            this.totalDebetAmount = tempResult.total_debet_amount
+            this.totalCreditAmount = tempResult.total_credit_amount
+            this.isPdfModified = tempResult.is_pdf_modified
 
             this.barChartDebitKreditLabels = getMonthlyChartLabels(
               this.transactionData
-            );
+            )
 
             this.barChartDebitKreditData = {
               labels: this.barChartDebitKreditLabels,
               datasets: getMonthlyChartDebitData(this.transactionData),
-            };
+            }
 
-            this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
+            this.barTotalDebitKreditLabels = ['Total Debit Kredit']
             this.barTotalDebitKreditData = {
               labels: this.barTotalDebitKreditLabels,
               datasets: [
@@ -175,33 +189,35 @@ export class OcrBniResultComponent {
                   label: 'Debit',
                 },
               ],
-            };
+            }
 
-            this.dateTransactionData = getDateFrequency(this.transactionData);
+            this.dateTransactionData = getDateFrequency(this.transactionData)
 
             this.saldoMovementData = getSaldoMovement(
               this.transactionData,
               this.dateTransactionData.labels
-            );
+            )
 
             this.validateBankAccount(
               '009',
               this.nomorRekening,
               this.pemilikRekening
-            );
+            )
+
+            this.checkPotentialFraud()
           },
-        });
+        })
     } else {
       this.barChartDebitKreditLabels = getMonthlyChartLabels(
         this.transactionData
-      );
+      )
 
       this.barChartDebitKreditData = {
         labels: this.barChartDebitKreditLabels,
         datasets: getMonthlyChartDebitData(this.transactionData),
-      };
+      }
 
-      this.barTotalDebitKreditLabels = ['Total Debit Kredit'];
+      this.barTotalDebitKreditLabels = ['Total Debit Kredit']
       this.barTotalDebitKreditData = {
         labels: this.barTotalDebitKreditLabels,
         datasets: [
@@ -214,16 +230,16 @@ export class OcrBniResultComponent {
             label: 'Debit',
           },
         ],
-      };
+      }
 
-      this.dateTransactionData = getDateFrequency(this.transactionData);
+      this.dateTransactionData = getDateFrequency(this.transactionData)
 
       this.saldoMovementData = getSaldoMovement(
         this.transactionData,
         this.dateTransactionData.labels
-      );
+      )
 
-      this.validateBankAccount('009', this.nomorRekening, this.pemilikRekening);
+      this.validateBankAccount('009', this.nomorRekening, this.pemilikRekening)
     }
   }
 
@@ -234,7 +250,7 @@ export class OcrBniResultComponent {
         p_bank_account_no: bankAccountNo,
         p_bank_account_name: bankAccountName,
       },
-    ];
+    ]
 
     this.http
       .post<any>(
@@ -247,33 +263,35 @@ export class OcrBniResultComponent {
         }
       )
       .subscribe({
-        next: value => {
+        next: (value) => {
           if (value.data.validation_status == 'VALID') {
-            this.validationRemark = value.data.validation_remark;
-            this.isRekeningValid = true;
+            this.validationRemark = value.data.validation_remark
+            this.isRekeningValid = true
           } else {
-            this.validationRemark = value.data.validation_remark;
-            this.isRekeningValid = false;
+            this.validationRemark = value.data.validation_remark
+            this.isRekeningValid = false
           }
         },
-        error: error => {
-          console.log(error);
+        error: (error) => {
+          console.log(error)
         },
-      });
+      })
   }
 
   stdev(array: any[]) {
-    var avg = sum(array) / array.length;
-    return Math.sqrt(sum(map(array, i => Math.pow(i - avg, 2))) / array.length);
+    var avg = sum(array) / array.length
+    return Math.sqrt(
+      sum(map(array, (i) => Math.pow(i - avg, 2))) / array.length
+    )
   }
 
-  cekTransaksiJanggal(transactionData: any) {
-    const kumpulanBiaya: any[] = [];
-    const kumpulanPembelian: any[] = [];
-    const kumpulanAdmin: any[] = [];
-    const indexTransaksiMencurigakan: number[] = [];
+  cekTransaksiJanggal() {
+    const kumpulanBiaya: any[] = []
+    const kumpulanPembelian: any[] = []
+    const kumpulanAdmin: any[] = []
+    const indexTransaksiMencurigakan: number[] = []
 
-    let banyakTransaksiMencurigakan = 0;
+    let banyakTransaksiMencurigakan = 0
 
     this.transactionData.forEach((e: any, index: number) => {
       if (e.debit_credit !== null && e.debit_credit.includes('D')) {
@@ -281,12 +299,12 @@ export class OcrBniResultComponent {
           kumpulanBiaya.push({
             index: index,
             value: convertToFloat(e.amount),
-          });
+          })
         } else {
           kumpulanBiaya.push({
             index: null,
             value: 0,
-          });
+          })
         }
 
         if (
@@ -298,59 +316,59 @@ export class OcrBniResultComponent {
           kumpulanPembelian.push({
             index: index,
             value: convertToFloat(e.amount),
-          });
+          })
         } else {
           kumpulanPembelian.push({
             index: null,
             value: 0,
-          });
+          })
         }
 
         if (String(e.transaction_description).toLowerCase().includes('admin')) {
           kumpulanAdmin.push({
             index: index,
             value: convertToFloat(e.amount),
-          });
+          })
         } else {
           kumpulanAdmin.push({
             index: null,
             value: 0,
-          });
+          })
         }
       }
-    });
+    })
 
-    const avgBiaya = mean(kumpulanBiaya.map(item => item.value));
-    const stdDevBiaya = this.stdev(kumpulanBiaya.map(item => item.value));
+    const avgBiaya = mean(kumpulanBiaya.map((item) => item.value))
+    const stdDevBiaya = this.stdev(kumpulanBiaya.map((item) => item.value))
 
-    const avgPembelian = mean(kumpulanPembelian.map(item => item.value));
+    const avgPembelian = mean(kumpulanPembelian.map((item) => item.value))
     const stdDevPembelian = this.stdev(
-      kumpulanPembelian.map(item => item.value)
-    );
+      kumpulanPembelian.map((item) => item.value)
+    )
 
-    const avgAdmin = mean(kumpulanAdmin.map(item => item.value));
-    const stdDevAdmin = this.stdev(kumpulanAdmin.map(item => item.value));
+    const avgAdmin = mean(kumpulanAdmin.map((item) => item.value))
+    const stdDevAdmin = this.stdev(kumpulanAdmin.map((item) => item.value))
 
     kumpulanBiaya.forEach((e: any) => {
       if (e.value > stdDevBiaya * 2) {
-        banyakTransaksiMencurigakan++;
-        indexTransaksiMencurigakan.push(e.index);
+        banyakTransaksiMencurigakan++
+        indexTransaksiMencurigakan.push(e.index)
       }
-    });
+    })
 
     kumpulanPembelian.forEach((e: any) => {
       if (e.value > stdDevPembelian * 2) {
-        banyakTransaksiMencurigakan++;
-        indexTransaksiMencurigakan.push(e.index);
+        banyakTransaksiMencurigakan++
+        indexTransaksiMencurigakan.push(e.index)
       }
-    });
+    })
 
     kumpulanAdmin.forEach((e: any) => {
       if (e.value > stdDevAdmin * 2) {
-        banyakTransaksiMencurigakan++;
-        indexTransaksiMencurigakan.push(e.index);
+        banyakTransaksiMencurigakan++
+        indexTransaksiMencurigakan.push(e.index)
       }
-    });
+    })
 
     return {
       avgBiaya: avgBiaya,
@@ -361,16 +379,16 @@ export class OcrBniResultComponent {
       stdDevAdmin: stdDevAdmin,
       banyakTransaksiMencurigakan: banyakTransaksiMencurigakan,
       indexTransaksiMencurigakan: indexTransaksiMencurigakan,
-    };
+    }
   }
 
   isHolidayTransaction() {
-    let holidayData: any[] = [];
-    const susDate: any[] = [];
+    let holidayData: any[] = []
+    const susDate: any[] = []
 
     this.http.get<any>(`${apiUrl}/g-ocr-bank/get-holiday`).subscribe({
-      next: value => {
-        holidayData = value.data;
+      next: (value) => {
+        holidayData = value.data
 
         this.transactionData.forEach((data: any, index: number) => {
           for (let i = 0; i < holidayData.length; i++) {
@@ -380,36 +398,36 @@ export class OcrBniResultComponent {
               day: '2-digit',
               month: '2-digit',
               year: 'numeric',
-            });
+            })
 
             if (data.posting_date !== null) {
               if (formattedDate === data.posting_date.split(' ')[0]) {
                 susDate.push({
                   holiday_data: holidayData[i],
                   sus_date: formattedDate,
-                });
+                })
               }
             }
           }
 
           if (susDate.length > 0) {
-            this.holidayFraudDetection = false;
-            const tempDate: any[] = [];
+            this.holidayFraudDetection = false
+            const tempDate: any[] = []
 
-            susDate.forEach(e => {
-              tempDate.push(e.sus_date);
-            });
+            susDate.forEach((e) => {
+              tempDate.push(e.sus_date)
+            })
 
             this.keteranganHolidayFraudDetection = `Suspicious transaction date detected at ${[
               ...new Set(tempDate),
-            ].join(', ')}`;
+            ].join(', ')}`
           } else {
-            this.holidayFraudDetection = true;
-            this.keteranganHolidayFraudDetection = `No suspicious transaction date detected.`;
+            this.holidayFraudDetection = true
+            this.keteranganHolidayFraudDetection = `No suspicious transaction date detected.`
           }
-        });
+        })
       },
-      error: err => {
+      error: (err) => {
         Swal.fire({
           icon: 'error',
           title: 'Upload Failed',
@@ -417,135 +435,133 @@ export class OcrBniResultComponent {
             err.error.data == undefined
               ? 'Failed to connect with SYS_HOLIDAY.'
               : err.error.data, // Bisa disesuaikan dengan pesan yang lebih jelas
-        });
+        })
 
-        return;
+        return
       },
-    });
+    })
   }
 
   checkPotentialFraud() {
-    let tempTotalDebet = 0;
-    let tempTotalKredit = 0;
-    let saldoAwal = convertToFloat(this.transactionData[0].balance);
+    let tempTotalDebet = 0
+    let tempTotalKredit = 0
+    let saldoAwal = convertToFloat(this.transactionData[0].balance)
     let saldoAkhir = convertToFloat(
       this.transactionData[this.transactionData.length - 1].balance
-    );
+    )
 
     this.transactionData.forEach((e: any) => {
       if (e.debit_credit !== null) {
         if (e.debit_credit.includes('D')) {
-          tempTotalDebet = tempTotalDebet + convertToFloat(e.amount);
+          tempTotalDebet = tempTotalDebet + convertToFloat(e.amount)
         } else {
-          tempTotalKredit = tempTotalKredit + convertToFloat(e.amount);
+          tempTotalKredit = tempTotalKredit + convertToFloat(e.amount)
         }
       }
-    });
+    })
 
     const expectedSaldoAkhir = parseFloat(
       (saldoAwal + tempTotalKredit - tempTotalDebet).toFixed(2)
-    );
+    )
 
-    console.log(expectedSaldoAkhir);
-    console.log(saldoAkhir);
+    console.log(expectedSaldoAkhir)
+    console.log(saldoAkhir)
 
     if (expectedSaldoAkhir === saldoAkhir) {
-      this.saldoFraudDetection = true;
+      this.saldoFraudDetection = true
       this.keteranganSaldoFraudDetection =
-        'The total balance match based on the transaction report';
+        'The total balance match based on the transaction report'
     } else {
-      this.saldoFraudDetection = false;
-      this.keteranganSaldoFraudDetection = `The total balance does not match based on the transaction report. Expected : ${expectedSaldoAkhir}, Actual : ${saldoAkhir}. Please check back!`;
+      this.saldoFraudDetection = false
+      this.keteranganSaldoFraudDetection = `The total balance does not match based on the transaction report. Expected : ${expectedSaldoAkhir}, Actual : ${saldoAkhir}. Please check back!`
     }
 
     if (this.isPdfModified) {
-      this.susModFraudDetection = false;
+      this.susModFraudDetection = false
       this.keteranganSusModFraudDetection =
-        'The document indicates it has been modified.';
+        'The document indicates it has been modified.'
     } else {
-      this.susModFraudDetection = true;
+      this.susModFraudDetection = true
       this.keteranganSusModFraudDetection =
-        'The document does not indicate it has been modified.';
+        'The document does not indicate it has been modified.'
     }
 
-    const dataTransaksiMencurigakan = this.cekTransaksiJanggal(
-      this.transactionData
-    );
+    const dataTransaksiMencurigakan = this.cekTransaksiJanggal()
 
     if (dataTransaksiMencurigakan.banyakTransaksiMencurigakan > 0) {
-      this.transactionFraudDetection = false;
+      this.transactionFraudDetection = false
       this.indexTransaksiJanggal =
-        dataTransaksiMencurigakan.indexTransaksiMencurigakan;
-      this.keteranganTransactionFraudDetection = `${dataTransaksiMencurigakan.banyakTransaksiMencurigakan} suspicious transactions were found in this transaction report. The transactions are marked in red in the table above.`;
+        dataTransaksiMencurigakan.indexTransaksiMencurigakan
+      this.keteranganTransactionFraudDetection = `${dataTransaksiMencurigakan.banyakTransaksiMencurigakan} suspicious transactions were found in this transaction report. The transactions are marked in red in the table above.`
     } else {
-      this.transactionFraudDetection = true;
-      this.indexTransaksiJanggal = [];
-      this.keteranganTransactionFraudDetection = `No suspicious transactions were found in this transaction report.`;
+      this.transactionFraudDetection = true
+      this.indexTransaksiJanggal = []
+      this.keteranganTransactionFraudDetection = `No suspicious transactions were found in this transaction report.`
     }
 
-    this.isHolidayTransaction();
+    this.isHolidayTransaction()
 
     return {
       saldoFraudDetection: this.saldoFraudDetection,
       transactionFraudDetection: this.transactionFraudDetection,
       susModFraudDetection: this.susModFraudDetection,
-    };
+    }
   }
 
   updateField(index: number, field: string, event: Event): void {
-    const target = event.target as HTMLInputElement;
+    const target = event.target as HTMLInputElement
     if (target) {
-      this.transactionData[index][field] = target.value;
+      this.transactionData[index][field] = target.value
     }
   }
 
   exportData() {
-    let startDateFound = false;
-    let endDateFound = false;
-    let isStartDateFirst = false;
-    let isEndDateFirst = false;
+    let startDateFound = false
+    let endDateFound = false
+    let isStartDateFirst = false
+    let isEndDateFirst = false
 
     if (this.startDate !== '' && this.endDate !== '') {
       this.transactionData.forEach((e: any) => {
         if (e.posting_date !== null) {
           if (e.posting_date.trim() === this.startDate) {
-            startDateFound = true;
+            startDateFound = true
 
-            if (isEndDateFirst === false) {
-              isStartDateFirst = true;
+            if (!isEndDateFirst) {
+              isStartDateFirst = true
             }
           }
 
           if (e.posting_date.trim() === this.endDate) {
-            endDateFound = true;
+            endDateFound = true
 
-            if (isStartDateFirst === false) {
-              isEndDateFirst = true;
+            if (!isStartDateFirst) {
+              isEndDateFirst = true
             }
           }
         }
-      });
+      })
 
-      this.startDateErrMsg = '';
-      this.endDateErrMsg = '';
+      this.startDateErrMsg = ''
+      this.endDateErrMsg = ''
 
       if (!startDateFound) {
-        this.startDateErrMsg = `Transaction dated ${this.startDate} not found.`;
+        this.startDateErrMsg = `Transaction dated ${this.startDate} not found.`
       }
 
       if (!endDateFound) {
-        this.endDateErrMsg = `Transaction dated ${this.endDate} not found.`;
-        return;
+        this.endDateErrMsg = `Transaction dated ${this.endDate} not found.`
+        return
       }
 
       if (isEndDateFirst) {
         this.endDateErrMsg =
-          'The end date cannot be earlier than the start date.';
-        return;
+          'The end date cannot be earlier than the start date.'
+        return
       }
 
       if (!startDateFound || !endDateFound || isEndDateFirst) {
-        return;
+        return
       }
     }
 
@@ -576,6 +592,6 @@ export class OcrBniResultComponent {
         'Balance',
         'File Name',
       ]
-    );
+    )
   }
 }
