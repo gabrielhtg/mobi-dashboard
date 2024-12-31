@@ -578,7 +578,7 @@ export class OcrOcbcResultComponent implements OnInit {
         'debet',
         'kredit',
         'saldo',
-        'filename',
+        // 'filename',
       ],
       this.startDate,
       this.endDate,
@@ -589,7 +589,7 @@ export class OcrOcbcResultComponent implements OnInit {
         'Debet',
         'Kredit',
         'Saldo',
-        'File Name',
+        // 'File Name',
       ]
     )
   }

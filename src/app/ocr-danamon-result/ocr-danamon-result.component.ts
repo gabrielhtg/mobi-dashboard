@@ -546,7 +546,7 @@ export class OcrDanamonResultComponent implements OnInit {
         'debit',
         'kredit',
         'saldo',
-        'filename',
+        // 'filename',
       ],
       this.startDate,
       this.endDate,
@@ -558,7 +558,7 @@ export class OcrDanamonResultComponent implements OnInit {
         'Debit',
         'Kredit',
         'Saldo',
-        'File Name',
+        // 'File Name',
       ]
     )
   }

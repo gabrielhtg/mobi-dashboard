@@ -563,10 +563,24 @@ export class OcrBcaResultComponent implements OnInit {
     this.excelExportService.exportToExcel(
       this.transactionData,
       'BCA_Transaction_Data_Exported',
-      ['tanggal', 'keterangan', 'cbg', 'mutasi', 'saldo', 'filename'],
+      [
+        'tanggal',
+        'keterangan',
+        'cbg',
+        'mutasi',
+        'saldo',
+        // 'filename'
+      ],
       this.startDate,
       this.endDate,
-      ['Tanggal', 'Keterangan', 'Cabang', 'Mutasi', 'Saldo', 'File Name']
+      [
+        'Tanggal',
+        'Keterangan',
+        'Cabang',
+        'Mutasi',
+        'Saldo',
+        // 'File Name'
+      ]
     )
   }
 }
