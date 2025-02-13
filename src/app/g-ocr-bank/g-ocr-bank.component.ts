@@ -1,12 +1,11 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { AngularCropperjsModule, CropperComponent } from 'angular-cropperjs';
-import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { apiUrl } from '../env';
-import { NgForOf, NgIf } from '@angular/common';
-import FileSaver from 'file-saver';
-import { isAuthorizedByIp } from '../allservice';
-import { Router } from '@angular/router';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core'
+import { AngularCropperjsModule, CropperComponent } from 'angular-cropperjs'
+import { FormsModule } from '@angular/forms'
+import { HttpClient } from '@angular/common/http'
+import { apiUrl } from '../env'
+import { NgForOf, NgIf } from '@angular/common'
+import FileSaver from 'file-saver'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-g-ocr-bank',
@@ -16,42 +15,42 @@ import { Router } from '@angular/router';
 })
 export class GOcrBankComponent {
   @ViewChild('pemilikRekening', { static: false })
-  pemilikRekeningElement!: any;
+  pemilikRekeningElement!: any
   @ViewChild('nomorRekening', { static: false })
-  nomorRekeningElement!: any;
+  nomorRekeningElement!: any
 
-  pemilikRekening = '';
-  nomorRekening = '';
-  isRekeningValid: any = null;
+  pemilikRekening = ''
+  nomorRekening = ''
+  isRekeningValid: any = null
 
-  file: any;
-  hideTakeAll = false;
-  dataTransaksi: any = [];
-  dataBankStatement: any = [null, null, null, null, null, null, null];
+  file: any
+  hideTakeAll = false
+  dataTransaksi: any = []
+  dataBankStatement: any = [null, null, null, null, null, null, null]
 
-  selectedData = 0;
-  selectedDataTable1 = -1;
-  selectedDataTable2 = -1;
+  selectedData = 0
+  selectedDataTable1 = -1
+  selectedDataTable2 = -1
 
-  halamanTransaksi: any;
+  halamanTransaksi: any
 
-  imageUrl: string | null = 'assets/placeholder.jpg';
-  rawData: string = 'No Selected Text';
+  imageUrl: string | null = 'assets/placeholder.jpg'
+  rawData: string = 'No Selected Text'
 
   cropperConfig: Cropper.Options = {
     rotatable: true,
     autoCrop: false,
-  };
+  }
 
-  validationRemark: any = '';
+  validationRemark: any = ''
 
-  @ViewChild('angularCropper') public angularCropper!: CropperComponent;
+  @ViewChild('angularCropper') public angularCropper!: CropperComponent
 
   @HostListener('document:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
     if (event.ctrlKey && event.key == 'p') {
       // alert('fine')
-      window.location.reload();
+      window.location.reload()
     }
 
     if (event.key === 'Enter' && event.shiftKey) {
@@ -59,18 +58,18 @@ export class GOcrBankComponent {
         value: '-',
         canvasData: null,
         cropData: null,
-      };
-      this.selectedDataTable2++;
+      }
+      this.selectedDataTable2++
 
       if (this.selectedDataTable2 > 4) {
-        this.selectedDataTable2 = 0;
-        this.selectedDataTable1++;
-        this.addRow();
+        this.selectedDataTable2 = 0
+        this.selectedDataTable1++
+        this.addRow()
       }
     } else if (event.key === 'Enter' && event.ctrlKey) {
-      this.doOcr(true);
+      this.doOcr(true)
     } else if (event.key === 'Enter') {
-      this.doOcr(false);
+      this.doOcr(false)
     }
   }
 
@@ -80,58 +79,56 @@ export class GOcrBankComponent {
   ) {}
 
   onChange(event: any) {
-    const file: File = event.target.files[0];
+    const file: File = event.target.files[0]
 
     if (file) {
-      this.file = file;
+      this.file = file
     }
 
-    this.convertFileToImageUrl(this.file);
+    this.convertFileToImageUrl(this.file)
 
-    this.angularCropper.cropper.replace(this.imageUrl!);
+    this.angularCropper.cropper.replace(this.imageUrl!)
   }
 
   convertFileToImageUrl(file: File) {
-    const reader = new FileReader();
+    const reader = new FileReader()
     reader.onload = (e: any) => {
-      this.imageUrl = e.target.result;
-    };
-    reader.readAsDataURL(file);
+      this.imageUrl = e.target.result
+    }
+    reader.readAsDataURL(file)
   }
 
   doOcr(page: boolean) {
-    isAuthorizedByIp(this.http, this.router);
-
-    this.angularCropper.cropper.getCroppedCanvas().toBlob(blob => {
-      const fd = new FormData();
-      fd.append('file', blob!);
+    this.angularCropper.cropper.getCroppedCanvas().toBlob((blob) => {
+      const fd = new FormData()
+      fd.append('file', blob!)
       this.http.post<any>(apiUrl + '/g-ocr-bank', fd).subscribe({
-        next: value => {
+        next: (value) => {
           if (page) {
-            this.halamanTransaksi = value.data;
+            this.halamanTransaksi = value.data
           } else {
             if (this.selectedData !== -1) {
               this.dataBankStatement[this.selectedData] = {
                 value: value.data,
                 canvasData: this.angularCropper.cropper.getCanvasData(),
                 cropData: this.angularCropper.cropper.getCropBoxData(),
-              };
+              }
 
               if (this.selectedData == 4) {
                 this.validateBankAccount(
                   '014',
                   this.dataBankStatement[4].value.trim(),
                   this.dataBankStatement[2].value.trim()
-                );
+                )
               }
 
-              this.selectedData++;
+              this.selectedData++
 
               if (this.selectedData > 6) {
-                this.selectedData = -1;
-                this.addRow();
-                this.selectedDataTable1 = 0;
-                this.selectedDataTable2 = 0;
+                this.selectedData = -1
+                this.addRow()
+                this.selectedDataTable1 = 0
+                this.selectedDataTable2 = 0
               }
             } else {
               this.dataTransaksi[this.selectedDataTable1][
@@ -140,23 +137,23 @@ export class GOcrBankComponent {
                 value: value.data,
                 canvasData: this.angularCropper.cropper.getCanvasData(),
                 cropData: this.angularCropper.cropper.getCropBoxData(),
-              };
-              this.selectedDataTable2++;
+              }
+              this.selectedDataTable2++
 
               if (this.selectedDataTable2 > 4) {
-                this.selectedDataTable2 = 0;
-                this.selectedDataTable1++;
-                this.addRow();
+                this.selectedDataTable2 = 0
+                this.selectedDataTable1++
+                this.addRow()
               }
             }
           }
-          this.rawData = value.rawData;
+          this.rawData = value.rawData
         },
-        error: error => {
-          console.log(error);
+        error: (error) => {
+          console.log(error)
         },
-      });
-    });
+      })
+    })
   }
 
   // doOcrAll () {
@@ -179,25 +176,25 @@ export class GOcrBankComponent {
   // }
 
   setSelectedData(index: number): void {
-    this.selectedData = index;
+    this.selectedData = index
     try {
       this.angularCropper.cropper.setCropBoxData(
         this.dataBankStatement[index].cropData
-      );
+      )
       this.angularCropper.cropper.setCanvasData(
         this.dataBankStatement[index].canvasData
-      );
+      )
     } catch (e) {
       // do nothing
     }
   }
 
   rotateLeft() {
-    this.angularCropper.cropper.rotate(-1);
+    this.angularCropper.cropper.rotate(-1)
   }
 
   rotateRight() {
-    this.angularCropper.cropper.rotate(1);
+    this.angularCropper.cropper.rotate(1)
   }
 
   addRow() {
@@ -208,37 +205,37 @@ export class GOcrBankComponent {
       null,
       null,
       this.halamanTransaksi,
-    ]);
+    ])
 
-    console.log(this.dataTransaksi[0]);
+    console.log(this.dataTransaksi[0])
   }
 
   setSelectedDataTable(index1: number, index2: number): void {
-    this.selectedData = -1;
-    this.selectedDataTable1 = index1;
-    this.selectedDataTable2 = index2;
+    this.selectedData = -1
+    this.selectedDataTable1 = index1
+    this.selectedDataTable2 = index2
     this.angularCropper.cropper.setCropBoxData(
       this.dataTransaksi[index1][index2].cropData
-    );
+    )
     this.angularCropper.cropper.setCanvasData(
       this.dataTransaksi[index1][index2].canvasData
-    );
+    )
   }
 
   exportPDF() {
-    this.angularCropper.cropper.getCroppedCanvas().toBlob(blob => {
-      const fd = new FormData();
-      fd.append('file', blob!);
+    this.angularCropper.cropper.getCroppedCanvas().toBlob((blob) => {
+      const fd = new FormData()
+      fd.append('file', blob!)
       this.http.post<any>(apiUrl + '/g-ocr/export', fd).subscribe({
-        next: value => {
-          FileSaver.saveAs(value.data, 'ocr-result.pdf');
+        next: (value) => {
+          FileSaver.saveAs(value.data, 'ocr-result.pdf')
         },
-        error: error => {
-          console.log(error);
-          this.hideTakeAll = false;
+        error: (error) => {
+          console.log(error)
+          this.hideTakeAll = false
         },
-      });
-    });
+      })
+    })
   }
 
   validateBankAccount(bankCode: any, bankAccountNo: any, bankAccountName: any) {
@@ -248,7 +245,7 @@ export class GOcrBankComponent {
         p_bank_account_no: bankAccountNo,
         p_bank_account_name: bankAccountName,
       },
-    ];
+    ]
 
     this.http
       .post<any>(
@@ -256,18 +253,18 @@ export class GOcrBankComponent {
         requestBody
       )
       .subscribe({
-        next: value => {
+        next: (value) => {
           if (value.data.validation_status == 'VALID') {
-            this.validationRemark = value.data.validation_remark;
-            this.isRekeningValid = true;
+            this.validationRemark = value.data.validation_remark
+            this.isRekeningValid = true
           } else {
-            this.validationRemark = value.data.validation_remark;
-            this.isRekeningValid = false;
+            this.validationRemark = value.data.validation_remark
+            this.isRekeningValid = false
           }
         },
-        error: error => {
-          console.log(error);
+        error: (error) => {
+          console.log(error)
         },
-      });
+      })
   }
 }

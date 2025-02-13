@@ -16,7 +16,7 @@ import {
   getMonthlyChartLabels,
   getSaldoMovement,
 } from './ocr-permata-result.service'
-import { convertToFloat, ExcelExportService } from '../allservice'
+import { convertToFloat, ExcelExportService, formatRupiah } from '../allservice'
 import { map, mean, sum } from 'lodash'
 import { apiUrl } from '../env'
 import { FormsModule } from '@angular/forms'
@@ -493,7 +493,7 @@ export class OcrPermataResultComponent implements OnInit {
         'The total balance match based on the transaction report'
     } else {
       this.saldoFraudDetection = false
-      this.keteranganSaldoFraudDetection = `The total balance does not match based on the transaction report. Expected : ${expectedSaldoAkhir}, Actual : ${saldoAkhir}. Please check back!`
+      this.keteranganSaldoFraudDetection = `The total balance does not match based on the transaction report. Expected : ${formatRupiah(saldoAkhir)}, Actual : ${formatRupiah(saldoAkhir)}. Please check back!`
     }
 
     if (this.isPdfModified) {

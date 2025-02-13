@@ -19,7 +19,7 @@ import {
 } from './ocr-mandiri-result.service'
 import { map, mean, sum } from 'lodash'
 import { apiUrl } from '../env'
-import { ExcelExportService } from '../allservice'
+import { ExcelExportService, formatRupiah } from '../allservice'
 import { FormsModule } from '@angular/forms'
 import Swal from 'sweetalert2'
 
@@ -453,7 +453,7 @@ export class OcrMandiriResultComponent implements OnInit {
         'The total balance match based on the transaction report'
     } else {
       this.saldoFraudDetection = false
-      this.keteranganSaldoFraudDetection = `The total balance does not match based on the transaction report. Expected : ${expectedSaldoAkhir}, Actual : ${saldoAkhir}. Please check back!`
+      this.keteranganSaldoFraudDetection = `The total balance does not match based on the transaction report. Expected : ${formatRupiah(expectedSaldoAkhir)}, Actual : ${formatRupiah(saldoAkhir)}. Please check back!`
     }
 
     if (this.isPdfModified) {
